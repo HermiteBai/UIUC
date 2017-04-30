@@ -1,0 +1,190 @@
+\documentclass[11pt]{article}
+\input{../../packages.tex}
+\usepackage{enumerate}
+\pagestyle{fancy}
+\fancyhead[L]{Math444}
+\fancyhead[C]{HW6}
+\fancyhead[R]{Lanxiao Bai}
+\newcommand{\qed}{
+	\begin{flushright}
+		$\blacksquare$
+	\end{flushright}}
+\begin{document}
+	\paragraph{3.5.8}\textbf{Proof:}
+	
+		Suppose we have a sequence $(x_n)$ that is increasing and bounded by $u$. Then by Monotone Convergence Theorem, $(x_n)$ converges. Then there is $N_1$ that when $n \geq N_1$, $|x_n - x_{n - 1}| < \varepsilon / (n - m + 1)$ for all $\varepsilon > 0$, there is $N_2$ that when $n \geq N_2$, $|x_{n - 1} - x_{n - 2}| < \varepsilon / (n - m + 1)$ for all $\varepsilon > 0$ and so on.
+		
+		Then let $n > m$, when we pick $N = \max\{N_1, N_2, \cdots, N_{n - m + 1}\}$, then when $n \geq N$, we have
+		\begin{align}
+			&|x_n - x_m| = |x_n - x_{n - 1} + x_{n - 1} - x_{n - 2} + x_{n - 2} - \cdots + x_{m + 1} - x_m|\nonumber\\
+			&\phantom{|x_n - x_m|} \leq |x_n - x_{n - 1}| + |x_{n - 1} - x_{n - 2}| + \cdots + |x_{m + 1} - x_m|\nonumber\\
+			&\phantom{|x_n - x_m|} \leq \sum_{i = 1}^{n - m + 1} \frac{\varepsilon}{n - m + 1}\nonumber\\
+			&\phantom{|x_n - x_m|} < \varepsilon\nonumber
+		\end{align}
+	
+	Hence, by definition $(x_n)$ is Cauchy sequence.
+	\qed
+	\paragraph{3.5.9}\textbf{Proof:}
+		
+		Since $0 < r < 1$, $\lim r^{n + 1} / r^n = \lim r = r$, sequence $(x_n) = r^n$ is a Cauchy sequence. 
+		
+		Then let $n > m$ and take $N$ that when $m, n \geq N$ that $r^m - r^n < \varepsilon / (1 - r)$, then we have
+		\begin{align}
+			&|x_n - x_m| = |x_n - x_{n - 1} + x_{n - 1} - x_{n - 2} + x_{n - 2} - \cdots + x_{m + 1} - x_m|\nonumber\\
+			&\phantom{|x_n - x_m|} \leq |x_n - x_{n - 1}| + |x_{n - 1} - x_{n - 2}| + \cdots + |x_{m + 1} - x_m|\nonumber\\
+			&\phantom{|x_n - x_m|} < r^{n - 1} + r^{n - 2} + \cdots + r^m\nonumber\\
+			&\phantom{|x_n - x_m|} = \frac{r^m(1 - r^{n -m})}{1 - r}\nonumber\\
+			&\phantom{|x_n - x_m|} = \frac{r^m - r^n}{1 - r} < \varepsilon\nonumber
+		\end{align}
+		when $m, n \geq N$, for all $\varepsilon > 0$.
+		
+		Hence, by definition, $(x_n)$ is a Cauchy sequence.
+		\qed 
+	\paragraph{3.5.10}\textbf{Proof:}
+		Since $x_n = \frac{1}{2}(x_{n - 2} + x_{n - 1})$, the new term is formed by averaging the previous two terms. So we can see that
+			\[|x_n - x_{n + 1}| = \frac{x_2 - x_1}{2^{n - 1}}\]
+		
+		Thus, if $m > n$,
+		
+		\begin{align}
+			&|x_n - x_m| = |x_n - x_{n - 1} + x_{n - 1} - x_{n - 2} + x_{n - 2} - \cdots + x_{m + 1} - x_m|\nonumber\\
+			&\phantom{|x_n - x_m|} \leq |x_n - x_{n - 1}| + |x_{n - 1} - x_{n - 2}| + \cdots + |x_{m + 1} - x_m|\nonumber\\
+			&\phantom{|x_n - x_m|} = (x_2 - x_1)(\frac{1}{2^{n - 1}} +  \frac{1}{2^{n}} + \cdots + \frac{1}{2^{m - 2}})\nonumber\\
+			&\phantom{|x_n - x_m|} < (x_2 - x_1)\frac{1}{2^{n - 2}}\nonumber
+		\end{align}
+		Therefore, given $\varepsilon > 0$, if $n$ is chosen so large that $1/2^n < \varepsilon/4$ and if $m > n$, then it follows that $|x_n - x_m| < \varepsilon$.
+		
+		Hence, $(x_n)$ is a Cauchy sequence, and as a result, $(x_n)$ converges.
+		
+		And $\lim (x_n) = \lim (x_2 - x_1)\frac{1}{2^{n - 1}} = (x_2 - x_1)\lim \frac{1}{2^{n - 1}} = (x_2 - x_1)\frac{5}{3}$(by the result of Example 3.5.6).
+		\qed
+	\paragraph{3.5.11}\textbf{Proof:}
+	
+	Since $y_n = \frac{1}{3}y_{n - 1} + \frac{2}{3}y_{n - 2} \Rightarrow y_n - y_{n - 1} = -\frac{2}{3} y_{n - 1} + \frac{2}{3} y_{n - 2} = -\frac{2}{3}(y_{n - 1} - y_{n - 2})$.
+	
+	As a result, we see that $|y_{n + 1} - y_n| = (-\frac{2}{3})^{n - 1}(y_2 - y_1)$.
+	
+	Thus, if $m > n$,
+	
+	\begin{align}
+		&|y_n - y_m| = |y_n - y_{n - 1} + y_{n - 1} - y_{n - 2} + y_{n - 2} - \cdots + y_{m + 1} - y_m|\nonumber\\
+		&\phantom{|y_n - y_m|} \leq |y_n - y_{n - 1}| + |y_{n - 1} - y_{n - 2}| + \cdots + |y_{m + 1} - y_m|\nonumber\\
+		&\phantom{|y_n - y_m|} = (y_2 - y_1)((-\frac{2}{3})^n +  (-\frac{2}{3})^{n + 1} + \cdots + (-\frac{2}{3})^{m - 2})\nonumber\\
+		&\phantom{|y_n - y_m|} \leq (y_2 - y_1)((\frac{2}{3})^{n - 1} + (\frac{2}{3})^n +  (\frac{2}{3})^{n + 1} + \cdots + (\frac{2}{3})^{m - 2})\nonumber\\
+		&\phantom{|y_n - y_m|} = (y_2 - y_1)(\frac{2}{3})^{n - 1}(1 + \frac{2}{3} + (\frac{2}{3})^2 + \cdots + (\frac{2}{3})^{m - n - 2})\nonumber\\
+		&\phantom{|y_n - y_m|} < (\frac{2}{3})^{n - 2}
+	\end{align}
+	
+	Then for all $\varepsilon > 0$ if we choose $N$ that $(\frac{2}{3})^{n - 2} < \varepsilon$, when $n, m \geq N$ we have $|y_n - y_m| < \varepsilon$.
+	
+	So $(y_n)$ is Cauchy sequence, and thus converges.
+	
+	As a result, if we take $b_n = 2n + 1$, $lim y_n = \lim y_{b_n} = 1 + (2/3) + (2/3)^3 + \cdots + (2/3)^{2n - 1} = 1 - \frac{6}{5}((\frac{2}{3})^{2n} - 1) = \frac{11}{5}$.
+	\qed
+	
+	\paragraph{4.1.2}
+		\begin{enumerate}[(a)]
+			\item To make $|\sqrt{x} - 2| < \frac{1}{2}$, we need $-\frac{1}{2} < \sqrt{x} - 2 < \frac{1}{2}$, so that $\frac{3}{2} < \sqrt{x} < \frac{5}{2}$.
+			
+			Hence, $\frac{9}{4} < x < \frac{25}{4}$, and $-\frac{7}{4} < x - 4 < \frac{9}{4}$ with $-\frac{9}{4} < 4 - x < \frac{7}{4}$.
+			
+			As a result, $0 < |x - 4| < \frac{9}{4}$ can make $|\sqrt{x} - 2| < \frac{1}{2}$.
+			\item To make $|\sqrt{x} - 2| < 10^{-2}$, we need $-10^{-2} < \sqrt{x} - 2 < 10^{-2}$, so that $\frac{199}{100} < \sqrt{x} < \frac{201}{100}$.
+			
+			Hence, $\frac{39601}{10000} < x < \frac{40401}{10000}$, and $-\frac{399}{10000} < x - 4 < \frac{401}{10000}$ with $-\frac{401}{10000} < 4 - x < \frac{399}{10000}$.
+			
+			As a result, $0 < |x - 4| < \frac{401}{10000}$ can make $|\sqrt{x} - 2| < 10^{-2}$.
+		\end{enumerate}
+	\paragraph{4.1.5}\textbf{Proof:}
+		\begin{align}
+			&|g(x) - c^2| = |(x + c)(x - c)|\nonumber\\
+			&\phantom{|g(x) - c^2|} = (x + c)|x - c|&\text{since }x, c \geq 0\nonumber\\
+			&\phantom{|g(x) - c^2|} \leq 2a(x - c)&\text{since }x, c \leq a\nonumber\\
+			&\phantom{|g(x) - c^2|} = 2a|x - c|\nonumber
+		\end{align}
+		
+		Then if for all $\varepsilon > 0$, we pick $\delta = \varepsilon / 2a$, then when $0 < |x - c| < \delta$, we have
+		\[|g(x) - c^2| \leq 2a(x - c) < 2a \cdot \varepsilon / 2a = \varepsilon\]
+		
+		Hence, by definition, 
+		\[\lim_{x \rightarrow c} = c^2\]
+		\qed
+		
+	\paragraph{4.1.7}\textbf{Proof:}
+		Since $c \in \mathbb{R}$, $c$ is a cluster point, so for all $\delta > 0$ there is a $x \in \mathbb{R}$ that $|x - c| < \delta$. Without losing generality, we can assume $cx \geq 0$ and $|c| > |x|$, then when we pick $\delta < \varepsilon / (4c^2)$
+		
+		\begin{align}
+			&|x^3 - c^3| = |(x - c)(x^2 + cx + c^2)|\nonumber\\
+			&\phantom{|x^3 - c^3|} = |(x - c)((x - c)^2 + 3cx)|\nonumber\\
+			&\phantom{|x^3 - c^3|} = ((x - c)^2 + 3cx)|x - c|\nonumber\\
+			&\phantom{|x^3 - c^3|} \leq (x + c)^2|x - c|\nonumber\\
+			&\phantom{|x^3 - c^3|} < \delta(x + c)^2 \nonumber\\
+			&\phantom{|x^3 - c^3|} < 4c^2\delta < \varepsilon \nonumber
+		\end{align}
+		
+		Hence, by definition, we have
+		\[\lim_{x \rightarrow c} =c^3\]
+		\qed
+	\paragraph{4.1.9}
+		\begin{enumerate}[(a)]
+			\item \textbf{Proof:}
+			Since $2$ is a cluster point of $\mathbb{R}$, for all $\delta > 0$, there is $x \in \mathbb{R}$ that $|x - 2| < \delta$. So if we pick $\delta$ that $|\frac{1}{1-x}| < \varepsilon / \delta$(since it converges), then 
+			\begin{align}
+				&|\frac{1}{1-x}	- (-1)| = |\frac{1}{1-x} + 1|\nonumber\\
+				&\phantom{|\frac{1}{1-x}	- (-1)|} = |\frac{1 + 1 - x}{1 - x}|\nonumber\\
+				&\phantom{|\frac{1}{1-x}	- (-1)|} = |\frac{2 - x}{1 - x}|\nonumber\\
+				&\phantom{|\frac{1}{1-x}	- (-1)|} = |\frac{x - 2}{1 - x}|\nonumber\\
+				&\phantom{|\frac{1}{1-x}	- (-1)|} = |x - 2||\frac{1}{x - 1}|\nonumber\\
+				&\phantom{|\frac{1}{1-x}	- (-1)|} < \delta\varepsilon / \delta = \varepsilon \nonumber
+			\end{align}
+			
+			Hence, \[\lim_{x\rightarrow	2}\frac{1}{1-x} = -1\]
+			\qed
+			\item \textbf{Proof:}
+				Since $1$ is a cluster point of $\mathbb{R}$, for all $\delta > 0$, there is $x \in \mathbb{R}$ that $|x - 1| < \delta$. So if we pick $\delta$ that $|\frac{1}{1+x}| < 2\varepsilon / \delta$(since it converges), then 
+				\begin{align}
+					&|\frac{x}{1+x} - \frac{1}{2}| = |\frac{2x - 1 - x}{2 + 2x}|\nonumber\\
+					&\phantom{|\frac{x}{1+x} - \frac{1}{2}|} = |\frac{x - 1}{2 + 2x}|\nonumber\\
+					&\phantom{|\frac{x}{1+x} - \frac{1}{2}|} = \frac{1}{2}|\frac{x - 1}{x + 1}|\nonumber\\
+					&\phantom{|\frac{x}{1+x} - \frac{1}{2}|} = \frac{|x - 1|}{2}|\frac{1}{x + 1}|\nonumber\\
+					&\phantom{|\frac{x}{1+x} - \frac{1}{2}|} < \frac{\delta}{2}\frac{2\varepsilon}{\delta} = \varepsilon\nonumber
+				\end{align}
+				Hence, \[\lim_{x\rightarrow	1}\frac{x}{1+x} = 1/2\]
+				\qed
+			\item \textbf{Proof:}
+				Since $0$ is a cluster point of $\mathbb{R}$, for all $\delta > 0$, there is $x \in \mathbb{R}$ that $|x - 0| = |x| < \delta$. So if we pick $\delta$ that $\delta < \varepsilon$, then
+				\begin{align}
+					&|\frac{x^2}{|x|} - 0| = |x| < \delta < \varepsilon\nonumber
+				\end{align}
+				Hence, \[\lim_{x\rightarrow	1}|x| = 0\]
+				\qed
+			\item \textbf{Proof:} 
+				Since $1$ is a cluster point of $\mathbb{R}$, for all $\delta > 0$, there is $x \in \mathbb{R}$ that $|x - 1|  < \delta$. So if we pick $\delta$ that $\delta < \varepsilon / 2$, then
+			\begin{align}
+				&|\frac{x^2 - x + 1}{x + 1} - \frac{1}{2}| = |\frac{2x^2 - 2x + 2 - x - 1}{2x + 2}|\nonumber\\
+				&\phantom{|\frac{x^2 - x + 1}{x + 1} - \frac{1}{2}|} = |\frac{2x^2 - 3x + 1	}{2x + 2}|\nonumber\\
+				&\phantom{|\frac{x^2 - x + 1}{x + 1} - \frac{1}{2}|} = |\frac{(x - 1)(2x - 1)}{2x + 2}|\nonumber\\
+				&\phantom{|\frac{x^2 - x + 1}{x + 1} - \frac{1}{2}|} = |x - 1||\frac{2x - 1}{2x + 2}|\nonumber\\
+				&\phantom{|\frac{x^2 - x + 1}{x + 1} - \frac{1}{2}|} < |x - 1||\frac{2x - 1}{x}|\nonumber\\
+				&\phantom{|\frac{x^2 - x + 1}{x + 1} - \frac{1}{2}|} < |x - 1||\frac{2x}{x}|\nonumber\\
+				&\phantom{|\frac{x^2 - x + 1}{x + 1} - \frac{1}{2}|} < 2\delta = \varepsilon \nonumber\\
+			\end{align}
+			Hence, \[\lim_{x\rightarrow	1}\frac{x^2 - x + 1}{x + 1} = \frac{1}{2}\]
+				\qed
+		\end{enumerate}
+	\paragraph{4.1.12}
+	\begin{enumerate}[(a)]
+		\item Let $(x_n) = 1/n$, then $f(x_n) = n^2$ then by Divergence Criteria, since $(x_n)$ converges to $0$ and $f(x_n)$ diverges, so 
+			\[\lim_{x \rightarrow 0} \frac{1}{x^2} (x > 0)\]
+		does not exist. 
+		\item Let $(x_n) = 1/n^2$, then $f(x_n) = n$ then by Divergence Criteria, since $(x_n)$ converges to $0$ and $f(x_n)$ diverges, so 
+			\[\lim_{x \rightarrow 0} \frac{1}{\sqrt{x}} (x > 0)\]
+		does not exist. 
+		\item Let $(x_n) = -1/n$ for all $n \mathbb{N}$, then $f(x_n)$ converges to $-1$, if Let $(x_n) = -1/n$ for all $n \mathbb{N}$ then $f(x_n)$ converges to $1$ then by Divergence Criteria, since $(x_n)$ converges to $0$ and $f(x_n)$ diverges, so 
+			\[\lim_{x \rightarrow 0} x + \text{sgn}(x)\]
+		does not exist.
+		\item Let $(x_n) = 1/n^2$, then  by Divergence Criteria, since $(x_n)$ converges to $0$ and $f(x_n) = sin(x)$ diverges, so 
+			\[\lim_{x \rightarrow 0} \sin(1/x^2)\]
+			does not exist.
+		\end{enumerate}
+\end{document}

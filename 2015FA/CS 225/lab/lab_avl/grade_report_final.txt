@@ -1,0 +1,27 @@
+Grading revision r34126 by lbai5, dated 2015-10-28 19:35:31.000726731 -0500 CDT
+Monad Autograder
+Testing lab_avl at 2015-11-02 00:28:23
+
+"If you can't remember a formula during the exam it's probably not important." ~ Prof. Chengxiang Zhai
+
+Setting up test environment...
+Compiling...
+================================================================
+
+
+Running tests...
+================================================================
+test_oneElement  . . . [10 pts] - passed
+test_simpleRotateLeft  [10 pts] - passed
+test_simpleRotateRight [10 pts] - passed
+test_threeLeftRotates  [10 pts] - passed
+test_threeRightRotates [10 pts] - passed
+test_manyRotations . . [20 pts] - passed
+test_manyInserts . . . [20 pts] - passed
+test_valgrind (asan) . [10 pts] - passed
+
+
+Total score...
+================================================================
+TOTAL SCORE: 100
+

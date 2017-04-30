@@ -1,0 +1,15 @@
+\BOOKMARK [1][-]{section.1}{Bug Reporting}{}% 1
+\BOOKMARK [2][-]{subsection.1.1}{Key Elements of Bug Reporting:}{section.1}% 2
+\BOOKMARK [3][-]{subsubsection.1.1.1}{Reproduce}{subsection.1.1}% 3
+\BOOKMARK [3][-]{subsubsection.1.1.2}{Isolate}{subsection.1.1}% 4
+\BOOKMARK [3][-]{subsubsection.1.1.3}{Generalize}{subsection.1.1}% 5
+\BOOKMARK [2][-]{subsection.1.2}{Terminology}{section.1}% 6
+\BOOKMARK [1][-]{section.2}{Software Configuration Management \(SCM\)}{}% 7
+\BOOKMARK [2][-]{subsection.2.1}{Version Control System \(VCS\)}{section.2}% 8
+\BOOKMARK [2][-]{subsection.2.2}{Build\(Maven\)}{section.2}% 9
+\BOOKMARK [2][-]{subsection.2.3}{Testing and JUnit}{section.2}% 10
+\BOOKMARK [2][-]{subsection.2.4}{Software Production}{section.2}% 11
+\BOOKMARK [2][-]{subsection.2.5}{Release}{section.2}% 12
+\BOOKMARK [1][-]{section.3}{Extreme Programming\(XP\)}{}% 13
+\BOOKMARK [2][-]{subsection.3.1}{Modified Waterfall}{section.3}% 14
+\BOOKMARK [2][-]{subsection.3.2}{XP}{section.3}% 15

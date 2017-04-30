@@ -1,0 +1,247 @@
+% ---------
+%  Compile with "pdflatex hw0".
+% --------
+%!TEX TS-program = pdflatex
+%!TEX encoding = UTF-8 Unicode
+
+\documentclass[11pt]{article}
+\usepackage{jeffe,handout,graphicx}
+\usepackage[utf8]{inputenc}		% Allow some non-ASCII Unicode in source
+
+%  Redefine suits
+\usepackage{pifont}
+\def\Spade{\text{\ding{171}}}
+\def\Heart{\text{\textcolor{Red}{\ding{170}}}}
+\def\Diamond{\text{\textcolor{Red}{\ding{169}}}}
+\def\Club{\text{\ding{168}}}
+
+\def\Cdot{\mathbin{\text{\normalfont \textbullet}}}
+\def\Sym#1{\textbf{\texttt{\color{BrickRed}#1}}}
+\newcommand{\comp}[1]{#1_{\text{comp}}}
+
+\newtheorem{Lemma}{lemma}
+
+\usepackage{tikz}
+\usetikzlibrary{automata, positioning}
+\usepackage{listings}
+
+% =====================================================
+%   Define common stuff for solution headers
+% =====================================================
+\Class{CS/ECE 374}
+\Semester{Spring 2017}
+\Authors{2}
+\AuthorOne{Lanxiao Bai}{lbai5}
+\AuthorTwo{Renheng Ruan}{rruan2}
+%\Section{}
+
+% =====================================================
+\begin{document}
+
+% ---------------------------------------------------------
+
+
+\HomeworkHeader{4}{1}	% homework number, problem number
+
+\begin{quote}
+	Suppose we have a stack of $n$ pancakes of different sizes. We
+       want to sort the pancakes so that the smaller pancakes are on
+       top of the larger pancakes. The only operation we can perform
+       is a {\em flip} - insert a spatula under the top $k$ pancakes,
+       for some $k$ between $1$ and $n$, and flip them all over.
+
+       \begin{enumerate}
+           \item 
+           Describe an algorithm to sort an arbitrary stack of $n$
+           pancakes and give a bound on the number of flips that the
+           algorithm makes.  Assume that the pancake information is
+           given to you in the form of an $n$ element array
+           $A$. $A[i]$ is a number between $1$ and $n$ and $A[i] = j$
+           means that the $j$'th smallest pancake is in position $i$
+           from the bottom; in other words $A[1]$ is the size of the
+           bottom most pancake (relative to the others) and $A[n]$ is
+           the size of the top pancake. Assume you have the operation
+           $\text{Flip}(k)$ which will flip the top $k$ pancakes. Note
+           that you are only interested in minimizing the number of
+           flips.
+
+           \item Suppose one side of each pancake is
+           burned. Describe an algorithm that sorts the pancakes with
+           the additional condition that the burned side of each
+           pancake is on the bottom. Again, give a bound on the number
+           of flips. In addition to $A$, assume that you have an array
+           $B$ that gives information on which side of the pancakes
+           are burned; $B[i]=0$ means that the bottom side of the
+           pancake at the $i$'th position is burned and $B[i]=1$ means
+           the top side is burned. For simplicity, assume that
+           whenever $\text{Flip}(k)$ is done on $A$, the array $B$ is
+           automatically updated to reflect the information on the
+           current pancakes in $A$.
+         \end{enumerate}
+         \medskip
+       No proof of correctness necessary.
+\end{quote}
+\hrule
+
+\begin{solution}
+	\begin{enumerate}
+		\item Consider the sequence of pancakes, we can always use one $\textsc{Flip}$ to flip the largest pancake to the top from it's original position and flip the whole tower of pancakes to put it at bottom, where it should be. Then what left for us is to sort the pancakes on the lowest one, so we have $O(2n)$ flips.
+		\begin{center}
+			\begin{algorithm}			
+			\textul{$\textsc{Sort}(\textit{A}[s\,..\,n])$:}\+
+			\\ if $\textit{n} = s$\+
+			\\	return\-
+			\\ else\+
+			\\ $\textit{k\_max} \gets s$
+			\\ $\textit{max} = A[s]$
+			\\ for $\textit{i} \gets s$ to $n$\+
+			\\	if $A[\textit{i}] > \textit{max}$\+
+			\\  	$\textit{max} \gets A[i]$
+			\\		$\textit{k\_max} \gets i$\-\-
+			\\ $\textsc{Flip}(\textit{k\_max})$
+			\\ $\textsc{Flip}(s)$
+			\\ $\textsc{Sort}(A[s + 1\,..\,n])$
+			
+		\end{algorithm}
+		\end{center}
+		
+		\item Consider one more requirement that the burned side should on the bottom, after each time the largest pancake was flipped to the top, we want to make sure that the burned side is on the top before flip the whole tower, so we have $O(3n)$ flips.
+		
+			\begin{center}
+			\begin{algorithm}			
+			\textul{$\textsc{SortBurned}(\textit{A}[s\,..\,n], \textit{B}[s\,..\,n])$:}\+
+			\\ if $\textit{n} = s$\+
+			\\	if $\textit{B}[n] = 0$\+
+			\\ 	$\textsc{Flip}(A[n\,..\,n])$\-
+			\\	return\-
+			\\ else\+
+			\\ $\textit{k\_max} \gets s$
+			\\ $\textit{max} = A[s]$
+			\\ for $\textit{i} \gets s$ to $n$\+
+			\\	if $A[\textit{i}] > \textit{max}$\+
+			\\  	$\textit{max} \gets A[i]$
+			\\		$\textit{k\_max} \gets i$\-\-
+			\\ $\textsc{Flip}(\textit{k\_max})$
+			\\ if $\textit{B}[n] = 0$\+
+			\\ 	$\textsc{Flip}(n)$\-
+			\\ $\textsc{Flip}(s)$
+			\\ $\textsc{SortBurned}(A[s + 1\,..\,n], B[s + 1\,..\,n])$
+			
+		\end{algorithm}
+		\end{center}
+		
+	\end{enumerate}
+\end{solution}
+\clearpage
+
+
+% ---------------------------------------------------------
+% Change authors for all future solutions
+\HomeworkHeader{4}{2}
+
+\begin{quote}
+	Suppose you are given $k$ sorted arrays $A_1,A_2,\ldots,A_k$
+  each of which has $n$ numbers. Assume that all numbers in the arrays
+  are distinct. You would like to merge them into single sorted array
+  $A$ of $kn$ elements. Recall that you can merge two sorted arrays of
+  sizes $n_1$ and $n_2$ into a sorted array in $O(n_1+n_2)$ time.
+  \begin{enumerate}
+  \item Use a divide and conquer strategy to merge the sorted arrays
+    in $O(n \log k)$ time. To prove the correctnes of the algorithm
+    you can assume a routine to merge two sorted arrays.
+  \item In MergeSort we split the array of size $N$ into two arrays
+    each of size $N/2$, recursively sort them and merge the two sorted
+    arrays. Suppose we instead split the array of size $N$ into $k$
+    arrays of size $N/k$ each and use the merging algorithm in the
+    preceding step to combine them into a sorted array.  Describe the
+    algorithm formally and analyze its running time via a recurrence.
+  \end{enumerate}
+\end{quote}
+\hrule
+
+\begin{solution}
+	\begin{enumerate}
+		\item Each time we merged two arrays of the same size, and repeat this routine for arrays that has larger scale.
+		
+		\begin{center}
+			\begin{algorithm}
+				\textul{$\textsc{MergeArrays}(\textit{Arrays}[1\,..\,k]):$}\+
+				\\ if $\textit{k} = 1$\+
+				\\ 	return $\textit{Arrays}$\-
+				\\ else\+
+				\\	$\textit{mergedArrays} \gets $ new $\textit{Arrays}[1\,..\,\floor{k/2}]$
+				\\ for $i \gets 1$ to $\floor{k / 2}$\+
+				\\		$\textit{mergedArrays}[i] = \textsc{Merge}(\textit{Arrays}[i], \textit{Arrays}[2i])$\-
+				\\ if $\textit{k}$ is even\+
+				\\ return $\textsc{MergeArrays}(\textit{mergedArrays})$\-
+				\\ else\+
+				\\ return $\textsc{Merge}(\textsc{MergeArrays}(\textit{mergedArrays}), \textit{Arrays}[\text{k}])$
+			\end{algorithm}
+		\end{center}
+		
+		\textbf{Claim:} The algorithm for merging arrays is correct.
+		
+		\textbf{Proof:} Base case: When $k = 1$, the array is already sorted and merged as the condition given.
+		
+			Inductive hypothesis: Assume that for all $k \leq n$, the algorithm above correctly merged the arrays.
+			
+			Inductive step: When $k = n + 1$, there are two conditions. 
+			
+			If $n$ is odd, then $k$ is even, so $\textsc{MergeArrays}$ will be reduced to $\textsc{MergeArrays}$ of half of its original size and $k / 2$ $\textsc{Merge}$. By the correctness of $\textsc{Merge}$ and inductive hypothesis, the algorithm is correct. 
+			
+			If $n$ is even, then $k$ is odd, so $\textsc{MergeArrays}$ will be reduced to $\textsc{MergeArrays}$ of half of its original size and $k / 2 + 1$ $\textsc{Merge}$. By the correctness of $\textsc{Merge}$ and inductive hypothesis, the algorithm is correct.
+			
+			Hence, we conclude that the algorithm is correct.
+			\qed
+			
+			\textbf{Claim:} The time complexity of this algorithm is $O(n\log k)$.
+			
+			\textbf{Proof:} 
+				From the algorithm we described above, we can see $T(k) = T(k / 2) + cn$ and $T(1) = a$. So we expand the recursion tree, 
+				\begin{align}
+					& T(k) = T(k / 2) + cn\nonumber\\
+					&\phantom{T(k)} = T(k / 4) + cn + cn\nonumber\\
+					&\phantom{T(k) = } \vdots\nonumber\\
+					&\phantom{T(k)} = T(1) + cn + cn + \cdots + cn\nonumber
+				\end{align}
+				
+				Let $k = 2^h$, then $h = \log k$. Thus, $T(k) = a + chn = O(n\log k)$.
+				$\blacksquare$
+				
+		\item By following the described algorithm above, we have
+		\begin{center}
+			\begin{algorithm}
+				\textul{$\textsc{MergeSortK}(\textit{A}[1\,..\,n], k):$}\+
+				\\ if $\textit{n} = 1$\+
+				\\  return $\textit{A}$\-
+				\\ else\+
+				\\$\textit{interval} = n / k$
+				\\ for $i \gets 1$ to $k$\+
+				\\ 	$M_i \gets \textsc{MergeSortK}(A[ik\,..\,ik + \textit{interval}], \textit{k})$\-
+				\\ return $\textsc{MergeArrays}(\textit{M}[1\, ..\, k])$
+			\end{algorithm}
+		\end{center}
+		
+		From the formalized algorithm, we see that $T(n) = kT(n / k) + ck\log n$ and $T(1) = a$. By expanding the recursion tree, we see that 
+		\begin{align}
+			&T(n) = kT(n / k) + Ck\log n\nonumber\\
+			&\phantom{T(n)} = k(kT(n / k^2) + ck\log n) + ck\log n\nonumber\\
+			&\phantom{T(n) = } \vdots\nonumber\\
+			&\phantom{T(n)} = ak^h + \sum_{i = 0}^{h - 1} k^i \cdot ck\log n \nonumber\\
+			&\phantom{T(n)} = ak^h + \sum_{i = 0}^{h - 1} k^i \cdot ck\log n \nonumber\\
+			&\phantom{T(n)} = ak^h +ck\log n\sum_{i = 0}^{h - 1} k^i \nonumber
+		\end{align}
+		
+		Since $n / k^h = 1 \Rightarrow n = k^h \Rightarrow h = \log n$, we have 
+		\begin{align}
+			&T(n) = an + ck\log n\sum_{i = 0}^{h - 1} k^i \nonumber\\
+			&\phantom{T(n)} = an + \frac{n - 1}{k - 1}ck\log n \nonumber\\
+			&\phantom{T(n)} = O(n\log n) \nonumber
+		\end{align}
+		
+		Hence we conclude that $T(n) = O(n\log n)$.
+			
+	\end{enumerate}
+\end{solution}
+
+\end{document}

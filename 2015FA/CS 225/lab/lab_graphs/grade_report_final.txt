@@ -1,0 +1,54 @@
+Grading revision r47436 by lbai5, dated 2015-12-03 22:00:17.000626232 -0600 CST
+Monad Autograder
+Testing lab_graphs at 2015-12-07 00:30:39
+
+"If you can't remember a formula during the exam it's probably not important." ~ Prof. Chengxiang Zhai
+
+Setting up test environment...
+Compiling...
+================================================================
+
+
+Running tests...
+================================================================
+minWeight_OneEdge_ReturnValue . [10 pts] - passed
+minWeight_OneEdge_EdgeLabel . . [10 pts] - passed
+minWeight_MultiEdge_ReturnValue [10 pts] - passed
+minWeight_MultiEdge_EdgeLabels  [15 pts] - passed
+minPath_OneEdge_ReturnValue . . [10 pts] - passed
+minPath_OneEdge_EdgeLabel . . . [10 pts] - passed
+minPath_MultiEdge_ReturnValue . [10 pts] - FAILED: Aborted
+minPath_MultiEdge_EdgeLabels  . [10 pts] - FAILED: Aborted
+kruskal_all . . . . . . . . . . [15 pts] - passed
+
+
+Total score...
+================================================================
+TOTAL SCORE: 80
+
+
+
+Detailed test output...
+================================================================
+----------------------------------------------------------------
+minPath_MultiEdge_ReturnValue [10 points]
+Result: FAILED: Aborted
+Took 0ms (1000ms timeout)
+Output:
+----------------------------------------------------------------
+terminating with uncaught exception of type std::invalid_argument: stoi: no conversion
+
+----------------------------------------------------------------
+minPath_MultiEdge_EdgeLabels [10 points]
+Result: FAILED: Aborted
+Took 0ms (1000ms timeout)
+Output:
+----------------------------------------------------------------
+terminating with uncaught exception of type std::invalid_argument: stoi: no conversion
+
+
+----------------------------------------------------------------
+Total score...
+================================================================
+TOTAL SCORE: 80
+

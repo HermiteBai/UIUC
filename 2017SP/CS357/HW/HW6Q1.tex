@@ -1,0 +1,62 @@
+\documentclass[11pt]{article}
+\input{../../packages.tex}
+\usepackage{enumerate}
+\pagestyle{fancy}
+\fancyhead[L]{CS357}
+\fancyhead[C]{HW6Q1}
+\fancyhead[R]{Lanxiao Bai}
+\begin{document}
+	\paragraph{Part1}
+		\begin{enumerate}[(a)]
+			\item 
+				\begin{align}
+					&\mathrm{cond_{abs}}(f) = \max \frac{||\Delta y||}{||\Delta x||}\nonumber\\
+					&\phantom{\mathrm{cond_{abs}}(f)} = \max \frac{||A(x + \Delta x) - Ax||}{||\Delta x||}\nonumber\\
+					&\phantom{\mathrm{cond_{abs}}(f)} = \max \frac{||A\Delta x||}{||\Delta x||}\nonumber\\
+					&\phantom{\mathrm{cond_{abs}}(f)} = \frac{||A||||\Delta x||}{||\Delta x||} = ||A||\nonumber
+				\end{align}
+			\item 
+				\begin{align}
+					&\mathrm{cond_{rel}}(f) = \max \frac{||\Delta y||/||y||}{||\Delta x||/||x||}\nonumber\\
+					&\phantom{\mathrm{cond_{rel}}(f)} = \max \frac{||\Delta y||||x||}{||\Delta x||||y||}\nonumber\\
+					&\phantom{\mathrm{cond_{rel}}(f)} = \max \frac{||A\Delta x||||A^{-1}y||}{||\Delta x||||y||}\nonumber\\
+					&\phantom{\mathrm{cond_{rel}}(f)} = ||A||||A^{-1}|| \frac{||\Delta x||||y||}{||\Delta x||||y||}  = ||A||||A^{-1}||\nonumber
+				\end{align}
+		\end{enumerate}
+	\paragraph{Part2}
+		\begin{enumerate}[(a)]
+			\item 
+				\textbf{Upper bound:}
+				\begin{align}
+					&||y||_2 = ||A^k x||_2\nonumber\\
+					&\phantom{||y||_2} \leq ||A^k||_2||x||_2 & \text{by submultipliticity}\nonumber\\
+					&\phantom{||y||_2} \leq ||A||^k_2||x||_2 & \text{by submultipliticity}\nonumber
+				\end{align}
+				
+				\textbf{Lower bound:}
+				
+				Since $A$ is invertible, so is $A^k$, as a result, 
+					\[x = (A^k)^{-1}y\]
+					
+				So that 
+					\[||x||_2 = ||(A^k)^{-1}y||_2\]
+					
+				then
+				\begin{align}
+					&||x||_2 = ||(A^k)^{-1}y||_2 \leq ||(A^k)^{-1}||_2||y||_2\nonumber\\
+					&\Rightarrow ||y||_2 \geq \frac{||x||_2}{||(A^k)^{-1}||}\nonumber
+				\end{align}
+			\item
+				\textbf{Condition:}
+				\begin{align}
+					&\phantom{\Rightarrow\ }\frac{||\Delta y|| / ||y||}{||\Delta x|| / ||x||} \leq 1\nonumber\\
+					&\Rightarrow \frac{||\Delta y|| ||x||}{||\Delta x|| ||y||} \leq 1\nonumber\\
+					&\Rightarrow \frac{||A^k\Delta x|| ||(A^k)^{-1}y||}{||\Delta x|| ||y||} \leq 1\nonumber\\
+					&\Rightarrow \mathrm{cond}(A^k) \leq 1\nonumber\\
+				\end{align}
+				
+				And
+				\[k \geq -\log_{10}{\varepsilon} - \log_{10}{\mathrm{cond}(A^k)} = -\log_{10}\varepsilon \mathrm{cond}(A^k)\]
+				
+	\end{enumerate}
+\end{document}

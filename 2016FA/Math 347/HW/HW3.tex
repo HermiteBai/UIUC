@@ -1,0 +1,71 @@
+\documentclass{article}[11pt]
+\input{../../packages}
+\pagestyle{fancy}
+\fancyhead[L]{Math 347}
+\fancyhead[C]{HW3}
+\fancyhead[R]{Lanxiao Bai(lbai5)}
+\begin{document}
+	\paragraph{3.1}\textbf{Solution:} Let a function $f: \mathbb{R} \rightarrow \mathbb{R}$ defined by $f(x) = x (x < 100), f(x) = x + 1 (x \geq 100)$ and $P(n) = n$, then $P(n)$ is true for $n = 1 \cdots 99$ but is false when $n = 100$.
+	\paragraph{3.5}\textbf{Solution:}
+			\subparagraph{Claim:} It is true that $\forall n \in \mathbb{N}, \sum^n_{k=1}(2k+1) = n^2 + 2n$.
+			\subparagraph{Proof:} We can proof it directly with Gauss Summation.
+				\begin{align}
+					&\sum^n_{k=1}(2k+1) =2\sum^n_{k=1}k + \sum^n_{k=1}1\nonumber\\
+					&\phantom{\sum^n_{k=1}(2k+1)} = 2\cdot \frac{n(n+1)}{2} + n\nonumber\\
+					&\phantom{\sum^n_{k=1}(2k+1)} = n^2 + 2n\ \blacksquare\nonumber
+				\end{align}
+				
+				Or, we can proof it by induction.
+				
+				Base case: if $n = 1$, $2k + 1 = 3 = 1^2 + 2$
+				
+				Suppose that when $n = m$, the claim above is true.
+				
+				Then when $n = m + 1$,
+				\begin{align}
+					&\sum^{m+1}_{k=1}(2k+1) = \sum^{m}_{k=1}(2k+1) + 2(m+1) + 1\nonumber\\
+					&\phantom{\sum^{m+1}_{k=1}(2k+1)} = m^2 + 2m + 2(m+1) + 1\nonumber\\
+					&\phantom{\sum^{m+1}_{k=1}(2k+1)} = (m + 1)^2 + 2(m + 1)\nonumber
+				\end{align}
+				
+				Thus, we can conclude that It is true that $\forall n \in \mathbb{N}, \sum^n_{k=1}(2k+1) = n^2 + 2n\ \blacksquare$.
+				
+	\paragraph{3.11}\textbf{Solution:}
+		\subparagraph{Claim:} Set of $n$ elements has $2^n$ subsets.
+		\subparagraph{Proof:} Base case, when $n = 0$, there is only $1 = 2^0$ subset which is $\emptyset$.
+		
+			Suppose when $n = k$, set of k elements has $2^k$ subsets, then when $n = k + 1$, we can add the $(k + 1)_{th}$ elements in each subset of $2^k$ to get a new subset. Thus the number of subsets of the set consists of $k + 1$ elements is $2^k + 2^k = 2 \cdot 2^k = 2^{k+1}$.
+			
+			So we can conclude that it is true that set of $n$ elements has $2^n$ subsets.$\blacksquare$
+
+	\paragraph{3.15}\textbf{Solution:}
+		\subparagraph{Claim:} $\forall n \in \mathbb{N}$, \[\sum_{i = 1}^n (-1)^ii^2 = (-1)^n \frac{n(n+1)}{2}\]
+		\subparagraph{Proof:} Base case: When $n = 1$, $-1 \cdot (-1)^2 = -1 = -1		\cdot \frac{1\cdot 2}{2}$
+		
+		Suppose this claim is true when $n = k$. Then when $n = k + 1$, 
+		\begin{align}
+			&\sum_{i = 1}^{k + 1} (-1)^ii^2 = \sum_{i = 1}^{k} (-1)^ii^2 + (-1)^{k+1}(k+1)^2\nonumber\\
+			&\phantom{\sum_{i = 1}^{k + 1} (-1)^ii^2} = (-1)^k \frac{k(k+1)}{2} + (-1)^{k+1}(k+1)^2\nonumber\\
+			&\phantom{\sum_{i = 1}^{k + 1} (-1)^ii^2} = (-1)^k(k+1)[\frac{k}{2} + (-1)(k+1)]\nonumber\\
+			&\phantom{\sum_{i = 1}^{k + 1} (-1)^ii^2} = (-1)^k(k+1)(-1 - \frac{k}{2})\nonumber\\
+			&\phantom{\sum_{i = 1}^{k + 1} (-1)^ii^2} = (-1)^{k+1}\frac{(k+1)(k+2)}{2}\nonumber
+		\end{align}
+		Thus, we can conclude that it is true that $\forall n \in \mathbb{N}$, \[\sum_{i = 1}^n (-1)^ii^2 = (-1)^n \frac{n(n+1)}{2}\ \blacksquare\]
+	\paragraph{3.23}\textbf{Solution:} This proof is flawed because the validity of induction step that gives the $P(k + 1)$ relies on the trueness of $P(k)$ and $P(k - 1)$. However, $P(k - 1)$ is not verified to be correct, so it risks the validity of the whole proof.
+	\paragraph{3.28}\textbf{Solution:}
+		\subparagraph{Claim:} We can expand the series, that \[\sum_{i = 1}^n \frac{1}{i(i+1)} = 1 - 1/2 + 1/2 - 1/3 + \cdots + 1/n - 1/(n+1) = 1 - 1/(n + 1)\]
+		\subparagraph{Proof:} Base case: when $n = 1$, $1/(1\cdot 2) = 1/2 = 1 - 1/(1+1)$.
+		
+		Suppose that when $n = k$, the claim above is true. Then when $n = k + 1$, 
+		\begin{align}
+		&\sum_{i = 1}^{k + 1} \frac{1}{i(i+1)} = \sum_{i = 1}^k \frac{1}{i(i+1)} + \frac{1}{(k+1)(k+2)} = 1 - 1/(k+1) + \frac{1}{(k+1)(k+2)}\nonumber\\
+		&\phantom{\sum_{i = 1}^{k + 1} \frac{1}{i(i+1)}} = 
+		\frac{k(k+2) + 1}{(k + 1)(k + 2)}\nonumber\\
+		&\phantom{\sum_{i = 1}^{k + 1} \frac{1}{i(i+1)}} = \frac{(k+1)^2}{(k+1)(k+2)} = 1 - 1/(k+2)\nonumber
+		\end{align}
+		
+		Thus, we can conclude that $\forall n \in \mathbb{N}$, \[\sum_{i = 1}^n \frac{1}{i(i+1)} = 1 - 1/(n + 1)\ \blacksquare\]
+	\paragraph{3.33}\textbf{Solution:} In closed interval $[1, n]$, there're $n - 1$ integer points we can choose to be the start point of sub-intervals. And for $1 \leq i \leq n - 1$, there are $n - i$ integer points can be chosen to be the right endpoint of the sub-intervals. As a result, the number of all sub-intervals is
+	\[n = \sum_{i = 1}^{n - 1} (n - i) = (n - 1) + (n - 2) + \cdots + 2 + 1 = \sum_{i = 1}^{n - 1}n = \frac{n(n - 1)}{2}\]
+		
+\end{document}

@@ -1,0 +1,26 @@
+\documentclass[11pt]{article}
+\input{../../packages.tex}
+\usepackage{enumerate}
+\pagestyle{fancy}
+\fancyhead[L]{CS357}
+\fancyhead[C]{HW4Q1}
+\fancyhead[R]{Lanxiao Bai}
+\begin{document}
+	\paragraph{Part 0}
+		\[\kappa_{rel} = \max\frac{\frac{|f(x) - f(x + \Delta x)|}{|f(x)|}}{\frac{|\Delta x|}{|x|}} = \max\frac{|f(x) - f(x + \Delta x)|}{|f(x)|}\frac{|x|}{|\Delta x|} \geq 2\]
+	\paragraph{Part 1}
+		Since \[\kappa_{abs} = \frac{|f(x + \Delta x) - f(x)|}{\Delta x}\]
+		
+		we have \[\kappa_{abs} = \frac{|f(\hat{x}) - \bar{f}|}{|\hat{x} - \bar{x}|}\]
+		
+		so
+			\[|f(\hat{x}) - \bar{f}| = \kappa_{abs}|\hat{x} - \bar{x}| \leq \varepsilon \]
+			
+	 	Hence, \[|\hat{x} - \bar{x}| \leq \frac{\varepsilon}{\kappa_{abs}}\]
+	 	
+	 	As a result, \[n = \frac{1}{|\hat{x} - \bar{x}|} \geq \frac{\varepsilon}{\kappa_{abs}}\]
+	\paragraph{Part 2}
+		Since $f$ is increasing on $[0, 1]$, $f: [0, 1] \rightarrow [-1, 1]$ is bijective, so their is only one $\bar{x}$. We can use binary search to find $\bar{x}$ that $f(\bar{x}) = \bar{f}$ so that the complexity will be $O(\log n)$.
+	\paragraph{Part 3}
+		When the interval is strictly monotone, we can use binary search mentioned in part 2, so we need to find all the critical points to split the interval into monotone ones, which requires the calculation of points where the first order is zero, which can be reached by calculate the critical points of the second order derivative. Since the polynomial has $k$ degrees, such splitting process can take up to $O(k^2)$ times, and each binary search in monotone intervals requires $O(\log n)$ time to execute. Hence, the overall running time is $O(k^2 \log n)$. 
+\end{document}

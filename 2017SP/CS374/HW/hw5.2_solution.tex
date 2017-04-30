@@ -1,0 +1,114 @@
+% ---------
+%  Compile with "pdflatex hw0".
+% --------
+%!TEX TS-program = pdflatex
+%!TEX encoding = UTF-8 Unicode
+
+\documentclass[11pt]{article}
+\usepackage{jeffe,handout,graphicx}
+\usepackage[utf8]{inputenc}		% Allow some non-ASCII Unicode in source
+
+%  Redefine suits
+\usepackage{pifont}
+\def\Spade{\text{\ding{171}}}
+\def\Heart{\text{\textcolor{Red}{\ding{170}}}}
+\def\Diamond{\text{\textcolor{Red}{\ding{169}}}}
+\def\Club{\text{\ding{168}}}
+
+\def\Cdot{\mathbin{\text{\normalfont \textbullet}}}
+\def\Sym#1{\textbf{\texttt{\color{BrickRed}#1}}}
+\newcommand{\comp}[1]{#1_{\text{comp}}}
+
+\newtheorem{Lemma}{lemma}
+\newcommand{\IsSinL}{\text{IsStringInL}}
+
+\usepackage{tikz}
+\usetikzlibrary{automata, positioning}
+\usepackage{listings}
+
+% =====================================================
+%   Define common stuff for solution headers
+% =====================================================
+\Class{CS/ECE 374}
+\Semester{Spring 2017}
+\Authors{3}
+\AuthorOne{Lanxiao Bai}{lbai5}
+\AuthorTwo{Renheng Ruan}{rruan2}
+\AuthorThree{Ho Yin Au}{hoyinau2}
+%\Section{}
+
+% =====================================================
+\begin{document}
+
+% ---------------------------------------------------------
+
+
+\HomeworkHeader{5}{2}	% homework number, problem number
+
+\begin{quote}
+	Recall that a \emph{palindrome} is any string that is exactly the same as its reversal, like \Sym{I}, or \Sym{DEED}, or \Sym{RACECAR}, or \Sym{AMANAPLANACATACANALPANAMA}.
+
+Any string can be decomposed into a sequence of palindrome substrings.  For example, the string \Sym{BUBBASEESABANANA} (“Bubba sees a banana.”\@) can be broken into palindromes in the following ways (among many others):
+\begin{gather*}
+	\Sym{BUB} \Cdot \Sym{BASEESAB} \Cdot \Sym{ANANA}\\
+	\Sym{B} \Cdot \Sym{U} \Cdot \Sym{BB} \Cdot \Sym{A} \Cdot \Sym{SEES} \Cdot \Sym{ABA} \Cdot \Sym{NAN} \Cdot \Sym{A}\\
+	\Sym{B} \Cdot \Sym{U} \Cdot \Sym{BB} \Cdot \Sym{A} \Cdot \Sym{SEES} \Cdot \Sym{A} \Cdot \Sym{B} \Cdot \Sym{ANANA}\\
+	\Sym{B} \Cdot \Sym{U} \Cdot \Sym{B} \Cdot \Sym{B} \Cdot \Sym{A} \Cdot \Sym{S} \Cdot \Sym{E} \Cdot \Sym{E} \Cdot \Sym{S} \Cdot \Sym{A} \Cdot \Sym{B} \Cdot \Sym{ANA}  \Cdot \Sym{N} \Cdot \Sym{A}
+\end{gather*}
+
+Describe and analyze an efficient algorithm that given
+a string $w$ and an integer $k$ decides whether $w$ can be
+split into palindromes each of which is of length at least $k$. For example,
+given the input string \Sym{BUBBASEESABANANA} and $3$
+your algorithm would answer yes because one can find a split 
+$\Sym{BUB} \Cdot \Sym{BASEESAB} \Cdot \Sym{ANANA}$. The answer should be
+no if we set $k=4$. Note that the answer is always yes for $k=1$.
+\end{quote}
+\hrule
+
+\begin{solution}
+	We can think of string $w$ is an array of char, which is represented as $w[1\,..\,n]$ for the string $w$ with length $n$. We define that the algorithm should return $\textsc{True}$ if the answer is yes, and should return $\textsc{False}$ if the answer is no. First, we check whether $w$ itself has length at least $k$. If not, there is no way to split it with palindrome with length at least $k$. Then, we check whether $w$ is a palindrome. If yes, $w$ can be decomposed into palindrome set that only contains itself.\\
+	If not, we can decompose $w$ into palindrome substrings by trying to find all the leftmost palindrome with length at least $k$ and then recursively find decomposition of palindrome substrings on the remaining right substring, which definitely the right substring should also has length at least $k$. As we need to make sure the both sides of the string $w$ after splitting still have length at least $k$, we first make sure that $n$ is larger than $2k$. Then, we only check all the split position that satisfy both sides after splitting still have length at least $k$. We do the checking in ascending order according to the length of the right split. After that, we just check whether the left split is palindrome, and then recursively do finding decomposition on the right split.\\
+	We define a $1$-dimension array $\textsc{isCalculated}[1\,..\,n]$ to memoize whether the right split has already been calculated. We also define another $1$-dimension array $\textsc{decomposable}[1\,..\,n]$ to memoize the return value of the right split, which is whether right split is decomposable into palindromes satisfying at least length $k$. Both arrays have initialized with value $\textsc{False}$. For example, $\textsc{isCalculated}[i]$ stores whether the right split of length $i$ has already been calculated. If $\textsc{True}$, $\textsc{decomposable}[i]$ stores whether the right split of length $i$ is decomposable into palindromes. We can memoize the function like this because the right end of the right split is always the same as the right end of the original string $w$.\\ \\
+\newpage
+	$\textsc{decomposePalindromeSubstrings}$ is defined as follow:
+\begin{algo}
+	\textul{$\textsc{decomposePalindromeSubstrings}(w[1\,..\,n], k)$:}\+
+\\[0.5ex]
+\\	if $\textsc{isCalculated}[n]$\+
+\\		return $\textsc{decomposable}[n]$\-
+\\	$\textsc{isCalculated}[n] \gets \textsc{True}$
+\\	if $n < k$\+
+\\		return $\textsc{False}$\-
+\\	if $\textsc{isPalindrome}(w[1\,..\,n])$\+
+\\		return $\textsc{True}$\-
+\\	if $n < 2k$\+
+\\		return $\textsc{False}$\-
+\\	$\textsc{decomposable}[n] \gets \textsc{False}$
+\\	for $i\gets k$ to $n-k$\+
+\\		if $\textsc{isPalindrome}(w[1\,..\,i])$\+
+\\			if $\textsc{decomposePalindromeSubstrings}(w[i+1\,..\,n], k)$\+
+\\				$\textsc{canDecompose} \gets \textsc{True}$\- \- \-
+\\	return $\textsc{decomposable}[n]$
+\\			
+\\[0.5ex]
+	
+\end{algo}
+The algorithm use a subroutine $\textsc{isPalindrome}$ to check whether the string passed into is a palindrome, which is defined as follow:
+
+\begin{algo}
+	\textul{$\textsc{isPalindrome}(w[1\,..\,n])$:}\+
+\\[0.5ex]
+\\	for $i\gets 1$ to $\lfloor \frac{n}{2} \rfloor$\+
+\\		if $w[i] = w[n-i+1]$\+
+\\			return $\textsc{False}$\- \-
+\\	return $\textsc{True}$
+\\			
+\\[0.5ex]
+	
+\end{algo}
+The algorithm runs in $O(\frac{n^3}{k}))$. The time $T(n)$ needed for the algorithm is defined recursively by $T(n) = (n-2k) T(n-k) + O(n)$, which $O(n)$ comes from $\textsc{isPalindrome}$, and $(n-2k) T(n-k)$ comes from that we are searching in the range $k$ to $n-k$ that each value in the range can possibly recurse into a new problem of size at most $n-k$, which is the length of right split. Although we already use memorization, we can only avoid the recalculation of special case that the left palindrome is composed by at least $2$ smaller palindromes, which is very rare. After expanding the recursive definition of $T(n)$, we get $O(1) + k O(n) \frac{n^2}{k^2} = O(\frac{n^3}{k})$.
+\end{solution}
+\clearpage
+
+\end{document}

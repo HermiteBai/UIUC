@@ -1,0 +1,32 @@
+\documentclass[11pt]{article}
+\input{../../packages}
+\pagestyle{fancy}
+\fancyhead[L]{Math 347}
+\fancyhead[C]{HW7}
+\fancyhead[R]{Lanxiao Bai(lbai5)}
+\begin{document}
+	\paragraph{14.5}\textbf{Solution:}
+		When $b_n = 0, a_n = -2^n$, $\forall n \in \mathbb{N}, b_n > a_n, b_n \rightarrow 0$ but $a_n$ does not converge.
+	\paragraph{14.12}
+		 The statement is false, we can construct $(a_n) = 1/\sqrt{n}, (b_n) = 1/\sqrt{n}$, $(a_n) \rightarrow 0, (b_n) \rightarrow 0$, but $\sum a_nb_n = \sum 1/n$ does not converge by the divergence of harmonic series.
+	\paragraph{14.13}
+		\subparagraph{Claim:} If $(a_n)$ converges, then any subsequence of $(a_n)$ converges to the limit of $(a_n)$.
+		\subparagraph{Proof:} Let $(a_n) \rightarrow L$, then $\forall\varepsilon > 0, \exists N \in \mathbb{N}$ when $n > N$, $|a_n - L| < \varepsilon$. Take $K = N$, then when $k > K$, $n_k > n_K = n_N \geq N$, then $|a_{n_k} - L| < \varepsilon \Rightarrow a_{n_k} \rightarrow L.\blacksquare$
+	\paragraph{14.30}
+		\subparagraph{Claim:} If $x_1 = 1, x_{n+1} = 1/(x_1 + x_2 + \cdots + x_n)$, then $(x_n)$ converges and $(x_n) \rightarrow 0$.
+		\subparagraph{Proof:} We know that $x_{n+1}/x_n = (1 / (x_1 + x_2 + x_3 + \cdots + x_{n}))/(1 / (x_1 + x_2 + x_3 + \cdots + x_{n - 1})) = (x_1 + x_2 + x_3 + \cdots + x_{n - 1})/(x_1 + x_2 + x_3 + \cdots + x_n) = 1 - x_nx_{n+1}$.
+		
+		Since $x_n > 0$ for all $x$, $x_{n+1}/x_n < 1$, and therefore $(x_n)$ converges by Ratio test. 
+		
+		Since $x_{n+1}/x_n = 1 - x_nx_{n+1} \Rightarrow x_{n + 1} = \frac{x_n}{x_n^2 + 1}, n \geq 2$, then we have $x_{n + 1} < \frac{x_n}{x_n^2} = 1/x_{n} < 0$ for all $n$ so $(x_n)$ is bounded by $0$.
+		
+		And we know that $x_{n+1}/x_n < 1$ for all $n$ so $(x_n) \rightarrow 0$ by Monotone Convergence Theorem.$\blacksquare$
+	\paragraph{14.44}\textbf{Solution:}
+		\[\sum_{n = 1}^{\infty}\frac{1}{n(n + 1)} = \lim_{n\rightarrow\infty}(1 - \frac{1}{2} + \frac{1}{2} - \frac{1}{3} + \frac{1}{3} - \frac{1}{4} + \cdots + \frac{1}{n} - \frac{1}{n + 1}) = \lim_{n\rightarrow\infty}(1 - \frac{1}{n + 1}) = 1\]
+		
+		\begin{align}
+			&\phantom{\Rightarrow}\frac{1}{n(n + 1)} < \frac{1}{n^2} < \frac{1}{n(n - 1)}\nonumber\\
+			&\Rightarrow\sum_{n = 1}^{\infty}\frac{1}{n(n + 1)} < \sum_{n = 1}^{\infty}\frac{1}{n^2} < \sum_{n = 1}^{\infty}\frac{1}{n(n - 1)}\nonumber\\
+			&\Rightarrow 1 - \frac{1}{n + 1} < \sum_{n = 1}^{\infty}\frac{1}{n^2} < 1 - \frac{1}{n}\nonumber
+		\end{align}
+\end{document}

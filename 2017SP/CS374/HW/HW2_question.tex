@@ -1,0 +1,210 @@
+%!TEX TS-program = pdflatex
+%!TEX encoding = UTF-8 Unicode
+
+\documentclass[11pt]{article}
+\usepackage{jeffe,handout,graphicx,mathtools}
+\usepackage[utf8x]{inputenc}			% allow Unicode in .tex file
+\usepackage{enumerate}
+\usepackage{fourier-orns}
+
+\def\Cdot{\mathbin{\text{\normalfont \textbullet}}}
+\def\Sym#1{\texttt{\upshape \color{BrickRed} {#1}}}
+\def\Var#1{\ensuremath{\seq{\textsf{#1}}}}
+
+\def\ForceSym#1{\setbox0\hbox{A}\hbox to \wd0{\hss #1\hss}}
+\def\Blank{\ForceSym{$\diamond$}}
+%\def\Enter{\ForceSym{$\dlsh$}}			% Too wide; needs mathabx package
+\def\Enter{\ForceSym{\rotatebox[origin=c]{180}{$\Rsh$}}}	% Better
+
+\newcommand{\comp}[1]{#1_{\text{comp}}}
+
+% =========================================================
+\begin{document}
+
+\headers{CS/ECE 374}{Homework 2 (due February 8)}{Spring 2017}
+
+\thispagestyle{empty}
+
+\begin{center}
+\Large\textbf{CS/ECE 374 \,\decosix\,  Spring 2017}%
+\\
+\LARGE\textbf{\decothreeleft~ Homework 2 ~\decothreeright}%
+\\[0.5ex]
+\large Due Wednesday, February 8, 2017 at 10am
+\end{center}
+
+\bigskip
+\hrule
+\bigskip
+
+\noindent
+\textbf{Groups of up to three people can submit joint solutions.}  Each problem should be submitted by exactly one person, and the beginning of the homework should clearly state the Gradescope names and email addresses of each group member.  In addition, whoever submits the homework must tell Gradescope who their other group members are.
+\bigskip
+\hrule
+\bigskip
+
+
+\noindent
+The following unnumbered problems are not for submission or grading. 
+No solutions for them will be provided but you can discuss them on Piazza.
+\begin{itemize}
+\item Suppose $N_1=(Q_1,\Sigma, \delta_1, s_1, A_1)$
+and $N_2=(Q_2,\Sigma, \delta_2, s_2, A_2)$ are NFAs. Formally
+describe a DFA that accepts the language $L(N_1) \setminus L(N_2)$.
+This combines subset construction and product construction to give
+you practice with formalism.
+
+\item Suppose $M = (Q,\Sigma,\delta,s,A)$ is a DFA.  For states $p,q
+  \in Q$ ($p$ can be same as $q$) argue that $L_{p,q} = \{w \mid
+  \delta^*(p,w) = q\}$ is regular.  Recall that $\text{PREFIX}(L) = \{
+  w \mid wx \in L, x \in \Sigma^*\}$ is the set of all prefixes of
+  strings in $L$. Express $\text{PREFIX}(L(M))$ as 
+  $\cup_{q \in Z} L_{s,q}$ for a suitable set of states $Z \subseteq Q$.
+  Why does this prove that $\text{PREFIX}(L(M))$ is regular whenever $L$ is
+  regular?
+
+\item For a language $L$ let $\text{MID}(L) = \{ w \mid xwy \in L, x,
+  y \in \Sigma^* \}$. Prove that $\text{MID}(L)$ is regular if
+  $L$ is regular.
+\end{itemize}
+
+\vspace{1cm}
+
+\begin{enumerate}
+\parindent 1.5em \itemsep 3ex plus 0.5fil
+
+%----------------------------------------------------------------------
+%\def\arraystretch{1.2}
+
+\item \begin{enumerate}
+\item Draw an NFA that accepts the language $\{w \mid$ there is exactly one  block of 0s of even length\}.  (A ``block of 0s'' is a maximal substring of 0s.)
+\item 
+\begin{enumerate}
+\item Draw an NFA for the regular expression $(010)^* + (01)^* + 0^*.$
+\item Now using the powerset construction (also called the subset construcion), design a DFA for the same language.  Label the states of your DFA with names that are sets of states of your NFA.
+\end{enumerate}
+\end{enumerate}
+
+%----------------------------------------------------------------------
+\item This problem is to illustrate proofs of (the many) closure properties of 
+  regular languages.
+  \begin{enumerate}
+  \item For a language $L$ let
+    $\text{FUNKY}(L) = \{w \mid \mbox{$w \in L$ but no proper prefix
+    of $w$ is in $L$}\}$. Prove that if $L$ is regular then
+    $\text{FUNKY}(L)$ is also regular using the following technique.
+    Let $M=(Q,\Sigma,\delta,s,A)$ be a DFA accepting $L$. Describe
+    a NFA $N$ in terms of $M$ that accepts $\text{FUNKY}(L)$. Explain
+    the construction of your NFA.
+  \item In Lab 3 we saw that $\emph{insert}\Sym1(L)$ is regular
+    whenever $L$ is regular. Here we consider a different proof technique.
+    Let $r$ be a regular expression. We would like to show
+    that there is another regular expression $r'$ such that
+    $L(r') = \emph{insert}\Sym1(L(r))$. 
+    \begin{enumerate}
+    \item For each of the base cases of regular expressions
+      $\emptyset, \epsilon$ and $\{a\}, a \in \Sigma$ describe
+      a regular expression for $\emph{insert}\Sym1(L(r))$.
+    \item Suppose $r_1$ and $r_2$ are regular expressions, and
+      $r'_1$ and $r'_2$ are regular expressions for the languages
+      $\emph{insert}\Sym1(L(r_1))$ and $\emph{insert}\Sym1(L(r_2))$
+      respectively. Describe a regular expression for the language
+      $\emph{insert}\Sym1(L(r_1+r_2))$ using $r_1,r_2,r'_1,r'_2$.
+    \item Same as the previous part but now consider $L(r_1r_2)$.
+    \item Same as the previous part but now consider $L((r_1)^*)$.
+    \end{enumerate}
+  \end{enumerate}
+
+%----------------------------------------------------------------------
+\item Recall that for any language $L$, $\overline{L} = \Sigma^* -
+  L$ is the complement of $L$.  In particular, for any NFA $N$,
+  $\overline{L(N)}$ is the complement of $L(N)$.
+
+
+  Let $N = (Q,\Sigma,\delta,s,A)$ be an NFA, and define the NFA
+  $\comp{N} = (Q,\Sigma,\delta,s,Q\setminus A)$. In other words we
+  simply complemented the accepting states of $N$ to obtain
+  $\comp{N}$.  Note that if $M$ is DFA then $\comp{M}$ accepts
+  $\Sigma^* - L(M)$. However things are trickier with NFAs.
+
+\begin{enumerate}
+\item Describe a concrete example of a machine $N$
+  to show that $L(\comp{N}) \neq \overline{L(N)}$. You need
+  to explain for your machine $N$ what $\overline{L(N)}$ and
+  $L(\comp{N})$ are.
+
+\item
+Define an NFA that accepts 
+$\overline{L(N)} - L(\comp{N})$, and explain how it works.
+
+\item
+Define an NFA that accepts 
+$L(\comp{N}) - \overline{L(N)}$, and explain how it works.
+\end{enumerate}
+
+{\em Hint:} For all three parts it is useful to classify strings in $\Sigma^*$
+based on whether $N$ takes them to accepting and non-accepting states
+from $s$.
+
+
+\end{enumerate}
+
+\newpage
+%\vspace{2cm}
+\subsection*{Solved problem}
+
+\begin{enumerate}
+\item[4.]  Let $L$ be an arbitrary regular language.  Prove that the language
+$\emph{half}(L) := \set{w \mid ww\in L}$ is also regular.
+
+\begin{solution}
+Let $M = (\Sigma, Q, s, A, \delta)$ be an arbitrary DFA that accepts $L$.  We define a new NFA $M’ = (\Sigma, Q’, s’, A’, \delta’)$ with $\e$-transitions that accepts $\emph{half}(L)$, as follows:
+\begin{align*}
+	Q’ & = (Q\times Q\times Q) \cup \set{s’} \\
+	s’ & \text{~is an explicit state in $Q’$} \\
+	A’ &= \Setbar{(h, h, q)}{h\in Q \text{~and~} q\in A}
+	\\[1ex]
+	\delta’(s’, \e) &= \Setbar{(s, h, h)}{h\in Q} \\
+	\delta’((p, h, q), a) &= \Set{\big(\delta(p, a), h, \delta(q, a)\big)}
+\end{align*}
+$M’$ reads its input string $w$ and simulates $M$ reading the input string $ww$.  Specifically, $M’$ simultaneously simulates two copies of $M$, one reading the left half of $ww$ starting at the usual start state $s$, and the other reading the right half of $ww$ starting at some intermediate state $h$.
+\begin{itemize}
+\item 
+The new start state $s’$ non-deterministically guesses the “halfway” state $h = \delta^*(s, w)$ without reading any input; this is the only non-determinism in $M’$.
+\item
+State $(p, h, q)$ means the following:
+\begin{itemize}
+\item The left copy of $M$ (which started at state $s$) is now in state $p$.
+\item The initial guess for the halfway state is $h$.
+\item The right copy of $M$ (which started at state $h$) is now in state $q$.
+\end{itemize}
+\item
+$M’$ accepts if and only if the left copy of $M$ ends at state $h$ (so the initial non-deterministic guess $h = \delta^*(s, w)$ was correct) and the right copy of $M$ ends in an accepting state.
+\end{itemize}
+\end{solution}
+
+\begin{rubric}
+5 points = 
+\begin{itemize}\cramped
+\item[+] 1 for a formal, complete, and unambiguous description of a DFA or NFA
+\begin{itemize}\cramped
+\item No points for the rest of the problem if this is missing.
+\end{itemize}
+\item[+] 3 for a correct NFA 
+\begin{itemize}\cramped
+\item $-1$ for a single mistake in the description (for example a typo)
+\end{itemize}
+\item[+] 1 for a \emph{brief} English justification.  We explicitly do \emph{not} want a formal proof of correctness, but we do want one or two sentences explaining how the NFA works.
+\end{itemize}
+\end{rubric}
+
+
+%----------------------------------------------------------------------
+
+
+%----------------------------------------------------------------------
+
+\end{enumerate}
+
+
+\end{document}

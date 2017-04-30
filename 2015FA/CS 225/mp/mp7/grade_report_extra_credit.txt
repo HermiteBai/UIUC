@@ -1,0 +1,24 @@
+Grading revision r46956 by lbai5, dated 2015-12-01 23:27:35.000485614 -0600 CST
+Monad Autograder
+Testing mp7.1 at 2015-12-02 00:27:34
+
+"One day I will shoot you with this bullet. Can you still say that you love me?" ~ Re-l Mayer
+
+Setting up test environment...
+Compiling...
+================================================================
+
+
+Running tests...
+================================================================
+addElements1 . . . . [20 pts] - passed
+addElements2 . . . . [20 pts] - passed
+testFindAndSetUnion1 [20 pts] - passed
+testFindAndSetUnion2 [20 pts] - passed
+testFindAndSetUnion3 [20 pts] - passed
+
+
+Total score...
+================================================================
+TOTAL SCORE: 100
+

@@ -1,0 +1,185 @@
+\documentclass[11pt]{article}
+\input{../../packages.tex}
+\usepackage{enumerate}
+\pagestyle{fancy}
+\fancyhead[L]{CS357}
+\fancyhead[C]{HW2Q1}
+\fancyhead[R]{Lanxiao Bai}
+\begin{document}
+	\begin{enumerate}
+		\item \begin{enumerate}
+				\item 
+				Let $p(x) = ax^3 + bx^2 + cx + d$, then
+				\[p(0) = 0 \Rightarrow	d = 0\]
+				\[p(1) = 1 \Rightarrow a + b + c + d = 1 \Rightarrow a + b + c = 1\]
+				\[p'(0) = 0 \Rightarrow c = 0 \Rightarrow a + b = 1 \]
+				Thus, we have that $p(x) = ax^3 + (1 - a)x^2$. For a more specific answer, we can let $a = 1$, so that $p(x) = x^3$.
+				\item Let $r(x) = ax^2 + bx + c$, then
+			 	\[r(0) = c = 0\]
+			 	\[r(2) = 4a + 2b + c = 0 \Rightarrow 2a + b = 0\]
+			 	\[r'(1) = 2a + b = 0\]
+			 	\[\int_1^3 r''(x)dx = r'(3) - r'(1) = 2a(3 - 1) = 1 \Rightarrow 4a = 1 \Rightarrow a = 1/4 \]
+			 	So
+			 	\[b = -2a = -1/2\]
+			 	
+			 As a result, \[r(x) = \frac{1}{4}x^2 - \frac{1}{2	}x\]
+			 \item Let $q(x) = ax + b$, then 
+			 \[q(0) = b = 1\]
+			 \[q'(0) = a = 1\]
+			 \[\int_{-1}^1 q(x)dx = 1 \Rightarrow \frac{a}{2}(1^2 - (-1)^2) + b(1 - (-1)) = 2b = 1 \Rightarrow b = \frac{1}{2}\]
+			 
+			 Since $b$ can't be $1$ and $1/2$ at the same time, so such $q(x)$ does not exist.
+			  \end{enumerate}
+			 
+			 \item 
+			 Let 
+			 \[f(x) = \sum_{i = 1}^{n + 1} p_i x^{n - 1}\]
+			 \[g(x) = \sum_{i = 1}^{n + 1} q_i x^{n - 1}\]
+			 \[h(x) = \sum_{i = 1}^{n + 1} m_i x^{n - 1}\]
+			 \[V_a = \begin{bmatrix}
+			 	1 & a_1 & \cdots & a_1^n\\
+			 	1 & a_2 & \cdots & a_2^n\\
+			 	\vdots & \vdots & \ddots & \vdots\\
+			 	1 & a_{n + 1} & \cdots & a_{n + 1}^n
+			 \end{bmatrix} \]
+			 \[V_b = \begin{bmatrix}
+			 	1 & b_1 & \cdots & b_1^n\\
+			 	1 & b_2 & \cdots & b_2^n\\
+			 	\vdots & \vdots & \ddots & \vdots\\
+			 	1 & b_{n + 1} & \cdots & b_{n + 1}^n
+			 \end{bmatrix} \]
+			 
+			 then we have
+			 \[V_1\begin{bmatrix}
+			 	p_1\\
+			 	p_2\\
+			 	\vdots\\
+			 	p_{n + 1}
+			 \end{bmatrix} = \begin{bmatrix}
+			 	f(a_1)\\
+			 	f(a_2)\\
+			 	\vdots\\
+			 	f(a_{n + 1})
+			 \end{bmatrix} \]
+			 \[V_2\begin{bmatrix}
+			 	q_1\\
+			 	q_2\\
+			 	\vdots\\
+			 	q_{n + 1}
+			 \end{bmatrix} = \begin{bmatrix}
+			 	g(b_1)\\
+			 	g(b_2)\\
+			 	\vdots\\
+			 	g(b_{n + 1})
+			 \end{bmatrix} \]
+			Hence, 
+			\[\begin{bmatrix}
+			 	q_1\\
+			 	q_2\\
+			 	\vdots\\
+			 	q_{n + 1}
+			 \end{bmatrix} = V_2^{-1}\begin{bmatrix}
+			 	g(b_1)\\
+			 	g(b_2)\\
+			 	\vdots\\
+			 	g(b_{n + 1})
+			 \end{bmatrix}\]
+			 Then
+			 \[
+			 	V_1V_2^{-1}\begin{bmatrix}
+			 	g(b_1)\\
+			 	g(b_2)\\
+			 	\vdots\\
+			 	g(b_{n + 1})
+			 \end{bmatrix} = \begin{bmatrix}
+			 	g(a_1)\\
+			 	g(a_2)\\
+			 	\vdots\\
+			 	g(a_{n + 1})
+			 \end{bmatrix}
+			 \]
+			 
+			 Since $f(x) = g(x)\cdot h(x)$, we have
+			 \[\begin{bmatrix}
+			 	f(a_1)\\
+			 	f(a_2)\\
+			 	\vdots\\
+			 	f(a_{n + 1})
+			 \end{bmatrix} = \left(V_1V_2^{-1}\begin{bmatrix}
+			 	g(b_1)\\
+			 	g(b_2)\\
+			 	\vdots\\
+			 	g(b_{n + 1})
+			 \end{bmatrix}\right)^T
+			 \begin{bmatrix}
+			 	h(a_1) & 0 & \cdots & 0\\
+			 	0 & h(a_2) & \cdots & 0\\
+			 	\vdots & \vdots & \ddots & \vdots\\
+			 	0 & 0 & \cdots & h(a_{n + 1})
+			 \end{bmatrix} \]
+			 
+			 So
+			 \[\begin{bmatrix}
+			 	h(a_1) & 0 & \cdots & 0\\
+			 	0 & h(a_2) & \cdots & 0\\
+			 	\vdots & \vdots & \ddots & \vdots\\
+			 	0 & 0 & \cdots & h(a_{n + 1})
+			 \end{bmatrix} = \left(\left(V_1V_2^{-1}\begin{bmatrix}
+			 	g(b_1)\\
+			 	g(b_2)\\
+			 	\vdots\\
+			 	g(b_{n + 1})
+			 \end{bmatrix}\right)^T\right)^{-1}\begin{bmatrix}
+			 	f(a_1)\\
+			 	f(a_2)\\
+			 	\vdots\\
+			 	f(a_{n + 1})
+			 \end{bmatrix}\]
+			 
+			 And 
+			 \[\begin{bmatrix}
+			 	h(a_1)\\
+			 	h(a_2)\\
+			 	\vdots\\
+			 	h(a_{n + 1})
+			 \end{bmatrix} = 
+			 	\begin{bmatrix}
+			 		1 & 1 & \cdots & 1
+			 	\end{bmatrix}
+			 \left(\left(V_1V_2^{-1}\begin{bmatrix}
+			 	g(b_1)\\
+			 	g(b_2)\\
+			 	\vdots\\
+			 	g(b_{n + 1})
+			 \end{bmatrix}\right)^T\right)^{-1}\begin{bmatrix}
+			 	f(a_1)\\
+			 	f(a_2)\\
+			 	\vdots\\
+			 	f(a_{n + 1})
+			 \end{bmatrix}
+			 \]
+			 
+			 As a result, the coefficients are
+			 \[
+			 \begin{bmatrix}
+			 	m_1\\
+			 	m_2\\
+			 	\vdots\\
+			 	m_{n + 1}
+			 \end{bmatrix} = V_1\begin{bmatrix}
+			 		1 & 1 & \cdots & 1
+			 	\end{bmatrix}
+			 \left(\left(V_1V_2^{-1}\begin{bmatrix}
+			 	g(b_1)\\
+			 	g(b_2)\\
+			 	\vdots\\
+			 	g(b_{n + 1})
+			 \end{bmatrix}\right)^T\right)^{-1}\begin{bmatrix}
+			 	f(a_1)\\
+			 	f(a_2)\\
+			 	\vdots\\
+			 	f(a_{n + 1})
+			 \end{bmatrix}
+			 \]
+	\end{enumerate}
+\end{document}

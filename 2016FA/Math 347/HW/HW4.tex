@@ -1,0 +1,34 @@
+\documentclass[11pt]{article}
+\input{../../packages}
+\pagestyle{fancy}
+\fancyhead[L]{Math 347}
+\fancyhead[C]{HW4}
+\fancyhead[R]{Lanxiao Bai(lbai5)}
+\begin{document}
+	\paragraph{4.5}\textbf{Solution:} All sets that has more than $2$ elements can have bijection that is not identity.
+	\paragraph{4.6}\textbf{Solution:} No, because $f(\mathrm{monday}) = f(\mathrm{friday}) = 6$
+	\paragraph{4.11}\textbf{Solution:}
+		Take $a, b \in \mathbb{R}$ and $a \neq b$, we have $f(a) \neq f(b) \Leftrightarrow 2a \neq 2b$, so $f : \mathbb{R} \rightarrow \mathbb{R}$ is injective. $\forall x \in \mathbb{R}$, $f^{-1}(x) = \frac{x}{2} \in \mathbb R$. So $f$ is surjective. Thus, $f: \mathbb{R} \rightarrow \mathbb{R}$ is bijective.
+		
+		However, if we take $3 \in \mathbb{Z}$, $f^{-1}(3) = \frac{3}{2} \notin \mathbb{Z}$, so it's not bijective.
+	\paragraph{4.21}\textbf{Proof:}
+	 	For an arbitrary set $N$ with positive number of elements, we can choose an arbitrary element $e \in N$ and all the subgroups with even number of elements. Let the map be like 
+	 	\[f(N) = \left\{\begin{array}{ll} N - \{e\} & \mathrm{if}\ e \in N\\ N \cup \{e\} & \mathrm{if}\ e \notin N\end{array}\right.\]
+	 	
+	 	So we can get the sets of subsets that has even number of elements.
+	 	
+	 	Let $N_1, N_2$ be 2 subsets , we have either
+	 		\[N_1 - \{e\} = f(N_1) = f(N_2) = N_2 - \{e\}\]
+	 		
+	 		or
+	 		
+	 		\[N_1 \cup \{e\} = f(N_1) = f(N_2) = N_2 \cup \{e\}\]
+	 		
+	 		we can have $N_1 = N_2$, so the map is injective.
+	 		
+	 		Let $N$ be an element of the range of $f$. If $N$ contains $n$, then $N−\{e\}$ is a subset of even size that maps to $N$ under $f$. If $N$ does not contain $n$, then $N \cup {e}$ is a subset of even size that maps to $N$ under $f$. Since everything in the image has something in the domain that maps to it, $f$ is surjective.
+	 		
+	 		As a result, the bijection is established. Thus, $|N_{\mathrm{even}}| =|N_{\mathrm{odd}}|$.
+	\paragraph{4.24}\textbf{Proof:}
+		 Let $f(x) = g(x) = x^2$, then $h(x) = x^4$ and $h^{-1}(x) = x^{1/4}$, let $x = 2 \in \mathbb{Z}$, obviously $h^{-1}(2) = 2^{1/4} \notin \mathbb{Z}$. So $h$ may not be surjective. 
+\end{document}

@@ -1,0 +1,151 @@
+\documentclass[11pt]{article}
+\input{../../packages.tex}
+\usepackage{enumerate}
+\newcommand{\qed}{
+	\begin{flushright}
+		$\blacksquare$
+	\end{flushright}		
+}
+\pagestyle{fancy}
+\fancyhead[L]{Math444}
+\fancyhead[C]{HW4}
+\fancyhead[R]{Lanxiao Bai}
+\begin{document}
+	\paragraph{3.1.5}
+		\begin{enumerate}[(a)]
+			\item \textbf{Proof:}
+				Given $\varepsilon > 0$, we note that if $n \in \mathbb{N}$, then
+						\[\frac{n}{n^2 + 1} < \frac{n}{n^2} = \frac{1}{n}\]
+				Then if we choose $N$ that $1/N < \varepsilon$, then when $n \geq N$, we have that
+						\[\left| \frac{n}{n^2 + 1} - 0\right| = \frac{n}{n^2 + 1} < \frac{n}{n^2} = \frac{1}{n} \leq \frac{1}{N} < \varepsilon\]
+				Then by definition, we have 
+					\[\lim \left(\frac{n}{n^2 + 1}\right) = 0\]
+				\qed
+			\item \textbf{Proof:}
+				Given $\varepsilon > 0$, we note that if $n \in \mathbb{N}$, then
+						\[\frac{1}{n + 1} < \frac{1}{n}\]
+						
+				Then if we choose $N$ that $2/N < \varepsilon$, then when $n \leq N$, we have that
+						\[\left| \frac{2n}{n + 1} - 2\right| = \left| \frac{-2}{n + 1}\right| = \frac{2}{n + 1} < \frac{2}{n} \leq \frac{2}{N} < \varepsilon\]
+				Then by definition, we have
+					\[\lim \left(\frac{2n}{n + 1}\right) = 2\]
+					\qed
+			\item \textbf{Proof:}
+				Given $\varepsilon > 0$, we note that if $n \in \mathbb{N}$, then
+						\[\frac{1}{4n + 10} < \frac{1}{4n}\]
+						
+				Then if we choose $N$ that $13/4N < \varepsilon$, then when $n \leq N$, we have that
+						\[\left| \frac{3n + 1}{2n + 5} - \frac{3}{2}\right| = \left| \frac{-13}{4n + 10}\right| = \frac{13}{4n + 10} < \frac{13}{4n} \leq \frac{13}{4N} < \varepsilon\]
+				Then by definition, we have
+					\[\lim \left(\frac{3n + 1}{2n + 5}\right) = \frac{3}{2}\]
+					\qed
+			\item \textbf{Proof:}
+				Given $\varepsilon > 0$, we note that if $n \in \mathbb{N}$, then
+						\[\frac{1}{4n^2 + 6} < \frac{1}{4n^2} \leq \frac{1}{4n} \]
+						
+				Then if we choose $N$ that $2/N < \varepsilon$, then when $n \leq N$, we have that
+						\[\left| \frac{n^2 - 1}{2n^2 + 3} - \frac{1}{2}\right| = \left| \frac{-5}{4n^2 + 6}\right| = \frac{5}{4n^2 + 6} < \frac{5}{4n^2} \leq \frac{5}{4n} \leq \frac{5}{4N} < \varepsilon\]
+				Then by definition, we have
+					\[\lim \left(\frac{n^2 - 1}{2n^2 + 3}\right) = \frac{1}{2}\]
+					\qed
+		\end{enumerate}
+	\paragraph{3.1.9}\textbf{Proof:}
+		Since $\lim (x_n) = 0$, then for all $\varepsilon > 0$ there is $N$ that when $n \leq N$, we have $\left|x_n - 0 \right| = |x_n| = x_n < \varepsilon$. 
+		
+		Then we have $|x_n| < \varepsilon^2$ for $n \leq N \in \mathbb{N}$. As a result, $\sqrt{x_n} < \varepsilon \Rightarrow |\sqrt{x_n} - 0| < \varepsilon$.
+		
+		As a result, $\lim(\sqrt{x_n}) = 0$.
+		\qed
+		
+	\paragraph{3.1.12}\textbf{Proof:}
+		Given $\varepsilon > 0$, we note that if $n \in \mathbb{N}$, then
+						\[\frac{1}{\sqrt{n^2 + 1} + n} \leq \frac{1}{\sqrt{n^2 + 1}} \leq \frac{1}{n^2 + 1}  \]
+			
+		Then if we choose $N$ that $1/N < \epsilon$, then when $n \leq N$, we have
+			\begin{align}
+				&\left|\sqrt{n^2 + 1} - n\right| = \left|(\sqrt{n^2 + 1} - n)\frac{(\sqrt{n^2 + 1} + n)}{(\sqrt{n^2 + 1} + n)}\right|\nonumber\\
+				&\phantom{\left|\sqrt{n^2 + 1} - n\right|} = \left|\frac{1}{\sqrt{n^2 + 1} + n} \right|\nonumber\\ 
+				&\phantom{\left|\sqrt{n^2 + 1} - n\right|} = \frac{1}{\sqrt{n^2 + 1} + n}\nonumber\\
+				&\phantom{\left|\sqrt{n^2 + 1} - n\right|} \leq \frac{1}{\sqrt{n^2 + 1}}\nonumber\\
+				&\phantom{\left|\sqrt{n^2 + 1} - n\right|} \leq \frac{1}{n^2 + 1} < \frac{1}{n^2} \leq \frac{1}{n} \leq \frac{1}{N} < \varepsilon \nonumber
+			\end{align}
+		As a result, by definition
+			\[\lim \sqrt{n^2 + 1} - n = 0\]
+			\qed
+	\paragraph{3.1.17}\textbf{Proof:}
+		Given $\varepsilon > 0$, we note that if $n \in \mathbb{N}$, then
+						\[\frac{1}{2^{n - 1}} \leq \frac{1}{n - 1} < \frac{1}{n}\]
+				Then if we choose $N$ that $1/N < \varepsilon$, then when $n \geq N$, we have that
+					\begin{align}
+						&\left|\frac{2^n}{n!} - 0\right| = \frac{2^n}{n!}\nonumber\\
+						&\phantom{\left|\frac{2^n}{n!} - 0\right|} \leq 2(\frac{2}{3})^{n - 2} & (\text{by hint})\nonumber\\
+						&\phantom{\left|\frac{2^n}{n!} - 0\right|} < 2(\frac{1}{2})^{n - 2} & (\text{since }\frac{2}{3} > \frac{1}{2})\nonumber\\
+						&\phantom{\left|\frac{2^n}{n!} - 0\right|} = (\frac{1}{2})^{n - 1}\nonumber\\
+						&\phantom{\left|\frac{2^n}{n!} - 0\right|} = \frac{1}{2^{n - 1}}\nonumber\\
+						&\phantom{\left|\frac{2^n}{n!} - 0\right|} \leq \frac{1}{n - 1} < \frac{1}{n} \leq \frac{1}{N} < \varepsilon \nonumber
+					\end{align}
+				Then by definition, we have 
+					\[\lim \frac{2^n}{n!} = 0\]
+				\qed
+	\paragraph{3.2.6}\textbf{Solution:}
+		\begin{enumerate}[(a)]
+			\item 
+				\[\lim \left((2 + 1/n)^2 \right) = \lim (4 + 4/n + 1/n^2) = \lim (4) + \lim(4/n) + \lim(1/n^2) = 4 + 0 + 0 = 4\]
+			\item
+				\[\lim \left(\frac{(-1)^n}{n + 2}\right) = \lim \left((-1)^n\right) \cdot \lim \left(\frac{1}{n + 2}\right) = \lim \left((-1)^n\right) \cdot 0 = 0 \]
+			\item
+				\begin{align}
+					&\lim \left(\frac{\sqrt{n} - 1}{\sqrt{n} + 1}\right) = \lim \left(\frac{(\sqrt{n} - 1)(\sqrt{n} - 1)}{(\sqrt{n} + 1)(\sqrt{n} - 1)} \right) = \lim \left(\frac{n - 2\sqrt{n} + 1}{n - 1} \right) = \lim \left(1 - \frac{2}{\sqrt{n} + 1} \right)\nonumber\\
+					&\phantom{\lim \left(\frac{\sqrt{n} - 1}{\sqrt{n} + 1}\right)} = \lim (1) - \lim \left(\frac{2}{\sqrt{n} + 1}\right) = 1 - 0 = 1\nonumber
+				\end{align}
+			\item
+				\[\lim \left(\frac{n + 1}{n\sqrt{n}}\right) = \lim \left(\frac{n}{n\sqrt{n}} + \frac{1}{n\sqrt{n}}\right) = \lim \left(\frac{1}{n\sqrt{n}}\right) + \lim \left(\frac{1}{n^{3/2}}\right) = 0 + 0 = 0\]
+		\end{enumerate}
+	\paragraph{3.2.10}\textbf{Solution:}
+		\begin{enumerate}[(a)]
+			\item 
+				\begin{align}
+					&\lim (\sqrt{4n^2 + n} - 2n) = \lim \left((\sqrt{4n^2 + n} - 2n)\frac{\sqrt{4n^2 + n} + 2n}{\sqrt{4n^2 + n} + 2n}\right) = \lim \left(\frac{1}{\sqrt{4 + \frac{1}{n}} + 2}\right)\nonumber\\
+					&\phantom{\lim (\sqrt{4n^2 + n} - 2n)} = \frac{1}{\lim \left(\sqrt{4 + \frac{1}{n}} + 2\right)} = \frac{1}{4} \nonumber
+				\end{align}
+			\item
+				\begin{align}
+					&\lim \left(\sqrt{n^2 + 5n} - n\right) = \lim \left((\sqrt{n^2 + 5n} - n)\frac{\sqrt{n^2 + 5n} + n}{\sqrt{n^2 + 5n} + n} \right)\nonumber\\
+					&\phantom{\lim \left(\sqrt{n^2 + 5n} - n\right)} = \lim \left(\frac{5n}{\sqrt{n^2 + 5n} + n}\right)\nonumber\\
+					&\phantom{\lim \left(\sqrt{n^2 + 5n} - n\right)} = \frac{5}{\lim \left(\sqrt{1 + \frac{5}{n}} + 1\right)} = \frac{5}{2}\nonumber
+				\end{align}
+				
+		\end{enumerate}
+	\paragraph{3.2.11a}\textbf{Solution:}
+		\begin{align}
+			&\lim ((3\sqrt{n})^{1/2n}) = \lim (3^{1/2n}(\sqrt{n})^{1/2n}) = \lim (3^{1/2n}) \lim (n^{1/4n}) = \lim (n^{1/4n}) = \lim (n^n)^{1/4} = \infty\nonumber
+		\end{align}
+	\paragraph{3.2.16}\textbf{Proof:}
+		\begin{enumerate}[(a)]
+			\item Since
+			\[L = \lim (x_{n + 1} / x_n) = \lim (a^{n + 1} / a^n) = a < 1,\]
+			
+			$(a^n)$ converges and $\lim (a^n) = 0$.\qed
+			\item Since 
+			\[L = \lim (x_{n + 1} / x_n) = \lim ((b^{n + 1} / 2^{n + 1}) / (b^{n} / 2^{n})) = \lim (b/2) = b/2 > 0.5 \]
+			Then if $b/2 < 1 \Rightarrow b < 2$, then $(b^n / 2^n)$ converges and $\lim (b^n / 2^n) = 0$.\qed
+			\item Since
+			\[L = \lim (x_{n + 1} / x_n) = \lim (((n + 1)/b^{n + 1}) / (n/b^{n})) = \lim (n/b) = \infty\]
+			does not converge.
+			
+			So $(n/b^{n})$'s convergence is not guaranteed.\qed
+			\item Since
+			\[L = \lim (x_{n + 1} / x_n) = \lim ((2^{3(n + 1)} / 3^{2(n + 1)}) / ((2^{3n} / 3^{2n})) = \lim (2^3 / 3^2) = 8/9 < 1\]
+			does not converge.
+			
+			$(2^{3n} / 3^{2n})$ converges and $\lim (2^{3n} / 3^{2n}) = 0$.\qed
+			
+		\end{enumerate}
+	\paragraph{3.2.17}\textbf{Solution:}
+		\begin{enumerate}[(a)]
+			\item When $(x_n) = 1$, $\lim (x_{n+1} / x_n) = 1$ and $(x_n)$ converges to $1$.
+			\item When  $(x_n) = n$, $\lim (x_{n+1} / x_n) = \lim (n + 1) / n = 1$ and $(x_n)$ diverges.
+		\end{enumerate}
+	\paragraph{3.2.18}\textbf{Proof:}
+		Suppose $X$ is bounded by $u$, then by Completeness Axiom there is a $u' = \sup X$. Then there is a $x \in X$ that $x > u' - 1 \Rightarrow x + 1 > u'$. However, since $\lim(x_{n + 1} / x_n) > 1$, for $n$ that $x_n + 1 > u'$, $x_{n + 1} > x_n + 1 > u'$. Hence, $u'$ is not the supremum, and as a result, $X$ is not bounded.\qed
+\end{document}

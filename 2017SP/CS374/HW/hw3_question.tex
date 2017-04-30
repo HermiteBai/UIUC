@@ -1,0 +1,253 @@
+%!TEX TS-program = pdflatex
+%!TEX encoding = UTF-8 Unicode
+
+\documentclass[11pt]{article}
+\usepackage{jeffe,handout,graphicx,mathtools}
+\usepackage[utf8x]{inputenc}			% allow Unicode in .tex file
+\usepackage{enumerate}
+\usepackage{fourier-orns}
+
+\def\Cdot{\mathbin{\text{\normalfont \textbullet}}}
+\def\Sym#1{\texttt{\upshape \color{BrickRed} {#1}}}
+\def\Var#1{\ensuremath{\seq{\textsf{#1}}}}
+
+\def\ForceSym#1{\setbox0\hbox{A}\hbox to \wd0{\hss #1\hss}}
+\def\Blank{\ForceSym{$\diamond$}}
+%\def\Enter{\ForceSym{$\dlsh$}}			% Too wide; needs mathabx package
+\def\Enter{\ForceSym{\rotatebox[origin=c]{180}{$\Rsh$}}}	% Better
+\def\To{\leadsto}
+\def\Tostar{\mathrel{\To\!\!\!^*}}
+
+\newcommand{\comp}[1]{#1_{\text{comp}}}
+
+\newtheorem{claim}{Claim}
+
+% =========================================================
+\begin{document}
+
+\headers{CS/ECE 374}{Homework 3 (due February 15)}{Spring 2017}
+
+\thispagestyle{empty}
+
+\begin{center}
+\Large\textbf{CS/ECE 374 \,\decosix\,  Spring 2017}%
+\\
+\LARGE\textbf{\decothreeleft~ Homework 3 ~\decothreeright}%
+\\[0.5ex]
+\large Due Wednesday, February 15, 2017 at 10am
+\end{center}
+
+\bigskip
+\hrule
+\bigskip
+
+\noindent
+\textbf{Groups of up to three people can submit joint solutions.}  Each problem should be submitted by exactly one person, and the beginning of the homework should clearly state the Gradescope names and email addresses of each group member.  In addition, whoever submits the homework must tell Gradescope who their other group members are.
+\bigskip
+\hrule
+\bigskip
+
+
+\noindent
+The following unnumbered problems are not for submission or grading. 
+No solutions for them will be provided but you can discuss them on Piazza.
+\begin{itemize}
+\item Let $L$ be an arbitrary regular language.
+  \begin{itemize}
+  \item Prove that the language $palin(L) \{w \mid ww^R \in L\}$ is
+    also regular. 
+  \item  Prove that the language $drome(L) \{w \mid w^Rw \in
+    L\}$ is also regular.
+  \end{itemize}
+
+\item Suppose $F$ is a fooling set for a language $L$. Argue that
+$F$ cannot contain two distinct string $x,y$ where both
+are not prefixes of strings in $L$.
+
+\item Prove that the language $\{0^i1^j \mid \text{gcd}(i,j) = 1\}$ is 
+  not regular.
+\item Consider the language $L = \{w : |w| = 1 \mod 5\}$. We have already
+  seen that this language is regular. Prove that any DFA that accepts this
+  language needs at least $5$ states.
+
+\item Consider all regular expressions over an alphabet $\Sigma$. Each
+  regular expression is a string over a larger alphabet $\Sigma' =
+  \Sigma \cup \{
+  \emptyset\text{-Symbol},\epsilon\text{-Symbol},+,(,)\}$.  We use
+  $\emptyset\text{-Symbol}$ and $\epsilon\text{-Symbol}$ in place of
+  $\emptyset$ and $\epsilon$ to avoid confusion with overloading; technically
+  one should do it with $+,(,)$ as well.  Let $R_\Sigma$ be
+  the language of regular expressions over $\Sigma$.
+  \begin{enumerate}
+  \item Prove that $R_\Sigma$ is not regular.
+  \item Prove that $R_\Sigma$ is a CFL by giving a CFG for it.
+  \end{enumerate}
+
+\end{itemize}
+
+\vspace{1cm}
+
+\begin{enumerate}
+%\parindent 1.5em \itemsep 3ex plus 0.5fil
+
+%----------------------------------------------------------------------
+%\def\arraystretch{1.2}
+
+\item 
+  \begin{enumerate}
+  \item Prove that the following languages are not regular by providing
+  a fooling set. You need to prove an infinite fooling set and 
+  also prove that it is a valid fooling set.
+  \begin{enumerate}
+  \item $L = \{0^k1^kww \mid 0 \le k \le 3, w \in \{0,1\}^+\}$.
+  \item Recall that a block in a string is a maximal non-empty
+    substring of indentical symbols. Let $L$ be the set of all strings
+    in $\set{\Sym0,\Sym1}^*$ that contain two blocks of \Sym0s of
+    equal length.  For example, $L$ contains the strings
+    \Sym{01101111} and \Sym{01001011100010} but does not contain the
+    strings \Sym{000110011011} and \Sym{00000000111}.
+  \item $L = \{0^{n^3} \mid n \ge 0\}$.
+  \end{enumerate}
+\item Suppose $L$ is not regular. Show that $L \cup L'$ is not regular
+  for any finite language $L'$. Give a simple example to show that $L
+  \cup L'$ is regular when $L'$ is infinite.
+  \end{enumerate}
+
+%----------------------------------------------------------------------
+\item Describe a context free grammar for the following languages.
+Clearly explain how they work and the role of each non-terminal.
+Unclear grammars will receive little to no credit.
+\begin{enumerate}
+\item $\{a^ib^jc^kd^\ell \mid  i,j,k,\ell \ge 0 \mbox{~and~} i+\ell = j+k\}$.
+\item $L = \{0,1\}^* \setminus \{ 0^n1^n \mid n \ge 0\}$. In other words
+the complement of the language $\{ 0^n1^n \mid n \ge 0\}$.
+\end{enumerate}
+
+%----------------------------------------------------------------------
+\item Let $L = \{0^i1^j2^k \mid k = 2(i+j)\}$.
+  \begin{enumerate}
+  \item Prove that $L$ is context free by describing a grammar for $L$.
+  \item Prove that your grammar is correct. You need to prove
+    that if $L \subseteq L(G)$ and $L(G) \subseteq L$ where $G$ is your
+    grammar from the previous part.
+  \end{enumerate}
+
+\end{enumerate}
+%---------------------------------------
+\vspace{1in}
+\subsection*{Solved problem}
+
+\begin{enumerate}
+
+\item[4.]
+Let $L$ be the set of all strings over $\set{\Sym0,\Sym1}^*$ with exactly twice as many \Sym0s as \Sym1s.
+
+\begin{enumerate}
+\item
+Describe a CFG for the language $L$. 
+
+\Hint{For any string $u$ define $\Delta(u) = \#(\Sym0, u) - 2\#(\Sym1, u)$.
+Introduce intermediate variables that derive strings with $\Delta(u)=1$ and
+$\Delta(u)=-1$ and use them to define a non-terminal that generates $L$.}
+
+\begin{solution}
+$S\to \e \mid SS \mid \Sym{00}S\Sym1 \mid \Sym0 S \Sym1 S \Sym0 \mid \Sym1S\Sym{00}$
+\end{solution}
+
+\bigskip
+\item
+Prove that your grammar $G$ is correct.  As usual, you need to prove both $L \subseteq L(G)$ and $L(G) \subseteq L$.
+
+\Hint{Let $u_{\le i}$ denote the prefix of $u$ of length $i$.  If $\Delta(u)=1$, what can you say about the smallest $i$ for which $\Delta(u_{\le i})=1$?  How does $u$ split up at that position?  If $\Delta(u)=-1$, what can you say about the smallest $i$ such that $\Delta(u_{\le i}) =-1$?}
+
+\begin{solution}
+(Hopefully you recognized this as a more advanced version of HW0 problem~3.)
+We separately prove $L \subseteq L(G)$ and $L(G) \subseteq L$ as follows:
+
+\begin{claim}
+$L(G) \subseteq L$, that is, every string in $L(G)$ has exactly twice as many \Sym0s as \Sym1s.
+\end{claim}
+
+\begin{proof}
+As suggested by the hint, for any string $u$, let $\Delta(u) = \#(\Sym0, u) - 2\#(\Sym1, u)$.  We need to prove that $\Delta(w)=0$ for every string $w\in L(G)$.
+
+Let $w$ be an arbitrary string in $L(G)$, and consider an arbitrary derivation of $w$ of length $k$.  Assume that $\Delta(x) = 0$ for every string $x\in L(G)$ that can be derived with fewer than $k$ productions.\footnote{Alternatively: Consider the \emph{shortest} derivation of $w$, and assume $\Delta(x) = 0$ for every string $x\in L(G)$ such that $\abs{x}<\abs{w}$.}  There are five cases to consider, depending on the first production in the derivation of $w$.
+
+\begin{itemize}
+\item
+If $w = \e$, then $\#(\Sym0, w) = \#(\Sym1, w) = 0$ by definition, so $\Delta(w) = 0$.
+
+\item
+Suppose the derivation begins $S \To SS \Tostar w$.  Then $w = xy$ for some strings $x,y\in L(G)$, each of which can be derived with fewer than $k$ productions.   The inductive hypothesis implies $\Delta(x) =\Delta(y) = 0$.  It immediately follows that $\Delta(w)=0$.\footnote{Alternatively: Suppose the \emph{shortest} derivation of $w$ begins $S \To SS \Tostar w$. Then $w = xy$ for some strings $x,y\in L(G)$.  Neither $x$ or $y$ can be empty, because otherwise we could shorten the derivation of $w$.  Thus, $x$ and $y$ are both shorter than $w$, so the induction hypothesis implies\dots.  We need some way to deal with the decompositions $w=\e\Cdot w$ and $w=w\Cdot\e$, which are both consistent with the production $S\to SS$, without falling into an infinite loop.}
+
+\item
+Suppose the derivation begins $S \To \Sym{00}S\Sym1 \Tostar w$.  Then $w = \Sym{00}x\Sym1$ for some string $x\in L(G)$.  The inductive hypothesis implies $\Delta(x) = 0$.  It immediately follows that $\Delta(w)=0$.
+
+\item
+Suppose the derivation begins $S \To \Sym1 S\Sym{00} \Tostar w$.  Then  $w = \Sym1 x \Sym{00}$ for some string $x\in L(G)$.  The inductive hypothesis implies $\Delta(x) = 0$.  It immediately follows that $\Delta(w)=0$.
+
+\item
+Suppose the derivation begins $S \To \Sym0 S\Sym1S \Sym1 \Tostar w$.  Then  $w = \Sym0 x\Sym1 y \Sym0$ for some strings $x,y\in L(G)$.  The inductive hypothesis implies $\Delta(x) =\Delta(y) = 0$.  It immediately follows that $\Delta(w)=0$.
+
+\end{itemize}
+In all cases, we conclude that $\Delta(w)=0$, as required.
+\end{proof}
+
+
+\begin{claim}
+$L \subseteq L(G)$; that is, $G$ generates every binary string with exactly twice as many \Sym0s as~\Sym1s.
+\end{claim}
+
+\begin{proof}
+As suggested by the hint, for any string $u$, let $\Delta(u) = \#(\Sym0, u) - 2\#(\Sym1, u)$.  For any string $u$ and any integer $0\le i\le \abs{u}$, let \EMPH{$u_i$} denote the $i$th symbol in $u$, and let~\EMPH{$u_{\le i}$} denote the prefix of $u$ of length $i$. 
+
+Let $w$ be an arbitrary binary string with twice as many \Sym0s as \Sym1s.  Assume that $G$ generates every  binary string $x$ that is shorter than $w$ and has twice as many \Sym0s as \Sym1s.  There are two cases to consider:
+
+\begin{itemize}
+\item
+If $w = \e$, then $\e\in L(G)$ because of the production $S\to \e$.
+
+\item
+Suppose $w$ is non-empty.  To simplify notation, let $\Delta_i = \Delta(w_{\le i})$ for every index~$i$, and observe that $\Delta_0 = \Delta_{\abs{w}} = 0$.  There are several subcases to consider:
+
+\begin{itemize}\parindent 1.5em
+\item
+Suppose $\Delta_i = 0$ for some index $0<i<\abs{w}$.  Then we can write $w = xy$, where $x$ and $y$ are non-empty strings with $\Delta(x)=\Delta(y) = 0$.  The induction hypothesis implies that $x,y\in L(G)$, and thus the production rule $S\to SS$ implies that $w\in L(G)$.
+
+\item
+Suppose $\Delta_i > 0$ for all $0<i<\abs{w}$.  Then $w$ must begin with \Sym{00}, since otherwise $\Delta_1 = -2$ or $\Delta_2 = -1$, and the last symbol in $w$ must be \Sym1, since otherwise $\Delta_{\abs{w}-1} = -1$.  Thus, we can write $w = \Sym{00}x\Sym1$ for some binary string~$x$.  We easily observe that $\Delta(x)=0$, so the induction hypothesis implies $x\in L(G)$, and thus the production rule $S\to \Sym{00}S\Sym1$ implies $w\in L(G)$.
+
+\item
+Suppose $\Delta_i < 0$ for all $0<i<\abs{w}$.  A symmetric argument to the previous case implies  $w = \Sym1x\Sym{00}$ for some binary string $x$ with $\Delta(x)=0$.  The induction hypothesis implies $x\in L(G)$, and thus the production rule $S\to \Sym1 S\Sym{00}$ implies $w\in L(G)$.
+
+\item
+Finally, suppose none of the previous cases applies: $\Delta_i<0$ and $\Delta_j>0$ for some indices $i$ and $j$, but $\Delta_i \ne 0$ for all $0<i<\abs{w}$.
+
+Let $i$ be the smallest index such that $\Delta_i<0$.  Because $\Delta_j$ either increases by $1$ or decreases by $2$ when we increment $j$, for all indices $0<j<\abs{w}$, we must have $\Delta_j > 0$ if $j<i$ and $\Delta_j < 0$ if $j\ge i$.
+
+In other words, there is a \emph{unique} index $i$ such that $\Delta_{i-1}>0$ and $\Delta_i<0$.  In particular, we have $\Delta_1 > 0$ and $\Delta_{\abs{w}-1} < 0$.  Thus, we can write $w = \Sym0 x \Sym1 y\Sym0$ for some binary strings $x$ and $y$, where $\abs{\Sym0 x \Sym1} = i$.
+
+We easily observe that $\Delta(x)=\Delta(y)=0$, so the inductive hypothesis implies $x, y\in L(G)$, and thus the production rule $S\to \Sym0 S \Sym1 S \Sym0$ implies  $w\in L(G)$.
+\end{itemize}
+\end{itemize}
+In all cases, we conclude that $G$ generates $w$.        
+\end{proof}
+
+\noindent
+Together, Claim 1 and Claim 2 imply $L=L(G)$.\needqedtrue
+\end{solution}
+
+\begin{rubric}
+10 points:
+\begin{itemize}\cramped
+\item part (a) = 4 points.  As usual, this is not the only correct grammar.
+\item part (b) = 6 points = 3 points for $\subseteq$ + 3 points for $\supseteq$, each  using the standard induction template (scaled). 
+\end{itemize}
+\end{rubric}
+\end{enumerate}
+%---------------------------------------------------
+   
+\end{enumerate}
+
+
+\end{document}

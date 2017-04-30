@@ -1,0 +1,80 @@
+\documentclass[11pt]{article}
+\input{../../packages.tex}
+\usepackage{enumerate}
+\pagestyle{fancy}
+\fancyhead[L]{CS357}
+\fancyhead[C]{HW7Q1}
+\fancyhead[R]{Lanxiao Bai}
+\begin{document}
+	\begin{enumerate}
+		\item Let 
+			\[A = \begin{bmatrix}
+				a_{11} & a_{12} & \cdots & a_{1n}\\
+				a_{21} & a_{22} & \cdots & a_{2n}\\
+				\vdots & \vdots & \ddots & \vdots\\
+				a_{n1} & a_{n2} & \cdots & a_{nn}
+			\end{bmatrix}\]
+			
+			Then 
+			\[AS = \begin{bmatrix}
+				a_{11} & a_{12} & \cdots & a_{1n}\\
+				a_{21} & a_{22} & \cdots & a_{2n}\\
+				\vdots & \vdots & \ddots & \vdots\\
+				a_{n1} & a_{n2} & \cdots & a_{nn}
+			\end{bmatrix}\cdot\begin{bmatrix}
+				0 & 1 & & 0\\
+				  & 0 & \ddots & \\
+				  &   & \ddots & 1\\
+				1 &    &       & 0 
+			\end{bmatrix} = \begin{bmatrix}
+				a_{1n} & a_{11} & \cdots & a_{1(n - 1)}\\
+				a_{2n} & a_{21} & \cdots & a_{2(n - 1)}\\
+				\vdots & \vdots & \ddots & \vdots\\
+				a_{nn} & a_{n2} & \cdots & a_{nn}
+			\end{bmatrix}\]
+			
+			As shown, $S$ is a shift matrix since it can shift each column $1$ step to right. And 
+			\[S\mathrm{x} = [x_{n - 1}, x_0, \cdots, x_{n - 2}]\]
+			
+			For the same reason, 
+			\[S^k\mathrm{x} = [x_{n - k}, x_{n - k + 1}, \cdots, x_1, x_2, \cdots, x_{n - k - 1}]\]
+			\item No, since all eigenvalues of $S$, $|\lambda_i| = 1$, power method may not converge.
+			\item \textbf{Proof:} 
+			
+			\begin{align}
+				&Sx = \lambda x\nonumber\\
+				&(S - \lambda I) x = 0\nonumber\\
+				&\begin{bmatrix}
+				-\lambda & 1 & & 0\\
+				  & -\lambda & \ddots & \\
+				  &   & \ddots & 1\\
+				1 &    &       & -\lambda
+			\end{bmatrix} = 0\nonumber\\
+				&det(\begin{bmatrix}
+				-\lambda & 1 & & 0\\
+				  & -\lambda & \ddots & \\
+				  &   & \ddots & 1\\
+				1 &    &       & -\lambda
+			\end{bmatrix}) = 0\nonumber
+			\end{align} 
+			
+			So that
+			\begin{align}
+				&\begin{bmatrix}
+					1 & & 0\\
+				  	-\lambda & \ddots & \\
+				    & \ddots & 1
+				\end{bmatrix} - \lambda \begin{bmatrix}
+					-\lambda & & 0\\
+				  			 & \ddots & \\
+				    & \ddots & -\lambda
+				\end{bmatrix} = 0\nonumber\\
+				&\Rightarrow 1 \pm \lambda = 0 \Rightarrow |\lambda| = 1\nonumber
+			\end{align} 
+			\item Since $Sx = \lambda x$, $S^2x = \lambda_1 \lambda_2 x$ that $\lambda_1, \lambda_2$ is eigenvalues of $S$. 
+			
+				Since $\lambda_k = e^{i(2\pi k / n)} = \cos(2\pi k / n) + i\sin(2\pi k / n)$ and $\cos(2\pi\frac{n + k}{n}) = \cos(2\pi \frac{k}{n})$ and $\sin(2\pi\frac{n + k}{n}) = \sin(2\pi \frac{k}{n})$ when $k < n$.
+			
+			Thus, there are always $n$ unique eigenvalues. For the same reason, $S^4, S^{2^k}$ and $S^n$ all have $n$ unique eigenvalues.
+	\end{enumerate}
+\end{document}

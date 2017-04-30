@@ -1,0 +1,81 @@
+\documentclass[11pt]{article}
+\input{../../packages.tex}
+\usepackage{tikz}
+\pagestyle{fancy}
+\fancyhead[L]{Math 444}
+\fancyhead[C]{HW2}
+\fancyhead[R]{Lanxiao Bai}
+\begin{document}
+	\paragraph{2.1.6}\textbf{Proof:}
+		Suppose there exists a rational $s$ that $s^2 = 6$, then $\exists m, n \in \mathbb{N}$ and $g.c.d.(m, n) = 1$ that $s = m / n$. So $m^2 / n^2 = 6$. 
+		
+			Then $m^2 = 6n^2$, so $m^2$ is divisible by $2$, so $m$ is also even. Let $m = 2k, k \in \mathbb{N}$. Then $4k^2 = 6n^2 \Leftrightarrow 2k^2 = 3n^2$, so $n^2$ is even, as is $n$.
+			
+			This corollary implies that $g.c.d.(m, n) = 2$, which contradicts with the assumption.
+			
+			Thus, there is no rational $s$ that $s^2 = 6$.$\blacksquare$
+	\paragraph{2.1.8}\textbf{Solution:}
+		\subparagraph{(a)}\textbf{Proof:}
+			Since $x, y$ are rational numbers, then $x = m / n, y = p / q, m, n, p, q \in \mathbb{Z}, p$ and $q, m$ and $n$ are relatively prime. 
+			
+			$x + y = (mq + np) / nq$. Since $\mathbb{Z}$ is closed under addition and $p$ and $q$, $m$ and $n$ are relatively prime,  $mq + np$ and $n$, $mq + np$ and $q$ are relatively prime. So $x + y$ is rational.
+			
+			$xy = mp / np$. Since $\mathbb{Z}$ is closed under multiplication and $p$ and $q$, $m$ and $n$ are relatively prime, $mp$ and $nq$ are relatively prime.
+			
+			So $xy$ is rational.$\blacksquare$
+		\subparagraph{(b)}\textbf{Proof:}
+			Suppose $x + y, xy$ is rational, $x + y = m / n, m, n \in \mathbb{Z}, g.c.d(m, n) = 1$, $xy = s / t, s, t \in \mathbb{Z}, g.c.d(s, t) = 1$. Since $x$ is rational, $x = p / q, p, q \in \mathbb{Z}, g.c.d(p, q) = 1$. Then $y = x + y - y = m / n - p / q \in \mathbb{Q}$ or $y = xy / x = s / t / (m / n) = sn / mt \in \mathbb{Q}$, which contradicts with that $y$ is irrational.
+			
+			Thus, $x + y$ and $xy$ are irrational.
+	\paragraph{2.1.12}\textbf{Solution:}
+		Let $a = 2, b = 3$, $c = -2, d = -1$, we have $0 < a < b$ and $c < d < 0$ and $ac = -4 < -3 = bd$.
+			
+			Let $a = 1/2, b = 1$, $c = -1/2, d = -1$, we have $0 < a < b$ and $c < d < 0$ and $bd = -1 < -1/4 = ac$. 
+	\paragraph{2.1.13}\textbf{Solution:}
+		\textbf{Proof:}
+		If $a^2 + b^2 = 0$, since $a^2 \geq 0, b^2 \geq 0$, so if $a \neq 0$ or $b \neq 0$, $a^2 > 0$ or $b^2 > 0$ which means $a^2 + b^2 > 0$.
+		
+		As a result, $a^2 + b^2 = 0 \Rightarrow a = b = 0$.
+		
+		If $a = b = 0$, $a^2 = b^2 = 0$, so $a^2+ b^2 = 0$.
+		
+		Thus, $a^2 + b^2 = 0$ if and only if $a = b = 0$.$\blacksquare$
+	\paragraph{2.2.5}\textbf{Proof:}
+		Since $a < x < b, a < y < b$, we have that $-b < -x < -a, -b < -y < -a$, so $x - y < b - a$ and $y - x < b - a$.
+		
+		As a result, $|x - y| < b - a$.$\blacksquare$
+		
+		Geometrically speaking, this inequality is true since $x, y$ is in the line between $a, b$, so the length $|x - y| < |b - a| = b - a$.
+					
+	\paragraph{2.2.6}\textbf{Solution:}
+		\subparagraph{(a)}
+			\begin{align}
+				& \phantom{\Rightarrow} |4x - 5| \leq 13\nonumber\\
+				& \Rightarrow -13 \leq 4x - 5 \leq 13\nonumber\\
+				& \Rightarrow -8 \leq 4x \leq 18\nonumber\\
+				& \Rightarrow -2 \leq x \leq 9/2\nonumber
+			\end{align}
+		\subparagraph{(b)}
+			\begin{align}
+				& \phantom{\Rightarrow} |x^2 - 1| \leq 3\nonumber\\
+				& \Rightarrow -3 \leq x^2 - 1 \leq 3\nonumber\\
+				& \Rightarrow -2 \leq x^2 \leq 4\nonumber\\
+				& \Rightarrow x \leq 2\nonumber
+			\end{align}
+	\paragraph{2.2.12}\textbf{Solution:}
+		\begin{align}
+			& \phantom{\Rightarrow} 4 < |x + 2| + |x - 1| < 5\nonumber\\
+			& \Rightarrow 4 < |x - (-2)| + |x - 1| < 5\nonumber\\
+			& \Rightarrow 2|x - 1| < 2, x > 1\mathrm{\ or\ } 2|x + 2| > 1, x < -2\nonumber\\
+			& \Rightarrow 3/2 < x < 2\mathrm{\ or\ } -3 < x < -5/2\nonumber
+		\end{align}
+	\paragraph{2.3.6}\textbf{Proof:}
+		Let $m = \sup \{-s : s \in S\}$. Then $\forall n \in \{-s : s \in S\}, n \leq m$, then $-n \geq -m$ for all $n \in \{-s : s \in S\}$. So $-m = -\sup\{-s : s \in S\}$ is a lower bound of $S$.
+		
+		Suppose $-m$ is not the infimum of $S$, then $\exists v$ that $\forall s \in S, v \leq s$ and $v > -m$. Then $-v < m$ and $\forall n \in \{-s : s \in S\}, n \leq -v$, which means $m$ is not the supremum of $\{-s : s \in S\}$ and contradicts with the condition given.
+		
+		Hence, $\inf S = -\sup \{-s : s \in S\}$.$\blacksquare$
+	\paragraph{2.3.7}\textbf{Proof:} Let the upper bound be $m$, then $\forall s \in S$, $s \leq m$. Suppose $m$ is not a supremum, then there exists an $v < m$ that $\forall s \in S$, $s \leq v$. Since $m \in S$, $m \leq v$ and contradicts with the assumption.
+	
+	As a result, this upper bound is the supremum of $S$.$\blacksquare$
+\end{document}

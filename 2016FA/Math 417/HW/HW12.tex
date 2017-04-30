@@ -1,0 +1,65 @@
+\documentclass[11pt]{article}
+\input{../../packages.tex}
+\pagestyle{fancy}
+\fancyhead[L]{Math 417}
+\fancyhead[C]{HW12}
+\fancyhead[R]{Lanxiao Bai(lbai5)}
+\begin{document}
+	\paragraph{6.2.17}
+		\subparagraph{Claim:} Let $I_1, I_2, \cdots, I_n$ and $J_1, J_2, \cdots, J_n$ be $R$'s ideals, then
+		\begin{enumerate}
+			\item For any $i_1, i_2, \cdots, i_m \in [1, n], \bigcap_{k = 1}^m I = I_{i_k}$ is also an ideal.
+			\item $(\mathcal{S}) = \bigcap_{i = 1}^nJ_i$, that $\mathcal{S} \subseteq J_i \subseteq R$.
+		\end{enumerate}
+		\subparagraph{Proof 1:} Let $x, y \in I$, and specifically $\forall k \in [1, m], x, y \in I_{i_k}$. Since $I_i$ is an ideal, we know $x - y \in I_i$, so $x - y \in I$.
+		
+		Let $x \in I$, so $x \in I_{i_1}, I_{i_2}, \cdots, I_{i_m}$, we have that $\forall r \in R$, $rx \in I_{i_1}, I_{i_2}, \cdots, I_{i_m}$ because they are all ideals. As a result, $\forall r \in R, rx \in I$.
+		
+		In conclusion, For any $i_1, i_2, \cdots, i_m \in [1, n], \bigcap_{k = 1}^m I = I_{i_k}$ is also an ideal.$\blacksquare$
+		
+		\subparagraph{Proof 2:} Let $J = \bigcap_{i = 1}^nJ_i$, $\forall s \in (\mathcal{S}), \forall i \in [1, n], s \in J_i$ since $\mathcal{S} \subseteq J_i$, so $s \in J$. As a result, $(\mathcal{S}) \subseteq J$.
+		
+		On the other hand, let $J_m = (\mathcal{S})$, $J = \bigcap_{i = 1}^nJ_i$, so $|J| \leq |J_m|$ and for any $j \in J$, $j \in J_m = (\mathcal{S})$. As a result, $J \subseteq (\mathcal{S})$.
+		
+		In conclusion, $(\mathcal{S}) = \bigcap_{i = 1}^nJ_i$, that $\mathcal{S} \subseteq J_i \subseteq R$.$\blacksquare$
+	\paragraph{6.3.7}
+	\paragraph{(a)}
+		\subparagraph{Claim:} $n\mathbb{Z}$ is maximal ideal in $\mathbb{Z} \Leftrightarrow |n|$ is prime.
+		\subparagraph{Proof:} Suppose $M = n\mathbb{Z}$, then if whenever an ideal $M \subseteq I \subseteq R$ then $I = M = n\mathbb{Z}$ or $I = \mathbb{Z}$. So there are only $2$ ideals contain $M = n\mathbb{Z}$, then there are 2 correspondent ideals of $\mathbb{Z}/n\mathbb{Z}$ which are $\mathbb{Z}/n\mathbb{Z}$ and $\{0\}$ by Fourth Ring Isomorphism Theorem.
+		
+		Since $1$ is in $\mathbb{Z}/n\mathbb{Z}$ and it is commutative, $\mathbb{Z}/n\mathbb{Z}$ a field, so $|n|$ must be prime.
+		
+		Suppose $|n|$ is prime, we known that every non-zero element in $\mathbb{Z}/n\mathbb{Z}$ is invertible, so $\mathbb{Z}/n\mathbb{Z}$ is a field. As a result, $\mathbb{Z}/n\mathbb{Z}$ has only $\mathbb{Z}/n\mathbb{Z}$ and $\{0\}$ as ideals. By Fourth Ring Isomorphic Theorem, correspondently, only $\mathbb{Z}$ and $n\mathbb{Z}$ contain $n\mathbb{Z}$. So $n\mathbb{Z}$ is the maximal ideal.
+		
+		In conclusion, $n\mathbb{Z}$ is maximal ideal in $\mathbb{Z} \Leftrightarrow |n|$ is prime.$\blacksquare$
+		
+		
+	\paragraph{(b)}
+		\subparagraph{Claim:} $(f) = fK[x]$ is a maximal ideal in $K[x] \Leftrightarrow$ $f$ is irreducible.
+		\subparagraph{Proof:} Suppose $M = (f) = fK[x]$ is a maximal ideal in $K[x]$, then if whenever an ideal $M \subseteq I \subseteq R$, then $fK[x] \subseteq I \subseteq K[x]$. Then only $K[x]$ and $fK[x]$ contains ideal $fK[x]$. By The Fourth Isomorphism Theorem, we know that there're only $2$ ideals in $K[x]/fK[x]$ which are $\{0\}$ and $K[x]/fK[x]$. 
+		
+	As a result, $K[x]/fK[x]$ is a field	 so every nonzero element is invertible, so $f$ is irreducible.
+	
+	Suppose $f$ is irreducible, so every nonzero element in $K[x]/fK[x]$ is invertible and is a field as a result, thus $fK[x]$ is a maximal ideal in $K[x]$.$\blacksquare$
+	 
+	\paragraph{(c)}
+		\subparagraph{Claim:} $\mathbb{Z}_n$ is a field if and only if $|n|$ is prime, $K[x]/(f)$ is a field if and only if $f$ is irreducible.
+		\subparagraph{Proof:}
+			Since we know that $n\mathbb{Z}$ is maximal ideal in $\mathbb{Z}$, $(f) = fK[x]$ is a maximal ideal in $K[x] \Leftrightarrow$ $f$ is irreducible and if $M$ is a proper ideal in a commutative ring $R$ with $1$, then $R/M$ is a field if and only if $M$ is maximal.
+			
+			$\mathbb{Z}_n$ is a field if and only if $|n|$ is prime, $K[x]/(f)$ is a field if and only if $f$ is irreducible is proved to be true by the transitivity of equivalence.$\blacksquare$
+	\paragraph{6.3.8}
+		\subparagraph{Claim:} If $J$ is an ideal of the ring $R$, that $J[x]$ is an ideal in $R[x]$ and $R[x]/J[x] \cong (R/J)[x]$.
+		\subparagraph{Proof:} Let $x = \sum_{i = 0}^n a_ix^i , y = \sum_{i = 0}^n b_ix^i, \forall i \in [0, n], a_i, b_i\in J \in J[x]$, $\forall r \in R$, so $rx - y = r\sum_{i = 0}^n a_ix^i - \sum_{i = 0}^n b_ix^i = \sum_{i = 0}^n (ra_i - b_i)x^i$. Since $J$ is an ideal of $R$, $ra_i - b_i \in J$, so $rx - y \in J[x]$. As a result, if $J$ is an ideal of the ring $R$, that $J[x]$ is an ideal in $R[x]$.
+		
+		 Since quotient map defines a partition of $R$, mapping $\varphi: R \rightarrow R/J$ is surjective. As a result, $\varphi': R[x] \rightarrow (R/J)[x]$ is also a surjective map. Let $\varphi'(x) = x + r$, then $\varphi'(x + y) = (x + y + r) = (x + r) + (y + r) = \varphi'(x) + \varphi'(y)$, $\varphi'(xy) = xy + r = (x + r)(y + r) = \varphi'(x)\varphi'(y)$, $\varphi'$ is a surjective homomorphism.
+		 
+		 As a result, by the First Ring Isomorphism Theorem, $R[x]/J[x] \cong (R/J)[x]$.$\blacksquare$
+	\paragraph{6.4.14}
+		\subparagraph{Claim:} Let $J$ be an ideal of ring $R$ that is commutative with identity, $J$ is prime if and only if $R/J$ has no zero divisors.
+		\subparagraph{Proof:} Suppose $J$ is prime. Since $R$ is commutative with identity, $R/J$ is commutative ring with identity. So if $a + J, b + J \in R/J$, and $ab + J = 0$ then for some $a + J = 0$ or $b + J = 0$, which violates our assumption, so  $R/J$ has no zero divisors.
+		
+		Suppose $R/J$ has no zero divisors, then for any $ab \in J = 0$, and $ab + J = (a + J)(b + J) \in J = 0$, then $a + J = 0$ or $b + J = 0$, which means $a \in J$ or $b \in J$.
+		
+		As a result, let $J$ be an ideal of ring $R$ that is commutative with identity, $J$ is prime if and only if $R/J$ has no zero divisors.$\blacksquarew$
+\end{document}

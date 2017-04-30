@@ -1,0 +1,145 @@
+% ---------
+%  Compile with "pdflatex hw0".
+% --------
+%!TEX TS-program = pdflatex
+%!TEX encoding = UTF-8 Unicode
+
+\documentclass[11pt]{article}
+\usepackage{jeffe,handout,graphicx}
+\usepackage[utf8]{inputenc}		% Allow some non-ASCII Unicode in source
+
+%  Redefine suits
+\usepackage{pifont}
+\def\Spade{\text{\ding{171}}}
+\def\Heart{\text{\textcolor{Red}{\ding{170}}}}
+\def\Diamond{\text{\textcolor{Red}{\ding{169}}}}
+\def\Club{\text{\ding{168}}}
+
+\def\Cdot{\mathbin{\text{\normalfont \textbullet}}}
+\def\Sym#1{\textbf{\texttt{\color{BrickRed}#1}}}
+\newcommand{\comp}[1]{#1_{\text{comp}}}
+
+\newtheorem{Lemma}{lemma}
+
+\usepackage{tikz}
+\usetikzlibrary{automata, positioning}
+\usepackage{listings}
+
+% =====================================================
+%   Define common stuff for solution headers
+% =====================================================
+\Class{CS/ECE 374}
+\Semester{Spring 2017}
+\Authors{2}
+\AuthorOne{Lanxiao Bai}{lbai5}
+\AuthorTwo{Renheng Ruan}{rruan2}
+%\Section{}
+
+% =====================================================
+\begin{document}
+
+% ---------------------------------------------------------
+
+
+\HomeworkHeader{2}{1}	% homework number, problem number
+
+\begin{quote}
+\begin{enumerate}
+  \item Prove that the following languages are not regular by providing
+  a fooling set. You need to prove an infinite fooling set and 
+  also prove that it is a valid fooling set.
+  \begin{enumerate}
+  \item $L = \{0^k1^kww \mid 0 \le k \le 3, w \in \{0,1\}^+\}$.
+  \item Recall that a block in a string is a maximal non-empty
+    substring of indentical symbols. Let $L$ be the set of all strings
+    in $\set{\Sym0,\Sym1}^*$ that contain two blocks of \Sym0s of
+    equal length.  For example, $L$ contains the strings
+    \Sym{01101111} and \Sym{01001011100010} but does not contain the
+    strings \Sym{000110011011} and \Sym{00000000111}.
+  \item $L = \{0^{n^3} \mid n \ge 0\}$.
+  \end{enumerate}
+\item Suppose $L$ is not regular. Show that $L \cup L'$ is not regular
+  for any finite language $L'$. Give a simple example to show that $L
+  \cup L'$ is regular when $L'$ is infinite.
+  \end{enumerate}
+\end{quote}
+\hrule
+
+\begin{solution}
+\begin{enumerate}
+	\item 
+		\begin{enumerate}
+			\item
+				Let $x, y$ be arbitrary distinct strings in \Sym0\Sym1\Sym1$^*$, then $x =$ \Sym0\Sym1\Sym1$^i$, $y =$ \Sym0\Sym1\Sym1$^j$, $i \neq j$. Then $x, y$ are distinguishes by suffix \Sym1$^i$ because $xz = $ \Sym0\Sym1\Sym1$^i$\Sym1$^i \in L$ but $yz = $ \Sym0\Sym1\Sym1$^j$\Sym1$^i \notin L$. We conclude that \Sym0\Sym1\Sym1$^*$ is a fooling set for $L$. Since \Sym0\Sym1\Sym1$^*$ is infinite, $L$ is not regular.
+			\item
+				Let $x, y$ be arbitrary distinct strings in \Sym0\Sym0$^*$\Sym1\Sym0, then $x =$ \Sym0\Sym0$^i$\Sym1\Sym0, $y =$ \Sym0\Sym0$^j$\Sym1\Sym0, $i \neq j$. Then $x, y$ are distinguishes by suffix $z = $\Sym0$^i$ because $xz \in L$ and $yz \notin L$. We conclude that \Sym0\Sym0$^*$\Sym1\Sym0 is a fooling set of $L$. Since \Sym0\Sym0$^*$\Sym1\Sym0 is infinite, $L$ is not regular.
+			\item 
+				Let $x, y$ be arbitrary distinct strings in $\{0^{n^3 - n} : n \leq 0\}$, then $x =$ \Sym0$^{i^3 - i}$, $y =$ \Sym0$^{j^3 - j}$, $i \neq j$. Then $x, y$ are distinguishes by suffix 0$^i$ because $xz = $\Sym0$^{i^3} \in L$ and $yz = $0$^{j^3 - j + i} \notin L$. We conclude that $\{0^{n^3 - n} : n \leq 0\}$ is a fooling set for $L$. Since $\{0^{n^3 - n} : n \leq 0\}$ is infinite, $L$ is not regular.
+		\end{enumerate}
+		\item
+		Since $L$ is not regular, there is a infinite fooling set $F$ that for all arbitrary $x, y \in F$ there is a $z$ that make $xz \in L$ and $yz \notin L$. Then for a finite language $L'$, if $L \cup L'$ is regular, for all $y \in F$, $yz \in L'$, which is impossible since $F$ is infinite. 
+		
+		As a result, for all finite language $L'$, $L \cup L'$ cannot be regular.
+		
+		An example of infinite language $L'$ can be constructed as $L' = \{yz : y \in F, z \in \{w : \forall x \in F, xw \in L\}\}$.
+\end{enumerate}
+\end{solution}
+\clearpage
+
+
+% ---------------------------------------------------------
+% Change authors for all future solutions
+\HomeworkHeader{2}{2}
+
+\begin{quote}
+Describe a context free grammar for the following languages.
+Clearly explain how they work and the role of each non-terminal.
+Unclear grammars will receive little to no credit.
+\begin{enumerate}
+\item $\{a^ib^jc^kd^\ell \mid  i,j,k,\ell \ge 0 \mbox{~and~} i+\ell = j+k\}$.
+\item $L = \{0,1\}^* \setminus \{ 0^n1^n \mid n \ge 0\}$. In other words
+the complement of the language $\{ 0^n1^n \mid n \ge 0\}$.
+\end{enumerate}
+\end{quote}
+\hrule
+
+
+\begin{solution}
+	\begin{enumerate}
+		\item The context-free grammar can be designed base on the difference of $i + l$ and $j + k$:
+			\begin{align}
+				&S \rightarrow A | B & \{a^ib^jc^kd^l : i + l \neq j + k\} \nonumber\\
+				&A \rightarrow aA | Ad | aC | Cd | aD | Dd & \{a^ib^jc^kd^l : i + l > j + k\} \nonumber\\
+				&B \rightarrow bB | Bc | bC | Cc & \{a^ib^jc^kd^l : i + l < j + k\} \nonumber\\
+				&C \rightarrow \e | bCc & \{a^ib^jc^kd^l : i + l = j + k\}   \nonumber\\
+				&D \rightarrow \e | aDd | aCd & \{a^ib^jc^kd^l : i + l = j + k\} \nonumber
+			\end{align}
+		\item For $\{0^i1^j: i, j \geq 0\}$, the context-free grammar can be designed base on the difference of $i$ and $j$:
+			\begin{align}
+				&S \rightarrow A | B & \{0^i1^j: i \neq j\} \nonumber\\
+				&A \rightarrow 1A | A1 | 1C | C1 & \{0^i1^j: i < j\}\nonumber\\
+				&B \rightarrow 0B | B0 | 0C | C0 & \{0^i1^j: i > j\}\nonumber\\
+				&C \rightarrow \e | 0C1 | 1C0 & \{0^i1^j: i = j\} \nonumber
+			\end{align}
+	\end{enumerate}
+\end{solution}
+
+\HomeworkHeader{2}{3}
+
+\begin{quote}
+Let $L = \{0^i1^j2^k \mid k = 2(i+j)\}$.
+  \begin{enumerate}
+  \item Prove that $L$ is context free by describing a grammar for $L$.
+  \item Prove that your grammar is correct. You need to prove
+    that if $L \subseteq L(G)$ and $L(G) \subseteq L$ where $G$ is your
+    grammar from the previous part.
+  \end{enumerate}
+\end{quote}
+\hrule
+
+\begin{solution}
+
+	
+\end{solution}
+
+\end{document}

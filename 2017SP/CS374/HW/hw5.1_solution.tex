@@ -1,0 +1,131 @@
+% ---------
+%  Compile with "pdflatex hw0".
+% --------
+%!TEX TS-program = pdflatex
+%!TEX encoding = UTF-8 Unicode
+
+\documentclass[11pt]{article}
+\usepackage{jeffe,handout,graphicx}
+\usepackage[utf8]{inputenc}		% Allow some non-ASCII Unicode in source
+
+%  Redefine suits
+\usepackage{pifont}
+\def\Spade{\text{\ding{171}}}
+\def\Heart{\text{\textcolor{Red}{\ding{170}}}}
+\def\Diamond{\text{\textcolor{Red}{\ding{169}}}}
+\def\Club{\text{\ding{168}}}
+
+\def\Cdot{\mathbin{\text{\normalfont \textbullet}}}
+\def\Sym#1{\textbf{\texttt{\color{BrickRed}#1}}}
+\newcommand{\comp}[1]{#1_{\text{comp}}}
+
+\newtheorem{Lemma}{lemma}
+\newcommand{\IsSinL}{\text{IsStringInL}}
+
+\usepackage{tikz}
+\usetikzlibrary{automata, positioning}
+\usepackage{listings}
+
+% =====================================================
+%   Define common stuff for solution headers
+% =====================================================
+\Class{CS/ECE 374}
+\Semester{Spring 2017}
+\Authors{3}
+\AuthorOne{Lanxiao Bai}{lbai5}
+\AuthorTwo{Renheng Ruan}{rruan2}
+\AuthorThree{Ho Yin Au}{hoyinau2}
+%\Section{}
+
+% =====================================================
+\begin{document}
+
+% ---------------------------------------------------------
+
+
+\HomeworkHeader{5}{1}	% homework number, problem number
+
+\begin{quote}
+	Let $w \in \Sigma^*$ be a string. We say that
+  $u_1,u_2,\ldots,u_h$ where each $u_i \in \Sigma^*$ is a valid split
+  of $w$ iff $w = u_1u_2\ldots u_h$ (the concatenation of
+  $u_1,u_2,\ldots,u_h$). Given a valid split $u_1,u_2,\ldots,u_h$ of
+  $w$ we define its $\ell_3$ measure as $\sum_{i=1}^h |u_i|^3$. 
+
+  Given a language $L \subseteq \Sigma^*$ a string $w \in L^*$ iff
+  there is a valid split $u_1,u_2,\ldots,u_h$ of $w$ such that each
+  $u_i \in L$; we call such a split an $L$-valid split of $w$.  Assume
+  you have access to a subroutine $\IsSinL(x)$ which outputs whether
+  the input string $x$ is in $L$ or not. To evaluate the running time
+  of your solution you can assume that each call to $\IsSinL()$ takes
+  constant time.
+
+  Describe an efficient algorithm that given a string $w$ and access to
+  a language $L$ via $\IsSinL(x)$ outputs an $L$-valid split of $w$ 
+  with minimum $\ell_3$ measure if one exists.
+\end{quote}
+\hrule
+
+\begin{solution}
+	First of all, to reach the possible minimal measure $\ell_3$, we want to know in what occasion it is the least. And here we claim that 
+	
+	\textbf{Lemma 1:} If there's a set of positive integers $A = \{a_n : n \mathbb{N}\}$
+		\[\sum_{i = 1}^n a^3_i \leq (\sum_{i = 1}^n a_i)^3\]
+		for all $n \in \mathbb{N}$.
+		
+	\textbf{Proof:} We can prove this lemma by mathematical induction.
+	
+	Base case, when $n = 1$, 
+		\[\sum_{i = 1}^1 a^3_i = a_1^3 = (\sum_{i = 1}^1 a_i)^3\]
+		
+	Inductive Hypothesis, suppose for all $n \leq k$,
+		\[\sum_{i = 1}^n a^3_i \leq (\sum_{i = 1}^n a_i)^3\]
+		
+	Then when $n = k + 1$, 
+		\begin{align}
+			&\sum_{i = 1}^{k + 1} a^3_i = \sum_{i = 1}^k a_i^3 + a_{k + 1}\nonumber\\
+			&\phantom{\sum_{i = 1}^{k + 1} a^3_i} = \sum_{i = 1}^k a_i^3 + \sum_{i = 1}^1 a_{k + 1}\nonumber\\
+			&\phantom{\sum_{i = 1}^{k + 1} a^3_i} \leq \sum_{i = 1}^k a_i^3 + \sum_{i = 1}^1 a_{k + 1}^3\nonumber\\
+			&\phantom{\sum_{i = 1}^{k + 1} a^3_i} \leq (\sum_{i = 1}^{k} a_i)^3 + (\sum_{i = 1}^1 a_{k + 1})^3\nonumber\\
+			&\phantom{\sum_{i = 1}^{k + 1} a^3_i} < (\sum_{i = 1}^{k} a_i + a_{k + 1})^3 = (\sum_{i = 1}^{k + 1} a_i)^3\nonumber
+		\end{align}
+	
+	Hence, we conclude that \[\sum_{i = 1}^n a^3_i \leq (\sum_{i = 1}^n a_i)^3\]
+		for all $n \in \mathbb{N}$.
+		
+	Then, this lemma means that to reach the minimum $\ell_3$ measure, we want to have each segment of string is the shortest valid string.
+	
+	As a result, we can recursively split string into two valid segments in $L$ until they cannot be split any more, of there are more than $1$ way of splitting the string, $\ell_3$ need to be compared to determine the optimum solution.
+	
+	Hence, we define the recurrence function that returns the split of string with minimum $\ell_3$:
+	\[\textsc{MinimumL3Split}(\textit{i, j}) = 
+	\begin{cases}
+		 \textsc{null} & \text{if $j > n$}\\
+		 w[i\, ..\, j] + \textsc{MinimumL3Split}(\textit{j+1, j+1}) & \text{if $j \leq n$ and $\IsSinL(w[i\, ..\, j])$}\\
+		 \textsc{MinimumL3Split}(\textit{$i, j + 1$}) & \text{if $j \leq n$ and not $\IsSinL(w[i\, ..\, j])$}
+	\end{cases}	\]
+	
+	So with the function, we need to compute $\textsc{MinimumL3}(1, 1)$ if $|w| = n$.
+	
+	We can memoize all function values in a three-dimensional array $\textsc{MinimumL3}[1\, ..\,n][1\,..\,n]$. Then we see that each entry $\textsc{MinimumL3}[i, j]$ depends on its up $\textsc{MinimumL3}[i, j + 1]$ and the entry on the diagonal of its row. Thus, we can fill the array from left to right, top to bottom. The recurrence gives us the following pseudocode:
+	
+		\begin{center}
+			\begin{algorithm}
+				\textul{$\textsc{Split}(w[1\,..\,n]):$}\+
+				\\	\textsc{MinimumL3}[n,n] = \textsc{Null}
+				\\	for $i \gets n$ to $1$\+
+				\\		for $j \gets n$ to $i$\+
+				\\			if \IsSinL(\textit{w}[$i,j$])\+
+				\\				 \textsc{MinimumL3Split}[$i,j$] $\gets$ w[i\, ..\, j] + \textsc{MinimumL3Split}(\textit{$j+1, j+1$})\-
+				\\			else\+
+				\\				\textsc{MinimumL3Split}[$i,j$] $\gets$ \textsc{MinimumL3Split}(\textit{$i, j + 1$})\-\-\-
+				\\ return \textsc{MinimumL3Split}[$1,1$]
+			\end{algorithm}
+		\end{center}
+	
+	So, obvious the overall runtime of this algorithm is $O(n^2)$.
+	
+\end{solution}
+\clearpage
+
+\end{document}

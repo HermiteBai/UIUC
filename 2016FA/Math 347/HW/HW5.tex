@@ -1,0 +1,30 @@
+\documentclass[11pt]{article}
+\input{../../packages}
+\pagestyle{fancy}
+\fancyhead[L]{Math 347}
+\fancyhead[C]{HW5}
+\fancyhead[R]{Lanxiao Bai(lbai5)}
+\begin{document}
+	\paragraph{4.22}\textbf{Proof:}
+		Since $f(x) = \frac{2x - 1}{2x(1 - x)} = \frac{1}{1 - x} - \frac{1}{2x(1-x)}$.
+		Take $a \neq b \in (0, 1)$, then $2a - 1 \neq 2b - 1$, $2a(1 - a) \neq 2b(1 - b)$ so that $f(a) \neq f(b)$. As a result, $f$ is injective.
+		
+		Let $y = f(x) = \frac{2x - 1}{2x(1 - x)}$, $2xy(1 - x) = 2x - 1 \Leftrightarrow 2xy - 2x^2y = 2x -1 \Leftrightarrow (2y)x^2 + (2 - 2y) - 1 = 0$. Then we have $x = \sqrt{1 - \frac{1}{2y}}, 0 < x < 1$. So $f$ is surjective.
+		
+		So we can conclude that $f$ is bijective.$\blacksquare$  
+	\paragraph{4.31}\textbf{Proof:} Since $f$ is a bijection that is increasing, the if $a, b \in A$ and $a > b$, we have $f(a) > f(b)$. Suppose $f^{-1}$ is not increasing on $B$, then there's at least one pair of $x, y \in B$ such that $f^{-1}(x) \leq f^{-1}(y) \Rightarrow f(f^{-1}(x)) \leq f(f^{-1}(y))$ since $f$ is increasing on $A$. Because $f^(f^{-1}(x)) = x$, we have $x \leq y$ which is contradict with the assumption. 
+	
+	Thus, we can conclude that $f^{-1}$ is increasing on $B$.$\blacksquare$
+	\paragraph{4.35}\textbf{Proof:}
+		\subparagraph{(a)}
+			No, suppose $f(x) = x^2, g(x) = \sqrt{x}$, $f(g(y)) = y$ but $f(x)$ is not even surjective.
+		\subparagraph{(b)}
+			No, suppose $f(x) = x^2, g(x) = \sqrt{x}$, we have $g(f(x)): {x | x \geq 0} \rightarrow {y | y \geq 0}$ and $f(g(x)): \mathbb{R} \rightarrow {x | x \geq 0}$. Then if $y < 0$, $g(f(x))$ is not defined.
+	\paragraph{4.37}\textbf{Proof:}
+		Let $y = f(f(x))$ denote the map $f \circ f$. Since $f \circ f$ is injective, take $a \neq b \in A$, $f(f(a)) \neq f(f(b))$. Take $B' \subseteq B$ to make $f': A \rightarrow B'$ bijective, we can have a inverse function $f^{-1}$ that $f^{-1}(f(f(a))) = f(a)$, thus $f^{-1}(f(f(a))) \neq f^{-1}(f(f(b))) \Rightarrow f(a) \neq f(b)$.
+		
+		So we can conclude that if $f \circ f$ is injective, $f$ is also injective.$\blacksquare$
+	\paragraph{4.43}\textbf{Proof:} Suppose $A$ is an finite set, since $B \subset A$, then $B$ must be a finite set as well and $|B| < |A|$ We know that if $A, B$ are finite sets and bijection $f : A \rightarrow B$ was established, $|A| = |B|$ which is conflict to the inequity above.
+	
+	Thus, $A$ must be infinite set.$\blacksquare$
+\end{document}

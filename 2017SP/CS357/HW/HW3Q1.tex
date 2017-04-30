@@ -1,0 +1,18 @@
+\documentclass[11pt]{article}
+\input{../../packages.tex}
+\pagestyle{fancy}
+\fancyhead[L]{CS357}
+\fancyhead[C]{HW3Q1}
+\fancyhead[R]{Lanxiao Bai}
+\begin{document}
+	\begin{enumerate}
+		\item Since we know that $X$ is a random variable under uniform distribution on $[0, 1]$, we can get the probability distribution of $Y = f(X)$.
+		\[F_Y(y) = P\{Y \leq y\} = P\{f(X) \leq y\} = P\{X \leq f^{-1}(y)\} = F_X(f^{-1}(y))\]
+		
+		As a result,
+		\[q(x) = F'_X(f^{-1}(x)) = (f^{-1}(x))' =\frac{df^{-1}(x)}{dx}\]
+		
+		\item Since $f(x) = \sqrt{x}$, then by the formula we gave above, 
+			\[q(x) = \frac{df^{-1}(x)}{dx} = \frac{dx^2}{dx} = 2x\]
+	\end{enumerate}
+\end{document}

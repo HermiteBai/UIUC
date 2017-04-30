@@ -1,0 +1,355 @@
+% ---------
+%  Compile with "pdflatex hw0".
+% --------
+%!TEX TS-program = pdflatex
+%!TEX encoding = UTF-8 Unicode
+
+\documentclass[11pt]{article}
+\usepackage{jeffe,handout,graphicx}
+\usepackage[utf8]{inputenc}	% Allow some non-ASCII Unicode in source
+\usepackage{fourier-orns}
+
+\usepackage{enumerate}
+\usepackage{stmaryrd}
+
+\def\Cdot{\mathbin{\text{\normalfont \textbullet}}}
+\def\Sym#1{\textbf{\texttt{\color{BrickRed}#1}}}
+
+
+% =========================================================
+\begin{document}
+
+\thispagestyle{empty}
+
+\begin{center}
+\Large\textbf{CS/ECE 374 \,\decosix\,  Spring 2017}%
+\\
+\LARGE\textbf{\decothreeleft~ Homework 0 ~\decothreeright}%
+\\[0.5ex]
+\large Due Wednesday, January 24, 2017 at 10am
+\end{center}
+
+\bigskip
+\hrule
+\bigskip
+\begin{itemize}
+
+\item
+\textbf{Each student must submit individual solutions for this homework.}   For all future homeworks, groups of up to three students can submit joint solutions.
+
+\item \textbf{Submit your solutions electronically on the course
+    Gradescope site as PDF files.}  Submit a separate PDF file for
+  each numbered problem.  If you plan to typeset your solutions,
+  please use the \LaTeX\ solution template on the course web site.  If
+  you must submit scanned handwritten solutions, please use a black
+  pen on blank white paper and a high-quality scanner app (or an
+  actual scanner, not just a phone camera).
+
+\item You are \EMPH{not} required to sign up on Gradescope (or Piazza)
+  with your real name and your illinois.edu email address; you may use
+  any email address and alias of your choice.  However, to give you
+  credit for the homework, we need to know who Gradescope thinks you
+  are.  \textbf{Please fill out the web form linked from the course
+    web page.}
+
+\end{itemize}
+
+\bigskip
+\hrule
+\bigskip
+
+\begin{center}
+\Large \textbf{\color{Red}\lefthand~
+	Some important course policies
+	~\righthand}\\
+\end{center}
+
+\begin{itemize}
+\item \textbf{You may use any source at your disposal}—paper,
+  electronic, or human—but you \EMPH{must} cite \EMPH{every} source
+  that you use, and you \EMPH{must} write everything yourself in your
+  own words.  See the academic integrity policies on the course web
+  site for more details.
+
+\item Unlike some previous semesters we will \textbf{not} have the ``I
+  Don't Know (IDK)'' policy this semester for home works or exams. 
+
+\item
+\textbf{Avoid the Three Deadly Sins!}  Any homework or exam solution that breaks any of the following rules will be given an \textcolor{Red}{\EMPH{automatic zero}}, unless the solution is otherwise perfect.  Yes, we really mean it.  We’re not trying to be scary or petty (Honest!), but we do want to break a few common bad habits that seriously impede mastery of the course material.
+\begin{itemize}\itemsep0pt
+\item Always give complete solutions, not just examples.
+\item Always declare all your variables, in English.  In particular, always describe the specific problem your algorithm is supposed to solve.
+\item Never use weak induction.
+\end{itemize}
+
+\end{itemize}
+\bigskip
+\hrule
+
+\begin{center}
+\large \textbf{See the course web site for more information.}\\[1ex]\normalsize
+If you have any questions about these policies,\\
+please don’t hesitate to ask in class, in office hours, or on Piazza.
+\end{center}
+
+\hrule
+\vfil
+\vfil
+\vfil
+%----------------------------------------------------------------------
+\headers{CS/ECE 374}{Homework 0 (due January 24)}{Spring 2017}
+\begin{enumerate}
+\parindent 1.5em \itemsep 4ex plus 0.5fil
+
+
+%----------------------------------------------------------------------
+\item Let $G=(V,E)$ be an undirected graph. Unless we say otherwise, a
+  graph has no loops or parallel edges.
+
+  \begin{itemize}
+  \item Prove that if $|V| \ge 2$ there are two distinct nodes $u$ and
+    $v$ such that degree of $u$ is equal to degree of $v$.  Recall
+    that the degree of a node $x$ is the number of edges incident to
+    $x$.
+  \item Prove that if $G$ has at least one edge then there is a path
+    between two distinct nodes $u$ and $v$ such that degree of $u$ is
+    equal to degree of $v$.
+  \end{itemize}
+  
+  
+
+%----------------------------------------------------------------------
+\item The \EMPH{plus one}, $w^+$, of a string $w \in
+  \set{\Sym0,\Sym1, \Sym2}^*$ is obtained from $w$ by 
+  replacing each symbol $a$ in $w$ by the symbol corresponding
+  $a+1 \mod 3$. for example,
+  $\Sym{0102101}^+ = \Sym{1210212}$.  The plus one
+  function is formally defined as follows:
+\[
+	w^+ := \begin{cases}
+		\e & \text{if $w=\e$}\\
+		\Sym1\cdot x^+ & \text{if $w = \Sym0 x$}\\
+		\Sym2\cdot x^+ & \text{if $w = \Sym1 x$} \\
+		\Sym0\cdot x^+ & \text{if $w = \Sym2 x$}
+	\end{cases}
+\]
+
+\begin{enumerate}
+\item
+{\bf Not to submit:} Prove by induction that $\abs{w} = \abs{w^+}$ for every string $w$.
+\item
+Prove by induction that $(x\Cdot y)^+ = x^+ \Cdot y^+$ for all strings 
+$x, y \in  \set{\Sym0,\Sym1, \Sym2}^*$.
+\end{enumerate}
+Your proofs must be formal and self-contained, and they must invoke the \emph{formal} definitions of length $\abs{w}$, concatenation $x\Cdot y$, and 
+plus one $w^+$.  Do not appeal to intuition!
+
+%----------------------------------------------------------------------
+\newcommand{\bu}{\bf u}
+\newcommand{\bv}{\bf v}
+\item Let $\bu,\bv \in \R^2$ be two fixed vectors in the real plane.
+Recursively define a set $L_n \subseteq \R^2$
+as follows.
+\begin{itemize}
+\item $L_0 = \{\bu,\bv,{\bf 0}\}$. (${\bf 0}$ denotes the zero vector 
+$(0,0)$ in $\R^2$.)
+\item For integer $n > 0$, $L_n = \{ {\bf x}- {\bf y} \mid {\bf x}, {\bf y}
+  \in L_{n-1} \}$.
+\end{itemize}
+Let $L = \bigcup_{n=0}^\infty L_n$. Also, let $D = \{ a{\bf u}+b{\bf
+  v} \mid a,b \in \Z \}$ be the set of vectors obtained as integer
+linear combinations of ${\bf u}$ and ${\bf v}$.
+\begin{enumerate}
+\item Prove that $D \subseteq L$, by giving, for each $a,b\in\Z$,
+an explicit value of $n$ such that $a{\bf u}+b{\bf v}\in L_n$. 
+(You don't need to
+minimize the value of $n$; but you must argue why $a{\bf u}+b{\bf v} \in L_n$ for your
+choice of $n$.)
+\item Use mathematical induction to prove that for all integers $n\ge 0$,
+$L_n \subseteq D$, and hence $L \subseteq D$.
+\end{enumerate}
+
+
+
+\end{enumerate}
+
+
+\newpage
+
+\begin{boxquote}{0.95}
+Each homework assignment will include at least one solved problem, similar to the problems assigned in that homework, together with the grading rubric we would apply \emph{if} this problem appeared on a homework or exam.  These model solutions illustrate our recommendations for structure, presentation, and level of detail in your homework solutions.  Of course, the actual \emph{content} of your solutions won’t match the model solutions, because your problems are different!
+\end{boxquote}
+
+\subsection*{Solved Problems}
+\begin{enumerate}
+\item[4.]
+Recall that the \EMPH{reversal $w^R$} of a string $w$ is defined recursively as follows:
+\[	
+	w^R := \begin{cases}
+		\e & \text{if $w=\e$} \\[0.5ex]
+		x^R \Cdot a & \text{if $w=a\cdot x$}
+	\end{cases}
+\]
+A \EMPH{palindrome} is any string that is equal to its reversal, like \Sym{AMANAPLANACANALPANAMA}, \hbox{\Sym{RACECAR}}, \Sym{POOP}, \Sym{I}, and the empty string.
+\begin{enumerate}
+\item
+Give a recursive definition of a palindrome over the alphabet $\Sigma$.
+
+\item
+Prove $w = w^R$ for every palindrome $w$ (according to your recursive definition).  
+
+\item
+Prove that every string $w$ such that $w = w^R$ is a palindrome (according to your recursive definition).
+
+\end{enumerate}
+In parts (b) and (c), you may assume without proof that $(x\cdot y)^R = y^R\Cdot x^R$ and $(x^R)^R = x$ for all strings $x$ and~$y$.
+
+
+
+\begin{solution}~
+\begin{enumerate}
+\item
+A string $w\in\Sigma^*$ is a palindrome if and only if either
+\begin{itemize}
+\item $w = \e$, or
+\item $w = a$ for some symbol $a\in\Sigma$, or
+\item $w = axa$ for some symbol $a\in\Sigma$ and some \emph{palindrome} $x\in\Sigma^*$.
+\end{itemize}
+
+\begin{rubric}
+2 points = \textonehalf\ for each base case + 1 for the recursive case.  No credit for the rest of the problem unless this is correct.
+\end{rubric}
+
+
+\medskip
+\item
+Let $w$ be an arbitrary palindrome.
+
+Assume that $x = x^R$ for every palindrome $x$ such that $\abs{x}<\abs{w}$.
+
+There are three cases to consider (mirroring the three cases in the definition):
+\begin{itemize}
+\item
+If $w = \e$, then $w^R = \e$ by definition, so $w = w^R$.
+
+\item
+If $w = a$ for some symbol $a\in\Sigma$, then $w^R = a$ by definition, so $w = w^R$.
+
+\item
+Suppose $w = axa$ for some symbol $a\in\Sigma$ and some palindrome $x\in P$.  Then 
+\begin{align*}
+	w^R
+	&=	(a \cdot x \Cdot a)^R		\\
+	&=	(x\Cdot a)^R \Cdot a		& \text{by definition of reversal} \\
+	&=	a^R \Cdot x^R \Cdot a		& \text{You said we could assume this.}\\
+	&=	a \Cdot x^R \Cdot a			& \text{by definition of reversal} \\
+	&=	a \Cdot x \Cdot a			& \text{by the inductive hypothesis} \\
+	&=	w							& \text{by assumption}
+\end{align*}
+\end{itemize}
+In all three cases, we conclude that $w = w^R$.
+
+\begin{rubric}
+4 points: standard induction rubric (scaled)
+\end{rubric}
+
+\medskip
+\item
+Let $w$ be an arbitrary string such that $w = w^R$.
+
+Assume that every string $x$ such that $\abs{x} < \abs{w}$ and $x = x^R$ is a palindrome.
+
+There are three cases to consider (mirroring the definition of “palindrome”):
+\begin{itemize}
+\item 
+If $w = \e$, then $w$ is a palindrome by definition.
+\item 
+If $w = a$ for some symbol $a\in\Sigma$, then $w$ is a palindrome by definition.
+\item
+Otherwise, we have $w = ax$ for some symbol $a$ and some \emph{non-empty} string $x$.
+  
+The definition of reversal implies that $w^R = (ax)^R = x^R a$.
+
+Because $x$ is non-empty, its reversal $x^R$ is also non-empty.
+
+Thus, $x^R = by$ for some symbol $b$ and some string~$y$.
+
+It follows that $w^R = bya$, and therefore $w = (w^R)^R = (bya)^R = a y^R b$.
+
+
+\medskip
+\emph{[At this point, we need to prove that $a=b$ and that $y$ is a palindrome.]}
+\medskip
+
+Our assumption that $w = w^R$ implies that $bya = a y^R b$.
+
+The recursive definition of string equality immediately implies $a=b$.
+
+\medskip
+Because $a=b$, we have $w = ay^Ra$ and $w^R = a y a$.
+
+The recursive definition of string equality implies $y^Ra = ya$.
+
+It immediately follows that $(y^R a)^R = (ya)^R$.
+
+Known properties of reversal imply $(y^R a)^R = a (y^R)^R = ay$ and $(ya)^R = a y^R$.
+
+It follows that $ay^R = ay$, and therefore $y = y^R$.
+
+The inductive hypothesis now implies that $y$ is a palindrome.
+
+\medskip
+We conclude that $w$ is a palindrome by definition.
+\end{itemize}
+In all three cases, we conclude that $w$ is a palindrome.
+\end{enumerate}
+
+\begin{rubric}
+4 points: standard induction rubric (scaled).
+\begin{itemize}
+\item No penalty for jumping from $aya = ay^Ra$ directly to $y = y^R$.
+\end{itemize}
+\end{rubric}
+
+\end{solution}
+
+
+
+\begin{rubric}[induction]
+For problems worth 10 points:
+\begin{itemize}\itemsep0pt
+\item[+] 1 for explicitly considering an \emph{arbitrary} object
+
+\item[+] 2 for a valid \textbf{strong} induction hypothesis
+\begin{itemize}\itemsep0pt
+\item \textbf{\color{Red}Deadly Sin!} Automatic zero for stating a weak induction hypothesis, unless the rest of the proof is \emph{perfect}.
+\end{itemize}
+
+\item[+] 2 for explicit exhaustive case analysis
+\begin{itemize}\itemsep0pt
+\item No credit here if the case analysis omits an infinite number of objects.  (For example: all odd-length palindromes.)
+\item $-1$ if the case analysis omits an finite number of objects.  (For example: the empty string.)
+\item $-1$ for making the reader infer the case conditions.  Spell them out!
+\item No penalty if cases overlap (for example:
+\end{itemize}
+
+\item[+] 1 for cases that do not invoke the inductive hypothesis (“base cases”)
+\begin{itemize}\itemsep0pt
+\item No credit here if one or more “base cases” are missing.
+\end{itemize}
+
+\item[+] 2 for correctly applying the \emph{stated} inductive hypothesis
+\begin{itemize}\itemsep0pt
+\item No credit here for applying a \emph{different} inductive hypothesis, even if that different inductive hypothesis would be valid.
+\end{itemize}
+
+\item[+] 2 for other details in cases that invoke the inductive hypothesis (“inductive cases”)
+\begin{itemize}\itemsep0pt
+\item No credit here if one or more “inductive cases” are missing.
+\end{itemize}
+\end{itemize}
+\end{rubric}
+
+\end{enumerate}
+
+\end{document}

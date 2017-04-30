@@ -1,0 +1,82 @@
+% ---------
+%  Compile with "pdflatex hw0".
+% --------
+%!TEX TS-program = pdflatex
+%!TEX encoding = UTF-8 Unicode
+
+\documentclass[11pt]{article}
+\usepackage{jeffe,handout,graphicx}
+\usepackage[utf8]{inputenc}		% Allow some non-ASCII Unicode in source
+
+%  Redefine suits
+\usepackage{pifont}
+\def\Spade{\text{\ding{171}}}
+\def\Heart{\text{\textcolor{Red}{\ding{170}}}}
+\def\Diamond{\text{\textcolor{Red}{\ding{169}}}}
+\def\Club{\text{\ding{168}}}
+
+\def\Cdot{\mathbin{\text{\normalfont \textbullet}}}
+\def\Sym#1{\textbf{\texttt{\color{BrickRed}#1}}}
+
+\newcommand{\comp}[1]{#1_{\text{comp}}}
+\newtheorem{claim}{Claim}
+\def\To{\leadsto}
+\def\Tostar{\mathrel{\To\!\!\!^*}}
+
+
+
+% =====================================================
+%   Define common stuff for solution headers
+% =====================================================
+\Class{CS/ECE 374}
+\Semester{Spring 2017}
+\Authors{2}
+\AuthorOne{Renheng Ruan}{rruan2}
+\AuthorTwo{Lanxiao Bai}{lbai5}
+
+
+%\Section{}
+
+% =====================================================
+\begin{document}
+
+% ---------------------------------------------------------
+
+
+\HomeworkHeader{4}{3}	% homework number, problem number
+
+\begin{quote}
+
+\begin{enumerate}[(a)]
+	\item Describe an algorithm to determine in $O(n)$ time whether an
+	arbitrary array $A[1..n]$ contains more than $n/4$ copies of any value.
+	\item Describe and analyze an algorithm to determine, given an arbitrary
+	array $A[1..n]$ and an integer $k$, whether $A$
+	contains more than $k$ copies of any value. Express the running time
+	of your algorithm as a function of both $n$ and $k$.
+\end{enumerate}
+{\bf Do not use hashing, or radix sort, or any other method that depends
+	on the precise input values.} 
+
+\end{quote}
+\hrule
+
+\begin{solution}
+	\mbox{}
+\begin{enumerate}[(a)]
+\item
+The first thing in our algorithm is want to create a temporary array of size 3 to store elements and the counts. This step takes $O(4)$ time.\\
+We treat each number as a piece in Tetris (a tile-matching puzzle video game). Each number in the original array will falls down in the temporary array. The same number will be stacked on the same column. And the times the number appears is counted. If the temporary array is full and there is a new element needed to be added. Then we remove the bottom row from stacks of elements (decrease count of every element by 1 in the temporary array at same time) and ignore this element. This step takes $O(4n)$ time.\\ 
+At last, we go through the every element stored in temporary array to check if it actually has count more than $n/4$. This step takes $O(4n)$ time.\\
+So the overall running time is $O(n) + O(4n) + O(4n) = O(9n)$ which is also O(n). 
+\item
+At this part, we want determine the array A contains more than k copies of any value or not. Using the same algorithm in part $(a)$, we calculated it $n/4$ as $k$ which $n/k = 4$, and $4$ is the coefficient of the running time in part $(a)$.\\
+So in this case, the running time is $O(n/k) + O(n^2/k) + O(n/k)$ which is $O(n^2/k)$.
+
+\end{enumerate}
+CITE\footnote{Idea comes from http://www.geeksforgeeks.org/given-an-array-of-of-size-n-finds-all-the-elements-that-appear-more-than-nk-times/}
+
+
+\end{solution}
+
+\end{document}

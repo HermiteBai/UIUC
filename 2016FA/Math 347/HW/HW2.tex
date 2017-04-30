@@ -1,0 +1,56 @@
+\documentclass[11pt]{article}
+\input{../../packages}
+
+\pagestyle{fancy}
+\fancyhead[L]{Math 347}
+\fancyhead[C]{HW2}
+\fancyhead[R]{Lanxiao Bai(lbai5)}
+\begin{document}
+\paragraph{1.21}\textbf{Solution: }$ax^2 + bx + c = 0, ay^2 + by + c = 0 \Rightarrow a(x^2 - y^2) + b(x - y) = 0$, but $a(x^2 - y^2) + b(x - y) = 0 \nRightarrow ax^2 + bx + c = 0, ay^2 + by + c = 0$. So $x$ that makes $a(x^2 - y^2) + b(x - y) = 0$ holds does not necessarily make $ax^2 + bx + c = 0$ hold.
+\paragraph{2.4}\textbf{Solution:}
+    \subparagraph{(a)} There exists at least one $x \in A$, for all $b \in B$, that $b \leq x$.
+    \subparagraph{(b)}For all $x \in A$, there is at least one $b \in B$, $b \leq x$.
+    \subparagraph{(c)}There is at least one pair of $x, y \in \mathbb{R}$, $(f(x) \neq f(y) \vee x = y$.
+    \subparagraph{(d)} There's at least one $b \in \mathbb{R}$, for all $x \in \mathbb{R}$ such that $f(x) \neq b$.
+    \subparagraph{(e)} There's at least one group of $x, y \in \mathbb{R}, \epsilon \in P$, for all $\delta \in P$ such that $|x - y| \geq \delta$ or $|f(x) - f(y)| < \epsilon$.
+    \subparagraph{(f)} There's at least one $\epsilon \in P$, for all $\delta \in P$ such that there's at least one pair of $x, y \in \mathbb{R}$, $|x - y| \geq \delta$ implies $|f(x) - f(y)| < \epsilon$.
+\paragraph{2.21}\textbf{Solution:} Negation: There exists at least one $n \in \mathbb{Z}, n > 0$, that for all $x \in \mathbb{R}, x > 0)$ that $x \geq 1/n$. And the original statement is true.
+\paragraph{2.28}\textbf{Solution:}
+    \subparagraph{(a)} $x^4y + ay + x = 0 \Leftrightarrow y(x^4 + a) = -x$, that is saying, if we wang to show the equation does not hold for every $a$ and $x$, we can just construct a pair of $(x, a)$ that $x^4 + a = 0$ and $x \neq 0$. And it can be verified that $x = 1, a = -1$ satisfy this requirement. As a result, the statement is proved to be false.
+    \subparagraph{(b)} Since $y(x^4 + a) = -x$, if $x^4 + a = 0$, then the equation holds only when $x = 0$. So it can't be $0$. If not, $y = -x/(x^4 + a) \in \mathbb{R}$ is guaranteed by the closure of real number. Since $x^4 \geq 0$, just $a > 0$ can make sure that $x^4 + a > 0$.
+    
+    Thus, the set is $\{a \in \mathbb{R}| a > 0\}$.
+\paragraph{2.31}\textbf{Solution:}
+    \subparagraph{(a)}Believable
+    \subparagraph{(b)}Believable
+    \subparagraph{(c)}Not believable
+    \subparagraph{(d)}Not believable
+
+\paragraph{2.34}\textbf{Solution:}
+    \subparagraph{(a)}\textbf{Claim:} It is true that if $n \in \mathbb{N}$ and $n^2 + (n+1)^2 = (n+2)^2$, then $n = 3$.\\
+    
+\textbf{Proof:} $n^2 + (n+1)^2 = (n+2)^2 \Leftrightarrow 2n^2 + 2n + 1 = n^2 + 4n + 4 \Leftrightarrow n^2 - 2n - 3 = 0$, thus $(n-3)(n+1) = 0$, since $n \in \mathbb{N}$, $n \neq -1$. As a result, $n = 3$.
+    \subparagraph{(b)}\textbf{Claim:} It is true that $\forall n \in \mathbb{N}$, it is false that $(n-1)^3 + n^3 = (n+1)^3$.\\
+    
+    \textbf{Proof:}$(n-1)^3 + n^3 = (n+1)^3 \Leftrightarrow n^2(n-6) = 2$. Since we can only factorize $2 = 2 \times 1$. It is only possible that $n^2 = 2 \wedge n-6 = 1$ or $n^2 = 2 \wedge n-6 = 1$ to make this equation holds. However, neither group of equations has solution. 
+    
+    Thus it is true that $\forall n \in \mathbb{N}$, it is false that $(n-1)^3 + n^3 = (n+1)^3$.
+\paragraph{2.35}\textbf{Proof:} 
+
+Prove sufficiency first:
+
+If $x, y \in \mathbb{R}, x \neq y$ and $(x+1)^2 = (y+1)^2$, then $x^2 + 2x + 1 = y^2 + 2y + 1 \Leftrightarrow x^2 + 2x - y^2 - 2y = 0$. Thus $(x+y+2)(x-y)=0$. Since $x \neq y$, $x+y+2 = 0$, and $x + y = -2$
+
+Then we can prove necessity:
+
+If $x + y = -2 \wedge x \neq y$, $x + y + 2 = 0$ and $x - y \neq 0$, thus $(x+y+2)(x-y)=0 \Leftrightarrow x^2+2x = y^2 + 2y \Leftrightarrow x^2 + 2x + 1 = y^2 + 2y + 1 \Leftrightarrow (x + 1)^2 = (y + 1)^2$.
+
+Thus, $x, y \in \mathbb{R}, x \neq y$, $(x+1)^2 = (y+1)^2 \Leftrightarrow x + y = -2$.
+
+If $x = y$ is possible, although $x + y = -2 \Rightarrow (x+1)^2 = (y+1)^2$, but $(x+1)^2 = (y+1)^2$ may not imply $x + y = -2$. 
+
+\paragraph{2.41}\textbf{Solution: }Since a k-cycle permutation can guarantee that k people get wrong hats and the minimum number of people required to form a cycle is $2$, thus the interval is $2 \leq k \leq n$. Also when $k = 0$, no one have wrong hat is obviously true.
+
+Thus $k = 0$ or $2 \leq k \leq n$ if and only if $k$ people get wrong hat.
+
+\end{document}

@@ -1,0 +1,70 @@
+\documentclass[11pt]{report}
+\title{HW1}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{tocloft}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage[bookmarks=true]{hyperref}
+\usepackage{fancyhdr}
+
+\newtheorem{definition}{Definition}[subsection]
+\newtheorem{theorem}{Theorem}[subsection]
+\newtheorem{proposition}{Proposition}[subsection]
+\newtheorem{lemma}{Lemma}[subsection]
+\newtheorem{corollary}{Corollary}[subsection]
+
+\pagestyle{fancy}
+\fancyhead[L]{Math 461}
+\fancyhead[C]{HW1}
+\fancyhead[R]{Lanxiao Bai(lbai5)}
+
+\begin{document}
+\paragraph{0.1} \textbf{Solution:} If all of them can play all 4 kinds of instruments, then the number of possible outcomes \[n_1 = P(4) = 4! = 24\]
+
+If Jay and John can only play piano and drums, then there's \[n_2 = 2 \times 2 = 4\] possible outcomes.
+
+\paragraph{0.2} \textbf{Solution:} There are \[n = 8 \times 2 \times 10 = 160\] possible outcomes. And there're \[n_{Start\ with\ 4} = 1 \times 2 \times 10 = 20\] possible outcomes if the codes start with $4$.
+
+\paragraph{0.3}\textbf{Solution:}
+    \subparagraph{(a)} \[n = \binom{6}{3} \times 3! \times 3! = 6! = 720\]
+    \subparagraph{(b)} We can seperate the 6 seats into 3 pair of seats for each pair of boy and girl, so the only problem left is just how they match with each other. Then there are \[n = 3! \times 3! \times 2^3 = 288\] possible outcomes.
+    \subparagraph{(c)} If the boys take consecutive 3 seats, it can be regarded as 1 seat choose from 4 seat, then \[n = \binom{4}{1} \times 3! = 24\]
+    \subparagraph{(d)} Under presented rule, only two possible permutation is allowed - MFMFMF or FMFMFM, so \[n = 2 \times 3! \times 3! = 72\]
+\paragraph{0.4}\textbf{Solution:}
+    \subparagraph{(a)} \[n = 5! = 120\]
+    \subparagraph{(b)} \[n = \frac{7!}{2!2!} = 1260\]
+    \subparagraph{(c)} \[n = \frac{11!}{4!4!2!} = 34650\]
+    \subparagraph{(d)} \[n = \frac{7!}{2!2!} = 1260\]
+\paragraph{0.5}\textbf{Solution:}
+    \subparagraph{(a)} \[n = \binom{30}{1}^5 = 24300000\]
+    \subparagraph{(b)} \[n = 30 \times \cdots \times 26 = 17100720\]
+\paragraph{0.6}\textbf{Solution:} \[n = \binom{5}{2} \binom{6}{2} \binom{4}{3} = 600\]
+\paragraph{0.7}\textbf{Solution:}
+    \subparagraph{(a)}\[n = \binom{8}{3}(\binom{6}{3} - \binom{6 - 2}{1}) = 896\]
+    \subparagraph{(b)}\[n = (\binom{8}{3} - \binom{8-2}{1})\binom{6}{3} = 1000\]
+    \subparagraph{(c)}\[n = \binom{8}{3} \binom{6}{3} - \binom{8 + 6 - 2}{6 - 2} = 625\]
+\paragraph{0.8}\textbf{Solution:} 
+    \subparagraph{(a)} \[n = \binom{8}{5} - \binom{8 - 2}{5 - 2} = 36\]
+    \subparagraph{(b)} \[n = \binom{6}{5} + \binom{2}{2} \binom{6}{3} = 26\]
+\paragraph{0.9}\textbf{Solution:} You have to take 4 steps right and 3 steps up to reach B from A, no matter which way, so the possible path is to choose 3 up from all seven, thus \[n = \binom{7}{3} = 35\]
+\paragraph{0.10}\textbf{Solution:} According to Binomial Theorem, \[(x + y)^n = \sum^n_{k = 0}\binom{n}{k}x^ky^{n-k}\]
+Thus, \[(3x^2+y)^5 = \sum^5_{k=0}\binom{5}{k}(3x)^ky^{5-k} = 243 x^5+405 x^4 y+270 x^3 y^2+90 x^2 y^3+15 x y^4+y^5
+ \]
+\paragraph{0.11}\textbf{Solution:} \[n = \binom{12}{3} \binom{12 - 3}{4} \binom{12 - 3 - 4}{5} = 27720\]
+\paragraph{0.12}\textbf{Proof:} $\binom{n+m}{r}$ means choosing $r$ from $n + m$, which means you can choose $k$ from $n$ and choose $r - k$ from $m$. Suppose $k = 0$, the number of outcomes is $\binom{n}{0}\binom{m}{r}$, if $k = 1$, $\binom{n}{1}\binom{m}{r-1}$... ect.
+
+  Thus, 
+  \begin{equation}
+  \binom{n+m}{r} = \sum_{k = 0}^r \binom{n}{k}\binom{m}{r - k}
+  \end{equation}
+  is proved to be true.
+\paragraph{0.13}\textbf{Proof:} According to equation (1), let $m = n, r = n$, then \[\binom{n + n}{r} = \binom{2n}{r} = \sum_{k=0}^n \binom{n}{k} \binom{n}{n-k} = \sum_{k=0}^n \binom{n}{k} \binom{n}{k} = \sum_{k=0}^n \binom{n}{k}^2\]
+\paragraph{0.14}\textbf{Solution:} Choosing $r$ from $n$, is like pick the rest $n - r$ out of $n$.
+\paragraph{0.15}\textbf{Solution:} To choose $k$ objects form a set, we need at least $k$ elements in it. Suppose it has the size of $n = k$, then the possible outcomes in this subset is $\binom{n - 1}{k - 1}$. Thus from $k$ to $n$, we can seperately have the possible outcomes under which circumstances. Thus, to get the total number of possible outcomes, we sum them together into 
+    \[\binom{n}{k} = \sum_{i=k}^n \binom{i-1}{k-1}\]
+
+
+\end{document}

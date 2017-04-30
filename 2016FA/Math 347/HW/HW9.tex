@@ -1,0 +1,54 @@
+\documentclass[11pt]{article}
+\input{../../packages.tex}
+\pagestyle{fancy}
+\fancyhead[L]{Math 347}
+\fancyhead[C]{HW9}
+\fancyhead[R]{Lanxiao Bai(lbai5)}
+\begin{document}
+	\paragraph{1}
+		\subparagraph{(a)}\textbf{Solution:} Since $1001 \equiv 2 \mod 9, 1001^6 \equiv 1 \mod 9$, $1001^{1001} \equiv 1001^{6\cdot 166 + 5} \equiv 1001^{5} \equiv 5 \mod 9$
+		\subparagraph{(b)}
+			\textbf{Solution:}
+			Since $n^3 + 5n = n^3 - n + 6n = n(n - 1)(n + 1) + 6n$, $n^3 + 5n \equiv n(n - 1)(n + 1) + 6n \equiv n(n - 1)(n + 1) \mod 6$, and without losing generality we can assume $n$ is even so $n \equiv 0 \mod 2$ and $n + 1 \equiv 0 \mod 3$, so $n(n + 1) \equiv 0 \mod 6$.
+			
+			As a result, $n^3 + 5n \equiv n(n - 1)(n + 1) + 6n \equiv n(n - 1)(n + 1) \equiv 0\mod 6$.$\blacksquare$
+		\subparagraph{(c)}
+			\textbf{Solution:}
+			$4^{3n + 1} + 2^{3n + 1} + 1 \equiv 4^{3n} \cdot 4 + 2^{3n} \cdot 2 + 1 \equiv (4^{3})^n \cdot 4 + (2^{3})^n \cdot 2 + 1 \equiv (2^3) \equiv 4 + 2 + 1 \equiv 7 \equiv 0 \mod 7$.
+		\subparagraph{(d)}
+			\textbf{Solution:}
+			$13^{21} + 14^{14} = (13^3)^7 + (14^2)^7$, then $13^{21} + 14^{14} \equiv (13^3)^7 + (14^2)^7 \equiv 13^3 + 14^2 \equiv 2393 \mod 7$ by Fermat's Little Theorem.
+			
+			So it is a composite and $2393 | (13^{21} + 14^{14})$.
+	\paragraph{2}\textbf{Solution:}
+		\subparagraph{Claim:}$n \equiv t(n) \mod 11$.
+		\subparagraph{Proof:} Let $n = \sum_{i = 0}^m a_i 10^i$, then $t(n) = \sum_{i = 0}^m (-1)^{i}a_i$ and $n - t(n) = \sum_{i = 0}^m a_i (10^i - (-1)^{i})$ and since for each odd $i, 10^i - (-1)^{i} \equiv 10 - 10 \equiv 0 \mod 11$ and for each even $i, 10^i - (-1)^{i} \equiv 1 - 1 \mod 11$.
+		
+		So $\forall i \in [0, m], 11 | 10^i - (-1)^{i}$, so $n \equiv t(n) \mod 11$.$\blacksquare$
+	\paragraph{3}
+		\subparagraph{(a)}
+			\textbf{Solution:}
+		\subparagraph{Claim:}Infinitely many bases b for which $347 | (347)_b$.
+		\subparagraph{Proof:}Since $(347)_b = 3b^2 + 4b + 7 \equiv 0 \mod 347$ when $b = 10$. Since we know that $3\cdot 10^2 \equiv 3 \cdot 10^2 + 347k \mod 347, 3\cdot 10 \equiv 3\cdot 10 + 347k \mod 347, 7 \equiv 7 + 347k \mod 347, k \in \mathbb{Z}$. As a result, we can always find one more $k \in \mathbb{Z}$ that $10^2 + 347k = n^2, 10 + 347k = n$ that $n \in \mathbb{N}$. As a result, infinitely many bases b for which $347 | (347)_b$.$\blacksquare$
+		\subparagraph{(b)}
+			\textbf{Solution:}
+		\subparagraph{Claim:}Infinitely many bases b for which $7 | (347)_b$.
+		\subparagraph{Proof:} Basically let $n = 7k, k \in \mathbb{Z}$, that $(347)_n = 3\cdot (7k)^2 + 4\cdot 7k + 7$ must be divisible by $7$. So we have a bijection between $\mathbb{Z}$ and all $n$. As a result, infinitely many bases b for which $7 | (347)_b$.$\blacksquare$
+	\paragraph{4}
+		\subparagraph{(a)}\textbf{Solution:}
+			\subparagraph{Claim:} Reflexive, not symmetric transitive, not equivalent.
+			\subparagraph{Proof:}Let $x \sim x,$ then $\exists k \in \mathbb{Z}$ that $x = kx$, so $x \sim x$ must be true, which proved the reflexivity. Let $s \sim t, t \sim r,$ so $\exists k_1, k_2 \in \mathbb{Z}$ that $sk_1 = t, tk_2 = r$, then $sk_1k_2 = r \Rightarrow s \sim r$, which proved the transitivity. And we know that even though $2 | 4$, $4$ does not divide $2$, so the relation is not symmetric. As a result, the relation is not equivalent.$\blacksquare$
+		\subparagraph{(b)}
+			\textbf{Solution:}
+			\subparagraph{Claim:} Reflexive, symmetric not transitive, not equivalent.
+			\subparagraph{Proof:} Take $x \in \mathbb{R}, |x - x| = 0 \leq 1 \Rightarrow x \sim x \Rightarrow$ reflexive. Take $x, y \in \mathbb{R}, |x - y| = |y - x| \leq 1 \Rightarrow x \sim y \rightarrow y \sim x \Rightarrow$ symmetric. Since while $|3 - 2| \leq 1$ and $|4 - 3| \leq 1, |4 - 2| = 2 > 1$, so this relation is not transitive. As a result, it is not an equivalent relation.$\blacksquare$
+		\subparagraph{(c)}
+			\textbf{Solution:}
+			\subparagraph{Claim:} Reflexive, symmetric transitive, equivalent.
+			\subparagraph{Proof:}
+			Take $x \in \mathbb{R}$, $x - x = 0 \in \mathbb{Z} \Rightarrow$ reflexive. Take $x, y \in \mathbb{R}$, let $x \sim y, x - y \in \mathbb{Z}, y - x = -(x - y) \in \mathbb{Z} \Rightarrow$ symmetric. Take $x, y, z \in \mathbb{R}, x \sim y, y \sim z$, so $x - z = (x - y) + (y - z) \in \mathbb{Z}$ by closure $\Rightarrow$ transitive. As a result, this is an equivalent relation.$\blacksquare$
+		\subparagraph{(d)}
+			\textbf{Solution:}
+			\subparagraph{Claim:} Reflexive, symmetric transitive, equivalent.
+			\subparagraph{Proof:} Take $x \in \mathbb{R}$, $x = 2^0x \Rightarrow$ reflexive. Take $x, y \in \mathbb{R}$, let $x \sim y, \exists n \in \mathbb{Z}, x = 2^ny \Rightarrow y = 2^{-n}x \Rightarrow y \sim x \Rightarrow$ symmetric. Take $x, y, z \in \mathbb{R}, x \sim y, y \sim z$, so $\exists k_1, k_2 \in \mathbb{Z}, x = 2^{k_1}y, y = 2^{k_2}z \Rightarrow x = 2^{k_1 + k_2}z \Rightarrow x \sim z \Rightarrow$ transitive. As a result, this is an equivalent relation.$\blacksquare$
+\end{document}

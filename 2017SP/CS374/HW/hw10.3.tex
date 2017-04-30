@@ -1,0 +1,82 @@
+% ---------
+%  Compile with "pdflatex hw0".
+% --------
+%!TEX TS-program = pdflatex
+%!TEX encoding = UTF-8 Unicode
+
+\documentclass[11pt]{article}
+\usepackage{jeffe,handout,graphicx}
+\usepackage[utf8]{inputenc}		% Allow some non-ASCII Unicode in source
+
+%  Redefine suits
+\usepackage{pifont}
+\def\Spade{\text{\ding{171}}}
+\def\Heart{\text{\textcolor{Red}{\ding{170}}}}
+\def\Diamond{\text{\textcolor{Red}{\ding{169}}}}
+\def\Club{\text{\ding{168}}}
+
+\def\Cdot{\mathbin{\text{\normalfont \textbullet}}}
+\def\Sym#1{\textbf{\texttt{\color{BrickRed}#1}}}
+
+\newcommand{\comp}[1]{#1_{\text{comp}}}
+\newtheorem{claim}{Claim}
+\def\To{\leadsto}
+\def\Tostar{\mathrel{\To\!\!\!^*}}
+
+
+
+% =====================================================
+%   Define common stuff for solution headers
+% =====================================================
+\Class{CS/ECE 374}
+\Semester{Spring 2017}
+\Authors{3}
+\AuthorOne{Renheng Ruan}{rruan2}
+\AuthorTwo{Lanxiao Bai}{lbai5}
+\AuthorThree{Ho Yin Au}{hoyinau2}
+
+%\Section{}
+
+% =====================================================
+\begin{document}
+
+% ---------------------------------------------------------
+
+
+\HomeworkHeader{10}{3}	% homework number, problem number
+
+\begin{quote}
+
+\begin{enumerate}
+Consider the following problem. You are managing a communication
+network, modeled by a directed graph $G=(V,E)$. There are $c$ {\em
+	users} who are interested in making use of this network. User $i$
+(for each $i=1,2,\dots ,c$) issues a {\em request} to reserve a
+specific path $P_i$ in $G$ on which to transmit data.
+
+You are interested in accepting as many of these path requests as
+possible, subject to the following restriction: if you accept both
+$P_i$ and $P_j$, then $P_i$ and $P_j$ can not share any modes.
+
+Thus the {\em Path Selection Problem} asks: Given a directed graph
+$G=(V,E)$, a set of requests $P_1,\dots,P_c$-each of which must be a
+path in $G$- and a number $k$, is it possible to select at least $k$
+of the paths so that no two of the selected paths share any nodes?
+
+Prove that the Path Selection is NP-Complete.
+
+\end{enumerate}
+
+\end{quote}
+\hrule
+
+\begin{solution}
+
+Reduce Independent Set to Path Selection as follows.\\
+Let $(G,k)$ be an instance of the Independent Set problem. Let $G = (V, E)$ with $|V| = n$ and $|E| = m$. The reduction creates a new directed graph $G = (V, E)$ and $n$ paths $P_1$, $P_2$,..., $P_n$ such that $G$ has an independent set of size $k$ if and only if there are $k$ paths in $P_1$, $P_2$,..., $P_n$ that are node-disjoint in $G$. The graph $G$ has $m$ vertices, one corresponding to each edge of $G$.\\
+We let $a_e$ denote a vertex in $G$ where $e$ is an edge in $E$. We make $G$ a complete directed graph which means that there is a directed edge between every pair of vertices $(a_e, a_e)$. It remains to define the paths. The paths correspond to vertices in $G$. For each vertex $i \in V$ (of $G$), there is a path $P_i$. Let $e_{j_1}$, $e_{j_2}$,..., $e_{j_n}$ be the edges incident to $i$ in $G$ (in some arbitrary order). Then the path $P_i$ is $a_{e_{j_1}} \to a_{e_{j_2}} \to ... \to a_{e_{j_n}}$; note that this is a valid path since $G$ is a complete directed graph. It can be seen that $G$ and the paths $P_1,..., P_n$ can be constructed in polynomial time from $G$. One can show that $S = {i_1, i_2,..., i_i}$ is an independent set in $G$ if and only if the path $P_1,..., P_i$ are node-disjoint. The reason is that if $(i,j)$ is an edge in $E$ then $P_i$ and $P_j$ both contain the vertex $a_e$ in $G$ where $e = (i, j)$. And conversely if $P_i$ and $P_j$ contain a node $a_e$ in $G$ then $e = (i, j)$ in $G$.\\
+\\
+The solution is taken from CS 473 HOMEWORK 10 solutions in Spring 2013.
+\end{solution}
+
+\end{document}

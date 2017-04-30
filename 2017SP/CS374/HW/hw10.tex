@@ -1,0 +1,222 @@
+%!TEX TS-program = pdflatex
+%!TEX encoding = UTF-8 Unicode
+
+\documentclass[11pt]{article}
+\usepackage{jeffe,handout,graphicx,mathtools}
+\usepackage[utf8x]{inputenc}			% allow Unicode in .tex file
+\usepackage{enumerate}
+\usepackage{fourier-orns}
+
+\def\Sym#1{\texttt{\upshape\textcolor{BrickRed}{#1}}}
+\def\SymBlue#1{\texttt{\upshape\textcolor{RoyalBlue}{#1}}}
+\def\SymGreen#1{\texttt{\upshape\textcolor{PineGreen}{#1}}}
+\def\_#1{\SymBlue{\underline{\smash{\textbf{#1}}}}}
+\def\X#1{\SymGreen{$\overline{\textbf{#1}}$}}
+\def\u#1{\raise0.5ex\hbox{\textcolor{RoyalBlue}{#1}}}
+
+\def\Cdot{\mathbin{\text{\normalfont \textbullet}}}
+
+\newcommand{\IsSinL}{\text{IsStringInL}}
+
+% =========================================================
+\begin{document}
+
+\headers{CS/ECE 374}{Homework 10 (due April 28)}{Spring 2017}
+
+\thispagestyle{empty}
+
+\begin{center}
+\Large\textbf{CS/ECE 374 \,\decosix\,  Spring 2017}%
+\\
+\LARGE\textbf{\decothreeleft~ Homework 10 ~\decothreeright}%
+\\[0.5ex]
+\large Due Friday, April 28, 2017 at 10am
+\end{center}
+
+\bigskip
+\hrule
+\bigskip
+
+\noindent
+\textbf{Groups of up to three people can submit joint solutions.}  Each problem should be submitted by exactly one person, and the beginning of the homework should clearly state the Gradescope names and email addresses of each group member.  In addition, whoever submits the homework must tell Gradescope who their other group members are.
+\bigskip
+\hrule
+\bigskip
+
+
+\noindent
+The following unnumbered problems are not for submission or grading. 
+No solutions for them will be provided but you can discuss them on Piazza.
+\begin{itemize}
+\item Consider an instance of the Satisfiability Problem, specified by clauses $C_1,\dots,C_k$ over a set of Boolean variables $x_1,\dots,x_n$. We say that the instance is {\em monotone} if each term in each clause consists of a nonnegated variable; that is each term is equal to $x_i$, for some $i$, rather than $\bar{x_i}$. Monotone instance of Satisfiability are very easy to solve: They are always satisfiable, by setting each variable equal to $1$.
+
+For example, suppose we have the three clauses
+$$(x_1\vee x_2),(x_1\vee x_3),(x_2\vee x_3)$$
+
+This is monotone, and indeed the assignment that sets all three variables to $1$ satisfies all the clauses. But we can observe that this is not the only satisfying assignment; we could also have set $x_1$ and $x_2$ to $1$ and $x_3$ to $0$. Indeed, for any monotone instance, it is natural to ask how few variables we need to set to $1$ in order to satisfy it.
+
+Given a monotone instance of Satisfiability, together with a number $k$, the problem of {\em Monotone Satisfiability with Few True Variables} asks: Is there a satisfying assignment for the instance in which at most $k$ variables are set to $1$? Prove that this problem is NP-Complete. {\em Hint:} Reduce from 
+Vertex Cover.
+
+\item Given an undirected graph $G=(V,E)$, a partition of $V$
+  into $V_1,V_2,\ldots,V_k$ is said to be a clique cover of size $k$
+  if each $V_i$ is a clique in $G$. Prove that the problem
+  of deciding whether $G$ has a clique cover of size at most $k$ is
+  NP-Complete. {\em Hint:} Consider the complement of $G$.
+\end{itemize}
+
+\vspace{1cm}
+
+\begin{enumerate}
+%\parindent 1.5em \itemsep 3ex plus 0.5fil
+
+%----------------------------------------------------------------------
+%\def\arraystretch{1.2}
+
+%----------------------------------------------------------------------
+\item Given an undirected graph $G=(V,E)$ a {\em matching} in $G$ is
+  a set of edges $M \subseteq E$ such that no two edges in $M$ share
+  a node. A matching $M$ is {\em perfect} if $2|M| = |V|$, in other words
+  if every node is incident to some edge of $M$. PerfectMatching is
+  the following decision problem: does a given graph $G$ have a perfect
+  matching? Describe a polynomial-time reduction from PerfectMatching to
+  SAT. Does this problem that PerfectMatching is a difficult problem?
+
+%----------------------------------------------------------------------
+
+\item A balloon is a directed graph on an even number of nodes, say
+  $2n$, in which $n$ of the nodes form a directed cycle and the
+  remaining $n$ vertices are connected in a ``tail'' that consists of
+  a directed path joined to one of the nodes in the cycle. See figure
+  below for a balloon with $8$ nodes.
+  %\begin{center}
+  %  \includegraphics[height=3cm]{Fig/dir-balloon.pdf}  
+  %\end{center}
+  
+  Given a directed graph $G$ and an integer $k$, the BALLOON
+  problem asks whether or not there exists a subgraph which is a baloon
+  that contains $2k$ nodes. Prove that BALLOON is NP-Complete. 
+  
+%----------------------------------------------------------------------
+\item Consider the following problem. You are managing a communication
+  network, modeled by a directed graph $G=(V,E)$. There are $c$ {\em
+    users} who are interested in making use of this network. User $i$
+  (for each $i=1,2,\dots ,c$) issues a {\em request} to reserve a
+  specific path $P_i$ in $G$ on which to transmit data.
+
+  You are interested in accepting as many of these path requests as
+  possible, subject to the following restriction: if you accept both
+  $P_i$ and $P_j$, then $P_i$ and $P_j$ can not share any modes.
+
+  Thus the {\em Path Selection Problem} asks: Given a directed graph
+  $G=(V,E)$, a set of requests $P_1,\dots,P_c$-each of which must be a
+  path in $G$- and a number $k$, is it possible to select at least $k$
+  of the paths so that no two of the selected paths share any nodes?
+
+  Prove that the Path Selection is NP-Complete.
+
+\end{enumerate}
+
+
+% ----------------------------------------------------------------------
+
+%
+%  Nonsolution environment.
+%
+\def\EONSmark{\decosix\global\needqedfalse}
+\def\EONS{\ifneedqed\markatright{\EONSmark}\else\null\fi}
+\newproof{nonsolution}{\color{OliveGreen}\global\needqedtrue\normalsize\rmfamily\bfseries Common incorrect solution}(\color{OliveGreen}\normalsize\rmfamily\parindent1.5em)[\EONS]
+
+\vspace{1in}
+\subsection*{Solved Problem}
+
+\begin{enumerate}\parindent1.5em
+\item[4.]
+A \emph{double-Hamiltonian tour} in an undirected graph $G$ is a closed walk that visits every vertex in $G$ exactly twice.  Prove that it is NP-hard to decide whether a given graph $G$ has a double-Hamiltonian tour.
+
+\begin{inline}
+\includegraphics[scale=0.5]{Fig/doubleham-example}\\
+This graph contains the double-Hamiltonian tour $a\arcto b\arcto d\arcto g\arcto e\arcto b\arcto d\arcto c\arcto f\arcto a\arcto c\arcto f\arcto g\arcto e\arcto a$.
+\end{inline}
+
+
+\begin{solution}
+We prove the problem is {NP}-hard with a reduction from the standard Hamiltonian cycle problem.  Let $G$ be an arbitrary undirected graph.  We construct a new graph $H$ by attaching a small gadget to every vertex of $G$.  Specifically, for each vertex $v$, we add two vertices $v^\sharp$ and~$v^\flat$, along with three edges $vv^\flat$, $vv^\sharp$, and $v^\flat v^\sharp$.
+
+\begin{inline}
+\includegraphics[scale=0.5]{Fig/double-Ham-reduction}\\
+A vertex in $G$, and the corresponding vertex gadget in $H$.
+\end{inline}
+
+I claim that $G$ has a Hamiltonian cycle if and only if $H$ has a double-Hamiltonian tour.
+
+\begin{itemize}
+\item[$\Longrightarrow$]
+Suppose $G$ has a Hamiltonian cycle $\arc{\arc{\arc{v_1}{v_2}}{\cdots}}{\arc{v_n}{v_1}}$.  We can construct a double-Hamiltonian tour of $H$ by replacing each vertex $v_i$ with the following walk:
+\[
+	\arc{\arc{\arc{\cdots}{v_i}}
+			{\arc{v_i^\flat}{v_i^\sharp}}}
+		{\arc{\arc{v_i^\flat}{v_i^\sharp}}
+			{\arc{v_i}{\cdots}}}
+\]
+
+\item[$\Longleftarrow$]
+Conversely, suppose $H$ has a double-Hamiltonian tour $D$.  Consider any vertex $v$ in the original graph $G$; the tour $D$ must visit $v$ exactly twice.  Those two visits split $D$ into two closed walks, each of which visits $v$ exactly once.  Any walk from $v^\flat$ or $v^\sharp$ to any other vertex in $H$ must pass through $v$.  Thus, one of the two closed walks visits only the vertices~$v$,~$v^\flat$, and $v^\sharp$.  Thus, if we simply remove the vertices in $H\setminus G$ from~$D$, we obtain a closed walk in~$G$ that visits every vertex in $G$ once.
+\end{itemize}
+
+\noindent
+Given any graph $G$, we can clearly construct the corresponding graph $H$ in polynomial time.
+
+\bigskip
+With more effort, we can construct a graph $H$ that contains a double-Hamiltonian tour \EMPH{that traverses each edge of $H$ at most once} if and only if $G$ contains a Hamiltonian cycle.  For each vertex $v$ in $G$ we attach a more complex gadget containing five vertices and eleven edges, as shown on the next page.
+\end{solution}
+
+\begin{inline}
+\includegraphics[scale=0.5]{Fig/double-Ham-reduction2}\\
+A vertex in $G$, and the corresponding modified vertex gadget in $H$.
+\end{inline}
+
+
+\bigskip
+\begin{nonsolution}[self-loops]
+We attempt to prove the problem is {NP}-hard with a reduction from the Hamiltonian cycle problem.  Let $G$ be an arbitrary undirected graph.  We construct a new graph $H$ by attaching a self-loop every vertex of $G$.  Given any graph $G$, we can clearly construct the corresponding graph $H$ in polynomial time.
+
+\begin{inline}
+\includegraphics[scale=0.5]{Fig/double-Ham-reduction0}\\
+An incorrect vertex gadget.
+\end{inline}
+
+Suppose $G$ has a Hamiltonian cycle $\arc{\arc{\arc{v_1}{v_2}}{\cdots}}{\arc{v_n}{v_1}}$.  We can construct a double-Hamiltonian tour of $H$ by alternating between edges of the Hamiltonian cycle and self-loops:
+\[
+	v_1 \arcto v_1 \arcto v_2 \arcto v_2 \arcto v_3 \arcto \cdots \arcto v_n \arcto v_n \arcto v_1.
+\]
+
+On the other hand, if $H$ has a double-Hamiltonian tour, we \emph{cannot} conclude that~$G$ has a Hamiltonian cycle, because we cannot guarantee that a double-Hamiltonian tour in $H$ uses \emph{any} self-loops.  The graph $G$ shown below is a counterexample; it has a double-Hamiltonian tour (even before adding self-loops) but no Hamiltonian cycle. 
+
+\begin{inline}
+\includegraphics[scale=0.5]{Fig/doubleham}\\
+This graph has a double-Hamiltonian tour.
+\end{inline}
+
+\end{nonsolution}
+
+\begin{rubric}[for all polynomial-time reductions]
+10 points = 
+\begin{itemize}\cramped
+\item[+] 3 points for the reduction itself
+\begin{itemize}\cramped
+	\item For an {NP}-hardness proof, the reduction must be from a known {NP}-hard problem.  You can use any of the NP-hard problems listed in the lecture notes (except the one you are trying to prove NP-hard, of course).
+\end{itemize}
+\item[+] 3 points for the “if” proof of correctness
+\item[+] 3 points for the “only if” proof of correctness
+\item[+] 1 point for writing “polynomial time”
+\medskip
+\item An incorrect polynomial-time reduction that still satisfies half of the correctness proof is worth at most 4/10.
+\item A reduction in the wrong direction is worth 0/10.
+\end{itemize}
+\end{rubric}
+
+\end{enumerate}
+
+
+\end{document}

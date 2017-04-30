@@ -1,0 +1,74 @@
+\documentclass[11pt]{article}
+\input{../../packages.tex}
+\usepackage{enumerate}
+\pagestyle{fancy}
+\fancyhead[L]{CS357}
+\fancyhead[C]{HW8Q1}
+\fancyhead[R]{Lanxiao Bai}
+\begin{document}
+	\begin{enumerate}
+		\item For eigenvalues of $A^TA$, $\lambda_1 \geq \lambda_2 \geq \cdots \lambda_n$, there is $\lambda_i = \sigma_i^2$, in which $\sigma_i$ is the singular value of $A$.
+		\item Let 
+			\[A = \mathbf{a} = \begin{bmatrix}
+				a_1\\
+				a_2\\
+				\vdots\\
+				a_n
+			\end{bmatrix} \]
+			
+			then
+			
+			\[A^T = \begin{bmatrix}
+				a_1 & a_2 & \cdots & a_n
+			\end{bmatrix} \]
+			
+			and \[A^TA = \sum_{i = 1}^n a^2_i = \lambda\]
+			
+			So \[\sigma = \sqrt{\lambda} = \sqrt{\sum_{i = 1}^n a^2_i}\]
+			
+			and 
+			\[\Sigma = \begin{bmatrix}
+				\sigma \\
+					0  \\
+					\vdots\\
+					0
+			\end{bmatrix}	\]
+			
+			and 
+				\[V = 1\]
+				
+			Hence,
+			
+			\[U = \begin{bmatrix}
+				\frac{a_1}{\sigma_1} & \frac{a_2}{\sigma_2} & \cdots & \frac{a_n}{\sigma_n}
+			\end{bmatrix}\]
+			
+			And $A = U\Sigma V^T$.
+		\item Since $B = \mathbf{b} = [b_1, b_2, \cdots, b_n]$, we have 
+		\[B^TB = \begin{bmatrix}
+			b_1^2 & b_1b_2 & \cdots & b_1b_n\\
+			b_2b_1 & b_2^2 & \cdots & b_2b_n\\
+			\vdots & \vdots & \ddots & \vdots\\
+			b_nb_1 & b_nb_2 & \cdots & b_n^2
+		\end{bmatrix} \]
+		
+		So $\sigma = \sqrt{\lambda} = \sqrt{\sum_{i = 1}^n a^2_i}$, and
+		\[\Sigma = \begin{bmatrix}
+				\sigma &
+					0  &
+					\cdots&
+					0
+			\end{bmatrix}	\]
+			
+			\[U = 1\]
+		
+		and 
+		\[V = B^{-1}\sigma\]
+		
+		And $B = U\Sigma V^T$
+		\item
+			Since $A^+ = V\Sigma^+U^T$, $x = A^+ b = V\Sigma^+U^Tb$, then $(Ax - b)\cdot a_i = (AV\Sigma^+U^Tb - b)\cdot a_i = (AV\Sigma^+U^T - I)b\cdot a_i = (U\Sigma V^TV\Sigma^+ U^T - I)b\cdot a_i = (U\Sigma \Sigma^+ U^T - I)b\cdot a_i = 0$
+			
+			This means that $a_i$ and $Ax - b$ is always orthogonal.
+	\end{enumerate}
+\end{document}

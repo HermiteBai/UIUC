@@ -1,0 +1,85 @@
+% ---------
+%  Compile with "pdflatex hw0".
+% --------
+%!TEX TS-program = pdflatex
+%!TEX encoding = UTF-8 Unicode
+
+\documentclass[11pt]{article}
+\usepackage{jeffe,handout,graphicx}
+\usepackage[utf8]{inputenc}		% Allow some non-ASCII Unicode in source
+
+%  Redefine suits
+\usepackage{pifont}
+\def\Spade{\text{\ding{171}}}
+\def\Heart{\text{\textcolor{Red}{\ding{170}}}}
+\def\Diamond{\text{\textcolor{Red}{\ding{169}}}}
+\def\Club{\text{\ding{168}}}
+
+\def\Cdot{\mathbin{\text{\normalfont \textbullet}}}
+\def\Sym#1{\textbf{\texttt{\color{BrickRed}#1}}}
+\newcommand{\comp}[1]{#1_{\text{comp}}}
+
+\newtheorem{Lemma}{lemma}
+\newcommand{\IsSinL}{\text{IsStringInL}}
+
+\usepackage{tikz}
+\usetikzlibrary{automata, positioning}
+\usepackage{listings}
+
+% =====================================================
+%   Define common stuff for solution headers
+% =====================================================
+\Class{CS/ECE 374}
+\Semester{Spring 2017}
+\Authors{3}
+\AuthorOne{Lanxiao Bai}{lbai5}
+\AuthorTwo{Renheng Ruan}{rruan2}
+\AuthorThree{Ho Yin Au}{hoyinau2}
+%\Section{}
+
+% =====================================================
+\begin{document}
+
+% ---------------------------------------------------------
+
+
+\HomeworkHeader{9}{1}	% homework number, problem number
+
+\begin{quote}
+	Red street in the city Shampoo-Banana can be modeled as a
+  straight line starting at $0$.  The street has $n$ houses at
+  locations $x_1,x_2,\ldots,x_n$ on the line. The local cable company
+  wants to install some new fiber optic equipment at several locations
+  such that every house is within distance $r$ from one of the
+  equipment locations. The city has granted permits to install the
+  equipment, but only at some $m$ locations on the street given y
+  locations $y_1,y_2, \ldots,y_m$. For simplicity assume that all the
+  $x$ and $y$ values are distinct. You can also assume that
+  $x_1 < x_2 < \ldots < x_n$ and that $y_1 < y_2 < \ldots < y_m$.
+  \begin{itemize}
+  \item Describe a greedy algorithm that finds the minimum number of
+    equipment locations that the cable company can build to satisfy
+    the desired constraint that every house is within distance $r$
+    from one of them.  Your algorithm has to detect if a feasible
+    solution does not exist. Prove the correctness of the
+    algorithm. One way to do this by arguing that there is an optimum
+    solution that agrees with the first choice of your greedy
+    algorithm.
+    \end{itemize}
+\end{quote}
+\hrule
+
+\begin{solution}
+	Greedy strategy: Take the largest $i$ that location $y[i]$ that $|y[i] - x[1]| < r$, discard all $x[j] \in [y[i] - r, y[i] + r]$, discard $y[i]$ for all $i \leq y$ and recurse.
+	
+	\textbf{Proof:}
+		Suppose we take $y[j]$ that $j < i$ and $|y[j] - x[1]| < r$, then if there is some $x \in [y[j] + r, y[i] + r]$ other than $x[1]$, there needs at least one more $y$ to cover these $x$. 
+		
+		Since $i$ is the largest $i$ that location $y[i]$ that $|y[i] - x[1]| < r$, it is impossible to take $y[j]$ that $j > i$ while still cover $x[1]$.
+		
+		Hence, we conclude that take $y[i]$ has the optimum substructure, and by induction the greedy strategy is correct.
+		
+\end{solution}
+\clearpage
+
+\end{document}

@@ -1,0 +1,106 @@
+\documentclass[11pt]{article}
+\input{../../packages.tex}
+\usepackage{enumerate}
+\usepackage{stmaryrd}
+\pagestyle{fancy}
+\fancyhead[L]{Math444}
+\fancyhead[C]{HW7}
+\fancyhead[R]{Lanxiao Bai}
+\newcommand{\qed}{
+	\begin{flushright}
+		$\blacksquare$
+	\end{flushright}}
+\begin{document}
+	\paragraph{4.2.2}
+		\begin{enumerate}[(a)]
+			\item 
+			\begin{align}
+				&\lim_{x \rightarrow 2} \sqrt{\frac{2x + 1}{x + 3}} = \sqrt{\lim_{x \rightarrow 2} \frac{2x+1}{x+3}} & \text{(by Exercise 4.2.15)}\nonumber\\
+				&\phantom{\lim_{x \rightarrow 2} \sqrt{\frac{2x + 1}{x + 3}}} = \sqrt{\frac{\lim_{x \rightarrow 2} 2x + 1}{\lim_{x \rightarrow 2} x + 3}} & \text{(by Theorem 4.2.4 (a))}\nonumber\\
+				&\phantom{\lim_{x \rightarrow 2} \sqrt{\frac{2x + 1}{x + 3}}} = \sqrt{\frac{5}{5}} = 1\nonumber
+			\end{align}
+			\item
+			\begin{align}
+				\lim_{x \rightarrow 2} \frac{x^2 - 4}{x - 2} = \lim_{x \rightarrow 2} x + 2 = 4 \nonumber
+			\end{align}
+			\item
+			\begin{align}
+				\lim_{x\rightarrow 0} \frac{(x + 1)^2 - 1}{x} = \lim_{x\rightarrow 0} \frac{x^2 + 2x}{x} = \lim_{x\rightarrow 0} x + 2 = 2 \nonumber
+			\end{align}
+			\item
+			\begin{align}
+				&\lim_{x\rightarrow 1} \frac{\sqrt{x} - 1}{x - 1} = \lim_{x\rightarrow 1}\frac{1}{\sqrt{x} + 1}\nonumber\\
+				&\phantom{\lim_{x\rightarrow 1} \frac{\sqrt{x} - 1}{x - 1}} = \frac{1}{\sqrt{\lim_{x \rightarrow 1}x} + 1} &\text{(by Exercise 4.2.15)}\nonumber\\
+				&\phantom{\lim_{x\rightarrow 1} \frac{\sqrt{x} - 1}{x - 1}} = \frac{1}{2}\nonumber
+			\end{align}
+		\end{enumerate}
+	\paragraph{4.2.4}\textbf{Proof:}
+		Let $x_n := 1/n\pi$ for $n \in \mathbb{N}$, then $\lim (x_n) = 0$ and $cos(x_n) = \cos(n\pi)$ does not converge in $\mathbb{R}$, so by Divergence Criteria, $\lim \cos(1/x)$ does not exist.
+		
+		However, since $-1 \leq \cos(1/x) \leq 1$ for all $x \in \mathbb{R}$, $-|x| \leq x\cos(1/x) \leq |x|$. Since $f(x) = |x|$ and $g(x) = -|x|$ converges to $0$ at $x = 0$, by Squeeze Theorem, 
+			\[\lim_{x \rightarrow 0} x\cos(\frac{1}{x}) = 0\]
+			\qed
+	\paragraph{4.2.8}\textbf{Proof:}
+	
+	Base case: when $n = 3$, since $-1 < x < 1$, $0 < x^2 \leq |x| < 1$, so $-x^2 \leq x^3 = |x|x^2 \leq x^2$.
+	
+	Inductive Hypothesis: Suppose when $n = k$ $(k > 3)$, $-x^2 \leq x^k < x^2$.
+	
+	Inductive Step: When $n = k + 1$, $|x^{k + 1}| = |x^kx| = |x^k||x| \leq x^2|x| \leq |x^3| \leq x^2$ by base case and inductive hypothesis. 
+	
+	So by Mathematics Induction, $-x^2 \leq x^k < x^2$.
+	
+	Since $\lim_{x\rightarrow 0} x^2 = 0 \rightarrow \lim_{x\rightarrow 0} -x^2 = -\lim_{x\rightarrow 0}x^2 = 0$. And by the lemma we just proved and Squeeze Theorem, 
+	\[\lim_{x \rightarrow 0} x^n = 0\]
+	\qed
+	
+	\paragraph{4.2.9}
+	\begin{enumerate}[(a)]
+		\item \textbf{Proof:}
+			Suppose $\lim_{x\rightarrow c} f = L_1$ and $\lim_{x\rightarrow c} (f + g) = L_2$. So by definition, given any $\varepsilon > 0$, there is a $\delta_1 > 0$ and $\delta_2 > 0$ such that if $0 < |x - c| < \min\{\delta_1, \delta_2\}$ then $|f(x) - L_1| < \varepsilon$ and $|f(x) + g(x) - L_2| < \varepsilon$. 
+			
+			Then we have $|f(x) + g(x) - L_2| \leq |f(x) - L_1| + |g(x) - L_2 + L_1|$. Suppose $g$'s limit does exist, even when $0 < |x - c| < \min\{\delta_1, \delta_2\}$, there is $x$ that make $|g(x) - L| > \varepsilon$ for all $L \in \mathbb{R}$, which means $f + g$ does not converges and contradicts with the condition given.
+			
+			As a result, $g's$ limit exists.
+			\qed
+		\item No, suppose $f(x) = x$ and $g(x) = 1/x$, then $\lim_{x \rightarrow 0}f(x) = 0$ and $lim_{x \rightarrow 0}f(x)g(x) = 1$, but $g(x)$ does not converge at $0$. 
+	\end{enumerate}
+	\paragraph{4.2.11}
+		\begin{enumerate}[(a)]
+			\item Let $x_n = \frac{1}{\sqrt{n\pi + \pi/2}}$, then $(x_n)$ converges to $0$, but $\sin(1/x_n) = \sin(n\pi + \pi / 2)$ does not converges, so by Divergence Criteria, $\lim_{x \rightarrow 0}\sin(1/x^2)$ does not exist in $\mathbb{R}$.
+			\item Since $-1 \leq \sin(1/x) \leq 1$ for all $x \in \mathbb{R}$, $-|x| \leq x\sin(1/x) \leq |x|$. Since $f(x) = |x|$ and $g(x) = -|x|$ converges to $0$ at $x = 0$, by Squeeze Theorem, 
+			\[\lim_{x \rightarrow 0} x\sin(\frac{1}{x}) = 0\]
+			\qed
+			\item Let $x_n = \frac{1}{2n\pi + \pi/2}$, and $x'_n = \frac{1}{n\pi + 3\pi/2}$, then $(x_n)$ and $(x'_n)$ converges to $0$. However, $\lim_{x \rightarrow 0} \mathrm{sgn}\sin(1/x_n) = \lim_{x \rightarrow 0} \mathrm{sgn}\sin(2n\pi + \pi/2) =  1$ and $\lim_{x \rightarrow 0} \mathrm{sgn}\sin(2n\pi + 3\pi/2) = -1$. As a result, the limit does not exist.
+			\item Since $-1 \leq \sin(1/x^2) \leq 1$ for all $x \in \mathbb{R}$, $-\sqrt{x} \leq \sqrt{x}\sin(1/x^2) \leq \sqrt{x}$. Since $f(x) = \sqrt{x}$ and $g(x) = -\sqrt{x}$ converges to $0$ at $x = 0$, by Squeeze Theorem, 
+			\[\lim_{x \rightarrow 0} \sqrt{x}\sin(\frac{1}{x^2}) = 0\]
+			\qed
+		\end{enumerate}
+	\paragraph{5.1.3}\textbf{Proof:}
+		Since both $f(x)$ and $g(x)$ are continuous on their domain, so naturally $h(x)$ is continuous on $[a, b) \cup (b, c]$. Then we need to prove that $h(x)$ is also continuous when $x = b$.
+		
+		Also, when $x = b$, $f(x) \leq h(x) \leq g(x)$, and $\lim_{x\rightarrow b}f(x) = \lim_{x\rightarrow b}g(x) = f(b) = g(b)$. So $\lim_{x\rightarrow b}h(x) = f(b) = g(b) = h(b)$. Since, $x = b$ is a cluster point in $\mathbb{R}$, by definition, we see that $h(x)$ is continuous at $x = b$.
+		
+		Hence, $h(x)$ is continuous on $[a, c]$.
+		\qed
+	\paragraph{5.1.4}
+		\begin{enumerate}[(a)]
+			\item $f(x) = \llbracket x\rrbracket$ is the ceiling function, which is discontinuous at each integer points $x \in \mathbb{Z}$ and is continuous on the rest points.
+			\item Similarly, $g(x) = x\llbracket x \rrbracket$, since ceiling function is not continuous, $g(x)$ is discontinuous at each integer points $x \in \mathbb{Z}$ and is continuous on the rest points.
+			\item Since $\sin(x) \in [-1, 1]$ for all $x \in \mathbb{R}$, when $x \in (2n\pi, 2n\pi + \pi]$, $\llbracket \sin(x)\rrbracket = 1$, but when $x \in (2n\pi + \pi, 2(n + 1)\pi]$, $\llbracket \sin(x)\rrbracket = 0$. As a result, when $x = n\pi$, $h(x)$ is discontinuous, and is continuous on the rest points.
+			\item For all $x \in [\frac{1}{n}, \frac{1}{n + 1})$, $k(x) = \llbracket \frac{1}{x}\rrbracket = n + 1$, and as a result, is continuous and is discontinuous otherwise.
+		\end{enumerate}
+	\paragraph{5.1.5}
+		Since $\lim_{x \rightarrow 2} \frac{x^2 + x - 6}{x - 2} = \lim_{x \rightarrow 2} \frac{(x + 3)(x - 2)}{x - 2} =  \lim_{x \rightarrow 2} x + 3 = 5$. And since $x = 2$ is a cluster point in $\mathbb{R}$, then if we define $f(x) = \lim_{x \rightarrow 2} \frac{x^2 + x - 6}{x - 2} = 5$, then $f(x)$ is continuous at this point by definition.
+	\paragraph{5.1.12}\textbf{Proof:} Suppose when $x = a, a \in \mathbb{R - Q}$, $f(a) \neq 0$, then since $f(x)$ is continuous on $\mathbb{R}$, $f(a) = \lim_{x \rightarrow a} f(x) \neq 0$ in a small enough neighborhood $V$ that $a$ is the only rational number in $V$. And thus, this corollary violates the condition given.
+	
+	Hence, $f(x) = 0$ for all $x \in \mathbb{R}$.
+	\qed 
+	\paragraph{5.1.13} By density theorem, for all $x y \in \mathbb{R}$ and $x < y$ there is always $r \in \mathbb{Q}$ that $x < r < y$ and there is always $r' \notin \mathbb{Q}$ that $x < r' < y$. As a result, there is always a rational number between two irrational numbers and there is always an irrational numbers between two rational numbers. Hence, $g(x)$ is never continuous in $\mathbb{R} - \{3\}$(the intersection of two branches).
+	
+	Then we need to discuss the continuity at $x = 3$. Since $3 \in \mathbb{Q}$, $g(3) = 2\cdot 3 = 6$. And at this point any subsequences will converge to $6$ at this point. Then by Convergence Criteria, $\lim_{x \rightarrow 3} g(x) = 6$.
+	
+	As a result, $x = 3$ is the only point where $g(x)$ is continuous. 
+	\paragraph{5.1.15}
+	Let $x_n := \frac{1}{n}$ and $y_n := \frac{1}{n^2}$, obviously, $\lim(x_n) = \lim(y_n) = 0$. However, $f(x_n) = n$ and $f(y_n) = n^2$, since $x_n, y_n \in (0, 1)$, $n > 1$, so $f(x_n) \neq f(y_n)$ for all $n \in \mathbb{N}$.
+\end{document}

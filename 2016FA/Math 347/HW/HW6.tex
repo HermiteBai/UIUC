@@ -1,0 +1,58 @@
+\documentclass[11pt]{article}
+\input{../../packages.tex}
+\pagestyle{fancy}
+\fancyhead[L]{Math 347}
+\fancyhead[C]{HW6}
+\fancyhead[R]{Lanxiao Bai(lbai5)}
+\begin{document}
+	\paragraph{13.8}
+		\subparagraph{Claim:}
+			If $S$ is bounded set of real numbers, and $\mathrm{sup}(S), \mathrm{inf}(S) \in S$ then $S$ is a closed interval.
+		\subparagraph{Proof:}
+			Since $S \subseteq \mathbb{R}$ is bounded, $\mathrm{sup}(S), \mathrm{inf}(S)$ exist by Completeness Axiom. Thus $\forall n \geq \mathrm{sup}(S), \forall s \in S, n \geq s$. Similarly,  $\forall n \leq \mathrm{sup}(S), \forall s \in S, n \leq s$. Since $\mathrm{sup}(S), \mathrm{inf}(S) \in S$, the equality holds, so we have $\forall s \in S, \mathrm{inf}(S) \leq s \leq \mathrm{sup}(S)$.
+			
+			So we can conclude that $S$ is a closed interval.$\blacksquare$
+	\paragraph{13.11} Suppose $\langle a\rangle, \langle b\rangle$ converge,
+		\subparagraph{(a)}
+			\textbf{Claim:} $\lim a_n < \lim b_n \rightarrow \exists N \in \mathbb{N}, (n \geq N \rightarrow a_n < b_n)$.\\
+			
+			\textbf{Proof:}
+				Suppose $\exists \varepsilon \forall n \in \mathbb{N}, b_n \leq a_n \Rightarrow b_n - a_n \leq 0 \Rightarrow \lim b_n - a_n \leq 0 \Rightarrow \lim b_n - \lim a_n \leq 0$.
+				
+				This implies that $\lim a_n \geq \lim b_n$ which is not true.
+				
+				As a result, we can conclude that $\lim a_n < \lim b_n \rightarrow \exists N \in \mathbb{N}, (n \geq N \rightarrow a_n < b_n).\blacksquare$
+		\subparagraph{(b)} 
+			\textbf{Claim:}	It is not true that $\lim a_n \leq \lim b_n \rightarrow \exists N \in \mathbb{N}, (n \geq N \rightarrow a_n \leq b_n)$.\\
+			
+			\textbf{Proof:} If $a_n = 2/n, b_n = 1/n$, we have $\lim a_n = \lim b_n = 0$ but $\forall n \in \mathbb{N}$, $a_n > b_n$.$\blacksquare$
+	\paragraph{13.22}\textbf{Solution:}
+		\subparagraph{(a)}
+			$x^2 < 5x \Rightarrow x^2 - 5x < 0 \Rightarrow x(x - 5) < 0 \Rightarrow 0 < x < 5$, so we know $S$ is bounded and $\mathrm{sup}(S) = 5, \mathrm{inf}(S) = 0$.
+		\subparagraph{(b)}
+			$2x^2 < x^3 + x \Rightarrow x^3 - 2x^2 + x > 0 \Rightarrow x(x - 1)^2 > 0 \Rightarrow x > 1$ so $S$ is only lower bounded and $\mathrm{inf}(S) = 0$.
+		\subparagraph{(c)}
+			$4x^2 > x^3 + x \Rightarrow x^3 - 4x^2 + x < 0 \Rightarrow x(x^2 - 4x + 1) < 0 \Rightarrow x((x - 2)^2 - 3) < 0 \Rightarrow  0 < x < 2 - \sqrt{3}$, so $S$ is bounded and $\mathrm{sup}(S) = 0, \mathrm{inf}(S) = 2 - \sqrt{3}$.\\
+	\paragraph{13.25}
+		\subparagraph{Claim:} $\lim \sqrt{1+n^{-1}} = 1$.
+		\subparagraph{Proof:} Since $x > 0$, $1 + n^{-1} > 1 \Rightarrow \sqrt{1 + n^{-1}} < 1 + n^{-1} \Rightarrow \sqrt{1 + n^{-1}} - 1 < 1 + n^{-1} - 1 \Rightarrow \sqrt{1 + n^{-1}} - 1 < n^{-1}.$
+		
+		Since $1 + n^{-1} > 1$, $|\sqrt{1 + n^{-1}} - 1| = \sqrt{1 + n^{-1}} - 1 < 1 + n^{-1} - 1 = n^{-1}$. Then $n \geq N \rightarrow n^{-1} \leq N^{-1} < \varepsilon$.
+		
+		Thus, we can conclude that $\lim \sqrt{1+n^{-1}} = 1.\blacksquare$
+	\paragraph{13.29}
+		\subparagraph{Claim:} Let $x_n = (1 + n)/(1 + 2n)$, $\lim_{n \rightarrow \infty} = 1/2$.
+		\subparagraph{Proof:} $x_n = (1 + n)/(1 + 2n) = (1/2 + 1/2 + n)/(1 + 2n) = (1/2)/(1 + 2n) + 1/2 = 1/(2  +4n) + 1/2$.
+		
+		Take $n_1, n_2 \in \mathbb{N}$ and $n_1 < n_2$, then $[(1/2)/(1 + 2n_2)]/[(1/2)/(1 + 2n_1)] = (1 + 2n_1)/(1 + 2n_2)$. Let $n_2 - n_1 = 1 > 0$, $[(1/2)/(1 + 2n_2)]/[(1/2)/(1 + 2n_1)] = 1 - 2/(1 + 2n_2) > 1$.
+		
+		So we know $(x_n)$ is increasing.
+		
+		$x_n = (1 + n)/(1 + 2n) = (1/2)/(1 + 2n) + 1/2 = 1/(2 + 4n) + 1/2$. Since $n > 0$, $2 + 4n > 2 \Rightarrow 0 < 1/(2 + 4n) < 1/2 \Rightarrow 1/2 < x_n < 1$. So we proved that $(x_n)$ is bounded with $\mathrm{sup}(x_n) = 1$ and $\mathrm{inf}(x_n) = 1/2$.
+		
+		Thus we can conclude that $\lim x_n$ exists by Monotone Convergence Theorem.
+		
+		And since $|x_n - 1/2| = 1/(2 + 4n) < 1/n \leq 1/N < \varepsilon$ when $n \geq N \in \mathbb{N}$, we proved that $\lim x_n = 1/2.\blacksquare$    
+	\paragraph{13.37}\textbf{Solution:}
+		Because not every numbers construct with Cantor's technique represent a rational number.
+\end{document}

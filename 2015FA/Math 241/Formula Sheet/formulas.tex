@@ -1,0 +1,263 @@
+\documentclass[12pt]{article}
+
+%----------Title & Cover-----------%
+\title{Math 241 Formula sheet}
+\author{Lanxiao Hermite Bai}
+\date{\today}
+
+%-----------Packeges---------------%
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{tocloft}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage[bookmarks=true]{hyperref}
+\usepackage{fancyhdr}
+
+
+%----------Definition & Theorem----%
+\newtheorem{definition}{Definition}[subsection]
+\newtheorem{theorem}{Theorem}[subsection]
+\newtheorem{proposition}{Proposition}[subsection]
+\newtheorem{lemma}{Lemma}[subsection]
+\newtheorem{corollary}{Corollary}[subsection]
+
+
+\pagestyle{fancy}
+\fancyhead[L]{Math 241}
+\fancyhead[C]{Formulas}
+\fancyhead[R]{Lanxiao Bai}
+%----------Document----------------%
+\begin{document}
+\maketitle
+\newpage
+\tableofcontents
+\newpage
+
+\section{Vector Function}
+
+\paragraph{Limit}
+\[\lim_{t \rightarrow \infty}(x(t), y(t), z(t)) = (\lim_{t \rightarrow \infty}x(t), \lim_{t \rightarrow \infty}y(t), \lim_{t \rightarrow \infty}z(t))\]
+\paragraph{Derivative}
+\[\mathbf{r}'(t) = (x'(t), y'(t), z'(t))\]
+
+\paragraph{Integral}
+\[\int_a^b \mathbf(r)(t) = (\int_a^b x(t)dt, \int_a^b y(t)dt, \int_a^b z(t)dt)\]
+
+\paragraph{Length}
+\[L = \int_a^b \sqrt{(\frac{dx}{dt})^2 + \frac{dy}{dt})^2 + \frac{dz}{dt})^2}dt = \int d\mathbf{r}\]
+
+\paragraph{Curvature}
+\[\kappa = \frac{|\mathbf{r}'(t) \times \mathbf{r}''(t)|}{|F'(t)|^3} = \frac{|f''(x)|}{[1 + [f'(x)^2]]^{3/2}}\]
+
+\paragraph{Principal normal vector}
+\[\mathbf{N} = \frac{\mathbf{T}'(t)}{|\mathbf{T}'(t)|}\]
+
+\paragraph{Binormal vector}
+\[\mathbf{B}(t) = \mathbf{T}(t) \times \mathbf{N}(t)\]		
+\section{Partial Derivative}
+
+\paragraph{Continuous at $(a, b)$}
+\[\lim_{(x, y)\rightarrow (a, b)} f(x, y) = f(a, b)\]
+
+\paragraph{Clairaut's Theorem}
+\[\frac{\partial f}{\partial x\partial y} = \frac{\partial f}{\partial y\partial x}\]
+\paragraph{Linear approximation}
+\[f(x, y) \approx f(a, b) + f_x(a, b)(x - a) + f_y(a, b)(y - b)\]
+
+\paragraph{Whole Derivative}
+\[dz = z_xdx + z_ydy\]
+
+\paragraph{Tangent Plane}
+\[f_x(a, b)(x - a) + f_y(a, b)(y - b) = z - f(a, b)\]
+
+\paragraph{Tangent Plane at $(a, b, c)$ of $f(x, y, z) = 0$}
+\[\nabla f(a, b, c)_x(x - a) + \nabla f(a, b, c)_y(y - b) + \nabla f(a, b, c)_z(z - c) = 0\]
+
+\paragraph{Chain Rule 1}
+\[\frac{df}{dt} = \frac{\partial f}{\partial x}\frac{dx}{dt} + \frac{\partial f}{\partial y}\frac{dy}{dt}\]
+
+\paragraph{Chain Rule 2}
+\[
+	\begin{cases}
+		\frac{dz}{ds} = \frac{\partial z}{\partial x}\frac{\partial x}{\partial s} + \frac{\partial z}{\partial y}\frac{\partial y}{\partial s}\\
+		\frac{dz}{dt} = \frac{\partial z}{\partial x}\frac{\partial x}{\partial t} + \frac{\partial z}{\partial y}\frac{\partial y}{\partial t}
+	\end{cases}
+\]
+	
+	
+\paragraph{Chain Rule 3}
+\[\frac{\partial u}{\partial t_i} = \sum \frac{\partial u}{\partial x_i}\frac{\partial x_i}{\partial t_i}\]
+
+\paragraph{Directional Derivative}
+\[
+	\begin{cases}
+		D_{\mathbf{u}f(x, y) = f_x(x, y)a + f_y(x, y)b}\\
+		\mathbf{u} = (a, b)\mathrm{Unit direction vector}
+	\end{cases}
+\]
+
+\paragraph{Gradient}
+\[\nabla f(x, y) = (\frac{\partial f}{\partial x}, \frac{\partial f}{\partial y}, \frac{\partial f}{\partial z})\]
+
+\paragraph{Directional Derivative 2}
+\[D_{\mathbf{u}}f(x, y) = \nabla f(x, y)\cdot \mathbf{u} = |\nabla f|\cos(\theta)\]
+
+\paragraph{Maximum, Minimum}
+\begin{itemize}
+	\item 
+		\[
+			\begin{cases}
+				\frac{\partial f}{\partial x} = 0\\
+				\frac{\partial f}{\partial y} = 0\\
+				\vdots
+			\end{cases}
+			\Rightarrow \mathrm{Critical\ Points(Local\ max, min, saddle point)}
+		\]
+	\item Second Derivative Test
+	\[D = f_{xx}(a, b)f_{yy}(a, b) - f^2_{xy}(a, b)\]
+	
+	\item 
+	\[  \Rightarrow
+		\begin{cases}
+			D > 0\ \&\ f_xx > 0 \rightarrow \mathrm{local min}\\
+			D > 0\ \&\ f_xx < 0 \rightarrow \mathrm{local max}\\
+			D < 0 \rightarrow \mathrm{saddle point}
+		\end{cases}
+	\]
+	
+\paragraph{Lagrange Multiplier}
+Solve
+\[
+	\begin{cases}
+		\nabla f(x, y, z) - \lambda \nabla g(x, y, z) = 0\\
+		g(x, y, z) = k
+	\end{cases}
+\]
+to get critical points
+\end{itemize}
+
+\section{Double \& triple integral}
+
+\paragraph{Polar}
+\[\iint f(x, y)dxdy = \iint f(r, \theta)rdrd\theta\]
+
+\paragraph{Mass}
+\[m = \iint_D \rho dA\]
+
+\paragraph{Moment}
+\[
+	\begin{cases}
+		M_x = \iint_D y\rho(x, y)dA\\
+		M_y = \iint_D x\rho(x, y)dA
+	\end{cases}
+\]
+
+\paragraph{Center of mass}
+\[
+	\begin{cases}
+		\bar{x} = \frac{M_x}{m}\\
+		\bar{y} = \frac{M_y}{m}
+	\end{cases}
+\]
+
+\paragraph{Rotational inertia}
+\[
+	\begin{cases}
+		I_x = \iint y^2 \rho(x, y)dA\\
+		I_y = \iint x^2 \rho(x, y)dA\\
+		I_z = \iint (x^2 + y^2) \rho(x, y)dA\\
+	\end{cases}
+\]
+
+\paragraph{Surface Area}
+\[A = \iint_D \sqrt{f_x^2 + f_y^2 + 1}dA = \iint_D d\mathbf{S}\]
+
+\paragraph{Volume}
+\[V = \iint_{\Omega} dV\]
+
+\paragraph{Cylindrical}
+\[
+	\begin{cases}
+		x = r\cos(\theta)\\
+		y = r\sin(\theta)\\
+		z = z
+	\end{cases},
+	\iiint f(x, y, z)dxdydz = \iiint f(r, \theta, z)rdrd\theta dz
+\]
+
+\paragraph{Spherical}
+\[
+	\begin{cases}
+		x = \rho\sin(\phi)\cos(\theta)\\
+		y = \rho\sin(\phi)\sin(\theta)\\
+		z = \rho\cos(\phi)
+	\end{cases},
+	\iiint f(x, y, z)dxdydz = \iiint f(r, \phi, \theta)r^2\sin(\phi)drd\phi d\theta 
+\]
+
+\paragraph{Jacobian}
+
+\[\frac{\partial (x, y)}{\partial (u, v)} = 
+	\begin{vmatrix}
+		\frac{\partial x}{\partial u} & \frac{\partial x}{\partial u} \\ 
+		\frac{\partial y}{\partial u} & \frac{\partial y}{\partial v}
+	\end{vmatrix}
+\]
+
+\[\frac{\partial (x, y, z)}{\partial (u, v, w)} = 
+	\begin{vmatrix}
+		\frac{\partial x}{\partial u} & \frac{\partial x}{\partial v} & \frac{\partial x}{\partial w}\\ 
+		\frac{\partial y}{\partial u} & \frac{\partial y}{\partial v} & \frac{\partial y}{\partial w}\\ 
+		\frac{\partial z}{\partial u} & \frac{\partial z}{\partial v} & \frac{\partial z}{\partial w}
+	\end{vmatrix}
+\]
+
+\paragraph{Change variable}
+\[\iint f(x, y)dA = \iint_S f(x(u, v), y(u, v))|\frac{\partial (x, y)}{\partial (u, v)}|dudv\]
+
+\section{Vector Field}
+\paragraph{Line integral 1}
+\[\int_c f(x, y)ds = \int_a^b f(x(t), y(t), z(t))\sqrt{dx^2(t) + dy^2(t) + dz^2(t)}\]
+
+\paragraph{Line integral 2}
+\[\int_C \mathbf{F} \cdot d\mathbf{r} = \int_a^b F(\mathbf{r}(t))\cdot d\mathbf{r}'(t) = \int_c \mathbf{F} \cdot \mathbf{T}ds\]
+
+\paragraph{Fundamental Theorem for line integral}
+\[\int_c \nabla f dr = f(r(b)) - f(r(a))\]
+
+On open simply connected region,
+\[\oint_C F \cdot dr = 0 \Leftrightarrow \mathrm{conservative} \Leftrightarrow \frac{\partial Q}{\partial x} -  \frac{\partial P}{\partial y} = 0 \Leftrightarrow \nabla \times F = 0\]
+
+\paragraph{Green's Theorem 1}
+\[\oint_c Pdx + Qdy = \iint_D (\frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y})dA\]
+
+\paragraph{Curl}
+\[curl F = \nabla \times F\]
+
+\paragraph{Div}
+\[div F = \nabla \cdot F\]
+
+\paragraph{Green's Theorem 2}
+\[\oint_c F \cdot n dS = \iint_D div F(x, y)dA\]
+
+\paragraph{Surface}
+\[
+	\begin{cases}
+		r(u, v) = (x(u, v), y(u, v), z(u, v))\\
+		A = \iint_D |r_u \times r_v|dA = \iint_D \sqrt{1 + (z_x)^2 + (z_y)^2}dA
+	\end{cases}
+\]
+
+\paragraph{Surface integral}
+\[\iint_D f(x, y, z)dS = \iint f(r(u, v))|r_u \times r_v|dA = \iint F\cdot n dS = \iint_D F \cdot (r_u \times r_v)dA\]
+
+\paragraph{Strokes' Theorem}
+\[\oint_C F \cdot dr = \iint_S curl F \cdot dS\]
+
+\paragraph{Gaussian Theorem}
+\[\iint_S F \cdot n dS = \iiint_E div FdV\]
+
+
+\end{document}

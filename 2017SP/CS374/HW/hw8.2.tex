@@ -1,0 +1,66 @@
+% ---------
+%  Compile with "pdflatex hw0".
+% --------
+%!TEX TS-program = pdflatex
+%!TEX encoding = UTF-8 Unicode
+
+\documentclass[11pt]{article}
+\usepackage{jeffe,handout,graphicx}
+\usepackage[utf8]{inputenc}		% Allow some non-ASCII Unicode in source
+
+%  Redefine suits
+\usepackage{pifont}
+\def\Spade{\text{\ding{171}}}
+\def\Heart{\text{\textcolor{Red}{\ding{170}}}}
+\def\Diamond{\text{\textcolor{Red}{\ding{169}}}}
+\def\Club{\text{\ding{168}}}
+
+\def\Cdot{\mathbin{\text{\normalfont \textbullet}}}
+\def\Sym#1{\textbf{\texttt{\color{BrickRed}#1}}}
+\newcommand{\comp}[1]{#1_{\text{comp}}}
+
+\newtheorem{Lemma}{lemma}
+\newcommand{\IsSinL}{\text{IsStringInL}}
+
+\usepackage{tikz}
+\usetikzlibrary{automata, positioning}
+\usepackage{listings}
+
+% =====================================================
+%   Define common stuff for solution headers
+% =====================================================
+\Class{CS/ECE 374}
+\Semester{Spring 2017}
+\Authors{3}
+\AuthorOne{Lanxiao Bai}{lbai5}
+\AuthorTwo{Renheng Ruan}{rruan2}
+\AuthorThree{Ho Yin Au}{hoyinau2}
+%\Section{}
+
+% =====================================================
+\begin{document}
+
+% ---------------------------------------------------------
+
+
+\HomeworkHeader{8}{2}	% homework number, problem number
+
+\begin{quote}
+	\item Let $G=(V,E)$ be a directed graph. Describe a linear-time algorithm
+that given $G$, a node $s \in V$ and an integer $k$ decides whether
+there is a {\em walk} in $G$ starting at $s$ that visits at least $k$ distinct
+nodes. 
+\end{quote}
+\hrule
+
+\begin{solution}
+	If $G = (V, E)$ is a DAG,  set each edge's weight to be $-1$ and find the shortest path, then the sequence of vertices gives the longest walk. We can check if the number of vertices is more than $k$. So the overall time complexity is $O(|V| + |E|)$.
+	
+	On the other hand, if $G$ is a strongly connected graph, then the largest number of vertices a walk can reach is the number of vertices in the graph $|V|$. Then this problem can be solved by checking if the $|V| \geq k$ is true.
+	
+	Then we combine those two cases by using DFS to split a general graph $G$ into several DAGs and/or SCCs. Then we split each vertex that connects to a SCC and set weight to be $|V_{SCC}|$ and all other edges to have weight $1$. Then we can run the topological sort algorithm to get the longest path and check if it's greater than $k$.
+
+\end{solution}
+\clearpage
+
+\end{document}

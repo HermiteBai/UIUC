@@ -1,0 +1,32 @@
+Exam report for lbai5
+CS 225, Fall 2015, Midterm 1, Exam number 306, version 3
+
+ Num   Problem Name   Stu/Sol   Max   Score 
+----- -------------- --------- ----- -------
+   1           MC 1    c / b     3       0
+   2           MC 2    c / c     3       3
+   3           MC 3    a / d     3       0
+   4           MC 4    d / d     3       3
+   5           MC 5    b / b     3       3
+   6           MC 6    a / a     3       3
+   7           MC 7    c / c     3       3
+   8           MC 8    b / d     3       0
+   9           MC 9    c / c     3       3
+  10          MC 10    b / b     3       3
+  11          MC 11    d / d     3       3
+  12          MC 12    b / a     3       0
+  13          MC 13    b / d     3       0
+  14          MC 14    b / b     3       3
+  15   Big 3 Part 1             10       9
+  16   Big 3 Part 2             10      10
+  17   Big 3 Part 3             10       8
+  18   XList Part 1              6       5
+  19   XList Part 2             10       3
+  20   XList Part 3              6       2
+  21  XList Part 4a              4       3
+  22  XList Part 4b              4       4
+  23  XList Part 4c              4       2
+  24   XList Part 5             10      10
+----- -------------- --------- ----- -------
+              Total             116      83
+ Normalized score = 71.55

@@ -1,0 +1,164 @@
+%!TEX TS-program = pdflatex
+%!TEX encoding = UTF-8 Unicode
+
+\documentclass[11pt]{article}
+\usepackage{jeffe,handout,graphicx,mathtools}
+\usepackage[utf8x]{inputenc}			% allow Unicode in .tex file
+\usepackage{enumerate}
+\usepackage{fourier-orns}
+
+\def\Cdot{\mathbin{\text{\normalfont \textbullet}}}
+\def\Sym#1{\texttt{\upshape \color{BrickRed} {#1}}}
+\def\Var#1{\ensuremath{\seq{\textsf{#1}}}}
+
+\def\ForceSym#1{\setbox0\hbox{A}\hbox to \wd0{\hss #1\hss}}
+\def\Blank{\ForceSym{$\diamond$}}
+%\def\Enter{\ForceSym{$\dlsh$}}			% Too wide; needs mathabx package
+\def\Enter{\ForceSym{\rotatebox[origin=c]{180}{$\Rsh$}}}	% Better
+\def\To{\leadsto}
+\def\Tostar{\mathrel{\To\!\!\!^*}}
+
+\newcommand{\comp}[1]{#1_{\text{comp}}}
+
+\newtheorem{claim}{Claim}
+
+\begin{document}
+
+\begin{center}
+\Large\textbf{CS/ECE 374 \,\decosix\,  Spring 2017}%
+\\
+\LARGE\textbf{\decothreeleft~ Homework 8 Question 2 ~\decothreeright}%
+\\[0.5ex]
+\large Due Wednesday, April 5, 2017 at 10am
+\end{center}
+
+\begin{center}
+
+
+\begin{Large}
+Ho Yin Au (hoyinau2), Lanxiao Bai(lbai5), Renheng Ruan(rruan2)
+\end{Large}
+\end{center}
+
+\begin{itemize}
+	\item	Question 1\\
+	To find the best edge not in $E(H)$ to add, we need to know the distance of each node of $H$ to start vertex $s$ (denoted as $dist(s,v)$ for each node $v$). Then we can check each edge not in $E(H)$ but in $E(G)$ that can further minimize distance from $s$ (denoted as $newdist(s,v)$ for each node $v$).\\
+	The first part of the algorithm, which is know the distance of each node of $H$ to start vertex $s$, can be done with Dijkstra's algorithm on graph $H$. For the second part, we need to use the Dijkstra's algorithm to gather another information for the case of adding edge. The information we needed are the shortest path from $s$ to $t$ that allows adding edge, and $newdist(s,t)$ that allows adding edge to know if that is shorter than the one without adding edge. After we get the information, we can just search on the path for the edge not in $E(H)$ and output that edge(guarantee at most $1$ edge, if no edge not in $E(H)$, return $null$).\\
+	To find the shortest path from $s$ to $t$ that allows adding edge, we need to record $dist(s,v)$ for each vertex $v$ that allows adding edge. $newdist(s,v)$ will be updated according to the incoming edge of $v$. If the incoming edge $uv$ in $E(H)$, $newdist(s,v) = min(newdist(s,u) + w(uv), newdist(s,v))$, where $w(uv)$ is weight of edge $uv$. If the incoming edge $uv$ not in $E(H)$, $newdist(s,v) = min(dist(s,u) + w(uv), newdist(s,v))$, where $w(uv)$ is weight of edge $uv$, $dist(s,u)$ is the distance of $s$ to $u$ according to Dijkstra's algorithm on graph $H$. To record the shortest path, we also need to record the parent of shortest path for each node $v$ (denoted as $parent(v)$) in the both parts, which will be updated if a shorter path is found from $s$ to node $v$.\\
+	 For the running time, we run one Dijkstra's algorithm for the first part, another one Dijkstra's algorithm for the second part, and use $O(|V(G)|)$ to get the shortest path from $s$ to $t$ according to stored parent information and  identify the last edge in the shortest path not in $E(H)$ (we know there is at most $1$ edge). As the running time of Dijkstra's algorithm is $O(|E(G)| + |V(G)| \ log(|V(G)|))$, $O(|E(G)| + |V(G)| \ log(|V(G)|)) + O(|E(G)| + |V(G)| \ log(|V(G)|)) + O(|V(G)|) = O(|E(G)| + |V(G)| \ log(|V(G)|))$, which is similar to running time of Dijkstra's algorithm.\\
+	 The algorithm is named $\textsc{FindBestReinsertEdge}$. All subroutine is listed below this algorithm. Assume all the subroutine can read and write on $\textsc{dist}, \textsc{newdist},$ and $\textsc{parent}$. $w(uv)$ return edge weight of $uv \in E(G)$. Assume all operation of priority queue ($\textsc{Q}.popMinBySmallestWeight()$ for example) costs $O(log(|V(G)|))$ time. $\textsc{Q}.popMinBySmallestWeight(excludeVertices=\textsc{searchedVertexSet})$ means that the pop will return the vertex with smallest weight according to the number that grouped with vertex by a tuple when insert to priority queue and will not pop vertices already in $\textsc{searchedVertexSet}$. Note that in case of vertex $t$ in the problem is not reachable from $s$, $\textsc{FindBestReinsertEdge}$ and its subroutine $\textsc{FindShortestPathEdgeNotInGraph}$ will return $null$.
+	
+	
+	
+	 	
+\begin{algo}
+	\textul{$\textsc{FindBestReinsertEdge}($Graph $G$,Graph $H$, Vertex $s$, Vertex $t):$}\+
+\\[0.5ex]
+\\		Integer $\textsc{dist}[1..|V(G)|]$
+\\		Integer $\textsc{newdist}[1..|V(G)|]$
+\\		Vertex $\textsc{parent}[1..|V(G)|]$
+\\		
+\\		for  each $v$ in $V(G)$\+
+\\			$\textsc{dist}[v] = \infty$
+\\			$\textsc{parent}[v] = null$\-
+\\		
+\\		$\textsc{dist}[s] = 0$
+\\
+\\		$\textsc{Dijkstra 1}(H, s)$
+\\
+\\		$\textsc{newdist} \gets \textsc{dist}.copy()$
+\\
+\\		$\textsc{Dijkstra 2}(G, H, s)$
+\\
+\\		return $\textsc{FindShortestPathEdgeNotInGraph}(H, s, t)$
+\\[0.5ex]
+\end{algo}
+
+\begin{algo}
+	\textul{$\textsc{Dijkstra 1}($Graph $H$, Vertex $s):$}\+
+\\[0.5ex]
+\\		\# comment: modified from cs374 lecture slides
+\\
+\\		$\textsc{Q} = createPriorityQueue()$
+\\		$\textsc{Q}.insert((s,0))$
+\\		
+\\		for each $v$ in $V(H)$\+
+\\			$\textsc{Q}.insert((v,\infty))$\-
+\\
+\\		$\textsc{searchedVertexSet} = \emptyset$
+\\		
+\\		for $i = 1$ to $|V(H)|$\+
+\\			if $\textsc{Q}.empty$\+
+\\				break out the loop\-
+\\			
+\\			$(v, \textsc{dist}[v]) = \textsc{Q}.popMinBySmallestWeight(excludeVertices=\textsc{searchedVertexSet})$
+\\			$\textsc{searchedVertexSet}.addToSet(v)$
+\\			for each $vw$ in $Out(v)$\+
+\\				if $\textsc{dist}[v] + w(vw) < \textsc{dist}[w]$\+
+\\					$\textsc{dist}[w] \gets \textsc{dist}[v] + w(vw)$
+\\					$\textsc{parent}[w] \gets v$
+\\					$\textsc{Q}.removeByVertex(w)$
+\\					$\textsc{Q}.insert((w,\textsc{dist}[w]))$\- \- \-
+\\[0.5ex]
+\end{algo}
+
+\begin{algo}
+	\textul{$\textsc{Dijkstra 2}($Graph $G$, Graph $H$, Vertex $s):$}\+
+\\[0.5ex]
+\\		\# comment: modified from Dijkstra 1
+\\
+\\		$\textsc{Q} = createPriorityQueue()$
+\\		$\textsc{Q}.insert((s,0))$
+\\		
+\\		for each $v$ in $V(G)$\+
+\\			$\textsc{Q}.insert((v,\infty))$\-
+\\
+\\		$\textsc{searchedVertexSet} = \emptyset$
+\\		
+\\		for $i = 1$ to $|V(G)|$\+
+\\			if $\textsc{Q}.empty$\+
+\\				break out the loop\-
+\\			$(v, \textsc{newdist}[v]) = \textsc{Q}.popMinBySmallestWeight(excludeVertices=\textsc{searchedVertexSet})$
+\\			$\textsc{searchedVertexSet}.addToSet(v)$
+\\			for each $vw$ in $Out(v)$\+
+\\				if $vw \notin E(H)$\+
+\\					$\textsc{DIST} \gets \textsc{dist}[v] + w(vw)$\-
+\\				else\+
+\\					$\textsc{DIST} \gets \textsc{newdist}[v] + w(vw)$\-
+\\
+\\				if $\textsc{DIST} < \textsc{newdist}[w]$\+
+\\					$\textsc{newdist}[w] \gets \textsc{DIST}$
+\\					$\textsc{parent}[w] \gets v$
+\\					$\textsc{Q}.removeByVertex(w)$
+\\					$\textsc{Q}.insert((w,\textsc{newdist}[w]))$\- \- \-
+\\[0.5ex]
+\end{algo}
+
+\begin{algo}
+	\textul{$\textsc{FindShortestPathEdgeNotInGraph}($Graph $H$, Vertex $s$, Vertex $t):$}\+
+\\[0.5ex]
+\\
+\\		$v \gets t$
+\\		while $v \neq s$\+
+\\			$u \gets \textsc{parent}[v]$
+\\			if $u = null$\+
+\\				return $null$\-
+\\
+\\			if $uv \notin E(H)$\+
+\\				return $uv$\-
+\\			$v \gets u$\-
+\\		
+\\		return $null$
+\\		
+\\[0.5ex]
+\end{algo}
+
+
+
+
+	
+\end{itemize}
+
+
+
+\end{document}

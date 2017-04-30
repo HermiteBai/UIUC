@@ -1,0 +1,112 @@
+\documentclass[11pt]{article}
+\input{../../packages.tex}
+\pagestyle{fancy}
+\fancyhead[L]{Math 461}
+\fancyhead[C]{HW7}
+\fancyhead[R]{Lanxiao Bai(lbai5)}
+\begin{document}
+	\paragraph{5.6}\textbf{Solution:}
+		\subparagraph{(a)}
+			\[E[X] = \int^{+\infty}_{-\infty}xf(x)dx = \int^{+\infty}_{0} \frac{1}{4}x^2e^{-x/2}dx = 4\]
+		\subparagraph{(b)}
+			\[1 = \int^{+\infty}_{-\infty}f(x)dx \Rightarrow \int^{1}_{-1}c(1 - x^2)dx = 1 \Rightarrow c = \frac{1}{2}\]
+			
+			So
+			\[E[X] = \int^{+\infty}_{-\infty}xf(x)dx = \int^{1}_{-1}(x- x^3)dx = 0\]
+		\subparagraph{(c)}
+			\[E[X] = \int^{+\infty}_{-\infty}xf(x)dx = \int^{+\infty}_{5}\frac{5}{x}dx = \infty\]
+	\paragraph{5.10}\textbf{Solution:}
+		\subparagraph{(a)}
+			\[p(A) = 4 \cdot 10 / 60 = 2/3\]
+		\subparagraph{(b)}
+			\[p(A) = 4 \cdot 10 / 60 = 2/3\]
+	\paragraph{5.12}\textbf{Solution:}
+		In this problem, what we want is to minimize the expected value of the distance a bus has to take to a service station when breakdown happens.
+		
+		In the original case, we have
+			\[d(x) = \left\{\begin{array}{cl}
+				x & \mathrm{if\ }0 \leq x \leq 25\\
+				50 - x & \mathrm{if\ }25 \leq x \leq 50\\
+				x - 50 & \mathrm{if\ }50 \leq x \leq 75\\
+				100 - x & \mathrm{if\ }75 \leq x \leq 100\\
+			\end{array} \right.\]
+			
+		Thus, 
+		\begin{align}
+			&E[d(x)] = \int^{+\infty}_{-\infty}d(x)f(x)dx\nonumber\\
+			&\phantom{E[X]} = \frac{1}{100}(\int_0^{25}xdx + \int_{25}^{50}(50 - x)dx\nonumber\\
+			&\phantom{E[X]}+ \int_{50}^{75}(x - 50)dx + \int_{75}^{100}(100 -x)dx)\nonumber\\
+			&\phantom{E[X]} = 12.5\nonumber
+		\end{align}
+		
+		In another occasion, 
+		
+			\[d(x) = \left\{\begin{array}{cl}
+				25 - x & \mathrm{if\ }0 \leq x \leq 25\\
+				x - 25 & \mathrm{if\ }25 \leq x \leq 37.5\\
+				50 - x & \mathrm{if\ }37.5 \leq x \leq 50\\
+				x - 50 & \mathrm{if\ }50 \leq x \leq 62.5\\
+				75 - x & \mathrm{if\ }62.5 \leq x \leq 75\\
+				x - 75 & \mathrm{if\ }75 \leq x \leq 100\\
+			\end{array} \right.\]
+			
+		So, \begin{align}
+			&E[d(x)] = \int^{+\infty}_{-\infty}d(x)f(x)dx\nonumber\\
+			&\phantom{E[d(x)]} = \frac{1}{100}(\int_{0}^{25} (25 - x)dx + \int_{25}^{37.5} (x - 25)dx + \int_{37.5}^{50} (50 - x)dx \nonumber\\
+			&\phantom{E[d(x)]}+ \int_{50}^{62.5} (x - 50)dx + \int_{62.5}^{75} (75 - x)dx + \int_{75}^{100} (x - 75)dx)\nonumber\\
+			&\phantom{E[d(x)]} = 9.375\nonumber
+		\end{align}
+		
+		So in conclusion, it is beneficial to take the suggestion.
+	\paragraph{5.13}\textbf{Solution:}
+		\subparagraph{(a)}
+			\[P(>10) = 20/30 = 2/3\]
+		\subparagraph{(b)}
+			\[P(+10) = (15 - 10)/15 = 1/3\]
+	\paragraph{5.15}\textbf{Solution:}
+			$\mu = 10, \sigma^2 = 36 \Rightarrow$
+			\[f(x) = \frac{1}{\sqrt{2\pi}\sigma}e^{-(x - \mu)^2/2\sigma^2} = \frac{1}{6\sqrt{2\pi}}e^{-(x - 10)^2/72}, -\infty < x < \infty\]
+		\subparagraph{(a)}
+			\[P\{X > 5\} = \int_5^{\infty}f(x)dx = 0.798\]
+		\subparagraph{(b)}
+			\[P\{4 < X < 16\} = \int_4^{16}f(x)dx = 0.683\]
+		\subparagraph{(c)}
+			\[P\{X < 8\} = \int_{-\infty}^{8}f(x)dx = 0.369\]
+		\subparagraph{(d)}
+			\[P\{X < 20\} = \int_5^{\infty}f(x)dx = 0.952\]
+		\subparagraph{(e)}
+			\[P\{X > 16\} = \int_5^{\infty}f(x)dx = 0.159\]
+	\paragraph{5.18}\textbf{Solution:}
+		$\mu = 5, P\{X > 9\} = 0.2 \Rightarrow$
+		\[P\{Z > 4/\sigma\} = 0.9 \Rightarrow \sigma = 4.76 \Rightarrow \mathrm{Var}(X) = (4.76)^2 = 22.66\]
+	\paragraph{5.21}\textbf{Solution:}
+		$\mu = 71, \sigma^2 = 6.25 \Rightarrow$
+		\[f(x) = \frac{2}{5\sqrt{2\pi}}e^{-(x - 71)^2/2(6.25)^2} \Rightarrow\]
+		\[P\{X > 6'2''\} = \int_{74}^{\infty}\frac{2}{5\sqrt{2\pi}}e^{-(x - 71)^2/2(6.25)^2}dx = 0.789\]
+		\[P\{X > 6'5''\} = \int_{77}^{84}\frac{2}{5\sqrt{2\pi}}e^{-(x - 71)^2/2(6.25)^2}dx = 0.742\]
+	\paragraph{5.22}\textbf{Solution:}
+		\begin{align}
+			&P\{X > 100\} = 1 - P\{X \leq 100\}\nonumber\\
+			&\phantom{P\{X > 100\}} = 1 - \sum_{i=0}^{50} \binom{50}{i} \binom{50}{50 - i} 0.4^{100 - i}(0.6)^i\nonumber\\
+			&\phantom{P\{X > 100\}} = 0.973\nonumber 
+		\end{align}
+	\paragraph{5.23}\textbf{Solution:}
+		\[P\{150 \leq X \leq 200\} = \sum_{i = 150}^{200} \binom{1000}{i}(1/6)^i(5/6)^{1000 - i} = 0.9258\]
+		\[P\{X < 150\} = P\{Z < -0.93\} = 0.1762\]
+	\paragraph{5.25}\textbf{Solution:}
+		\[P\{X \leq 10\} = P\{Z \leq 1.1239\} = 0.8695\]
+	\paragraph{5.28}\textbf{Solution:}
+		\[P\{X > 19\} = P\{Z > -0.9792\} = 0.8363\]
+	\paragraph{5.32}\textbf{Solution:}
+		\subparagraph{(a)}
+			\[P\{X > 2\} = 1 -\int_0^2 \frac{1}{2} e^{-\frac{1}{2}x}dx = e^{-1}\]
+		\subparagraph{(b)}
+			\[P\{X > 10|X > 9\} = \frac{1 - \int_{0}^{10} \frac{1}{2} e^{-\frac{1}{2}x}dx}{1 - \int_{0}^{9} \frac{1}{2} e^{-\frac{1}{2}x}dx} = e^{-1/2}\]
+	\paragraph{5.33}\textbf{Solution:}
+		\[P\{X > 8\} = 1 - \int_0^8 \frac{1}{8}e^{-\frac{1}{8}x}dx = e^{-1}\]
+	\paragraph{5.34}\textbf{Solution:}
+		\subparagraph{(a)}
+			\[P(X \geq 30000 | X > 10000) = P(X \geq 20000) = \int_{20}^{\infty} e^{-\frac{1}{20}x}dx = e^{-1}\]
+		\subparagraph{(b)}
+			\[P(X > 30 | X > 10) = \frac{\int_{30}^{40}\frac{1}{40}xdx}{\int_{10}^{40}\frac{1}{40}xdx} = 1/3\]
+\end{document}

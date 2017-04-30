@@ -1,0 +1,97 @@
+%!TEX TS-program = pdflatex
+%!TEX encoding = UTF-8 Unicode
+
+\documentclass[11pt]{article}
+\usepackage{jeffe,handout,graphicx,mathtools}
+\usepackage[utf8x]{inputenc}			% allow Unicode in .tex file
+\usepackage{enumerate}
+\usepackage{fourier-orns}
+
+\def\Cdot{\mathbin{\text{\normalfont \textbullet}}}
+\def\Sym#1{\texttt{\upshape \color{BrickRed} {#1}}}
+\def\Var#1{\ensuremath{\seq{\textsf{#1}}}}
+
+\def\ForceSym#1{\setbox0\hbox{A}\hbox to \wd0{\hss #1\hss}}
+\def\Blank{\ForceSym{$\diamond$}}
+%\def\Enter{\ForceSym{$\dlsh$}}			% Too wide; needs mathabx package
+\def\Enter{\ForceSym{\rotatebox[origin=c]{180}{$\Rsh$}}}	% Better
+\def\To{\leadsto}
+\def\Tostar{\mathrel{\To\!\!\!^*}}
+
+\newcommand{\comp}[1]{#1_{\text{comp}}}
+
+\newtheorem{claim}{Claim}
+
+\begin{document}
+
+\begin{center}
+\Large\textbf{CS/ECE 374 \,\decosix\,  Spring 2017}%
+\\
+\LARGE\textbf{\decothreeleft~ Homework 9 Question 2 ~\decothreeright}%
+\\[0.5ex]
+\large Due Wednesday, April 19, 2017 at 10am
+\end{center}
+
+\begin{center}
+
+
+\begin{Large}
+Ho Yin Au (hoyinau2), Lanxiao Bai(lbai5), Renheng Ruan(rruan2)
+\end{Large}
+\end{center}
+
+\begin{itemize}
+	\item	Question 2\\
+		To compute such spanning tree, we can first use Kruskal's algorithm on only the set of vertices $V(G)-U$, where $G$ is the provided undirected graph, and $U\subset V(G)$ is the subset of vertices of unreliable nodes. Then, base on the output spanning tree $T$ of $V(G)-U$, use Kruskal's algorithm on $G$ that with vertices in $U$ and consider only the edges connecting vertices in $U$ and vertices not in $U$ to make sure vertices in $U$ are leaves of the tree.\\
+		To prove the strategy is correct, we need to prove the tree returned is minimal while satisfying the constraint vertices in $U$ are leaves. As tree returned by Kruskal's algorithm is MST, which is proved in lecture, we can prove that the tree returned is minimal while satisfying the constraint using Kruskal's algorithm as black box.\\
+		Prove by contradiction: Assume Kruskal's algorithm will give a MST with provided set of vertices and edges without considering constraint. Assume the above strategy build a optimum tree $T$, and there exists a better tree $T'$ that has smaller total edge weight and has $1$ edge differ from $T$, and it still satisfy the vertices in $U$ are leaves constraint. Then, let $e = (u,v) \in E(T)-E(T')$, and $e' = (u',v')in E(T')-E(T)$. From the assumption, $e \neq e'$, and $w(e') < w(e)$ where $w(e)$ is the weight of edge $e$. There are $3$ case to consider the edge $e$:\\
+		\begin{itemize}
+			\item	case $e = (u,v)$ that $u,v \notin U$:\\
+					If $u,v \notin U$, $e$ is picked by Kruskal's algorithm while considering $V(G)-U$. Edge $e' = (u',v')$ must also connect $u',v' \notin U$ as we already connect all vertices in $U$ as leaves in a tree, and we cannot connect leaves to leaves. As $w(e') < w(e)$, $e'$ will be picked first by Kruskal's algorithm. As Kruskal's algorithm should give tree $T'$ instead of $T$, this contradict Kruskal's algorithm always give MST and that $T$ (instead of $T'$) is the tree output from the strategy. 
+			\item	case $e = (u,v)$ that $u,v \in U$:\\
+					This means $T$ violate the vertices in $U$ are leaves constraint, contradict assumption $T$ follow the constraint.
+			\item	case $e = (u,v)$ that $u \in U, v \notin U$:\\
+					The edge $e$ is picked when we run Kruskal's algorithm with tree already connecting all vertices not in $U$, and consider only the edges connecting vertices in $U$ and vertices not in $U$. As we consider that type of edges, delete edge $e$ makes the vertex $u$ isolated. We need to connect $u$ by edge $e'$, so $u=u'$ and $v'\notin U$ as we still cannot connect leaves to leaves. As $w(e') < w(e)$, $e'$ must be picked first by Kruskal's algorithm. As Kruskal's algorithm should give tree $T'$ instead of $T$, this contradict Kruskal's algorithm always give MST and that $T$ (instead of $T'$) is the tree output from the strategy.     
+		\end{itemize}
+		As we arrive contradiction in those $3$ cases, we can conclude that the above strategy will build a optimum tree $T$ satisfy the constraint. As we use Kruskal's algorithm as a black box, we can also know that if there is no tree possible from the Kruskal's algorithm.
+		
+\newpage
+	 
+%algo	
+\begin{algo}
+	\textul{$\textsc{MSTWithVerticesInUAreLeaves}($Graph $G$, VertexSet $U):$}\+
+\\[0.5ex]
+\\		
+\\		VertexSet $\textsc{goodVertex} \gets V(G)-U$
+\\		$\textsc{tree} \gets$ empty graph
+\\		
+\\		$\textsc{tree} \gets \textsc{Kruskal}(goodVertex, E(G), tree)$
+\\		
+\\		if $\textsc{tree} = None$\+
+\\			return $None$\-
+\\
+\\		EdgeSet $\textsc{leavesEdge} \gets \{(u,v) for u \in U, v \notin U \}$
+\\		
+\\		return $\textsc{Kruskal}(V(G), \textsc{leavesEdge}, \textsc{tree})$
+\\[0.5ex]
+\end{algo}
+
+\begin{algo}
+	\textul{$\textsc{Kruskal}($VertexSet $V$, EdgeSet $E$, Graph $tree):$}\+
+\\[0.5ex]
+\\		$E \gets (u,v) \in E$ where $u,v \in V$	
+\\		$E \gets (u,v) \in E$ order by $weight(u,v)$, increasing
+\\
+\\		for $(u,v) \in E$\+
+\\			if $u \notin V(tree)$ or $v \notin V(tree)$\+
+\\				$V(tree) \gets V(tree) \cup \{u,v\}$
+\\				$E(tree) \gets E(tree) \cup \{(u,v)\}$\- \- 
+\\		
+\\		return $tree$
+\\[0.5ex]
+\end{algo}
+\end{itemize}
+
+
+
+\end{document}

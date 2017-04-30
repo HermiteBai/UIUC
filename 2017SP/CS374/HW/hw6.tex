@@ -1,0 +1,316 @@
+%!TEX TS-program = pdflatex
+%!TEX encoding = UTF-8 Unicode
+
+\documentclass[11pt]{article}
+\usepackage{jeffe,handout,graphicx,mathtools}
+\usepackage[utf8x]{inputenc}			% allow Unicode in .tex file
+\usepackage{enumerate}
+\usepackage{fourier-orns}
+
+\def\Sym#1{\texttt{\upshape\textcolor{BrickRed}{#1}}}
+\def\SymBlue#1{\texttt{\upshape\textcolor{RoyalBlue}{#1}}}
+\def\SymGreen#1{\texttt{\upshape\textcolor{PineGreen}{#1}}}
+\def\_#1{\SymBlue{\underline{\smash{\textbf{#1}}}}}
+\def\X#1{\SymGreen{$\overline{\textbf{#1}}$}}
+\def\u#1{\raise0.5ex\hbox{\textcolor{RoyalBlue}{#1}}}
+
+\def\Cdot{\mathbin{\text{\normalfont \textbullet}}}
+
+\newcommand{\IsSinL}{\text{IsStringInL}}
+
+% =========================================================
+\begin{document}
+
+\headers{CS/ECE 374}{Homework 6 (due March 15)}{Spring 2017}
+
+\thispagestyle{empty}
+
+\begin{center}
+\Large\textbf{CS/ECE 374 \,\decosix\,  Spring 2017}%
+\\
+\LARGE\textbf{\decothreeleft~ Homework 6 ~\decothreeright}%
+\\[0.5ex]
+\large Due Wednesday, March 15, 2017 at 10am
+\end{center}
+
+\bigskip
+\hrule
+\bigskip
+
+\noindent
+\textbf{Groups of up to three people can submit joint solutions.}  Each problem should be submitted by exactly one person, and the beginning of the homework should clearly state the Gradescope names and email addresses of each group member.  In addition, whoever submits the homework must tell Gradescope who their other group members are.
+\bigskip
+\hrule
+\bigskip
+
+
+\noindent
+The following unnumbered problems are not for submission or grading. 
+No solutions for them will be provided but you can discuss them on Piazza.
+\begin{itemize}
+\item Suppose you are given a DFA $M = (Q, \Sigma, \delta, s, F)$ and
+   a binary string $w\in \Sigma^*$ where $\Sigma = \set{\Sym0,\Sym1}$.
+   Describe and analyze an algorithm that computes the longest
+   subsequence of~$w$ that is accepted by~$M$, or correctly reports
+   that $M$ does not accept any subsequence of $w$.
+
+
+\item Problem 6.21 in Dasgupta etal on finding the minimum sized vertex cover
+in a tree.
+\end{itemize}
+
+\vspace{1cm}
+
+\begin{enumerate}
+%\parindent 1.5em \itemsep 3ex plus 0.5fil
+
+%----------------------------------------------------------------------
+%\def\arraystretch{1.2}
+
+%----------------------------------------------------------------------
+\item The McKing chain wants to open several restaurants along Red
+  street in Shampoo-Banana. The possible locations are at $L_1,L_2,
+  \ldots, L_n$ where $L_i$ is at distance $m_i$ meters from the start
+  of Red street. Assume that the street is a straight line and the
+  locations are in increasing order of distance from the starting
+  point (thus $0 \leq m_1 < m_2 < \ldots < m_n$). McKing has collected
+  some data indicating that opening a restaurant at location $L_i$
+  will yield a profit of $p_i$ independent of where the other
+  restaurants are located. However, the city of Shampoo-Banana has a
+  zoning law which requires that any two McKing locations should be
+  $D$ or more meters apart. {\em In addition McKing does not want to
+    open more than $k$ restaurants due to budget constraints.}
+  Describe an algorithm that McKing can use to figure out the maximum
+  profit it can obtain by opening restaurants while satisfying the
+  city's zoning law and the constraint of opening at most $k$
+  restaurants.  Your algorithm should use only $O(n)$ space.
+
+
+%----------------------------------------------------------------------
+\item Let $X = x_1,x_2,\ldots,x_r$, $Y = y_1,y_2,\ldots,y_s$ and $Z =
+  z_1,z_2,\ldots,z_t$ be three sequences. A common {\em supersequence}
+  of $X$, $Y$ and $Z$ is another sequence $W$ such that $X$, $Y$ and $Z$
+  are subsequences of $W$. Suppose $X = a,b,d,c$ and $Y = b,a,b,e,d$ and $Z =
+  b, e, d, c$. A simple common supersequence of $X$, $Y$ and $Z$ is
+  the concatenation of $X$, $Y$ and $Z$ which is
+  $a,b,d,c,b,a,b,e,d,b,e,d,c$ and has length $13$. A shorter one is
+  $b, a, b, e, d, c$ which has length $6$.  Describe an efficient
+  algorithm to compute the {\em length} of the shortest common
+  supersequence of three given sequences $X$, $Y$ and $Z$.
+
+%----------------------------------------------------------------------
+\item Suppose we need to distribute a message to all the nodes in a
+  rooted tree. Initially, only the root node knows the message. In a
+  single round, any node that knows the message can forward it to at
+  most one of its children. Design an algorithm to compute the minimum
+  number of rounds required for the message to be delivered to all
+  nodes in a given tree.   See figure below for an example. 
+  You should not assume that the tree is binary.
+
+
+\end{enumerate}
+%---------------------------------------
+\vspace{1in}
+
+\subsection*{Solved Problems}
+
+
+\def\LL{\texttt{\textbf{{\color{Green} (\!\!\!\!(}}}}
+\def\RR{\texttt{\textbf{{\color{Green} )\!\!\!\!)}}}}
+\def\LLL{\texttt{\textbf{{\color{Red} [\!\!\!\![}}}}
+\def\RRR{\texttt{\textbf{{\color{Red} ]\!\!\!\!]}}}}
+
+
+\begin{enumerate}\parindent 1.5em
+\setcounter{enumi}{3}
+
+\item
+A string $w$ of parentheses $\LL$ and $\RR$ and brackets $\LLL$ and $\RRR$ is \EMPH{balanced} if it is generated by the following context-free grammar:
+\[
+	S \to \e \mid \LL S \RR \mid \LLL S \RRR \mid SS
+\]
+For example, the string 
+\(
+	w = \LL\LLL\LL\RR\RRR\LLL\RRR\LL\RR\RR\LLL \LL\RR\LL\RR \RRR \LL\RR
+\)
+is balanced, because $w = xy$, where
+\[
+	x =  \LL~\LLL\LL\RR\RRR~\LLL\RRR~\LL\RR~\RR
+	\qquad
+	\text{and}
+	\qquad
+	y = \LLL~\LL\RR~\LL\RR~\RRR ~\LL\RR.
+\]
+
+Describe and analyze an algorithm to compute the length of a longest balanced subsequence of a given string of parentheses and brackets.  Your input is an array $A[1\,..\,n]$, where $A[i] \in \set{\LL, \RR, \LLL, \RRR}$ for every index~$i$. % (You may prefer to use different symbols instead of parentheses and brackets---for example, $\texttt{L}, \texttt{R}, \texttt{l}, \texttt{r}$ or $\lhd, \rhd, \blacktriangleleft, \blacktriangleright$---but please tell us what symbols you’re using!)
+
+\begin{solution}
+Suppose $A[1\,..\,n]$ is the input string.  For all indices $i$ and $j$, we write \EMPH{$A[i] \sim A[j]$} to indicate that $A[i]$ and $A[j]$ are matching delimiters: Either $A[i] = \LL$ and $A[j] = \RR$ or $A[i] = \LLL$ and $A[j] = \RRR$.
+
+For all indices $i$ and $j$, let \EMPH{$\textit{LBS}(i,j)$} denote the length of the longest balanced subsequence of the substring $A[i\,..\,j]$.  We need to compute $\emph{LBS}(1,n)$.  This function obeys the following recurrence:
+\[
+	\emph{LBS}(i,j) = \begin{cases}
+		0 & \text{if $i\ge j$}
+	\\[1ex]
+		\max\Set{
+			\begin{matrix}
+				2 + \emph{LBS}(i+1, j-1) \\
+				\Max_{k=1}^{j-1}\, \left(\strut \emph{LBS}(i,k) + \emph{LBS}(k+1,j)\right) \\
+			\end{matrix} } 
+			& \text{if $A[i] \sim A[j]$}
+	\\[3ex]
+			\Max_{k=1}^{j-1}\, \left(\emph{LBS}(i,k) +\strut \emph{LBS}(k+1,j)\right)
+			& \text{otherwise}
+	\end{cases}
+\]
+
+%\color{Gray}
+%In fact, we can simplify this recurrence slightly using a greedy exchange argument:
+%\[
+%	\emph{LBS}(i,j) = \begin{cases}
+%		0 & \text{if $i\ge j$}
+%	\\[0.5ex]
+%		2 + \emph{LBS}(i+1, j-1) 
+%			& \text{if $A[i] \sim A[j]$}
+%	\\[0.5ex]
+%		\max\Setbar{\emph{LBS}(i,k) + \emph{LBS}(k+1,j)\strut}{i\le k< j}
+%			& \text{otherwise}
+%	\end{cases}
+%\]
+%\color{Black}
+We can memoize this function into a two-dimensional array $\emph{LBS}[1\,..\,n,1\,..\,n]$.  Since every entry $\emph{LBS}[i,j]$ depends only on entries in later rows or earlier columns (or both), we can evaluate this array row-by-row from bottom up in the outer loop, scanning each row from left to right in the inner loop.  The resulting algorithm runs in \EMPH{$O(n^3)$ time}.
+
+\begin{algo}
+	\textul{$\textsc{LongestBalancedSubsequence}(A[1\,..\,n])$:}\+
+\\	for $i\gets n$ down to $1$\+
+\\		$\emph{LBS}[i,i] \gets 0$
+\\		for $j \gets i+1$ to $n$\+
+\\			if $A[i] \sim A[j]$\+
+\\				$\emph{LBS}[i,j] \gets \emph{LBS}[i+1,j-1]+2$\-
+\\			else\+
+\\				$\emph{LBS}[i,j] \gets 0$\-
+\\[0.5ex]
+			for $k\gets i$ to $j-1$\+
+\\				$\emph{LBS}[i,j] \gets \max
+					\Set{\emph{LBS}[i,j],~\strut
+						\emph{LBS}[i,k] + \emph{LBS}[k+1,j]}$\-\-\-
+\\[0.5ex]
+	return $\emph{LBS}[1,n]$
+\end{algo}
+\end{solution}
+\begin{rubric}
+10 points, standard dynamic programming rubric
+\end{rubric}
+
+
+% ----------------------------------------------------------------------
+
+\item 
+Oh, no!  You’ve just been appointed as the new organizer of Giggle, Inc.'s annual mandatory holiday party! The employees at Giggle are organized into a strict hierarchy, that is, a tree with the company president at the root.  The all-knowing oracles in Human Resources have assigned a real number to each employee measuring how “fun” the employee is.  In order to keep things social, there is one restriction on the guest list: An employee cannot attend the party if their immediate supervisor is also present.  On the other hand, the president of the company \emph{must} attend the party, even though she has a negative fun rating; it's her company, after all.
+
+Describe an algorithm that makes a guest list for the party that maximizes the sum of the “fun” ratings of the guests.  The input to your algorithm is a rooted tree $T$ describing the company hierarchy, where each node $v$ has a field $v.\emph{fun}$ storing the “fun” rating of the corresponding employee.
+
+\begin{solution}[two functions]
+We define two functions over the nodes of $T$.
+\begin{itemize}
+\item 
+$\emph{MaxFunYes}(v)$ is the maximum total “fun” of a legal party among the descendants of~$v$, where $v$ is definitely invited.
+\item 
+$\emph{MaxFunNo}(v)$ is the maximum total “fun” of a legal party among the descendants of~$v$, where $v$ is definitely not invited.
+\end{itemize}
+We need to compute $\emph{MaxFunYes}(\emph{root})$.  These two functions obey the following mutual recurrences:
+\begin{align*}
+	\emph{MaxFunYes}(v)
+	&=
+	v.\emph{fun}
+	+
+	\sum_{\text{children $w$ of $v$}} \emph{MaxFunNo}(w)
+\\
+	\emph{MaxFunNo}(v)
+	&=
+	\sum_{\text{children $w$ of $v$}} \max\set{\emph{MaxFunYes}(w), \emph{MaxFunNo}(w)}
+\end{align*}
+(These recurrences do not require separate base cases, because $\sum\varnothing = 0$.)  We can memoize these functions by adding two additional fields $v.\emph{yes}$ and $v.\emph{no}$ to each node $v$ in the tree.  The values at each node depend only on the vales at its children, so we can compute all $2n$ values using a postorder traversal of $T$.
+
+\begin{center}\small
+\begin{algorithm}
+	\textul{$\textsc{BestParty}(T)$:}\+
+\\	$\textsc{ComputeMaxFun}(T.\emph{root})$
+\\	return $T.\emph{root}.\emph{yes}$
+\end{algorithm}
+\qquad
+\begin{algorithm}
+	\textul{$\textsc{ComputeMaxFun}(v)$:}\+
+\\	$v.\emph{yes} \gets v.\emph{fun}$
+\\	$v.\emph{no} \gets 0$
+\\	for all children $w$ of $v$\+
+\\		$\textsc{ComputeMaxFun}(w)$
+\\		$v.\emph{yes} \gets v.\emph{yes} + w.\emph{no}$
+\\		$v.\emph{no} \gets v.\emph{no} + \max\set{w.\emph{yes}, w.\emph{no}}$
+\end{algorithm}
+\end{center}
+(Yes, this is still dynamic programming; we’re only traversing the tree recursively because that’s the most natural way to traverse trees!\footnote{A naïve recursive implementation would run in $O(\phi^n)$ time in the worst case, where $\phi = (1+\sqrt{5})/2 \approx 1.618$ is the golden ratio.  The worst-case tree is a path—every non-leaf node has exactly one child.})  The algorithm spends $O(1)$ time at each node, and therefore runs in \EMPH{$O(n)$ time} altogether.
+\end{solution}
+
+
+\newpage
+\begin{solution}[one function]
+For each node $v$ in the input tree $T$, let $\emph{MaxFun}(v)$ denote the maximum total “fun” of a legal party among the descendants of~$v$, where $v$ may or may not be invited.
+
+The president of the company must be invited, so none of the president’s “children” in~$T$ can be invited. Thus, the value we need to compute is 
+\[
+	\emph{root}.\emph{fun} + \sum_{\text{grandchildren $w$ of \emph{root}}} \emph{MaxFun}(w).
+\]
+
+The function \emph{MaxFun} obeys the following recurrence:
+\begin{align*}
+	\emph{MaxFun}(v)
+	&=
+	\max\Set{\begin{gathered}
+		v.\emph{fun}
+		+
+		\sum_{\text{grandchildren $x$ of $v$}} \emph{MaxFun}(x)
+		\\
+		\sum_{\text{children $w$ of $v$}} \emph{MaxFun}(w)
+	\end{gathered}}
+\end{align*}
+(This recurrence does not require a separate base case, because $\sum\varnothing = 0$.)  We can memoize this function by adding an additional field $v.\emph{maxFun}$ to each node $v$ in the tree.  The value at each node depends only on the values at its children and grandchildren, so we can compute all values using a postorder traversal of $T$.
+
+\begin{center}\small
+\begin{algorithm}
+	\textul{$\textsc{BestParty}(T)$:}\+
+\\	$\textsc{ComputeMaxFun}(T.\emph{root})$
+\\	$\emph{party} \gets T.\emph{root}.\emph{fun}$
+\\	for all children $w$ of $T.\emph{root}$\+
+\\		for all children $x$ of $w$\+
+\\			$\emph{party} \gets \emph{party} + x.\emph{maxFun}$\-\-
+\\	return \emph{party}
+\end{algorithm}
+\qquad
+\begin{algorithm}
+	\textul{$\textsc{ComputeMaxFun}(v)$:}\+
+\\	$\emph{yes} \gets v.\emph{fun}$
+\\	$\emph{no} \gets 0$
+\\	for all children $w$ of $v$\+
+\\		$\textsc{ComputeMaxFun}(w)$
+\\		$\emph{no} \gets \emph{no} + w.\emph{maxFun}$
+\\		for all children $x$ of $w$\+
+\\			$\emph{yes} \gets \emph{yes} + x.\emph{maxFun}$\-\-
+\\[0.5ex]
+	$v.\emph{maxFun} \gets \max\set{\emph{yes}, \emph{no}}$
+\end{algorithm}
+\end{center}
+(Yes, this is still dynamic programming; we’re only traversing the tree recursively because that’s the most natural way to traverse trees!\footnote{Like the previous solution, a direct recursive implementation would run in $O(\phi^n)$ time in the worst case, where $\phi = (1+\sqrt{5})/2 \approx 1.618$ is the golden ratio.})
+
+The algorithm spends $O(1)$ time at each node (because each node has exactly one parent and one grandparent) and therefore runs in \EMPH{$O(n)$ time} altogether.
+\end{solution}
+
+\begin{rubric}
+10 points: standard dynamic programming rubric.  These are not the only correct solutions.
+\end{rubric}
+
+\end{enumerate}
+
+
+
+\end{document}

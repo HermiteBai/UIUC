@@ -1,0 +1,26 @@
+\contentsline {section}{\numberline {1}基于判别式的分类}{3}{section.1}
+\contentsline {subsection}{\numberline {1.1}线性判别式(Linear discriminant)}{3}{subsection.1.1}
+\contentsline {subsection}{\numberline {1.2}梯度下降法(Gradient Descent)}{3}{subsection.1.2}
+\contentsline {subsubsection}{\numberline {1.2.1}2类问题}{3}{subsubsection.1.2.1}
+\contentsline {subsubsection}{\numberline {1.2.2}K类问题}{4}{subsubsection.1.2.2}
+\contentsline {section}{\numberline {2}决策树(Decision Tree)}{5}{section.2}
+\contentsline {subsection}{\numberline {2.1}分类树}{5}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}回归树}{6}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.3}剪枝}{6}{subsection.2.3}
+\contentsline {subsection}{\numberline {2.4}随机森林(Random Forest)}{7}{subsection.2.4}
+\contentsline {section}{\numberline {3}感知机和人工神经网络(Artificial Neural Network)}{7}{section.3}
+\contentsline {subsection}{\numberline {3.1}感知器(Perceptron)}{7}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}多层感知器}{9}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}后向传播算法(BP)}{9}{subsection.3.3}
+\contentsline {subsubsection}{\numberline {3.3.1}非线性回归}{9}{subsubsection.3.3.1}
+\contentsline {subsubsection}{\numberline {3.3.2}2类判别式}{10}{subsubsection.3.3.2}
+\contentsline {subsubsection}{\numberline {3.3.3}多类判别式}{11}{subsubsection.3.3.3}
+\contentsline {subsubsection}{\numberline {3.3.4}多个隐藏层}{11}{subsubsection.3.3.4}
+\contentsline {subsection}{\numberline {3.4}训练过程}{11}{subsection.3.4}
+\contentsline {subsubsection}{\numberline {3.4.1}加速收敛}{11}{subsubsection.3.4.1}
+\contentsline {paragraph}{动量(Momentum)}{11}{section*.1}
+\contentsline {paragraph}{Nesterov 动量}{12}{section*.2}
+\contentsline {paragraph}{自适应学习率}{12}{section*.3}
+\contentsline {subsubsection}{\numberline {3.4.2}防止过拟合}{12}{subsubsection.3.4.2}
+\contentsline {subsubsection}{\numberline {3.4.3}应用与扩展}{12}{subsubsection.3.4.3}
+\contentsline {paragraph}{卷积神经网络(Convolutional Neural Network)}{12}{section*.4}

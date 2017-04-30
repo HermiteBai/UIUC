@@ -1,0 +1,90 @@
+% ---------
+%  Compile with "pdflatex hw0".
+% --------
+%!TEX TS-program = pdflatex
+%!TEX encoding = UTF-8 Unicode
+
+\documentclass[11pt]{article}
+\usepackage{jeffe,handout,graphicx}
+\usepackage[utf8]{inputenc}		% Allow some non-ASCII Unicode in source
+
+%  Redefine suits
+\usepackage{pifont}
+\def\Spade{\text{\ding{171}}}
+\def\Heart{\text{\textcolor{Red}{\ding{170}}}}
+\def\Diamond{\text{\textcolor{Red}{\ding{169}}}}
+\def\Club{\text{\ding{168}}}
+
+\def\Cdot{\mathbin{\text{\normalfont \textbullet}}}
+\def\Sym#1{\textbf{\texttt{\color{BrickRed}#1}}}
+
+\newcommand{\comp}[1]{#1_{\text{comp}}}
+\newtheorem{claim}{Claim}
+\def\To{\leadsto}
+\def\Tostar{\mathrel{\To\!\!\!^*}}
+
+
+
+% =====================================================
+%   Define common stuff for solution headers
+% =====================================================
+\Class{CS/ECE 374}
+\Semester{Spring 2017}
+\Authors{3}
+\AuthorOne{Renheng Ruan}{rruan2}
+\AuthorTwo{Lanxiao Bai}{lbai5}
+\AuthorThree{Ho Yin Au}{hoyinau2}
+
+%\Section{}
+
+% =====================================================
+\begin{document}
+
+% ---------------------------------------------------------
+
+
+\HomeworkHeader{5}{3}	% homework number, problem number
+
+\begin{quote}
+
+\begin{enumerate}
+	The McKing chain wants to open several restaurants along Red street
+	in Shampoo-Banana. The possible locations are at $L_1,L_2, \ldots,
+	L_n$ where $L_i$ is at distance $m_i$ meters from the start of Red
+	street. Assume that the street is a straight line and the locations
+	are in increasing order of distance from the starting point (thus $0
+	\leq m_1 < m_2 < \ldots < m_n$). McKing has collected some data
+	indicating that opening a restaurant at location $L_i$ will yield a
+	profit of $p_i$ independent of where the other restaurants are
+	located. However, the city of Shampoo-Banana has a zoning law which
+	requires that any two McKing locations should be $D$ or more meters
+	apart. Describe an algorithm that McKing can use to figure out the
+	maximum profit it can obtain by opening restaurants while
+	satisfying the city's zoning law.
+\end{enumerate}
+
+\end{quote}
+\hrule
+
+\begin{solution}
+	\mbox{}
+
+Let $MaxP(i,j)$ be the maximum profit for  $0 \leq i \leq n$ and $0 \leq j \leq k$ by opening at most j restaurant in the location $1$ to $i$ such that the restaurants are at least D meters apart as required in the question.\\
+Base Case: $MaxP(i,0) = 0$ for all i and $MaxP(0,j) = 0$ for all j. \\
+Let $MaxIndex(i)$ be the largest index $a$ < $i$ such that $m_i - m_a \geq D$. We have the maximum profit $MaxP(i-1, j)$ if we do not open a restaurant at i. We also have the maximum profit $MaxP(MaxIndex(i), j-1) + p_i$ if we do open a restaurant at i and the nearest location to the left of $i$ is $Maxindex(i)$, and in this case, we can open at most $j-1$ restaurant from $1$ to $MaxIndex(i)$. $p_i$ is the profit for the restaurant at $i$ and $MaxP(MaxIndex(i), j-1)$ is the profit by opening at most $j-1$ restaurant in the location $MaxIndex(i)$ to $j-1$.\\
+\\
+Thus, we have
+\begin{center}
+	$MaxP(i,j)$ = max$\{$$MaxP(i-1, j)$, $MaxP(MaxIndex(i), j-1) + p_i$$\}$
+\end{center}
+We want to compute $MaxP(n, k)$. At first, $MaxIndex(i)$ takes $O(nlogn)$ time for sorting the $m_i$ values. And then the time to compute $MaxP(i,j)$ from previously computed values is $O(1)$. However, the number of subproblems is $O(nk)$.\\
+\\
+Thus, the algorithm takes \EMPH{$O(nk+nlogn)$} time and \EMPH{$O(nk)$} space.
+\\
+\\
+\\
+The solution template is taken from https://www.coursehero.com/file/9896833/Sprin12-midterm2-solns/.
+
+\end{solution}
+
+\end{document}

@@ -1,0 +1,30 @@
+Grading revision r41893 by lbai5, dated 2015-11-12 23:32:50.000343618 -0600 CST
+Monad Autograder
+Testing lab_hash at 2015-11-16 00:47:39
+
+"One day I will shoot you with this bullet. Can you still say that you love me?" ~ Re-l Mayer
+
+Setting up test environment...
+Compiling...
+================================================================
+
+
+Running tests...
+================================================================
+testRemoveEASY . [6 pts]  - passed
+testRemoveHard . [10 pts] - passed
+testResizeOnce . [7 pts]  - passed
+testResizeAll  . [11 pts] - passed
+testInsertEasy . [6 pts]  - passed
+testInsertHard . [10 pts] - passed
+testAnagramsSC . [8 pts]  - passed
+testAnagramsLP . [8 pts]  - passed
+testWordCountSC  [8 pts]  - passed
+testWordCountLP  [8 pts]  - passed
+testLogfileParse [18 pts] - passed
+
+
+Total score...
+================================================================
+TOTAL SCORE: 100
+

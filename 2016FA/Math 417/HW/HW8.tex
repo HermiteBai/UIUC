@@ -1,0 +1,56 @@
+\documentclass[11pt]{article}
+\input{../../packages.tex}
+\pagestyle{fancy}
+\fancyhead[L]{Math 417}
+\fancyhead[C]{HW8}
+\fancyhead[R]{Lanxiao Bai(lbai5)}
+\begin{document}
+	\paragraph{2.7.4}
+		\subparagraph{Claim:}Suppose $G$ is a finite group. Let $N$ be a normal subgroup of $G$ and $A$ an arbitrary subgroup.
+		
+		\[|AN| = \frac{|A||N|}{|A \cap N|}.\]
+		\subparagraph{Proof:} We know that $AN / N \cong A / (A \cap N)$, so that $|AN / N| = |A / (A \cap N)|$. So we have $|AN / N| = |AN| / |N|$ and $|A / (A \cap N)| = |A| / |A \cap N|$ by Lagrange's Theorem.
+		
+		As a result, \[|AN|/|N| = |A|/|A \cap N| \Rightarrow |AN| = \frac{|A||N|}{|A \cap N|}\blacksquare\]
+	\paragraph{2.7.6}
+		\subparagraph{(a)}
+			\textbf{Claim:} $\mathrm{Aut}(G)$ is a group.
+			
+			\textbf{Proof:} Since Aut is an isomorphism, $|G| = |\mathrm{Aut}(G)|$, so as $G$ is not empty, $\mathrm{Aut}(G)$ is not empty. Associativity is guaranteed since $G$ is a group. And again, since $\mathrm{Aut}(G) = G$, identity and inverses exist in $\mathrm{Aut}(G)$.
+			
+			 Thus, we can conclude that $\mathrm{Aut}(G)$ is  also a group.$\blacksquare$ 
+		\subparagraph{(b)}
+			\textbf{Claim:}
+				If map $c_g: G \rightarrow G$ defined by $c_g(x) = gxg^{-1}$ is an element of $\mathrm{Aut}(G)$, $c: g \mapsto c_g$ is a homomorphism from $G$ to $\mathrm{Aut}(G)$.
+				
+			\textbf{Proof:} Take $2$ arbitrary $g_1, g_2 \in G$, $c(g_1)c(g_2) = gg_1g^{-1}gg_2g^{-1} = gg_1g_2g^{-1} = c(g_1g_2)$. 
+			
+			So $c: g \mapsto c_g$ is a homomorphism from $G$ to $\mathrm{Aut}(G)$.$\blacksquare$
+				
+		\subparagraph{(c)}
+			\textbf{Claim:} $\mathrm{Ker}(c) = Z(G)$.
+			
+			\textbf{Proof:} $\mathrm{Ker}(c) = \{g \in G, c = id_G\} = \{g \in G, \forall x \in G, gxg^{-1} = x\} = \{g \in G, \forall x \in G, gx = xg\} = Z(G)\blacksquare$
+			
+			
+		\subparagraph{(d)}
+			\textbf{Claim:} $\mathrm{Int}(G) \cong G / Z(G)$.
+			
+			\textbf{Proof:} According to First Isomorphism Theorem, $G / \mathrm{Ker}(c) \cong \mathrm{Int}(G)$. So we have $\mathrm{Int}(G) \cong G / Z(G)$ by the conclusion of last question that $\mathrm{Ker}(c) = Z(G)$.$\blacksquare$
+		
+		
+	\paragraph{2.7.7}
+		\subparagraph{Claim:} $D_4 / C_4 \cong C_2$.
+		
+		\subparagraph{Proof:} We can establish map $\varphi: D_4 \rightarrow C_2$ by maps all element in $C_4$ to $e_{C_2}$ and the rest to $e_{C_2}^{-1}$ so we know it is surjective. Take $d_1, d_2 \in D_4$, $\varphi(d_1d_2) = \varphi(d_1)(d_2)$ can be easily verified by listing multiplication table. So $\varphi$ is a surjective homomorphism. Since $C_4$ is a normal group containing identity $e$, $C_4$ is the kernel of quotient map.
+		
+		As a result, we can conclude that $D_4 / C_4 \cong C_2$ by the First Isomorphism Theorem.$\blacksquare$
+	\paragraph{2.7.11}
+		\subparagraph{Claim:} If $G / Z(G)$ is cyclic, then $G$ is abelian.
+		
+		\subparagraph{Proof:} Take $G / Z(G) = \langle zG \rangle$. Then for each coset $xZ$, there exists some $i \in \mathrm{Z}$ that $xZ = (gZ)^i = g^iZ$.
+		
+		Then take $x, y \in G$ and denote $x = g^iz, y = g^jz_0$. So we have $xy = g^izg^jz_0 = g^{i + j}zz_0 = g^jg^izz_0 = g^jz_0g^iz = yx$.
+		
+		As a result, we proved that $G$ is abelian.$\blacksquare$
+\end{document}

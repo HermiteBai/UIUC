@@ -1,0 +1,27 @@
+Grading revision r13061 by lbai5, dated 2015-09-17 00:58:54.000672203 -0500 CDT
+Monad Autograder
+Testing lab_inheritance at 2015-09-21 00:46:18
+
+"I hope this code makes sense when I wake up." ~ Jason Cho
+
+Setting up test environment...
+Compiling...
+================================================================
+
+
+Running tests...
+================================================================
+test_virtual_perim  . . . . . . [10 pts] - passed
+test_virtual_area . . . . . . . [10 pts] - passed
+test_destructor (asan)  . . . . [20 pts] - passed
+test_constructor  . . . . . . . [10 pts] - passed
+test_drawable_destructor (asan) [10 pts] - passed
+test_truck_draw . . . . . . . . [10 pts] - passed
+test_slicing  . . . . . . . . . [20 pts] - passed
+test_flower_destructor (asan) . [10 pts] - passed
+
+
+Total score...
+================================================================
+TOTAL SCORE: 100
+

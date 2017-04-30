@@ -1,0 +1,201 @@
+% ---------
+%  Compile with "pdflatex hw0".
+% --------
+%!TEX TS-program = pdflatex
+%!TEX encoding = UTF-8 Unicode
+
+\documentclass[11pt]{article}
+\usepackage{jeffe,handout,graphicx}
+\usepackage[utf8]{inputenc}		% Allow some non-ASCII Unicode in source
+
+%  Redefine suits
+\usepackage{pifont}
+\def\Spade{\text{\ding{171}}}
+\def\Heart{\text{\textcolor{Red}{\ding{170}}}}
+\def\Diamond{\text{\textcolor{Red}{\ding{169}}}}
+\def\Club{\text{\ding{168}}}
+
+\def\Cdot{\mathbin{\text{\normalfont \textbullet}}}
+\def\Sym#1{\textbf{\texttt{\color{BrickRed}#1}}}
+
+\newtheorem{Lemma}{lemma}
+
+% =====================================================
+%   Define common stuff for solution headers
+% =====================================================
+\Class{CS/ECE 374}
+\Semester{Spring 2017}
+\Authors{1}
+\AuthorOne{Lanxiao Bai}{lbai5@illinois.edu}
+%\Section{}
+
+% =====================================================
+\begin{document}
+
+% ---------------------------------------------------------
+
+
+\HomeworkHeader{0}{1}	% homework number, problem number
+
+\begin{quote}
+Let $G = (V, E)$ be an undirected graph. Unless we say otherwise, a graph has no loops or parallel edges.
+
+\begin{enumerate}[(a)]
+\item
+Prove that if $|V| \geq 2$ there are two distinct nodes $u$ and $v$ such that degree of $u$ is equal to degree of $v$. Recall that the degree of a node $x$ is the number of edges incident to $x$.
+
+\item
+Prove that if $G$ has at least one edge then there is a path between two distinct nodes $u$ and $v$ such that degree of $u$ is equal to degree of $v$.
+
+\end{enumerate}
+\end{quote}
+\hrule
+
+
+
+\begin{solution}
+\begin{enumerate}[(a)]
+\item Proof:
+
+	Let $|V| = k$, assume that, there's no two distinctive nodes with the same degree, the degree for each node, respectively, should be $0, 1, \cdots , k$. Say for $u', v' \in V$, $deg(u') = 0$ and $deg(v') = k$, which means that $u'$ is adjacent to no other nodes while $v'$ is adjacent to all other nodes in the graph. It is impossible, so there must be two nodes $u, v$ to make $deg(u) = deg(v)$.
+	
+	As a result, for all $|V| \geq 2$, there are two nodes $u, v$ to make $deg(u) = deg(v)$.
+	
+\item Proof:
+
+	Since $|E| \geq 1$, the number of connected component is at least one and $|V| \geq 2$. And so we can arbitrarily choose one of the connected component in the graph without losing generality and drop all the other vertices and edges in the other components and still keep the structure of the one.
+	
+	So we get the new graph $G' \subseteq G$. Recall that we've just proved that for all $|V| \geq 2$, there are two nodes $u, v$ to make $deg(u) = deg(v)$. We know such $u, v \in G' \subseteq G$ in the same connected exists. So naturally, there is a path between $u, v$.
+	
+	As a result, if $G$ has at least one edge then there is a path between two distinct nodes $u$ and $v$ such that degree of $u$ is equal to degree of $v$.
+	
+\end{enumerate}
+\end{solution}
+
+
+
+
+% ---------------------------------------------------------
+% Change authors for all future solutions
+\HomeworkHeader{0}{2}
+
+\begin{quote}
+The \EMPH{plus one}, $w^+$, of a string $w \in
+  \set{\Sym0,\Sym1, \Sym2}^*$ is obtained from $w$ by 
+  replacing each symbol $a$ in $w$ by the symbol corresponding
+  $a+1 \mod 3$. for example,
+  $\Sym{0102101}^+ = \Sym{1210212}$.  The plus one
+  function is formally defined as follows:
+\[
+	w^+ := \begin{cases}
+		\e & \text{if $w=\e$}\\
+		\Sym1\cdot x^+ & \text{if $w = \Sym0 x$}\\
+		\Sym2\cdot x^+ & \text{if $w = \Sym1 x$} \\
+		\Sym0\cdot x^+ & \text{if $w = \Sym2 x$}
+	\end{cases}
+\]
+
+\begin{enumerate}[(b)]
+
+\item
+Prove by induction that $(x\Cdot y)^+ = x^+ \Cdot y^+$ for all strings 
+$x, y \in  \set{\Sym0,\Sym1, \Sym2}^*$.
+\end{enumerate}
+Your proofs must be formal and self-contained, and they must invoke the \emph{formal} definitions of length $\abs{w}$, concatenation $x\Cdot y$, and 
+plus one $w^+$.  Do not appeal to intuition!
+\end{quote}
+\hrule
+
+
+\begin{solution}
+
+\begin{enumerate}[(b)]
+
+\item Proof:
+
+Apply induction on the length of $x$.
+
+Base case: When $|x| = 0$, $(x \Cdot y)^+ = (\varepsilon \Cdot y)^+ = y^+ = \varepsilon \Cdot y^+ =  \varepsilon^+ \Cdot y^+ = x^+ \Cdot y^+$
+
+Suppose for all $|x| \leq k$, we have $(x \Cdot y)^+ = x^+ \Cdot y^+$. Then when $|x| = k + 1$, there are following $3$ cases.
+
+If $x = \Sym0v$ with $|v| = k$, $(x \Cdot y)^+ = (\Sym0v \Cdot y)^+ = \Sym1 \Cdot (v \Cdot y)^+ = \Sym1\Cdot v^+ \Cdot y^+ = (\Sym0v)^+ \Cdot y^+ = x^+ \Cdot y^+$.
+
+If $x = \Sym1v$ with $|v| = k$, $(x \Cdot y)^+ = (\Sym1v \Cdot y)^+ = \Sym2 \Cdot (v \Cdot y)^+ = \Sym2\Cdot v^+ \Cdot y^+ = (\Sym1v)^+ \Cdot y^+ = x^+ \Cdot y^+$.
+
+If $x = \Sym2v$ with $|v| = k$, $(x \Cdot y)^+ = (\Sym2v \Cdot y)^+ = \Sym0 \Cdot (v \Cdot y)^+ = \Sym0\Cdot v^+ \Cdot y^+ = (\Sym2v)^+ \Cdot y^+ = x^+ \Cdot y^+$.
+
+So as a result, it is proved that $(x\Cdot y)^+ = x^+ \Cdot y^+$ for all strings 
+$x, y \in  \set{\Sym0,\Sym1, \Sym2}^*$.
+\end{enumerate}
+\end{solution}
+
+% ---------------------------------------------------------
+
+\HomeworkHeader{0}{3}
+
+\begin{quote}
+\newcommand{\bu}{\bf u}
+\newcommand{\bv}{\bf v}
+Let $\bu,\bv \in \R^2$ be two fixed vectors in the real plane.
+Recursively define a set $L_n \subseteq \R^2$
+as follows.
+\begin{itemize}
+\item $L_0 = \{\bu,\bv,{\bf 0}\}$. (${\bf 0}$ denotes the zero vector 
+$(0,0)$ in $\R^2$.)
+\item For integer $n > 0$, $L_n = \{ {\bf x}- {\bf y} \mid {\bf x}, {\bf y}
+  \in L_{n-1} \}$.
+\end{itemize}
+Let $L = \bigcup_{n=0}^\infty L_n$. Also, let $D = \{ a{\bf u}+b{\bf
+  v} \mid a,b \in \Z \}$ be the set of vectors obtained as integer
+linear combinations of ${\bf u}$ and ${\bf v}$.
+\begin{enumerate}
+\item Prove that $D \subseteq L$, by giving, for each $a,b\in\Z$,
+an explicit value of $n$ such that $a{\bf u}+b{\bf v}\in L_n$. 
+(You don't need to
+minimize the value of $n$; but you must argue why $a{\bf u}+b{\bf v} \in L_n$ for your
+choice of $n$.)
+\item Use mathematical induction to prove that for all integers $n\ge 0$,
+$L_n \subseteq D$, and hence $L \subseteq D$.
+\end{enumerate}
+\end{quote}
+\hrule
+
+
+\begin{solution}
+\begin{enumerate}[1.]
+	\item Proof:
+		First, we can prove two lemmas.
+		\paragraph{Lemma 1}
+			$L_{n - 1} \subseteq L_n$.
+			
+		\paragraph{Proof:} $\forall \mathbf{l} \in L_{n - 1}$, let $\mathbf{x} = \mathbf{y}$, we have $\mathbf{0} \in L_n$ for all $n$. So let $\mathbf{y} = \mathbf{0}, \mathbf{x} = \mathbf{l}$, we have $\mathbf{l} \in L_n$. 
+		
+		As a result, $L_{n - 1} \subseteq L_n$.$\blacksquare$
+		
+		\paragraph{Lemma 2}
+			$\forall n \in \mathbb{N}, \forall k \leq n + 1 \in \mathbb{N}$, if $\mathbf{a} \in L_0$, $k\mathbf{a} \in L_n$ and $\forall k < n \in \mathbb{N}, -k\mathbf{a} \in L_n$.
+			
+		\paragraph{Proof:}
+			Base case: when $n = 0$, $\mathbf{u} - \mathbf{0} = \mathbf{u} \in L_1$, $\mathbf{v} - \mathbf{0} = \mathbf{v} \in L_1$, $\mathbf{0} - \mathbf{0} = \mathbf{0} \in L_1$, $\mathbf{0} - \mathbf{u} = -\mathbf{u} \in L_1$, $\mathbf{0} - \mathbf{v} = -\mathbf{v} \in L_1$ by definition.
+			
+			Suppose for all $n \leq m$, we have $\forall k \leq m + 1 \in \mathbb{N}$, if $\mathbf{a} \in L_0$, $k\mathbf{a} \in L_m$ and $\forall k < m \in \mathbb{N}, -k\mathbf{a} \in L_m$. Then when $n = m + 1$. By Lemma 1, $\forall k \leq m + 1 \in \mathbb{N}$, if $\mathbf{a} \in L_{0}$, $k\mathbf{a} \in L_{m + 1}$ and $\forall k < m \in \mathbb{N}, -k\mathbf{a} \in L_{m + 1}$.
+			
+			Then $m\mathbf{u} - (-\mathbf{u}) = (m + 1)\mathbf{u} \in L_{m + 1}$, $m\mathbf{v} - (-\mathbf{v}) = (m + 1)\mathbf{v} \in L_{m + 1}$, $\mathbf{0} - \mathbf{0} = \mathbf{0} \in L_{m + 1}$, $-(m - 1)\mathbf{u} - \mathbf{u} = -\mathbf{u} \in L_{m + 1}$, $-(m - 1)\mathbf{y} - \mathbf{v} = -\mathbf{v} \in L_{m + 1}$ by definition.
+			
+			As a result, by strong mathematical induction, $\forall n \in \mathbb{N}, \forall k \leq n + 1 \in \mathbb{N}$, if $\mathbf{a} \in L_0$, $k\mathbf{a} \in L_n$ and $\forall k < n \in \mathbb{N}, -k\mathbf{a} \in L_n$.$\blacksquare$
+			
+			Hence, by Lemma 2, $\forall a, b\in \mathbb{N}, a\mathbf{u}, b\mathbf{v} \in L_{\max\{a - 1, b - 1\}}, -a\mathbf{u}, -b\mathbf{v} \in L_{\max\{a, b\}}$, as a result, if $n = \max\{a, b\} + 1$, we have $a\mathbf{u} + b\mathbf{v} \in L_n \subseteq L$.
+			
+			As a result, $D \subseteq L$.
+	
+	\item Proof:
+			Base case: when $n = 0$, $L_n = L_0 = \{\mathbf{u, v, 0}\} \subseteq D$.
+			
+			Suppose for all $n \leq k \in \mathbb{N}$, we have $L_n = L_k \subseteq D$. Then when $n = k + 1$, $L_{k + 1} = \{\mathbf{x - y} | \mathbf{x, y} \in L_k\}$. Since $\mathbf{Z}$ is closed under addition, $L_{k + 1} \subseteq D$.
+			
+			As a result, by strong induction, for all $n > 0$, $L_n \subseteq D$. And $L = \bigcup_{n = 0}^{\infty}L_n \subseteq D$.
+\end{enumerate}
+\end{solution}
+
+\end{document}

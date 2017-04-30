@@ -1,0 +1,150 @@
+\documentclass[11pt]{article}
+\input{../../packages.tex}
+\usepackage{enumerate}
+\pagestyle{fancy}
+\fancyhead[L]{Math444}
+\fancyhead[C]{HW5}
+\fancyhead[R]{Lanxiao Bai}
+\newcommand{\qed}{\begin{flushright}
+					$\blacksquare$
+				  \end{flushright}}
+\begin{document}
+	\paragraph{3.3.2}
+		\textbf{Lemma 1:} $(x_n)$ is bounded by $1$.
+		
+		\textbf{Proof:} Base case: When $n = 1$, $1 < x_1$ is given.
+		
+		Inductive hypothesis: Suppose when $n = k$, $1 < x_k$ is true.
+		
+		Inductive step: Then when $n = k + 1$, $x_{k + 1} = 2 - 1 / x_k$. By inductive hypothesis, we know that $x_k > 1 \Rightarrow 1/x_k < 1 \Rightarrow -1/x_k > -1$. As a result, $x_{k + 1} = 2 - 1/x_k < 2 - 1 = 1$.
+		
+		Hence, by mathematical induction, we have $x_n > 1$ for all $n \in \mathbb{N}$. As a result, $(x_n)$ is bounded by $1$.
+		\qed
+		
+		\textbf{Lemma 2:} $(x_n)$ is monotone, moreover, it is decreasing.
+		
+		\textbf{Proof:}
+			Base case: When $n = 1$, $x_2 = 2 - 1/x_1$, so $x2 - x1 = (2 - 1/x_1 - x_1) = 1 - (1 / x_1 + x_1) = 2 - ((1 + x_1^2) / x_1)$. By AGM inequality, we know that $1 + x_1^2 \geq 2\sqrt{x_1^2 \cdot 1} = 2x_1 \Rightarrow (1 + x_1^2) / 2x_1 \geq 2$. Since $x_1 > 1$, $(1 + x_1^2) / 2x_1 > 2$. As a result, $x_2 - x_1 \leq 0 \Rightarrow x_1 > x_2$.
+			
+			Inductive hypothesis: Suppose that when $n = k$, $x_{k + 1} > x_{k}$.
+			
+			Inductive step: Then when $n = k + 1$, $x_{k + 2} = 2 - 1/x_{k + 1}$. Then $x_{k + 2} - x_{k + 1} = 2 - (1 + 1/x_{k + 1})$. By AGM inequality, we have $1 + x^2_{n + 1} \geq 2\sqrt{x_{k + 1}} \Rightarrow (1 + x^2_{n + 1}) / \sqrt{x_{k + 1}} \geq 2$. Since $1 < x_n$ for all $n \in \mathbb{N}$. We have that $(1 + x^2_{n + 1}) / \sqrt{x_{k + 1}} > 2$. As a result, $x_{k + 2} - x_{k + 1} < 0$, so $x_{k + 1} > x_{k + 2}$.
+			
+			So we conclude that $x_{n + 1} < x_n$ for all $n \in \mathbb{N}$, which means $(x_n)$ is decreasing.\qed
+			
+			\textbf{Lemma 3:} $\inf(x_n) = 1$.
+			
+			\textbf{Proof:} First of all, since $(x_n)$ is bounded by $1$ below, then by Completeness Axiom, $\inf(x_n)$ exists. 
+			
+			Suppose $\inf(x_n) \neq 1$, then suppose $u = \inf(x_n)$. By definition, we know $u > 1$ and for all $n \in \mathbb{N}$, $u < x_n$. Then for all $\varepsilon > 0$, there is a $N \in \mathbb{N}$, that when $n \geq N$, $x_n < u + \varepsilon \Rightarrow x_n - \varepsilon < u$.
+			
+			Then take $0 < \varepsilon < x_n - 1$, and $\varepsilon = x_n - x_k$ for some $k > n$. We have $x_n + \varepsilon = x_k \in (x_n)$, so $x_k < 1$. But by assumption, we know that $x_k = x_n - \varepsilon < u$, which contradicts with our corollary of assumption.
+			
+			Hence, $\inf(x_n) = 1$.
+			\qed
+			
+			\textbf{Claim:} $\lim_{x \rightarrow \infty} (x_n) = 1$.
+			
+			\textbf{Proof:} By lemma 1, 2, 3 and Monotone Convergence Theorem, $\lim_{x \rightarrow \infty} (x_n) = \inf(x_n) = 1$.
+			\qed 
+	\paragraph{3.3.3}
+		\textbf{Lemma 1:} $(x_n)$ is bounded by $2$.
+		
+		\textbf{Proof:} Base case: When $n = 1, x_1 \geq 2$ is given.
+		
+		Inductive Hypothesis: When $n = k,$ suppose $x_k \geq 2$.
+		
+		Inductive step: Then when $n = k + 1$, $x_{k + 1} = \sqrt{x_k - 1}$. Since $x_k \geq 2$ by hypothesis, $x_k - 1 \geq 1 \Rightarrow \sqrt{x_k - 1} \geq 1 \Rightarrow x_{k + 1} \geq 1 + \sqrt{x_k - 1} \geq 2$.
+		
+		Hence, by mathematical induction, we have $x_n \geq 2$ for all $n \in \mathbb{N}$. As a result, $(x_n)$ is bounded by $2$.
+		\qed
+		
+		\textbf{Lemma 2:} $(x_n)$ is decreasing.
+		
+		\textbf{Proof:} Base case: When $n = 1$, by definition, $x_2 = 1 + \sqrt{x_1 + 1}$, so $x_1 - x_2 = x_1 - (1 + \sqrt{x_1 + 1}) = (x_1 - 1) - \sqrt{x_1 - 1}$. Since $x_1 \geq 2 \Rightarrow x_1 - 1\geq 1 \Rightarrow x_1 - 1 \geq \sqrt{x_1 - 1} \Rightarrow x_1 - x_2 = (x_1 - 1) - \sqrt{x_1 - 1} \leq 0 \Rightarrow x_1 > x_2$.
+		
+		Inductive Hypothesis: When $x = k$, $x_{k + 1} < x_k$.
+		
+		Inductive step: When $x = k + 1$, $x_{k + 2} = 1 + \sqrt{x_{k + 1} - 1}$, so $x_{k + 1} - x_{k + 2} = (x_{k + 1} - 1) - \sqrt{x_{k + 1} - 1}$. Since $x_{k + 1} \geq 2$ by lemma 1, $x_{k + 1} - 1 \geq 1 \Rightarrow x_{k + 1} - 1 \geq \sqrt{x_{k + 1} - 1} \Rightarrow x_{k + 1} - 1 - \sqrt{x_{k + 1} - 1} \geq 0 \Rightarrow x_{k + 1} \geq x_{k + 2}$.
+		
+		Hence, by mathematical induction, we have $x_{n + 1} > x_n$ for all $n \in \mathbb{N}$.
+		\qed
+		
+		\textbf{Lemma 3:} $\inf(x_n) = 2$.
+		
+		\textbf{Proof:} First of all, since $(x_n)$ is bounded by $2$ below, then by Completeness Axiom, $\inf(x_n)$ exists.
+		
+		Suppose $\inf(x_n) \neq 2$, suppose $u = \inf(x_n)$, so by definition, $u > 2$, for all $n \in \mathbb{N}, u \leq x_n$. Then for all $\varepsilon > 0$, there is a $N \in \mathbb{N}$ that when $n \geq N, x_n < u + \varepsilon \Rightarrow x_n - \varepsilon < u$.
+		
+		However, we can choose $\varepsilon$ that $x_k = x_n - \varepsilon \geq 2$ so that $x_k \in (x_n)$ and $x_k < u$ which contradicts with our assumption.
+		
+		As a result, $\inf(x_n) = 2$.
+		\qed
+		
+		\textbf{Claim:} $\lim_{x \rightarrow \infty} (x_n) = 2$.
+		By lemma 1, 2, 3 and Monotone Convergence Theorem, $\lim_{x \rightarrow \infty} (x_n) = \inf(x_n) = 2$.
+			\qed 
+		
+		
+	\paragraph{3.3.8}\textbf{Proof:}
+		Since $a_n \leq b_n$ for all $n \in \mathbb{N}$, we have $a_1 \leq a_2 \leq a_3 \leq \cdots \leq a_n \leq b_n \leq b_{n - 1} \leq \cdots \leq b_2 \leq b_1$. Hence, for all $n \in \mathbb{N}$, $b_n$ is an upper bound of $(a_n)$. Since $(a_n), (b_n)$ are bounded, $\lim a_n, \lim b_n$ exist.
+		
+		Suppose $\lim (b_n)$ is not an upper bound of $(a_n)$, then there is a $N_1$ that when $n \geq N$, $a_n \geq \lim (b_n)$. However, by Monotone Convergence Theorem, $\lim (b_n) = \inf(b_n)$, , there is $N_2$ that when $n \geq N_2$, $b_n \leq \lim (b_n) + \varepsilon$ for all $\varepsilon \geq 0$.
+		
+		Then let $n \geq \max\{N_1, N_2\}$, we have $a_n \leq b_n$ which contradicts with the condition given.
+		
+		Hence, $\lim (b_n)$ is an upper bound of $(a_n)$. Then by definition of supremum, $\sup(a_n) = \lim (a_n) \leq \lim (b_n)$.
+		\qed
+	\paragraph{3.4.2}
+		Since $0 < c < 1$, note that if $z_n = c^{1/n}$, then $0 < z_n < 1$ and $z_{n + 1} > z_n$, so by Monotone Convergence Theorem, $z = \lim z_n$ exists. As a result, $z = \lim z_{2n}$.
+		
+		Since $z_{2n} = c^{1/2n} = (c^{1/n})^{1/2} = z^{1/2}$, we have that $z = \lim (z_{2n}) = z^{1/2} = z$. Therefore we conclude that $z = 1$ since $0 < z_n < 1$ and $z_n$ is increasing.
+		
+		Hence, if $0 < c < 1$, $\lim c^{1/n} = 1$.
+		\qed
+	\paragraph{3.4.4}
+		\begin{enumerate}[(a)]
+			\item \textbf{Proof:}
+				Let $x_n = 1 - (-1)^n + 1/n$.
+			
+				If we take $b_n = 2n + 1$, $(x_{b_n}) = 2 + 1/n$ and $\lim (x_{b_n}) = \lim 2  + \lim 1/n = 2$.
+				
+				However, if we take $b_n = 2n$, subsequence $(x_{b_n}) = 1/n$ which converges to $0$.
+				
+				Hence, we conclude that $(x_n)$ is divergent.
+				\qed
+				 
+			\item \textbf{Proof:}
+				Let $x_n = \sin n\pi / 4$, $x_n$.
+				
+				If we take $b_n = 8n$, then $(x_{b_n}) = \sin 2n\pi$ which converges to $0$.
+				
+				If we take $b_n = 4n$, then subsequence $(x_{b_n}) = \sin n\pi$ does not converge.
+				
+				Hence, we conclude that $(x_n)$ is divergent.
+				\qed
+		\end{enumerate}
+	\paragraph{3.4.9}
+		\textbf{Proof:} Suppose $\lim X \neq 0$, let $b_n = n$, the subsequence $X$ of $X$ does not converges to $0$. As a result, all its subsequences do not converge to $0$, which violates the condition given.
+		
+		Hence, $\lim X = 0$.
+		\qed 
+	\paragraph{3.4.11}
+		\textbf{Proof:} 
+		
+		Since $\lim ((-1)^n x_n)$ exists, take $b_n = 2n$, then $\lim x_{b_n}$, and if we take $b'_n = 2n + 1$, then $\lim -x_{b'_n} = -\lim x_{b_n}$ exists and $\lim x_{b_n} = -\lim x_{b'_n} = \lim ((-1)^n x_n)$, so $\lim x_{b'_n} = -\lim ((-1)^n x_n) = \lim ((-1)^(n + 1) x_n) = \lim x_{b_n} = z$.
+		
+		Then by definition, for all $\varepsilon > 0$, there is $N_1$ that when $n \geq N_1$, $|x_{2n} - z| < \varepsilon$ and there is $N_2$ that when $n \geq N_2$, $|x_{2n + 1} - z| < \varepsilon$. Hence, when $n \geq \max\{N_1, N_2\}$, $|x_n - z| < \varepsilon$.
+		
+		As a result, $(x_n)$ converges.
+	\paragraph{3.4.14} \textbf{Proof:}
+		Suppose there is no increasing subsequence in $(x_n)$, then there is a $n_0 \in \mathbb{N}$ that $x_{n_0} \geq x_n$ for all $n \in \mathbb{N}$. By definition, $x_{n_0}$ is an upper bound of $(x_n)$. Suppose it is not the supremum, then there is $v \in (x_n)$ that $v < x_{n_0}$ which contradicts with our corollary. As a result $s = x_{n_0} \in (x_n)$.
+		
+		Hence, there is at least an increasing subsequence in $(x_n)$. And since $(x_n)$ is bounded, this subsequence is also bounded. By Monotone Convergence Theorem, this increasing subsequence converges to $s$.
+		\qed 
+	\paragraph{3.5.5} \textbf{Proof:}
+		Since $x_n = \sqrt{n}$, $\lim |x_{n + 1} - x_n| = \lim (\sqrt{n + 1} - \sqrt{n}) = \lim (\sqrt{n + 1} - \sqrt{n})(\sqrt{n + 1} + \sqrt{n})/(\sqrt{n + 1} + \sqrt{n}) = \lim 1/(\sqrt{n + 1} + \sqrt{n}) = 0$. 
+		
+		However, by Archimedean Property, $(x_n)$ is unbounded, so that $(x_n)$ does not converge, so it is not a Cauchy sequence.
+		\qed
+\end{document}

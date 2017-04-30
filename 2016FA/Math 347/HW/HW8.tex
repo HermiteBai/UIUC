@@ -1,0 +1,50 @@
+\documentclass[11pt]{article}
+\input{../../packages.tex}
+\pagestyle{fancy}
+\fancyhead[L]{Math 347}
+\fancyhead[C]{HW8}
+\fancyhead[R]{Lanxiao Bai(lbai5)}
+\begin{document}
+	\paragraph{1}
+		\subparagraph{(a)}
+			\textbf{Claim:} If $d | a$ and $d | b$ then $d | ax + by$ for all $x, y \in \mathbb{Z}$.
+			
+			\textbf{Proof:} $d | a \Rightarrow \exists k_1 \in \mathbb{Z}, a = k_1d, d | b \Rightarrow \exists k_2 \in \mathbb{Z}, b = k_2d, ax + by = k_1xd + k_2yd = (k_1x+ k_2y)d$ with $k_1x+ k_2y$ for all $x, y \in \mathbb{Z}$, so $d | ax + by$ for all $x, y \in \mathbb{Z}$.$\blacksquare$ 
+		\subparagraph{(b)}
+			\textbf{Claim:}If $a | b$ and $c | d$, then $ac | bd$.
+			
+			\textbf{Proof:} $a | b \Rightarrow \exists k_1 \in \mathbb{Z}, b = k_1a, c | d \Rightarrow \exists k_2 \in \mathbb{Z}, c = k_2d$, then $bd = k_1ak_2d = k_1k_2ad$ with $k_1k_2 \in \mathbb{Z}$ by closure. So if $a | b$ and $c | d$, then $ac | bd$.$\blacksquare$
+		\subparagraph{(c)}
+			\textbf{Claim:} If $a | b$ and $c | d$, then $(a + c) | (b + d)$.
+				
+			\textbf{Proof:} $a | b \Rightarrow \exists k_1 \in \mathbb{Z}, b = k_1a, c | d \Rightarrow \exists k_2 \in \mathbb{Z}, c = k_2d$, then $b + d = (k_1 + k_2)d$ with $k_1 + k_2 \in \mathbb{Z}$.
+	\paragraph{2}
+		\subparagraph{(a)}
+			\textbf{Claim:} If $a \equiv b \mod m$ and $c \equiv d \mod m$, then $ac \equiv bd \mod m$.
+			
+			\textbf{Proof:} $a \equiv b \mod m \Rightarrow \exists k_1 \in \mathbb{Z}, (a - b) = k_1m, c \equiv d \mod m \Rightarrow \exists k_2 \in \mathbb{Z}, (c - d) = k_2m$, $ac - bd = (b + k_1m)(d + k_2m) - bd = bd + k_1md + k_2mb + k_1k_2m^2 - bd = k_1md + k_2mb + k_1k_2m^2 = m(k_1d + k_2b + k_1k_2m)$.
+			
+			Thus, $ac \equiv bd \mod m.\blacksquare$
+		\subparagraph{(b)}
+			\textbf{Claim:} If $a \equiv b \mod m$, then for any $k \in \mathbb{N}$, $a^k \equiv b^k \mod m$.
+			
+			\textbf{Proof:} Base case, let $c = a, d = b$, we have statement to be true when $k = 2$.
+			
+			Suppose, the statement is true when $k = n$, $a^n \equiv b^n \mod m$. Then when $k = n + 1$, let $a = b + tm$, $a^{n + 1} - b^{n + 1} = (b + tm)^{n + 1} - b^{n + 1} = \sum_{i = 0}^{n + 1}\binom{n + 1}{i} b^{n + 1 - i}y^i - b^{n + 1}$, which is a multiple of $m$, so $m | (a^{n + 1} - b^{n + 1}) \Rightarrow a^{n + 1} \equiv b^{n + 1} \mod m$.
+			
+			As a result, if $a \equiv b \mod m$ and $c \equiv d \mod m$, then $ac \equiv bd \mod m$.$\blacksquare$
+	\paragraph{3}
+		\subparagraph{(a)}
+			Since $347 \equiv 7 \mod 10 \Rightarrow 347^4 \equiv 1 \mod 10 \Rightarrow 347^{100} \equiv 1 \mod 10 \Rightarrow 347^{101} \equiv 7 \mod 10$, so the last decimal digit is $7$.
+		\subparagraph{(b)}
+			According to Fermat's Little Theorem, $347^{101} \equiv 347 \mod 101 = 44$ since $101$ is a prime.
+		\subparagraph{(c)}
+			According to Fermat's Little Theorem, $2^{13} \equiv 2 \mod 13$, then $2^{100} \equiv 2^{12 \cdot 8 + 4} \equiv (2^12)^8 \cdot 2^4 = 3 \mod 13$.
+		\subparagraph{(d)}
+		\subparagraph{(i)}
+			Since $9 = 11_{8}$, $11^2 = 121, 11^3 = 1331 \cdots$, so $9^{1000} = (11_8)^{1000}$ ends with 1.
+		\subparagraph{(ii)}
+			Since $10 = 12_8$, $12^2 = 144, 12^3 = 1750 \cdots$, $10^1{000}$ ends with 0.
+		\subparagraph{(iii)}
+			Since $11 = 13_8$, then $13 = 13$, $13^2 = 171 \cdots$, so $11^{1000}$ ends with 1.
+\end{document}

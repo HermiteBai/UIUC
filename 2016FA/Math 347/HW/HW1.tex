@@ -1,0 +1,94 @@
+\documentclass[11pt]{report}
+\title{HW1}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{tocloft}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage[bookmarks=true]{hyperref}
+\usepackage{fancyhdr}
+
+\newtheorem{definition}{Definition}[subsection]
+\newtheorem{theorem}{Theorem}[subsection]
+\newtheorem{proposition}{Proposition}[subsection]
+\newtheorem{lemma}{Lemma}[subsection]
+\newtheorem{corollary}{Corollary}[subsection]
+
+\pagestyle{fancy}
+\fancyhead[L]{Math 347}
+\fancyhead[C]{HW1}
+\fancyhead[R]{Lanxiao Bai(lbai5)}
+
+\begin{document}
+
+\paragraph{1.7}\textbf{Solution:} If $x = \frac{2}{3}, y = \frac{1}{2}$, we have $x > y$, but $(-1/x) < (-1/y)$.\\
+
+\textbf{Hypothesis:} $\forall x, y \in \mathbb{R}$, if $|x|, |y| \geq 1$ and $x > y$, $then (-1/x) > (-1/y)$.
+
+\paragraph{1.13}\textbf{Proof:}
+    $\forall x \in A, x = 2k - 1 = 2(k-1) + 1 \in B \Rightarrow A \subseteq B$, $\forall x \in B, x = 2k + 1 = 2(k + 1) - 1 \in A \Rightarrow B \subseteq A$.
+    
+    As a result, $A = B$.
+\paragraph{1.32}\textbf{Proof:} $\forall x \in \{x \in \mathbb{R} | x^2-2x-3 < 0\}, x^2 - 2x -3 < 0 \Rightarrow (x-3)(x+1) < 0 \Rightarrow -1 < x < 3 \Rightarrow \{x \in \mathbb{R} | -1 < x < 3\}$, so $\{x \in \mathbb{R} | x^2-2x-3 < 0\} \subseteq  \{x \in \mathbb{R} | -1 < x < 3\}$. 
+
+Similarly, $\forall x \in \{x \in \mathbb{R} | -1 < x < 3\}, -1 < x < 3 \Rightarrow  -4 < x-3 < 0$ and $0 < x+1 < 4 \Rightarrow (x-3)(x+1) > 0, x \in \{x \in \mathbb{R} | x^2-2x-3 < 0\}$, so $\{x \in \mathbb{R} | x^2-2x-3 < 0\} \supseteq  \{x \in \mathbb{R} | -1 < x < 3\}$.
+
+Thus, $\{x \in \mathbb{R} | x^2-2x-3 < 0\} = \{x \in \mathbb{R} | -1 < x < 3\}$.
+\paragraph{1.36}\textbf{Proof:} $\forall x,y \in S, 1 \leq x \leq 3, 1 \leq y \leq 3 \Rightarrow 0 \leq 3x+y-4 \leq 8 \Rightarrow x \in T$, so $S \subseteq T$.
+
+$\forall x,y \in T, 0 \leq 3x + y - 4 \leq 8 \Rightarrow 4 \leq 3x + y \leq 12, x, y \in \mathbb{Z}$, $(0, 4) \in T$ but $\notin S$, so $S \neq T$. 
+
+\paragraph{1.47}\textbf{Solution:}
+    \subparagraph{(a)}Since $a, b \in \mathbb{N}$, if $a$ is odd, $(a+1)(a+2b) = (2k+1+1)(a+2b) = 2(k+1)(a+2b)$ is even and $f \in \mathbb{N}$. If $a$ is even, $a + 2b = 2k + 2b = 2(k+b)$ is even and $f \in \mathbb{N}$.
+    
+Thus, $\forall a, b \in \mathbb{N}, f(a,b) \in \mathbb{N}$.
+
+    \subparagraph{(b)} If $a = 1$, $f(a,b) = 2b + 1, b \in \mathbb{N}$. If $a = 2$, $(a+2b)/2 = b+1, b \in \mathbb{N} \Rightarrow (a+2b)/2 \geq 2 \Rightarrow f(a, b) \geq 6$ and $f$ is even. Similarly, if $a = 3$, $f(a, b) = 2(3+2b) = 4(b+1) + 2 \geq 10$. We can conclude that the image of $f$ is $\mathbb{N} - \{1, 2, 4\}$.
+\paragraph{1.50}
+    \subparagraph{(a)} \textbf{Proof:} Given that $C, D \subseteq domain$, $C \cap D \subseteq domain$, $\forall x \in C \cap D$, $x \in C$ or $x \in D$ is true. When $x \in C$, $f(x) \subseteq C$ and when $x \in D$, $f(x) \subseteq D$, so $f(x) \subseteq C \cap D$.
+
+Thus, $f(C \cap D) \subseteq f(C) \cap f(D)$.
+
+
+    \subparagraph{(b)} \textbf{Solution: } If $C \cap D = \emptyset$, but $f(C) \cap f(D) \neq \emptyset$, the equality does not holds. For example, if $C = \{2\}, D = \{-2\}, f(x) = x^2$, $f(C \cap D) = \emptyset$ but $f(C) \cap f(D) = \{4\}$.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

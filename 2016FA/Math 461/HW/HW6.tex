@@ -1,0 +1,88 @@
+\documentclass[11pt]{article}
+\input{../../packages.tex}
+\pagestyle{fancy}
+\fancyhead[L]{Math 461}
+\fancyhead[C]{HW 6}
+\fancyhead[R]{Lanxiao Bai(lbai5)}
+\begin{document}
+	\paragraph{4.38}\textbf{Solution:}
+			Since $\mathrm{Var}(X) = E[X^2] - E[X]^2 = 5$ and $E[X] = 1$ we have $E[X^2] = 6$.
+			\subparagraph{(a)}
+				\[E[(2 + X)^2] = E[X^2 + 4X + 4] = E[X^2] + 4E[X] + 4 = 6 + 4 + 4 = 14\]
+				
+			\subparagraph{(b)}
+				\[\mathrm{Var}(4 + 3X) = 9\mathrm{Var}(X) = 45\]
+	\paragraph{4.40}\textbf{Solution:}
+		\[P(>4) = \binom{5}{4}(\frac{1}{3})^4(\frac{2}{3}) + \binom{5}{5}(\frac{1}{3})^5 =  11/243\]
+	\paragraph{4.42}\textbf{Solution:}
+		\subparagraph{(a)}
+			\[E[\mathrm{A\ and\ B}] = 10 \cdot 0.7 \cdot 0.4 = 2.8\]
+		\subparagraph{(b)}
+			\[\mathrm{Var}(A\ and\ B) = E[X^2] - (E[X])^2 = 14.84\]
+	\paragraph{4.45}\textbf{Solution:}
+		\[P(3) = \frac{1}{3}[\binom{3}{2}(0.8)^2(0.2)+(0.8)^3] + \frac{2}{3}[\binom{3}{2}(0.4)^2(0.6)+(0.4)^3] = 0.533\]
+		\[P(5) = \frac{1}{3} \sum^5_{i = 3}\binom{5}{i}(0.8)^2(0.2)^{5 - i} + \frac{2}{3}\sum_{i = 3}^5\binom{5}{i}(0.4)^i(0.6)^{5-i} = 0.3038\]
+		
+		So it would be better to have 3 examiners
+	\paragraph{4.48}\textbf{Solution:}
+		\[P(1) = 3\sum^{10}_{i = 2}(0.01)^i(0.99)^{10 - i}(1 - \sum^{10}_{i = 2}(0.01)^i(0.99)^{10 - i})^2\]
+	\paragraph{4.50}\textbf{Solution:}
+		\subparagraph{(a)}
+			\[P(HTT|6H) = \frac{P(HTT)P(6H | HTT)}{P(6H)} = \frac{pq^2\binom{7}{5}p^5q^2}{\binom{10}{6}p^6q^4} = 1/10\]
+		\subparagraph{(b)}
+			\[P(THT|6H) = \frac{P(THT)P(6H | THT)}{P(6H)} = \frac{pq^2\binom{7}{5}p^5q^2}{\binom{10}{6}p^6q^4} = 1/10\]
+	\paragraph{4.55}\textbf{Solution:}
+		\[p(X_A = 0) = e^{-3}\]
+		\[p(X_A = 0) = e^{-4.2}\]
+		Thus, \[P = \frac{1}{2}(e^{-3} + e^{-4.2})\]
+	\paragraph{4.57}\textbf{Solution:}
+		\subparagraph{(a)}
+			\[p(\geq 3) = 1 - \sum_{i = 0}^2 e^{-3}\frac{3^i}{i!} = 1 - \frac{17}{2}e^{-3}\]
+		\subparagraph{(b)}
+			\[p(\geq 3 | \geq 1) = \frac{1 - \frac{17}{2}e^{-3}}{1 - e^{-3}}\]
+	\paragraph{4.59}\textbf{Solution:}
+		Since \[\lambda = np = \frac{1}{2}\]
+		\subparagraph{(a)}
+			\[p(x \geq 1) = 1 - e^{-\frac{1}{2}}\]
+		\subparagraph{(b)}
+			\[p(x = 1) = \frac{1}{2}e^{-1/2}\]
+		\subparagraph{(c)}
+			\[p(x >= 2) = 1 - p(x < 2) = 1 - \frac{3}{2}e^{-1/2}\]
+	\paragraph{4.61}\textbf{Solution:} Since $\lambda = np = 1.4$, \[P = 1 - e^{-1.4} - 1.4e^{-1.4}\]
+	\paragraph{4.63}\textbf{Solution:}
+		People enter at the rate of 1 every 2 minutes means that $P(\mathrm{enter}) = 0.5$, thus $\lambda = np = 2.5$
+		\subparagraph{(a)}
+			\[P(\mathrm{No\ one\ in\ 5\ min}) = e^{-2.5}\]
+		\subparagraph{(b)}
+			\[P(\mathrm{\mathrm{\geq 4}}) = 1 - e^{-2.5} - 2.5e^{-2.5} - \frac{(2.5)^2}{2}e^{-2.5} - \frac{(2.5)^3}{3!}e^{-2.5}\]
+	\paragraph{4.72}\textbf{Solution:}
+		\[P(i) = \binom{i - 1}{3}(0.6)^4(0.4)^{i - 4}\]
+		\begin{align}
+			&\Rightarrow P(4) = 0.1296\nonumber\\
+			&\phantom{\Rightarrow}P(5) = 0.20736\nonumber\\
+			&\phantom{\Rightarrow}P(6) = 0.20736\nonumber\\
+			&\phantom{\Rightarrow}P(7) = 0.16588\nonumber
+		\end{align}
+		So \[P(\mathrm{win}\ 4) = 0.7102\]
+		\[P(2\ \mathrm{in}\ 3) = \binom{3}{2}(0.6)^2(0.4) = 0.432\]
+		
+		 So in the first game, the possibility of victory is higher. 
+	\paragraph{4.73}\textbf{Solution:}
+		\[P(i) = \sum_{i = 4}^7 i \cdot 2\binom{i - 1}{i - 4}(1/2)^4(1/2)^{i - 3} = 5.8125\]
+	\paragraph{4.77}\textbf{Solution:}
+		\[P(\mathrm{Empty} \cap k) = 2\binom{2n - k}{n}(1/2)^{2n - k}\]
+	\paragraph{4.78}\textbf{Solution:}
+		\[P(n) = (1 - \frac{\binom{4}{2}\binom{4}{2}}{\binom{8}{4}})^{n - 1}(\frac{\binom{4}{2}\binom{4}{2}}{\binom{8}{4}})\]
+	\paragraph{4.79}\textbf{Solution:}
+		\subparagraph{(a)}
+			\[P\{X = 0\} = \frac{\binom{6}{0}\binom{94}{10}}{\binom{100}{10}}\]
+		\subparagraph{(b)}
+			\[P\{X > 2\} = \sum_{i = 3}^{6} \frac{\binom{6}{i}\binom{94}{10 - i}}{\binom{100}{10}}\]
+	\paragraph{4.84}\textbf{Solution:}
+		\subparagraph{(a)}
+			\[E[X] = \sum_{i = 1}^5 P(X_i) = \sum_{i = 1}^5 (1 - p_i)^{10}\]
+		\subparagraph{(b)}
+			\[E[X] = \sum_{i = 1}^5 P(X_i) = \sum_{i = 1}^5 10p_i(1 - p_i)^{9}\]
+	\paragraph{4.85}\textbf{Solution:}
+		\[E[X] = \sum_{i = 1}^kP(X) = \sum_{i = 1}^k(1 - (1 - p_i)^n) = k - \sum_{i = 1}^k(1 - p_i)^n\]
+\end{document}

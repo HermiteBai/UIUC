@@ -1,0 +1,261 @@
+%!TEX TS-program = pdflatex
+%!TEX encoding = UTF-8 Unicode
+
+\documentclass[11pt]{article}
+\usepackage{jeffe,handout,graphicx,mathtools}
+\usepackage[utf8x]{inputenc}			% allow Unicode in .tex file
+\usepackage{enumerate}
+\usepackage{fourier-orns}
+
+\def\Cdot{\mathbin{\text{\normalfont \textbullet}}}
+\def\Sym#1{\texttt{\upshape \color{BrickRed} {#1}}}
+\def\Var#1{\ensuremath{\seq{\textsf{#1}}}}
+
+\def\ForceSym#1{\setbox0\hbox{A}\hbox to \wd0{\hss #1\hss}}
+\def\Blank{\ForceSym{$\diamond$}}
+%\def\Enter{\ForceSym{$\dlsh$}}			% Too wide; needs mathabx package
+\def\Enter{\ForceSym{\rotatebox[origin=c]{180}{$\Rsh$}}}	% Better
+
+% =========================================================
+\begin{document}
+
+\headers{CS/ECE 374}{Homework 1 (due February 1)}{Spring 2017}
+
+\thispagestyle{empty}
+
+\begin{center}
+\Large\textbf{CS/ECE 374 \,\decosix\,  Fall 2016}%
+\\
+\LARGE\textbf{\decothreeleft~ Homework 1 ~\decothreeright}%
+\\[0.5ex]
+\large Due Wednesday, February 1, 2017 at 10am
+\end{center}
+
+\bigskip
+\hrule
+\bigskip
+
+\noindent
+\textbf{Starting with this homework, groups of up to three people can submit joint solutions.}  Each problem should be submitted by exactly one person, and the beginning of the homework should clearly state the Gradescope names and email addresses of each group member.  In addition, whoever submits the homework must tell Gradescope who their other group members are.
+\bigskip
+\hrule
+\bigskip
+
+\begin{enumerate}
+\parindent 1.5em \itemsep 3ex plus 0.5fil
+
+%----------------------------------------------------------------------
+%\def\arraystretch{1.2}
+
+%----------------------------------------------------------------------
+
+\item
+For each of the following languages over the alphabet $\set{\Sym0,\Sym1}$, give a regular expression that describes that language, and briefly argue why your expression is correct.
+
+\begin{enumerate}
+\item All strings except \Sym{101}.
+\item All strings that end in \Sym{01} and contain \Sym{000}
+as a substring.
+\item All strings in which every nonempty maximal substring of \Sym{0}s
+  is of odd length. For instance \Sym{1001} is not in the language while
+  \Sym{0100010} is.
+\item All strings that do not contain the substring \Sym{101}.
+\item All strings that do not contain the subsequence \Sym{101}.
+\end{enumerate}
+
+
+
+
+%----------------------------------------------------------------------
+
+\item 
+Let $L$ be the set of all strings in $\set{\Sym0,\Sym1}^*$ that contain at most
+two occurrences of the substring \Sym{100}.
+
+\begin{enumerate}\parindent 1.5em
+\item  Describe a DFA that over the alphabet $\Sigma = \set{\Sym0,\Sym1}$ that accepts the language $L$.  Argue that your machine accepts every string in $L$ and nothing else, by explaining what each state in your DFA \emph{means}.
+
+You may either draw the DFA or describe it formally, but the states $Q$, the start state $s$, the accepting states $A$, and the transition function $\delta$ must be clearly specified.
+
+\item Give a regular expression for $L$, and briefly argue why the expression is correct.
+\end{enumerate}
+
+%----------------------------------------------------------------------
+
+\item Let $L_1, L_2,$ and $L_3$ be regular languages over $\Sigma$
+  accepted by DFAs $M_1 = (Q_1, \Sigma, \delta_1, s_1, A_1)$,
+  $M_2 = (Q_2, \Sigma, \delta_2, s_1, A_2)$, and $M_3 = (Q_3,
+  \Sigma, \delta_3, s_3, A_3)$, respectively.
+
+\begin{enumerate}
+\item Describe a DFA $M = (Q, \Sigma, \delta, s, A)$ in terms of $M_1,
+  M_2,$ and $M_3$ that accepts $L = \{w \mid w$ is in exactly two of
+  $\{L_1, L_2, L_3\}\}.$ Formally specify the components $Q, \delta,
+  s,$ and $A$ for $M$ in terms of the components of $M_1, M_2,$ and
+  $M_3$.
+\item Prove by induction that your construction is correct.
+\end{enumerate}
+
+%----------------------------------------------------------------------
+
+\end{enumerate}
+\newpage
+\subsection*{Solved problem}
+
+\begin{enumerate}
+\item[4.]
+\EMPH{C comments} are the set of strings over alphabet $\Sigma = \Set{\Sym{*}, \Sym{/}, \Sym{A}, \Sym{\Blank}, \Sym{\Enter} }$ that form a proper comment in the C program language and its descendants, like C++ and Java.  Here~$\Sym{\Enter}$ represents the newline character, $\Sym{\Blank}$ represents any other whitespace character (like the space and tab characters), and \Sym{A} represents any non-whitespace character other than~$\Sym{*}$~or~$\Sym{/}$.\footnotemark\
+There are two types of C comments:
+\begin{itemize}
+\item Line comments:  Strings of the form $\Sym{//} \cdots \Sym{\Enter}$\,.
+\item Block comments:  Strings of the form $\Sym{/*} \cdots \Sym{*/}$.
+\end{itemize}
+%
+Following the C99 standard, we explicitly disallow \EMPH{nesting}
+comments of the same type.  A~line comment starts with $\Sym{//}$ and
+ends at the first $\Sym{\Enter}$ after the opening $\Sym{//}$.  A
+block comment starts with $\Sym{/*}$ and ends at the the first
+$\Sym{*/}$ completely after the opening $\Sym{/*}$; in particular,
+every block comment has at least two $\Sym*$s.  For example, each of
+the following strings is a valid C comment:
+\begin{itemize}\itemsep0pt
+\item $\Sym{/***/}$
+\item $\Sym{//\Sym{\Blank}//\Sym{\Blank}\Enter}$
+\item $\Sym{/*///\Sym{\Blank}*\Sym{\Blank}\Enter**/}$ 
+\item $\Sym{/*\Sym{\Blank}//\Sym{\Blank}\Enter\Sym{\Blank}*/}$ 
+\end{itemize}
+On the other hand, \emph{none} of the following strings is a valid C comments: 
+\begin{itemize}\itemsep0pt
+\item \Sym{/*/}
+\item $\Sym{//\Sym{\Blank}//\Sym{\Blank}\Enter\Sym{\Blank}\Enter}$
+\item $\Sym{/*\Sym{\Blank}/*\Sym{\Blank}*/\Sym{\Blank}*/}$ 
+\end{itemize}
+\begin{enumerate}
+\item 
+Describe a DFA that accepts the set of all C comments.
+\item
+Describe a DFA that accepts the set of all strings composed entirely of blanks (\Sym{\Blank}), newlines (\Sym{\Enter}), and C comments.
+\end{enumerate}
+\textbf{You must explain \emph{in English} how your DFAs work.} Drawings or formal descriptions without English explanations will receive no credit, even if they are correct.
+
+% ======
+\footnotetext{The actual C commenting syntax is considerably more complex than described here, because of character and string literals.
+%
+\begin{itemize}\cramped
+\item
+The opening \Sym{/*} or \Sym{//} of a comment must not be inside a string literal ($\Sym{“}\cdots\Sym{“}$) or a (multi-)character literal ($\Sym{'}\cdots\Sym{'}$).
+\item
+The opening double-quote of a string literal must not be inside a character literal (\Sym{'"'}) or a comment.
+\item
+The closing double-quote of a string literal must not be escaped (\Sym{\textbackslash"})
+\item
+The opening single-quote of a character literal must not be inside a string literal ($\Sym{"}\cdots\Sym{'}\cdots\Sym{"}$) or a comment.
+\item
+The closing single-quote of a character literal must not be escaped (\Sym{\textbackslash'})
+\item
+A backslash escapes the next symbol if and only if it is not itself escaped (\Sym{\textbackslash\textbackslash}) or inside a comment.
+\end{itemize}
+%
+For example, the string $\Sym{"/*\textbackslash\textbackslash\textbackslash"*/"/*"/*\textbackslash"/*"*/}$ is a valid string literal (representing the 5-character string \Sym{/*\textbackslash"\textbackslash*/}, which is itself a valid block comment!\@) followed immediately by a valid block comment.  \EMPH{For this homework question, just pretend that the characters \Sym{'}, \Sym{"}, and \Sym{\textbackslash} don't exist.}
+
+Commenting in C+\!+ is even more complicated, thanks to the addition of \emph{raw} string literals.  Don't ask.
+
+Some C and C+\!+ compilers do support nested block comments, in violation of the language specification.  A few other languages, like OCaml, explicitly allow nesting block comments.}
+% ======
+
+\newpage
+\begin{solution}~
+\begin{enumerate}[(a)]
+\item
+The following eight-state DFA recognizes the language of C comments.  All missing transitions lead to a hidden reject state.
+\begin{center}
+\includegraphics[scale=0.5]{Fig/one-C-comment}
+\end{center}
+The states are labeled mnemonically as follows:
+\begin{itemize}
+\item $s$ — We have not read anything.
+\item / — We just read the initial \Sym/.
+\item // — We are reading a line comment.
+\item $L$ — We have read a complete line comment.
+\item /* — We are reading a block comment, and we did not just read a \Sym* after the opening \Sym{/*}. 
+\item /** — We are reading a block comment, and we just read a \Sym* after the opening \Sym{/*}. 
+\item $B$ — We have read a complete block comment. 
+\end{itemize}
+
+\bigskip\bigskip
+\item
+By merging the accepting states of the previous DFA with the start state and adding white-space transitions at the start state, we obtain the following six-state DFA.  Again, all missing transitions lead to a hidden reject state.
+\begin{center}
+\includegraphics[scale=0.5]{Fig/many-C-comments}
+\end{center}
+The states are labeled mnemonically as follows:
+\begin{itemize}
+\item $s$ — We are between comments.
+\item / — We just read the initial \Sym/ of a comment.
+\item // — We are reading a line comment.
+\item /* — We are reading a block comment, and we did not just read a \Sym* after the opening \Sym{/*}. 
+\item /** — We are reading a block comment, and we just read a \Sym* after the opening \Sym{/*}. 
+\end{itemize}
+\end{enumerate}
+\end{solution}
+
+\begin{rubric}
+10 points = 5 for each part, using the standard DFA design rubric (scaled)
+\end{rubric}
+
+
+\vfil
+
+\begin{rubric}[DFA design]
+For problems worth 10 points:
+\begin{itemize}
+\item
+2 points for an unambiguous description of a DFA, including the states set $Q$, the start state $s$, the accepting states $A$, and the transition function $\delta$.
+\begin{itemize}
+\item 
+\textbf{For drawings:} Use an arrow from nowhere to indicate $s$, and doubled circles to indicate accepting states $A$.  If $A=\varnothing$, say so explicitly.  If your drawing omits a reject state, say so explicitly.  \textbf{Draw neatly!}  If we can't read your solution, we can't give you credit for it,.
+
+\item
+\textbf{For text descriptions:} You can describe the transition function either using a 2d array, using mathematical notation, or using an algorithm.
+
+\item
+\textbf{For product constructions:} You must give a complete description of the states and transition functions of the DFAs you are combining (as either drawings or text), together with the accepting states of the product DFA.
+
+\end{itemize}
+
+\item
+\textbf{Homework only:}
+4 points for \emph{briefly} and correctly explaining the purpose of each state \emph{in English}.  This is how you justify that your DFA is correct.
+\begin{itemize}
+\item 
+For product constructions, explaining the states in the factor DFAs is enough.
+\item
+\textcolor{Red}{\textbf{Deadly Sin:}} (“Declare your variables.”) No credit for the problem if the English description is missing, \emph{even if the DFA is correct}.
+\end{itemize}
+
+
+\item 
+4 points for correctness.  (8 points on exams, with all penalties doubled)
+\begin{itemize}\itemsep0pt
+\item $-1$ for a single mistake: a single misdirected transition, a single missing or extra accept state, rejecting exactly one string that should be accepted, or accepting exactly one string that should be accepted. 
+\item
+$-2$ for incorrectly accepting/rejecting more than one but a finite number of strings.
+\item
+$-4$ for incorrectly accepting/rejecting an infinite number of strings.
+\end{itemize}
+
+\item 
+DFA drawings with too many states may be penalized.  DFA drawings with \emph{significantly} too many states may get no credit at all.
+
+\item 
+Half credit for describing an NFA when the problem asks for a DFA.
+\end{itemize}
+\end{rubric}
+
+
+%----------------------------------------------------------------------
+
+\end{enumerate}
+
+
+\end{document}

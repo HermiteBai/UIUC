@@ -1,0 +1,50 @@
+\documentclass[11pt]{article}
+\input{../../packages.tex}
+\usepackage{enumerate}   
+\pagestyle{fancy}
+\fancyhead[L]{Math 444}
+\fancyhead[C]{HW3}
+\fancyhead[R]{Lanxiao Bai}
+\begin{document}
+	\paragraph{2.4.2}\textbf{Solution:}
+		\subparagraph{Claim:}$\sup S = 1$ and $\inf S = -1$.
+		\subparagraph{Proof:}
+			Since $n, m\in \mathbb{N}$, $n \geq 1, m \geq 1 \Rightarrow 0 < 1 / n \leq 1$ and $0 < 1 / m \leq 1 \Rightarrow -1 \leq -1/m < 0$, thus for all $n, m \in \mathbb{N}$, we have $-1 < 1/n - 1/m < 1$. As a result, $1$ is a upper bound of $S$ and $-1$ is a lower bound of $S$.
+			
+			Suppose $1$ is not the supremum, then exists $s$ that for all $x \in S$ that $x \leq s < 1$. Let $s = 1 - s'$ where $s' > 0$. Then when $n = 1$, $\forall s' > 0$, we can always find $m$ that $0 < 1/m < s'$, so there exists $n, m$ that make $x > s$, which means $s$ is not an upper bound at all. As a result, $\sup S = 1$.
+			
+			Similarly, suppose $-1$ is not the infimum, then exists $i$ that for all $x \in S$ that $-1 < i \leq x$. Let $s = -1 + s' = s' - 1$, where $s' > 0$. When $m = 1$, $\forall s' > 0$ we can always find $0 < 1/n < s'$ that make $x < i$. So $i$ is not a lower bound.  As a result, $\inf S = -1$.
+			
+			In conclusion, $\sup S = 1$ and $\inf S = -1$.$\blacksquare$
+	\paragraph{2.4.3}\textbf{Proof:}
+		Suppose $u$ is not an upper bound, then there is $x \in S$ that $x > u$, so $x - u > 0$. Hence, there is $n_0 \in \mathbb{N}$ that $0 < 1 / n_0 < x - u \Rightarrow x > u + 1 / n_0$, which contradicts with the condition given. Thus, $u$ is an upper bound of $S$, namely $\forall x \in S, x \leq u$.
+		
+		Suppose $u$ is not the supremum, then there is $x \leq v < u$ for all $x \in S$. Then $\forall n \in \mathbb{N}$, there is $x \in S$ that $v - 1/n < x - 1/n \leq u - 1/n < x$. Since for all $n \in \mathbb{N}$, $u - 1/n$ is not an upper bound, so $v$ can't be an upper bound.
+		
+		As a result, $u = \sup S$.$\blacksquare$
+	\paragraph{2.4.9}\textbf{Solution:}
+		\begin{enumerate}[(a)]
+			\item $\sup \{h(x,y): y \in Y\} = 2x + 1$ and $\inf\{f(x) : x \in X\} = 1$.
+			\item $\inf \{h(x,y): x \in X\} = 2x$ and $\sup\{g(y): y \in Y\} = 2$.
+		\end{enumerate}
+	\paragraph{2.4.10}\textbf{Solution:}
+		\begin{enumerate}[(a)]
+			\item $\sup \{h(x,y): y \in Y\} = 1$ and $\inf\{f(x) : x \in X\} = 1$.
+			\item $\inf \{h(x,y): x \in X\} = 0$ and $\sup\{g(y): y \in Y\} = 0$.
+		\end{enumerate}
+	\paragraph{2.5.3}\textbf{Proof:}
+		$\forall x \in S$, we have $\inf S \leq x \leq \sup S \in I_S$, so $S \subseteq I_S$.
+		
+		$\forall x \in I_S$, $\inf S \leq x \leq \sup S$. Since $S \subseteq J$, $J = [a, b]$ in which $a$ is a lower bound of $S$ and $b$ us an upper bound of $S$. So we have $a \leq \inf S \leq x \leq \sup S \leq b$ by Completeness Axiom for all $x \in J$. As a result, $x \in J$ for all $s \in I_S$.
+		
+		As a result, $I_S \subseteq J$.$\blacksquare$ 
+	\paragraph{2.5.7}\textbf{Proof:} Since for all $n \in \mathbb{N}$, $0 \in [0, 1/n]$, so $0 \in \cap_{n = 1}^{\infty}I_n$. Suppose there is a nonzero number $\epsilon \in \cap_{n = 1}^{\infty}I_n$, so that $\forall n \in \mathbb{N}$, $\epsilon \leq 1/n$. Since for all $t > 0$, there is always $n_t$ that $0 \leq 1/n_t < t$, so there is a $n_{\epsilon} < \epsilon$ which contradicts with the assumption. Hence, for all $n \in \mathbb{N}$, $n \notin \cap_{n = 1}^{\infty}I_n$.
+	
+	As a result, $\cap_{n = 1}^{\infty}I_n = \{0\}$.$\blacksquare$
+	\paragraph{2.5.9}\textbf{Proof:}
+		Suppose there is a real number $t \in \cap_{n = 1}^{\infty}K_n$, then 
+		for all $n \in \mathbb{N}$, $t \in K_n \Rightarrow t > n$. But by Archimedean Property, there is an $n_t \in \mathbb{N}$ that $n_t > n$, which contradicts with our assumption's corollary.
+		
+		As a result, for all $x \in \mathbb{R}$, $x \notin \cap_{n = 1}^{\infty}K_n$, so we have $\cap_{n = 1}^{\infty}K_n = \emptyset$.$\blacksquare$
+	
+\end{document}

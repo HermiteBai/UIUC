@@ -1,0 +1,47 @@
+\documentclass[11pt]{article}
+\input{../../packages.tex}
+\pagestyle{fancy}
+\fancyhead[L]{Math 347}
+\fancyhead[C]{HW10}
+\fancyhead[R]{Lanxiao Bai(lbai5)}
+\begin{document}
+	\paragraph{6.8}\textbf{Solution:}
+		\subparagraph{(a)}
+			\begin{align}
+				&224 = 126 + 98\nonumber\\
+				&126 = 98 + 28\nonumber\\
+				&98 = 28 \cdot 3 + 14\nonumber\\
+				&28 = 14 \cdot 2\nonumber
+			\end{align}
+			
+			Thus, $gcd(224, 126) = 14$ and $14 = 98 - 28 \cdot 3 = 4\cdot 98 - 3 \cdot 126 = 4\cdot 98 - 3 \cdot 126 = 4 \cdot 224 - 7 \cdot 126$.
+			
+			In conclusion, $gcd(224, 126) = 14 = 4 \cdot 224 - 7 \cdot 126$.
+			
+		\subparagraph{(b)}
+			\begin{align}
+				&299 = 221 + 78\nonumber\\
+				&221 = 2\cdot 78 + 65\nonumber\\
+				&78 = 65 + 13\nonumber\\
+				&65 = 5\cdot 13\nonumber
+			\end{align}
+			
+			Thus, $gcd(299, 221) = 13$ and $13 = 78 - 65 = 78 - (221 - 2\cdot 78) = 3 \cdot 78 - 221 = 3 \cdot (299 - 221) - 221 = 3 \cdot 299 - 4 \cdot 221$.
+			
+			In conclusion, $gcd(299, 221) = 13 = 3 \cdot 299 - 4 \cdot 221$.
+	\paragraph{6.18}\textbf{Solution:}
+	
+		If $gcd(a, b) = 1$, then $gcd(a^2, b^2) = 1$ and $gcd(a, 2b) = 1$(if $a$ is odd) or $2$(if $a$ is even).
+	\paragraph{6.28}\textbf{Solution:}
+		\subparagraph{Claim:} If $gcd(a, b) = 1$ and $a|n, b|n$ then $ab | n$.
+		\subparagraph{Proof:} Since $a|n$, $\exists k\in \mathbb{Z}, n = ak_1$. And since $gcd(a, b) = 1$ and $b|n$, $\exists k_2 \in \mathbb{Z}$, $k_1 = k_2b$. Thus, $n = abk_2$ and as a result, $ab | n$.$\blacksquare$
+	\paragraph{6.29}\textbf{Solution:}
+		\subparagraph{Claim:}$lcm(a, b)gcd(a, b) = ab$.
+		\subparagraph{Proof:} Let $a = k_1gcd(a, b), b = k_2gcd(a, b)$, obviously $gcd(k_1, k_2) = 1$, so $ab = k_1gcd(a, b)k_2gcd(a, b) = k_1k_2gcd(a, b)^2 = lcm(a, b)gcd(a, b)$.$\blacksquare$
+			
+	\paragraph{6.48}\textbf{Solution:} 
+		\subparagraph{Claim:} Given $a, b, c \in \mathbb{Z}$, let $d = gcd(a, b)$ and $d | c$, that the set of integer solutions to $ax + by = c$ is nonempty.
+		\subparagraph{Proof:} According to Euclidean Algorithm, $d$ is a linear combination of $a, b$, namely $\exists x, y \in \mathbb{Z}$ that $xa + yb = d$, then $akx + bky = dk = c$ must have integer solutions where $x' = kx, y' = ky$.
+		
+		And if $x_0, y_0$ is a pair of solution,  $x = x_0 + bt/d, y = y_0 - at/d$ for $t \in \mathbb{Z}$.$\blacksquare$ 
+\end{document}

@@ -1,0 +1,135 @@
+%!TEX TS-program = pdflatex
+%!TEX encoding = UTF-8 Unicode
+
+\documentclass[11pt]{article}
+\usepackage{jeffe,handout,graphicx,mathtools}
+\usepackage[utf8x]{inputenc}			% allow Unicode in .tex file
+\usepackage{enumerate}
+\usepackage{fourier-orns}
+
+\def\Sym#1{\texttt{\upshape\textcolor{BrickRed}{#1}}}
+\def\SymBlue#1{\texttt{\upshape\textcolor{RoyalBlue}{#1}}}
+\def\SymGreen#1{\texttt{\upshape\textcolor{PineGreen}{#1}}}
+\def\_#1{\SymBlue{\underline{\smash{\textbf{#1}}}}}
+\def\X#1{\SymGreen{$\overline{\textbf{#1}}$}}
+\def\u#1{\raise0.5ex\hbox{\textcolor{RoyalBlue}{#1}}}
+
+\def\Cdot{\mathbin{\text{\normalfont \textbullet}}}
+
+\newcommand{\IsSinL}{\text{IsStringInL}}
+
+% =========================================================
+\begin{document}
+
+\headers{CS/ECE 374}{Homework 9 (due April 19)}{Spring 2017}
+
+\thispagestyle{empty}
+
+\begin{center}
+\Large\textbf{CS/ECE 374 \,\decosix\,  Spring 2017}%
+\\
+\LARGE\textbf{\decothreeleft~ Homework 9 ~\decothreeright}%
+\\[0.5ex]
+\large Due Wednesday, April 19, 2017 at 10am
+\end{center}
+
+\bigskip
+\hrule
+\bigskip
+
+\noindent
+\textbf{Groups of up to three people can submit joint solutions.}  Each problem should be submitted by exactly one person, and the beginning of the homework should clearly state the Gradescope names and email addresses of each group member.  In addition, whoever submits the homework must tell Gradescope who their other group members are.
+\bigskip
+\hrule
+\bigskip
+
+
+\noindent
+The following unnumbered problems are not for submission or grading. 
+No solutions for them will be provided but you can discuss them on Piazza.
+\begin{itemize}
+\item  Let $R_1,R_2,\ldots,R_n$ be a set of red intervals each of which
+  is specified by its two end points.  Let $B_1,B_2,\ldots, B_m$ be a
+  set of blue intervals each of which is also specified by its two end
+  points. You wish to find the smallest number of blue intervals that
+  {\em cover} the red intervals. A blue interval $B_j$ covers a red
+  interval $R_i$ if they contain the same point $p$ on the line.  All
+  intervals are close in the sense that the end points are contained
+  in the interval. Describe a greedy algorithm for this problem and
+  prove its correctness.
+
+
+\item We saw in lecture that Borouvka's algorithm for MST can be
+  implemented in $O(m \log n)$ time where $m$ is the number of edges
+  and $n$ is the number of nodes. We also saw that Prim's algorithm
+  can be implemented in $O(m + n \log n)$ time. Obtain an algorithm
+  for MST with running time $O(m \log \log n)$ by running Borouvka's
+  algorithm for some number of steps and then switching to Prim's
+  algorithm. This algorithm is better than either of the algorithms
+  when $m = \Theta(n)$. Formalize the algorithm, specify the
+  parameters and argue carefully about the implementation and running
+  time details. Briefly justify the correctness of the algorithm
+  assuming that the edge weights are unique.
+\end{itemize}
+
+\vspace{1cm}
+
+\begin{enumerate}
+%\parindent 1.5em \itemsep 3ex plus 0.5fil
+
+%----------------------------------------------------------------------
+%\def\arraystretch{1.2}
+
+%----------------------------------------------------------------------
+\item Red street in the city Shampoo-Banana can be modeled as a
+  straight line starting at $0$.  The street has $n$ houses at
+  locations $x_1,x_2,\ldots,x_n$ on the line. The local cable company
+  wants to install some new fiber optic equipment at several locations
+  such that every house is within distance $r$ from one of the
+  equipment locations. The city has granted permits to install the
+  equipment, but only at some $m$ locations on the street given y
+  locations $y_1,y_2, \ldots,y_m$. For simplicity assume that all the
+  $x$ and $y$ values are distinct. You can also assume that
+  $x_1 < x_2 < \ldots < x_n$ and that $y_1 < y_2 < \ldots < y_m$.
+  \begin{itemize}
+  \item Describe a greedy algorithm that finds the minimum number of
+    equipment locations that the cable company can build to satisfy
+    the desired constraint that every house is within distance $r$
+    from one of them.  Your algorithm has to detect if a feasible
+    solution does not exist. Prove the correctness of the
+    algorithm. One way to do this by arguing that there is an optimum
+    solution that agrees with the first choice of your greedy
+    algorithm.
+  \item {\bf Not to submit:} The cable company has realized
+    subsequently that not all locations are equal in terms of the cost
+    of installing equipment. Asssume that $c_j$ is the cost at
+    location $y_j$.  Describe a dynamic programming algorithm that
+    minimizes the total cost of installing equipment under the same
+    constraint as before. Do you see why a greedy algorithm may not
+    work for this cost version?
+  \end{itemize}
+
+%----------------------------------------------------------------------
+
+\item Let $G=(V,E)$ be an edge-weighted undirected graph.  We are
+  interested in computing a minimum spanning tree $T$ of $G$ to find a
+  cheapest subgraph that ensures connectivity.  However, some of the
+  nodes in $G$ are unrealiable and may fail. If a node fails it can disconnect
+  the tree $T$ unless it is a leaf. Thus, you want to find a cheapest 
+  spanning tree in $G$ in which all the unreliable nodes (which is
+  a given subset $U \subset V$) are leaves. Describe an efficient 
+  for this problem. Note that your algorithm should also check wither
+  a feasible spanning tree satisfying the given constraint exists in $G$.
+
+%----------------------------------------------------------------------
+    \item Consider the language $L_{\text{OH}} = \{ \langle M\rangle
+      \mid M \text{~halts on at least one input string}\}$. Note that
+      for $\langle M\rangle \in L_{\text{OH}}$, it is not necessary
+      for $M$ to {\em accept} any string; it is sufficient for it to
+      {\em halt} on (and possibly rejects) some string. Prove that
+      $L_{\text{OH}}$ is undecidable.
+
+\end{enumerate}
+
+
+\end{document}

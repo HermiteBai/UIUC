@@ -1,0 +1,85 @@
+\documentclass[11pt]{article}
+\input{../../packages.tex}
+\usepackage{enumerate}
+\usepackage{stmaryrd}
+\pagestyle{fancy}
+\fancyhead[L]{Math444}
+\fancyhead[C]{HW10}
+\fancyhead[R]{Lanxiao Bai}
+\newcommand{\qed}{
+	\begin{flushright}
+		$\blacksquare$
+	\end{flushright}}
+\begin{document}
+	\paragraph{6.2.5}\textbf{Proof:}
+		Let $f(x) = x^{1/n} - (x - 1)^{1/n}, (n \geq 2)$, then solving $f'(x) \leq 0 \Rightarrow x \geq 1$, so $f(x)$ is decreasing when in $[1, \infty)$. Thus since $a > b > 0 \Rightarrow a/b > 1$, so $f(a/b) - f(1) < 0 \Rightarrow (a/b)^{1/n} - (a/b - 1)^{1/n} < 1 \Rightarrow b^{1/n}((a/b)^{1/n} - (a/b - 1)^{1/n}) < b^{1/n} \Rightarrow a^{1/n} - (a - b)^{1/n} < b^{1/n} \Rightarrow  a^{1/n} - b^{1/n} < (a - b)^{1/n}$
+		\qed 
+	\paragraph{6.2.6}\textbf{Proof:}
+		Let $f(x) = \sin x$, without losing generality we suppose $x \leq y$, so by Mean Value Theorem, there is $\sin x - \sin y = f'(c)(x - y)$ for some $c \in [x, y]$, then $|\sin x - \sin y| = |f'(c)||x - y|$.
+		
+		Since $|f'(x)| = |\cos x| \leq 1$ for all $x \in \mathbb{R}$, so $|\sin x - \sin y| = |f'(c)||x - y| \leq |x - y|$ is proved.
+		\qed
+	\paragraph{6.2.11}
+	Since $[0, 1]$ is closed bounded interval, we can just pick a function that is continuous on $[0, 1]$ to guarantee its uniform continuity, and  
+		\[f(x) =  \begin{cases}
+			x^2 \sin(1/x^2) & x \neq 0\\
+			0 & x = 0
+		\end{cases} \]
+		
+		whose derivative
+		
+		\[f'(x) = 2x\sin(1/x^2) - \frac{2}{x}\cos(1/x^2)\]
+		
+		is not bounded.
+		
+	\paragraph{6.2.13}\textbf{Proof:}
+		Since $f'(x) > 0$ on $I$, there is
+		
+		\[\lim_{x\rightarrow c} \frac{f(x) - f(c)}{x - c} > 0\]
+		
+		for all $c \in I$, so $(f(x) - f(c))(x - c) > 0$. As a result, when $x \neq c$, $f(x) \neq f(c)$. For any $x > c$, there is $f(x) > f(c)$, for any $x < c$ there is $f(x) < f(c)$.
+		
+		Thus, by definition, $f(x)$ is strictly increasing on $I$.
+		\qed
+		
+	\paragraph{7.1.2}
+		\begin{enumerate}
+			\item 
+				\begin{align}
+					&S(f;\mathcal{\dot{P}}) = \sum^n_{i = 1}f(t_i)(x_i - x_{i - 1})\nonumber\\
+					&\phantom{S(f;\mathcal{\dot{P}})} = 0 + 1^2(2 - 1)+2^2(4 -2) = 1 + 8 = 9\nonumber
+				\end{align}
+					
+			\item
+				\begin{align}
+					&S(f;\mathcal{\dot{P}}) = \sum^n_{i = 1}f(t_i)(x_i - x_{i - 1})\nonumber\\
+					&\phantom{S(f;\mathcal{\dot{P}})} = 1^2 + 2^2(2 - 1)+4^2(4 -2) = 1 + 4 + 32 = 37\nonumber
+				\end{align}
+				
+			\item
+				\begin{align}
+					&S(f;\mathcal{\dot{P}}) = \sum^n_{i = 1}f(t_i)(x_i - x_{i - 1})\nonumber\\
+					&\phantom{S(f;\mathcal{\dot{P}})} = 0 + 2^2(3 - 2)+3^2(4 -3) = 4 + 9 = 13\nonumber
+				\end{align}
+			\item
+				\begin{align}
+					&S(f;\mathcal{\dot{P}}) = \sum^n_{i = 1}f(t_i)(x_i - x_{i - 1})\nonumber\\
+					&\phantom{S(f;\mathcal{\dot{P}})} = 2^2(2 - 0) + 3^2(3 - 2)+4^2(4 -3) = 8 + 9 + 16 = 33\nonumber
+				\end{align}
+		\end{enumerate}
+	\paragraph{7.1.8}\textbf{Proof:}
+		Since 
+		\[S(f;\mathcal{\dot{P}}) = \sum^n_{i = 1}f(t_i)(x_i - x_{i - 1})\]
+		
+		We have that 
+		
+		\begin{align}
+			&|\int_{a}^{b}f| \leq \sum^n_{i = 1}|f(\max\{[x_{i - 1}, x_i]\})(x_i - x_{i - 1})|\nonumber\\
+			&\phantom{|\int_{a}^{b}f|} \leq |f(\max\{[x_1, x_n]\})|(x_i - x_{i - 1})\nonumber\\
+			&\phantom{|\int_{a}^{b}f|} = |f(\max\{[x_{i - 1}, x_i]\})|(b - a)\nonumber
+		\end{align}
+		
+		Since $M \geq |f(x)|$ for all $x \in [a, b]$, 
+		\[|\int_{a}^{b}f| \leq M(b -a)\]
+		\qed
+\end{document}

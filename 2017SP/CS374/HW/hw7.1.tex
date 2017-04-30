@@ -1,0 +1,103 @@
+% ---------
+%  Compile with "pdflatex hw0".
+% --------
+%!TEX TS-program = pdflatex
+%!TEX encoding = UTF-8 Unicode
+
+\documentclass[11pt]{article}
+\usepackage{jeffe,handout,graphicx}
+\usepackage[utf8]{inputenc}		% Allow some non-ASCII Unicode in source
+
+%  Redefine suits
+\usepackage{pifont}
+\def\Spade{\text{\ding{171}}}
+\def\Heart{\text{\textcolor{Red}{\ding{170}}}}
+\def\Diamond{\text{\textcolor{Red}{\ding{169}}}}
+\def\Club{\text{\ding{168}}}
+
+\def\Cdot{\mathbin{\text{\normalfont \textbullet}}}
+\def\Sym#1{\textbf{\texttt{\color{BrickRed}#1}}}
+\newcommand{\comp}[1]{#1_{\text{comp}}}
+
+\newtheorem{Lemma}{lemma}
+\newcommand{\IsSinL}{\text{IsStringInL}}
+
+\usepackage{tikz}
+\usetikzlibrary{automata, positioning}
+\usepackage{listings}
+
+% =====================================================
+%   Define common stuff for solution headers
+% =====================================================
+\Class{CS/ECE 374}
+\Semester{Spring 2017}
+\Authors{3}
+\AuthorOne{Lanxiao Bai}{lbai5}
+\AuthorTwo{Renheng Ruan}{rruan2}
+\AuthorThree{Ho Yin Au}{hoyinau2}
+%\Section{}
+
+% =====================================================
+\begin{document}
+
+% ---------------------------------------------------------
+
+
+\HomeworkHeader{7}{1}	% homework number, problem number
+
+\begin{quote}
+	Let $G=(V,E)$ be directed graph. A subset of edges are colored
+  red and a subset are colored blue and the rest are not colored.  Let
+  $R \subset E$ be the set of red edges and $B \subset E$ be the set
+  of blue edges.  Describe an efficient algorithm that given $G$ and
+  two nodes $s,t \in V$ checks whether there is an $s$-$t$ path in $G$
+  that contains at most one red edge and at most one blue edge. Ideally
+  your algorithm should run in $O(n+m)$ time where $n = |V|$ and $m = |E|$.
+\end{quote}
+\hrule
+
+\begin{solution}
+	This problem is modeled as a directed, unweighted, colored graph, with vertices $V$ and edges $E$ in $G$. 
+	
+	We need to assign each edge with a color as "None", "Red" or "Blue" as $G$ specified.
+	
+	To check if there is an s-t path in $G$ is just a connectivity checking problem, but with constrains that at most 1 edges each could be in $R$ and $B$, which can be easily implemented by using a boolean flag.
+	
+	As a result, we can use BFS algorithm, but with a little special rule, that if a red or blue edge is already added to the path, no vertices that can be reached through colored edge should be added in.
+	
+	This modification functions like when the first red / blue edge was used, all the other red/blue edges will be removed from the graph, and the problem reduced to a new problem that checks the connectivity of the current vertex and the termination $t$ with BFS, and the correctness of the algorithm in each stage is guaranteed by the correctness of BFS algorithm to check connectivity.
+	
+	Here, we give a pseudocode of this algorithm:
+	
+	\begin{center}
+	\begin{algorithm}
+		\textul{\textsc{IsConnectedUnderRule}(\textit{s}, \textit{t}):}\+
+		\\ init Queue \textit{ToExplore}
+		\\ \textit{red} $\gets 0$
+		\\ \textit{blue} $\gets 0$
+		\\ add \textit{s} to \textit{ToExplore}
+		\\ while \textit{ToExplore} is non-empty\+
+		\\	\textit{v} $\gets$ \textsc{Pull}(\textit{ToExplore})
+		\\	if \textit{v} = \textit{t}\+
+		\\		return True\-
+		\\  for \textit{edge} in \textsc{GetEdges}(\textit{v})\+
+		\\		if \textsc{IsRed}(\textit{edge}) and \textit{red} = $0$\+
+		\\			add \textsc{GetVertex}(\textit{edge}) to \textit{ToExplore}
+		\\			\textit{red} $\gets 1$\-
+		\\		else if \textsc{IsBlue}(\textit{edge}) and \textit{blue} = $0$\+
+		\\			add \textsc{GetVertex}(\textit{edge}) to \textit{ToExplore}
+		\\			\textit{blue} $\gets 1$\-
+		\\		else if \textsc{HasNoColor}(\textit{edge})\+
+		\\			add \textsc{GetVertex}(\textit{edge}) to \textit{ToExplore}\-
+		\\		else\+
+		\\			continue\-\-\-
+		\\ return False
+					
+	\end{algorithm}	
+	\end{center}
+			
+	In worst case, BFS need to search all vertices and edges in the graph once, so the time complexity is $O(m + n)$.
+\end{solution}
+\clearpage
+
+\end{document}

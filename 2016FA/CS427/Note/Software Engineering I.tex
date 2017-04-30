@@ -1,0 +1,223 @@
+\documentclass[12pt]{article}
+\title{Software Engineering I}
+\date{\today}
+\author{Lanxiao Bai}
+
+%-----------Packeges---------------%
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{tocloft}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage[bookmarks=true]{hyperref}
+\usepackage{fancyhdr}
+
+
+%----------Definition & Theorem----%
+\newtheorem{definition}{Definition}[subsection]
+\newtheorem{theorem}{Theorem}[subsection]
+\newtheorem{proposition}{Proposition}[subsection]
+\newtheorem{lemma}{Lemma}[subsection]
+\newtheorem{corollary}{Corollary}[subsection]
+
+
+\pagestyle{fancy}
+\fancyhead[L]{CS 427}
+\fancyhead[C]{Note}
+\fancyhead[R]{Lanxiao Bai}
+
+\begin{document}
+\maketitle
+\newpage
+\tableofcontents
+\newpage
+
+\section{Bug Reporting}
+\subsection{Key Elements of Bug Reporting:}
+\begin{itemize}
+    \item Reproduce - Test it again
+    \item Isolate - Test it differently
+    \item Generalize - Test it elsewhere
+\end{itemize}
+\subsubsection{Reproduce}
+    \begin{itemize}
+        \item Three times would be good enough.
+        \item Document the platform, environment and sequence of actions that would trigger the bug.
+    \end{itemize}
+
+\subsubsection{Isolate}
+    \begin{itemize}
+        \item Change the variables
+            \begin{itemize}
+                \item Make changes one at a time
+                \item Require thought and knowledge of system under test(SUT)
+                \item May not be immediate obvious
+            \end{itemize}
+        \item Can be an extensive process
+            \begin{itemize}
+                \item Match amount of effort to severity of problem
+                \item Unavoidable if it's your job
+            \end{itemize}
+    \end{itemize}
+
+\subsubsection{Generalize}
+    \begin{itemize}
+        \item Look for related failures in SUT
+        \item Avoid confusing unrelated problems 
+    \end{itemize}
+\subsection{Terminology}
+    \begin{itemize}
+        \item Programmer makes \textbf{mistake}.
+        \item \textbf{Fault, defect, bug} happen in program.
+        \item Program \textbf{fail} during execution
+        \item \textbf{Error} Dirrentce between output with expectation.
+    \end{itemize}
+    
+\section{Software Configuration Management (SCM)}
+\begin{itemize}
+    \item Change control
+    \item Version Control
+    \item Building
+    \item Releasing
+\end{itemize}
+
+\subsection{Version Control System (VCS)}
+\begin{definition}
+    A Version Control System is a software system that keeps track of the changes made to a set of files so that you can recall a specific version.
+\end{definition}
+
+    With VCS, you can: 
+    \begin{itemize}
+        \item Collaborate
+        \item Revert changes
+        \item Go back to a specific version
+    \end{itemize}
+
+    \paragraph{Typical workflow: } repo $\rightarrow$ check out $\rightarrow$ hack $\rightarrow$ check in
+    \paragraph{Problem:} If multiple people are changing the same software?
+    \begin{itemize}
+        \item Locking? - Impossible, or people have to wait.
+        \item Merging? - Risky, maybe introduce bugs.
+    \end{itemize}
+
+\subsection{Build(Maven)}
+    \paragraph{Things to consider:}
+    \begin{itemize}
+        \item Which compiler? Which flags?
+        \item Which source file?
+        \item Which libs?
+        \item Which version?
+    \end{itemize}
+    
+    \paragraph{Tools:}
+    \begin{itemize}
+        \item make - Under Unix, original tool
+        \item ant - Java based, uses XML
+        \item Maven - Used by $\mathbb{K}$
+        \item ...
+    \end{itemize}
+
+    \subsection{Testing and JUnit}
+    
+    \paragraph{Why test?}
+    \begin{itemize}
+        \item Improve quality
+        \item Measure quality
+        \item Learn the software
+    \end{itemize}
+    
+    \paragraph{What is a test?}
+    \begin{itemize}
+        \item Run program with known inputs, check results
+        \item Test can document faults
+        \item Test can document code
+    \end{itemize}
+
+    \paragraph{What kind of test?}
+    \begin{itemize}
+        \item Programmer / Non=programmer
+        \item Developer / Tester
+        \item Unit test / Integration tests / Functional tests / System tests
+        \item Automated/ manual
+    \end{itemize}
+\subsection{Software Production}
+    \paragraph{Product} = set of components/documents
+        \begin{itemize}
+            \item Codes
+            \item Docs
+            \item Tests
+            \item Designs
+            \item Requirements
+            \item ... 
+        \end{itemize}
+
+    \paragraph{You need to} keep track of:
+        \begin{itemize}
+            \item Version
+                \begin{itemize}
+                    \item Sequence if versions during development
+                    \begin{itemize}
+                        \item Alpha/Beta/Final release...
+                    \end{itemize}
+                    \item Different released versions
+                    \item branch
+                    \begin{itemize}
+                        \item Traditional VC: Avoid
+                        \item Modern: Encourage use of short lived branches
+                        \item Good reasons to branch
+                            \begin{itemize}
+                                \item Fix bugs
+                                \item Experiment version
+                                \item Political fight
+                            \end{itemize}
+                        \item Bad reasons to branch
+                            \begin{itemize}
+                                \item Support different platform (Make subclasses / use conditional compilation / make portability library instead)
+                                \item Support different customer
+                            \end{itemize}
+                    \end{itemize}
+                \end{itemize}
+            \item Resources
+                \begin{itemize}
+                    \item Test suites
+                    \item Manual
+                    \item User cases
+                    \item Designs
+                \end{itemize}
+        \end{itemize}
+    \paragraph{Baseline}Baseline is a software configuration item that has been reviewed and agreed upon, and that can be changed only through formal change control procedures
+    
+    \paragraph{Control}Authority management
+    
+    \subsection{Release} Release is a software configuration item that the developers give to other people. Release should be a baseline.
+    
+    \section{Extreme Programming(XP)}
+    \subsection{Modified Waterfall}
+    	\begin{enumerate}
+    		\item Requirement, analysis
+    		\item Design, Checking
+    		\item Implementation, unit testing
+    		\item Integration, System Testing
+    		\item Maintenance
+    	\end{enumerate}
+   \subsection{XP}
+   		\paragraph{Big ideas}
+   		\begin{itemize}
+   			\item Don't write much docs
+   			\item Implement features one by one
+   			\item Release code frequently
+   			\item Work closely with the customer
+   			\item Communicate a lot with team members
+   		\end{itemize}
+   		
+   		\paragraph{Activities}
+   		\begin{itemize}
+   			\item Requirement, analysis - Planning game
+    		\item Design, Checking - Test-driven development
+    		\item Implementation, unit testing - Refactoring for design 
+    		\item Development - Pair Programming
+    		\item Integration - Continous integration
+   		\end{itemize}
+\end{document}
+

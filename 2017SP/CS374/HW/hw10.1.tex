@@ -1,0 +1,109 @@
+% ---------
+%  Compile with "pdflatex hw0".
+% --------
+%!TEX TS-program = pdflatex
+%!TEX encoding = UTF-8 Unicode
+
+\documentclass[11pt]{article}
+\usepackage{jeffe,handout,graphicx}
+\usepackage[utf8]{inputenc}		% Allow some non-ASCII Unicode in source
+
+%  Redefine suits
+\usepackage{pifont}
+\def\Spade{\text{\ding{171}}}
+\def\Heart{\text{\textcolor{Red}{\ding{170}}}}
+\def\Diamond{\text{\textcolor{Red}{\ding{169}}}}
+\def\Club{\text{\ding{168}}}
+
+\def\Cdot{\mathbin{\text{\normalfont \textbullet}}}
+\def\Sym#1{\textbf{\texttt{\color{BrickRed}#1}}}
+\newcommand{\comp}[1]{#1_{\text{comp}}}
+
+\newtheorem{Lemma}{lemma}
+\newcommand{\IsSinL}{\text{IsStringInL}}
+
+\usepackage{tikz}
+\usetikzlibrary{automata, positioning}
+\usepackage{listings}
+
+% =====================================================
+%   Define common stuff for solution headers
+% =====================================================
+\Class{CS/ECE 374}
+\Semester{Spring 2017}
+\Authors{3}
+\AuthorOne{Lanxiao Bai}{lbai5}
+\AuthorTwo{Renheng Ruan}{rruan2}
+\AuthorThree{Ho Yin Au}{hoyinau2}
+%\Section{}
+
+% =====================================================
+\begin{document}
+
+% ---------------------------------------------------------
+
+
+\HomeworkHeader{10}{1}	% homework number, problem number
+
+\begin{quote}
+	Given an undirected graph $G=(V,E)$ a {\em matching} in $G$ is
+  a set of edges $M \subseteq E$ such that no two edges in $M$ share
+  a node. A matching $M$ is {\em perfect} if $2|M| = |V|$, in other words
+  if every node is incident to some edge of $M$. PerfectMatching is
+  the following decision problem: does a given graph $G$ have a perfect
+  matching? Describe a polynomial-time reduction from PerfectMatching to
+  SAT. Does this problem that PerfectMatching is a difficult problem?
+\end{quote}
+\hrule
+
+\begin{solution}
+	First of all we can easily check if $2|M| = |V|$ is true if given an answer in linear time $O(1)$, thus the problem is in NP.
+	
+	Then we can give a construct to reduce PerfectMatch to SAT:
+	
+	\begin{itemize}
+		\item For each $v \in V$, encode $v$ as $c(v) \in \{0, 1\}$, then PerfectMatch requires that there is a set of code $c(v_i)$ for all $v_i \in V$ that makes
+		
+		\[\bigwedge_{v_i \in V} (\bigvee_{v_j \in adj(v_i) - \{v_i\}} (v_i \wedge v_j) \wedge (\bigwedge_{v_k \in adj(v_i) - \{v_i, v_j\}} (v_i \wedge \neg v_k) )) = 1\]
+		
+		to be true, which is essentially the SAT problem.
+	\end{itemize}
+	
+	How we claim that PerfectMatch returns true if SAT returns true and PerfectMatch returns false if SAT returns false.
+	
+	\paragraph{Proof:}
+	"$\Rightarrow$":
+	
+	When there is a PerfectMatch for $G = (V, E)$, then for any given $v_i$, there is exactly $1$ points that has the same code as it, so
+		
+		\[\bigvee_{v_j \in adj(v_i) - \{v_i\}} (v_i \wedge v_j) \wedge (\bigwedge_{v_k \in adj(v_i) - \{v_i, v_j\}} (v_i \wedge \neg v_k) ) = 1\]
+		
+		which gives that 
+		
+		\[\bigwedge_{v_i \in V} (\bigvee_{v_j \in adj(v_i) - \{v_i\}} (v_i \wedge v_j) \wedge (\bigwedge_{v_k \in adj(v_i) - \{v_i, v_j\}} (v_i \wedge \neg v_k) )) = 1\]
+		
+		"$\Leftarrow$":
+		
+		When 
+		
+		\[\bigwedge_{v_i \in V} (\bigvee_{v_j \in adj(v_i) - \{v_i\}} (v_i \wedge v_j) \wedge (\bigwedge_{v_k \in adj(v_i) - \{v_i, v_j\}} (v_i \wedge \neg v_k) )) = 1\]
+		
+		for any given $v_i$, there is exactly $1$ points that has the same code with it, so
+		
+		\[\bigvee_{v_j \in adj(v_i) - \{v_i\}} (v_i \wedge v_j) \wedge (\bigwedge_{v_k \in adj(v_i) - \{v_i, v_j\}} (v_i \wedge \neg v_k) ) = 1\]
+		
+		which means at least one encoding makes 
+		
+		\[(v_i \wedge v_j) \wedge (\bigwedge_{v_k \in adj(v_i) - \{v_i, v_j\}} (v_i \wedge \neg v_k) = 1\]
+		
+		so for $G = (V, E)$, then for any given $v_i$, there is exactly $1$ points that has the same code as it.
+		
+		Hence, we conclude that PerfectMatch returns true if SAT returns true and PerfectMatch returns false if SAT returns false.
+		
+		Since SAT Problem is a NP-Complete Problem, PerfectMatch is harder than SAT, so PerfectMatch is a difficult problem.
+		
+			
+\end{solution}
+\clearpage
+
+\end{document}

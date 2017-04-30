@@ -1,0 +1,66 @@
+\documentclass[11pt]{article}
+\input{../../packages.tex}
+\pagestyle{fancy}
+\fancyhead[L]{Math 461}
+\fancyhead[C]{HW8}
+\fancyhead[R]{Lanxiao Bai(lbai5)}
+\begin{document}
+	\paragraph{5.37}\textbf{Solution:}
+			Since $\lambda(t) = t^3, t > 0$
+			\subparagraph{(a)}
+				\[F(t) = 1 - \mathrm{exp}\{-\int_0^t \lambda(t)dt\} = 1 - e^{-\frac{1}{4}t^4}\]
+				\[\Rightarrow f(t) = t^3e^{-\frac{1}{4}t^4}\]
+				\[\Rightarrow P(X > 2) = 1 - F(2) = e^{-4}\]
+			\subparagraph{(b)}
+				\[P(0.4 < X < 1.4) = F(1.4) - F(0.4) = \exp\{-(0.4)^4\} - \exp\{-(1.4)^4/4\}\]
+			\subparagraph{(c)}
+				\[P(X > 2 | X > 1) = \exp\{\int_1^2t^3dt\} = e^{-15/4}\]
+	\paragraph{5.38}\textbf{Solution:}
+			\[4x^2 + 4xY + Y + 2 = 0 \Rightarrow x = \frac{1}{2}(\pm \sqrt{y^2 - y - 2} - y)\]
+			
+			Two roots are real $\Rightarrow y^2 - y - 2 \geq 0 \Rightarrow y \geq 2$ and $y \leq -1$
+			
+			So $P(real) = 3/5$
+	\paragraph{5.40}\textbf{Solution:}
+		\[f_Y(y) = f_X(ln(y))|\frac{1}{y}| = 1/y , 1 < y < e\]
+	\paragraph{5.41}\textbf{Solution:}
+		\[f_Y(y) = f_X(\arcsin(y/A))\lvert\frac{1}{a\sqrt{1 - \frac{x^2}{a^2}}}\rvert = \frac{1}{\pi a\sqrt{1 - \frac{x^2}{a^2}}}\]
+	\paragraph{6.2}\textbf{Solution:}
+		\subparagraph{(a)}
+			\[p(0, 0) = (8/13)(7/12) = 14/39\]
+			\[p(0, 1) = p(1, 0) = (8/13)(5/12) = 10/39\]
+			\[p(1, 1) = (5/13)(4/12) = 5/39\]
+		\subparagraph{(b)}
+			\[p(0, 0, 0) = (8/13)(7/12)(6/11) = 28/143\]
+			\[p(0, 0, 1) = p(0, 1, 0) = p(1, 0, 0) = (8/13)(7/12)(5/11) = 70/429\]
+			\[p(0, 1, 1) = p(1, 0, 1) = p(1, 1, 0) = (8/13)(5/12)(4/11) = 40/429\]
+			\[p(1, 1, 1) = (5/13)(4/12)(3/11) = 5/143\]
+	\paragraph{6.7}\textbf{Solution:}
+			\[p(X_1, X_2) = (1 - p)^{X_1 + X_2}p^2\]
+	\paragraph{6.8}\textbf{Solution:}
+		\subparagraph{(a)}
+			\[\int^{\infty}_0\int^{y}_{-y} c(y^2 - x^2)e^{-y} dxdy = 1 \Rightarrow c = 1/8\]
+		\subparagraph{(b)}
+			\[f_Y(y) = \frac{y^3e^{-y}}{6}, 0 < y < \infty\]
+			\[f_X(x) = \frac{1}{8}\int_{|x|}^{\infty}(y^2 - x^2)e^{-y}dy = \frac{1}{4}e^{-|x|}(1+|x|)\]
+		\subparagraph{(c)}
+			\[E[X] = \int xp(x)dx = 0\]
+	\paragraph{6.9}\textbf{Solution:}
+		\subparagraph{(a)}\textbf{Proof:}
+			\[\iint f(x, y)dxdy = \frac{6}{7} \int_0^2 \int_0^1 (x^2 + \frac{xy}{2}) dxdy = 1\blacksquare\]
+		\subparagraph{(b)}
+			\[f_X(x) = \int_0^2 f(x, y)dy = \frac{6}{7}(2x^2 + x)\]
+		\subparagraph{(c)}
+			\[P(X > Y) = \int_0^1 \int_0^x f(x, y)dxdy = \frac{15}{56}\]
+		\subparagraph{(d)}
+			\[P(Y > \frac{1}{2} | X < \frac{1}{2}) = \frac{\int_{1/2}^2\int_0^{1/2}(x^2+\frac{xy}{2})dxdy}{\int_{0}^{1/2}(2x^2+x)dx} = 69/80\]
+		\subparagraph{(e)}
+			\[E[X] = \int_0^1 xp(x)dx = 5/7\]
+		\subparagraph{(f)}
+			\[E[Y] = \int_0^2\int_0^1 f(x, y)dxdy = 8/7\]
+	\paragraph{6.10}\textbf{Solution:}
+			\subparagraph{(a)}
+				\[P(X < Y) = \int_0^{\infty}\int_0^y e^{-(x+y)}dxdy = 1/2\]
+			\subparagraph{(b)}
+				\[P(X < a) = \int_0^a\int_0^{\infty}e^{-(x+y)}dydx = 1 - e^{-a}\]
+\end{document}

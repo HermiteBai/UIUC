@@ -1,0 +1,433 @@
+\documentclass[12pt]{article}
+
+%----------Title & Cover-----------%
+\title{Math 461: Probability Theory}
+\author{Lanxiao Hermite Bai}
+\date{\today}
+
+%-----------Packeges---------------%
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{tocloft}
+\usepackage{graphicx}
+\usepackage[bookmarks=true]{hyperref}
+\usepackage{fancyhdr}
+
+%----------Definition & Theorem----%
+\newtheorem{definition}{Definition}[subsection]
+\newtheorem{theorem}{Theorem}[subsection]
+\newtheorem{proposition}{Proposition}[subsection]
+\newtheorem{lemma}{Lemma}[subsection]
+\newtheorem{corollary}{Corollary}[subsection]
+\newtheorem{axiom}{Axiom}[subsection]
+
+\pagestyle{fancy}
+\fancyhead[L]{Math 461}
+\fancyhead[C]{Note}
+\fancyhead[R]{Lanxiao Bai}
+
+
+\begin{document}
+
+\maketitle
+\newpage
+\newpage
+\tableofcontents
+\newpage
+
+\section{Combinatorial Analysis}
+\subsection{Introduction}
+\paragraph{Combinatorial Analysis}
+The mathematical theory of counting is formally known as \textbf{combinatorial analysis}.
+
+\subsection{The Basic Principle of Counting}
+
+\begin{proposition}[Product Rule]
+    Suppose a procedure can be broken down into a sequence of $k$ parts for each the number of possible results denoted as $n_k$, the number of the possible outcomes of the procedure \[N = \prod^k_{i = 1}n_i\]
+\end{proposition}
+
+
+\subsection{Permutations}
+\begin{proposition}[Permutations]
+    \begin{equation}
+        P(n) = n! = n \cdot (n-1) \cdots 1
+    \end{equation}
+\end{proposition}
+
+\subsection{Combinations}
+    \begin{definition}
+        We define $\left(\begin{array}{l}n\\r\\ \end{array}\right)$, for $r \leq n$, by
+        \begin{equation}
+            \left(\begin{array}{l}n\\r\\ \end{array}\right) = \frac{n!}{(n-r!) r!}
+        \end{equation}
+    and say that $\left(\begin{array}{l}n\\r\\ \end{array}\right)$ represents the number of possible combinations of n objects taken r at a time.
+    \end{definition}
+    \begin{proposition}[The Binomial Theorem]
+        \begin{equation}
+        (x+y)^n = \sum_{k=0}^n \left( \begin{array}{l} n\\ k \end{array}\right)x^ky^{n-k}
+        \end{equation}
+    \end{proposition}
+
+    \subsection{Mutinomial Coefficient}
+    \paragraph{Notation}
+    If $n = \sum_{i=1}^rn_i$, we define $\left(\begin{array}{c}n\\{n_1, n_2,\cdots,n_r}\\ \end{array}\right)$ by
+    \begin{equation}
+        \left(\begin{array}{c}n\\{n_1, n_2,\cdots,n_r}\\ \end{array}\right) = \frac{n!}{n_1!n_2!\cdots n_r!}
+    \end{equation}
+     Thus, $\left(\begin{array}{c}n\\{n_1, n_2,\cdots,n_r}\\ \end{array}\right)$ represents the number of possible divisions of n distinct objects into r distinct groups of respective sizes $n_1,n_2, \cdots, n_r$.
+     \begin{proposition}[The Multinomial Theorem]
+         \begin{equation}
+             (\sum_{i=1}^r x_r)^n = \sum_{(n_1,\cdots, n_r)\ :\ n = \sum_{i=1}^rn_i} \left(\begin{array}{c}n\\{n_1, n_2,\cdots,n_r}\\ \end{array}\right)\prod_{j=1}^r x_j^{n_j}
+         \end{equation}
+     \end{proposition}
+
+    \subsection{The number of Interger Solutions of Equations}
+    
+    \begin{proposition}
+        There are $\left( \begin{array}{c} n-1\\ r-1 \end{array} \right)$ distinct nonnegative integer-value vectors $(x_1, x_2, \cdots, x_r)$ satisfying the equation
+        \begin{equation}
+            n = \sum_{i=1}^rn_i, x_i > 0, i = 1,\cdots, r
+        \end{equation}
+    \end{proposition}
+
+    \begin{proposition}
+        There are $\left( \begin{array}{c} n+r-1\\ r-1 \end{array}\right)$ distinct nonnegative integer-value vectors $(x_1, x_2, \cdots, x_r)$ satisfying the equation
+        \begin{equation}
+            n = \sum_{i=1}^rn_i
+        \end{equation}
+    \end{proposition}
+
+\section{Axioms of Probability Theory}
+    \subsection{Sample Space and Events}
+    \paragraph{Sample Space}The set of possible outcomes of an experiment is the \textbf{sample space} of the experiment and is denoted by $S$.
+    \paragraph{Event}Any subset $E \subseteq S$ is known as an event.
+    \paragraph{Union}Event $E \cap F$ is called the \textbf{union} of $E$ and $F$. Union of events of $E_1, E_2, ...$ is denoted by 
+    \[\bigcup_{n=1}^{\infty}E_n\]
+    \paragraph{Intersection}Event $EF$ is called \textbf{Intersection} of $E$ and $F$. Intersection of events of $E_1, E_2, ...$ is denoted by 
+    \[\bigcap_{n=1}^{\infty}E_n\]
+    
+    \paragraph{Complement}Complement of $E$ is denoted by $E^C$.
+    \paragraph{Contain}Contained relationship is denoted by $E \subset F$. If $E \subset F$ and $F \subset E$, then $E = F$.
+    
+    \paragraph{Rules}
+    \begin{enumerate}
+        \item Commutative Laws $E \cup F = F \cup E$ and $EF = FE$
+        \item Associative Laws $(E \cap F) \cap G = F \cap (F \cap G)$ and $(EF)G = E(FG)$
+        \item Distributive Laws $(E \cap F)G = EG \cap FG$ and $EF \cap G = (E \cap G)(F \cap G)$
+        \item De Morgan's Laws
+        \[(\bigcup^n_{i=1}E_i)^c = \bigcap^n_{i=1}E^c_i\]
+        \[(\bigcap^n_{i=1}E_i)^c = \bigcup^n_{i=1}E^c_i\]                        \end{enumerate}
+    \subsection{Axioms of Probability}
+    \begin{definition}
+        For each event E of the sample space S, we define $n(E)$ to be the number of times in the first $n$ reptitions of the experiment that event $E$ occurs. Then probability is defined as
+        \begin{equation}
+            P(E) = \lim_{n\rightarrow\infty}\frac{n(E)}{n}
+        \end{equation}
+
+    \end{definition}
+    
+    \begin{axiom}
+        \[0 \leq P(E) \leq 1\]
+    \end{axiom}
+    
+    \begin{axiom}
+        \[P(S) = 1\]
+    \end{axiom}
+    
+    \begin{axiom}For any sequence of mutually exclusive events，
+        \[P(\bigcup_{i=1}^\infty E_i) = \sum_{i=1}^\infty P(E_i)\]
+    \end{axiom}
+    
+    \begin{proposition}
+        \[P(E^C) = 1 - P(E)\]
+    \end{proposition}
+    \begin{proposition}
+     If $E \subset F$, then $P(E) \leq P(F)$.
+    \end{proposition}
+    \begin{proposition}
+        \[P(E \cup F) = P(E) + P(F) - P(EF)\]
+    \end{proposition}
+    \begin{proposition}
+        \[P(\bigcup_{i=1}^n E_i) = \sum_{i = 1}^r (-1)^{r+1}\sum_{i_1 < \cdots < i_r} P(\bigcap_{j=1}^r E_{i_j})\]
+    \end{proposition}
+\subsection{Probability As A Continuous Set Function}
+    \begin{proposition}
+    If ${E_n, n \geq 1}$ is either an increasing or a decreasing sequence of events, then
+    \[\lim_{n\rightarrow\infty} P(E_n) = P(\lim_{n\rightarrow\infty}E_n) \]
+    \end{proposition}
+    \section{Conditional Probability and Independence}
+    \begin{definition}[Conditional Probability]
+        If $P(F) > 0$, then
+        \[P(E|F) = \frac{P(EF)}{P(F)}\]
+    \end{definition}
+    \begin{proposition}
+        \[P(E_1E_2E_3\cdots E_n) = P(E_1)P(E_2 | E_1)P(E_3|E_2E_1)\cdots P(E_n | E_1\cdots E_{n-1})\]
+    \end{proposition}
+    \subsection{Bayes's Formula}
+    \begin{proposition}
+        \[P(E) = P(E|F)P(F) + P(E|F^C)[1-P(F)]\]
+    \end{proposition}
+    \begin{proposition}[Bayes's Theorem]
+        \[P(E|F) = \frac{P(F|E)P(E)}{P(F)}\]
+    \end{proposition}
+
+    \begin{definition}[Odd]
+        The odds of an event A are defined by
+        \[\frac{P(A)}{P(A^C)} = \frac{P(A)}{1-P(A)} \]
+        That is, the odds of an event A tell how much more likely it is that the event A occurs
+than it is that it does not occur. 
+    \end{definition}
+    \subsection{Independent Events}
+    \begin{definition}
+        Two events E and F are said to be independent if Equation \[P(EF) = P(E)P(F)\] holds. Two events E and F that are not independent are said to be dependent.
+    \end{definition}
+    \begin{proposition}
+        If E and F are independent, then so are E and $F^C$.
+    \end{proposition}
+    \section{Random Variables}
+        \subsection{Random Variable}
+        \begin{definition}[Random Variable]
+            Real-valued functions defined on the sample space, are known as random variables.
+        \end{definition}
+        \begin{proposition}
+            \[1 = P(\bigcup^n_{i = 0}\{Y = i\}) = \sum^n_{i = 0}P\{Y = i\}\]
+        \end{proposition}
+        \subsection{Discrete Random Variables}
+        \begin{definition}[Probability mass function]
+            \[p(a) = P(X = a)\]
+        \end{definition}
+        \begin{proposition}
+            \[\sum^{\infty}_{i=1}p(x_i) = 1\]
+        \end{proposition}
+        \begin{definition}
+        	Commutative distribute function \[F(a) = \sum_{\mathrm{all}\ x \leq a} p(x)\]
+        \end{definition}
+        \subsection{Expected Value}
+            \begin{definition}[Expected Value]
+                \[E[x] = \sum_{x:p(x)>0} xp(x)\]
+            \end{definition}
+        \subsection{Exceptation of A Function of A Random Variable}
+        \begin{proposition}
+            \[E[g(X)] = \sum_i g(x_i)p(x_i)\]
+        \end{proposition}
+        \begin{corollary}
+            \[E[aX+b] = aE[X]+b\]
+        \end{corollary}
+        \subsection{Variance}
+        \begin{definition}[Variance]
+            If X is a random variable with mean $\mu$, then the \textbf{variance} of X is
+            \[Var(X) = E[(X - \mu)^2] = E[X^2]-(E[x])^2\]
+        \end{definition}
+        \begin{proposition}
+            \[Var(aX + b) = a^2Var(X)\]
+        \end{proposition}
+        \begin{definition}[Standard Deviation]
+            \[SD(X) = \sqrt{Var(X)}\]
+        \end{definition}
+        \subsection{The Bernoulli And Binomial Random Variables}
+        \begin{definition}[Bernoulli Random Variable]
+            A random variable X is said to be a Bernoulli random variable if its probability mass function is given by Equations
+            \[p(0) = P\{X = 0\} = 1 - p\]
+            \[p(1) = P\{X = 1\} = p\]
+            for some $p \in (0, 1)$.
+        \end{definition}
+        \begin{definition}[Binomial Random Variables]
+        Suppose now that n independent trials, each of which results in a success with probability p and in a failure with probability 1 − p, are to be performed. If X represents the number of successes that occur in the n trials, then X is said to be a binomial random variable with parameters (n, p).
+        \[p(i) = \left(\begin{array}{c} n\\ i\\ \end{array}\right) p^i(1 - p)^{n - i}, i = 0, 1, \cdots, n.\]
+        \end{definition}
+        \subsubsection{Properties of Binomial Random Variables}
+        \begin{proposition}
+            For the Binomial Random Variables,
+            \begin{enumerate}
+                \item $E[X^k] = npE[(Y + 1)^{k - 1}]$, $Y = \left(\begin{array}{c} n - 1\\ i\\ \end{array}\right)p^i(1-p)^{n-1-i}.$
+                \item $Var(X) = np(1-p).$
+            \end{enumerate}
+        \end{proposition}
+        \begin{proposition}
+            If X is a binomial random variable with parameters $(n, p)$, where $0 < p < 1$, then as k goes from 0 to n, $P{X = k}$ first increases monotonically and then decreases monotonically, reaching its largest value when k is the largest integer less than or equal to $(n + 1)p$.
+        \end{proposition}
+
+        \subsubsection{Computing the Binomial Distribution Function}
+        \begin{proposition}
+            \[P\{x \leq i\} = \sum^i_{k=0}\left(\begin{array}{c} n\\ i\\ \end{array}\right) p^k(1 - p)^{n - k}\]
+        \end{proposition}
+        \begin{corollary}
+            \[P\{X = k + 1\} = \frac{p}{1-p} \frac{n-k}{k+1} P\{X = k\}\]
+        \end{corollary}
+        \subsection{The Poisson Random Variable}
+        \begin{definition}[Poisson Random Variable]
+            \[p(i) = e^{-\lambda}\frac{\lambda^i}{i!}, \lambda \geq 0(\lambda = np)\]
+        \end{definition}
+        \begin{proposition}
+            \[\frac{P\{X = i + 1\}}{P\{X = i\}} = \frac{\lambda}{i+1} \]
+        \end{proposition}
+        
+        \begin{proposition}
+        	\[\mathrm{Var}(X) = E[X] = \lambda\]
+        \end{proposition}
+        
+        \begin{proposition}
+        	Under the following conditions:
+        		\begin{itemize}
+        			\item In a time interval of arbitrary length $h$, $o(h) = \lim_{h \rightarrow 0}/h = 0, p = \lambda h + o(h)$
+        			\item $p(x = 2) = o(h)$ in a time interval of arbitrary length.
+        			\item For any integers $n$, $j_1 , j_2 , \cdots , j_n$ and any set of n nonoverlapping intervals, if we define $E_i$ to be the event that exactly $j_i$ of the events under consideration occur in the ith of these intervals, then events $E1 , E2 , \cdots , En$ are independent. 
+        		\end{itemize}
+        		
+        		The the number of events occurring in any interval of length $t$ is a Poisson random variable with parameter $\lambda t$.
+        \end{proposition}
+        \subsection{Other Distributions}
+            \subsubsection{Geometric Random Variable}
+                \begin{definition}
+                    \[P\{X = n\} = (1-p)^{n - 1}p\]
+                \end{definition}
+                
+                \begin{proposition}
+                	\[E[X] = \frac{1}{p}\]
+                	\[\mathrm{Var}(X) = \frac{1 - p}{p^2}\]
+                \end{proposition}
+                
+            \subsubsection{Negative Binomial Random Variable}
+                \begin{definition}
+                    \[P\{X = n\} = \left(\begin{array}{c} n - 1\\ r - 1\\ \end{array}\right)p^r(1-p)^{n-r}\]
+                \end{definition}
+            \subsubsection{Hypergeometric Random Variable}
+            \begin{definition}
+            Suppose that a sample of size n is to be chosen randomly (without replacement) from an urn containing N balls, of which m are white and N − m are black. If we let X denote the number of white balls selected, then    
+                \[P\{X = i\} = \frac{\left(\begin{array}{c} m\\ 1\\ \end{array}\right)\left(\begin{array}{c} N - m\\ n - i\\ \end{array}\right)}{\left(\begin{array}{c} N\\ n\\ \end{array}\right)}\]
+            \end{definition}
+            \subsubsection{The Zeta (or Zipf) Distribution}
+            \begin{definition}
+                \[P\{X = k\} = \frac{C}{k^{\alpha+1}}\]
+                while,
+                \[C = \lbrack \sum^{\infty}_{k=1}(\frac{1}{k})^{\alpha + 1}\rbrack^{-1} \]
+                and 
+                \[\zeta(s) =  \sum^{\infty}_{k=1}(\frac{1}{k})^s\]
+            \end{definition}
+
+    \section{Continuous Random Variables}
+        \subsection{Introduction}
+            \begin{definition}[Continuous Random Variable]
+                We say that X is a continuous† random variable if there exists a nonnegative function f , defined for all real $x \in (−\infty, \infty)$, having the property that, for any set B of real number,
+                \[P\{X \in B\} = \int_B f(x)dx\footnote{$f(x)$ is called the \textbf{probability density function}.}\]
+            \end{definition}
+
+            \begin{proposition}
+                \[1 = P\{X \in (-\infty, \infty)\} = \int^{\infty}_{\infty}f(x)dx\]
+            \end{proposition}
+        \subsection{Expectation and Variance of Continuous Random Variables}
+            \begin{definition}[Expectation]
+                \[E[X] = \int^{\infty}_{-\infty}xf(x)dx\]
+            \end{definition}
+
+            \begin{proposition}
+                \[E[g(X)] = \int_{-\infty}^{\infty}g(x)f(x)dx\]
+            \end{proposition}
+
+            \begin{corollary}
+                \[E[aX + b] = aE[X] + b\]
+            \end{corollary}
+
+            \begin{definition}[Variance]
+                \[Var(X) = E[(X - \mu)^2] = E[X^2]-(E[X])^2 = \int_{-\infty}^{\infty}x^2f(x)dx - (\int_{-\infty}^{\infty}f(x)dx)^2\]
+            \end{definition}
+
+        \subsection{The Uniform Random Variable}
+            \begin{definition}[Uniform Distribution]
+                A random variable is said to be uniformly distributed over the interval (0, 1) if its probability density function is given by,
+                \[f(x) = \left\{\begin{array}{ll} 1 & 0 < x < 1 \\ 0 & otherwise \end{array}\right.\]
+
+                Similarly, a random variable is said to be uniformly distributed over the interval $(\alpha, \beta)$ if its probability density function is given by,
+                \[f(x) = \left\{\begin{array}{ll} \frac{1}{\beta - \alpha} & \alpha < x < \beta \\ 0 & otherwise \end{array}\right.\]
+            \end{definition}
+
+            \begin{proposition}
+                \[P(a \leq X \leq b) = \int_a^b f(x)dx = b - a\]
+            \end{proposition}
+
+        \subsection{Normal Random Variables}
+            \begin{definition}[Normal Random Variable]
+                We say that X is a normal random variable, or simply that X is normally distributed, with parameters μ and $σ^2$ if the density of X is given by
+                    \[f(x) = \frac{1}{\sqrt{2\pi}\sigma}e^{-(x-\mu)^2/2\sigma^2}, -\infty < x < +\infty.\]
+            \end{definition}
+            \begin{proposition}
+                For a random variable with parameters $\mu$ and $\sigma^2$,
+                    \begin{enumerate}
+                        \item Expectation: $E[X] = \mu$
+                        \item Variance: $Var[X] = \sigma^2$
+                        \item $P\{Z \leq -x\} = P\{Z > x\}$, $-\infty < x < \infty$
+                    \end{enumerate}
+                If we denote the \textbf{cumulative distribution function} of a standard normal random variable by 
+                    \[\Phi(x) = \frac{1}{\sqrt{2\pi}}\int^x_{-\infty}e^{-y^2/2}dy\]
+                We have $\Phi(-x) = 1 - \Phi(x)$, $-\infty < x < \infty$.
+                
+                And
+                \[F_X(X \leq a) = P(\frac{X - \mu}{\sigma} \leq \frac{a - \mu}{\sigma}) = \Phi(\frac{a - \mu}{\sigma}) \]
+            \end{proposition}
+            \subsubsection{The Normal Approximation to the Binomial Distribution}
+                \begin{theorem}[The DeMoivre-Laplace Limit Theorem]
+                    When n is large, a binomial random variable with parameters n and p will have approximately the same distribution as a normal random variable with the same mean and variance as the binomial. 
+
+                    If $S_n$ denotes the number of successes that occur when n independent trials, each resulting in a success with probability p, are performed, then, for any $a < b$,
+                        \[P\lbrace a \leq \frac{S_n - np}{\sqrt{np(1-p)}} \leq b\rbrace \rightarrow \Phi(b) - \Phi(a)\]
+                    as $n \rightarrow \infty$.
+                \end{theorem}
+                
+    \subsection{Exponetial Random Variable}
+    \begin{definition}
+    A continuous random variable whose probability density function is given, for some $\lambda > 0$, by
+    \[f(x) = \left\{ \begin{array}{ll} \lambda e^{-\lambda x} & if\ x \geq 0 \\ 0 & if\ x < 0 \end{array}\right.\]
+    is said to be an \textbf{exponential random variable} (or, more simply, is said to be exponentially distributed) with parameter $\lambda$.
+    \end{definition}
+    \begin{proposition}
+        Let X be an exponential random variable with parameter $\lambda$.
+        \begin{enumerate}
+            \item \[E[X^n] = \frac{n}{\lambda}E[x^{n - 1}]\]
+            \item \[E[X] = \frac{1}{\lambda}\]
+            \item \[Var(X) = \frac{1}{\lambda^2}\]
+        \end{enumerate}
+    \end{proposition}
+    \subsection{Other Continuous Distributions}
+    \subsubsection{The Gamma Distribution}
+    \begin{definition}[Gamma Distribution]
+        A random variable is said to have a \textbf{gamma distribution} with parameters $(\alpha, \lambda), \lambda > 0, \alpha > 0$, if its density function is given by
+        \[f(x) = \left\{\begin{array}{ll} \frac{\lambda e^{-\lambda x}(\lambda x)^{\alpha - 1}}{\Gamma(\alpha)} & x \geq 0\\0 & x < 0\end{array}\right.\]
+        where \[\Gamma(\alpha) = \int^\infty_0 e^{-y}y^{\alpha-1}dy.\footnote{$\Gamma(\alpha) = (\alpha - 1)\Gamma(\alpha - 1) = (n-1)!.$}\]
+    \end{definition}
+    \begin{proposition}
+        Let X a \textbf{gamma distribution} with parameters $(\alpha, \lambda), \lambda > 0, \alpha > 0$.
+        \begin{enumerate}
+            \item \[E[X] = \frac{\alpha}{\lambda}\]
+            \item \[Var(X) = \frac{\alpha}{\lambda^2}\]
+        \end{enumerate}
+    \end{proposition}
+    \subsubsection{The Weibull Distribution}
+    \begin{definition}[The Weibull Distribution]
+        A random variable whose cumulative distribution function is said to be a \textbf{Weibull random variable} with parameters $\nu$, $\alpha$, and $\beta$ if
+        \[f(x) = \left\{ \begin{array}{ll} 0 & x \leq v\\ \frac{\beta}{\alpha}(\frac{x-v}{\alpha})^{\beta-1}\exp\{-(\frac{x-v}{\alpha})^{\beta}\}& x > v\end{array}\right.\]
+    \end{definition}
+    \subsubsection{The Cauchy Distribution}
+    \begin{definition}[The Cauchy Distribution]
+        A random variable is said to have a Cauchy distribution with parameter $\theta$, $-\infty < \theta < \infty$, if its density is given by
+        \[f(x) = \frac{1}{\pi}\frac{1}{1+(x-\theta)^2}, -\infty < \theta < \infty\]
+    \end{definition}
+    \subsubsection{The Beta Distribution}
+    \begin{definition}[The Beta Distribution]
+        A random variable is said to have a Beta distribution if its density is given by
+        \[f(x) = \frac{1}{B(a,b)}x^{a-1}(1-x)^{b-1}, 0 < x < 1\]
+        where
+        \[B(a, b) = \int^1_0 x^{a-1}(1-x)^{b-1}dx\]
+    \end{definition}
+    \begin{proposition}
+        \[B(a,b) = \frac{\Gamma(a)\Gamma(b)}{\Gamma(a+b)}\]
+    \end{proposition}
+    \begin{proposition}
+    Let X a \textbf{beta distribution}
+        \begin{enumerate}
+            \item \[E[X] = \frac{a}{a+b}\]
+            \item \[Var(X) = \frac{ab}{(a+b)^2(a+b+1)}\]
+        \end{enumerate}
+    \end{proposition}
+\end{document}
+

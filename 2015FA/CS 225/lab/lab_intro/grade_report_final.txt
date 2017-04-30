@@ -1,0 +1,22 @@
+Grading revision r2034 by lbai5, dated 2015-08-28 18:57:16.000066863 -0500 CDT
+Monad Autograder
+Testing lab_intro at 2015-08-31 00:32:45
+
+"A computer lets you make more mistakes faster than any invention in human history–with the possible exceptions of handguns and tequila." ~ Mitch Radcliffe
+
+Setting up test environment...
+Compiling...
+================================================================
+
+
+Running tests...
+================================================================
+testBrighten  . [33 pts] - passed
+testCrosshairs  [33 pts] - passed
+testBlendImages [34 pts] - passed
+
+
+Total score...
+================================================================
+TOTAL SCORE: 100
+

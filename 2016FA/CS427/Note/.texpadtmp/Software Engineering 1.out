@@ -1,0 +1,10 @@
+\BOOKMARK [1][-]{section.1}{Bug\040Reporting}{}% 1
+\BOOKMARK [2][-]{subsection.1.1}{Key\040Elements\040of\040Bug\040Reporting:}{section.1}% 2
+\BOOKMARK [3][-]{subsubsection.1.1.1}{Reproduce}{subsection.1.1}% 3
+\BOOKMARK [3][-]{subsubsection.1.1.2}{Isolate}{subsection.1.1}% 4
+\BOOKMARK [3][-]{subsubsection.1.1.3}{Generalize}{subsection.1.1}% 5
+\BOOKMARK [2][-]{subsection.1.2}{Terminology}{section.1}% 6
+\BOOKMARK [1][-]{section.2}{Software\040Configuration\040Management\040\(SCM\)}{}% 7
+\BOOKMARK [2][-]{subsection.2.1}{Version\040Control\040System\040\(VCS\)}{section.2}% 8
+\BOOKMARK [2][-]{subsection.2.2}{Build\(Maven\)}{section.2}% 9
+\BOOKMARK [2][-]{subsection.2.3}{Maven\040Demo}{section.2}% 10

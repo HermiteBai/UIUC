@@ -1,0 +1,57 @@
+%!TEX TS-program = pdflatex
+%!TEX encoding = UTF-8 Unicode
+
+\documentclass[11pt]{article}
+\usepackage{jeffe,handout,graphicx,mathtools}
+\usepackage[utf8x]{inputenc}			% allow Unicode in .tex file
+\usepackage{enumerate}
+\usepackage{fourier-orns}
+
+\def\Cdot{\mathbin{\text{\normalfont \textbullet}}}
+\def\Sym#1{\texttt{\upshape \color{BrickRed} {#1}}}
+\def\Var#1{\ensuremath{\seq{\textsf{#1}}}}
+
+\def\ForceSym#1{\setbox0\hbox{A}\hbox to \wd0{\hss #1\hss}}
+\def\Blank{\ForceSym{$\diamond$}}
+%\def\Enter{\ForceSym{$\dlsh$}}			% Too wide; needs mathabx package
+\def\Enter{\ForceSym{\rotatebox[origin=c]{180}{$\Rsh$}}}	% Better
+\def\To{\leadsto}
+\def\Tostar{\mathrel{\To\!\!\!^*}}
+
+\newcommand{\comp}[1]{#1_{\text{comp}}}
+
+\newtheorem{claim}{Claim}
+
+\begin{document}
+
+\begin{center}
+\Large\textbf{CS/ECE 374 \,\decosix\,  Spring 2017}%
+\\
+\LARGE\textbf{\decothreeleft~ Homework 10 Question 2 ~\decothreeright}%
+\\[0.5ex]
+\large Due Friday, April 28, 2017 at 10am
+\end{center}
+
+\begin{center}
+
+
+\begin{Large}
+Ho Yin Au (hoyinau2), Lanxiao Bai(lbai5), Renheng Ruan(rruan2)
+\end{Large}
+\end{center}
+
+\begin{itemize}
+	\item	Question 2\\
+	BALLOON is a problem that given a graph $G$ and integer $k$, decide whether there is a subgraph in $G$ which is a balloon of $k$. balloon of $k$ is a graph with a directed path of length $k+1$ and the endpoint of the directed path is a part of directed cycle of length $k$.\\ \\ 
+	To show BALLOON is NP-complete, we need to show BALLOON is in NP and is NP-hard.\\ \\ 
+	To show BALLOON is in NP, given graph $G$ and integer $k$, we assume there is a certificate that is $\{ v_1, v_2, ... , v_{2k} \} \subset V(G)$, where we check $\{ v_1, v_2, ... , v_k, v_{k+1} \}$ has a directed path from $v_1$ to $v_{k+1}$ which is the "tail" of balloon, and check $\{ v_{k+1}, v_{k+2}, ... , v_{2k} \}$ has a directed cycle. As checking directed path and directed cycle with given vertices need only linear time, BALLOON is in NP.\\ \\ 
+	To show that BALLOON is NP-hard, we try to reduce from directed Hamiltonian Cycle. Given a graph $G$, we build graph $G'$ by first constructing a directed path $P$ with $|V(G)|$ vertices which those vertices not in $V(G)$ and adding a directed edge from the end of $P$ to an arbitrary vertex in $V(G)$. Then, finding whether $G$ has a directed Hamiltonian Cycle is equivalent to finding whether $G'$ has a balloon of $|V(G)|$.\\ \\ 
+	To be clear, if $G$ has directed Hamiltonian Cycle, it has directed cycle of length $|V(G)|$. As that cycle is directed Hamiltonian Cycle, the directed path (the "tail") must linked to one of the its vertices. The graph $G'$ has a balloon of $|V(G)|$.\\ \\ 
+	If $G$ has no directed Hamiltonian Cycle, it has no directed cycle of length $|V(G)|$. As cycle of length $|V(G)|$ do not exist in $G$, the graph $G'$ has no balloon of $|V(G)|$.\\ \\ 
+	As we proved that directed Hamiltonian Cycle $<_p$ BALLOON, and we know that  SAT is NP-Complete and SAT $<_p$ 3-SAT $<_p$ directed Hamiltonian Cycle, we get SAT $<_p$ 3-SAT $<_p$ directed Hamiltonian Cycle $<_p$ BALLOON and thus BALLOON is NP-hard.\\ \\ 
+	As BALLOON is in NP and is NP-hard, BALLOON is NP-complete.
+\end{itemize}
+
+
+
+\end{document}

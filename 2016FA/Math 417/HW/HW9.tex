@@ -1,0 +1,75 @@
+\documentclass[11pt]{article}
+\input{../../packages.tex}
+\pagestyle{fancy}
+\fancyhead[L]{Math 417}
+\fancyhead[C]{HW 9}
+\fancyhead[R]{Lanxiao Bai(lbai5)}
+\begin{document}
+	\paragraph{3.1.14}
+		\subparagraph{Claim:}$\mathbb{Z}_4 \times \mathbb{Z}_4$ is not isomorphic $\mathbb{Z}_4 \times \mathbb{Z}_2 \times \mathbb{Z}_2$.
+		\subparagraph{Proof:} For the group $\mathbb{Z}_4 \times \mathbb{Z}_4$, the elements of order $4$ are as following: $(1, 1), (3, 3), (1, 3), (3, 1)$, which means $4$ in total. And for $\mathbb{Z}_4 \times \mathbb{Z}_2 \times \mathbb{Z}_2$, the elements of order $4$ are $(1, 1, 0), (1, 0, 1), (1, 1, 1), (3, 1, 0), (3, 0, 1), (3, 1, 1)$, which means $6$ in total. 
+		
+		Obviously, we see that the $2$ groups does not have the same structure, so there is no isomorphism between them.$\blacksquare$
+	\paragraph{3.1.15}.
+		\subparagraph{Claim:} $K_1 \unlhd G_1, K_2 \unlhd G_2$, $K_1 \times K_2 \unlhd G_1 \times G_2$ and 
+			\[(G_1 \times G_2) / (K_1 \times K_2) \cong G_1 / K_1 \times G_2 / K_2.\]
+		\subparagraph{Proof:} $K_1 \unlhd G_1 \Rightarrow \forall g_1 \in G_1, g_1K_1g_1^{-1} = K_1, K_2 \unlhd G_2 \Rightarrow \forall g_2 \in G_2, g_2K_2g_2^{-1} = K_2$. Then take $k = (k_1, k_2) \in K_1 \times K_2, g = (g_1, g_2) \in G_1 \times G_2$, $gkg^{-1} = (g_1, g_2)(k_1, k_2)(g_1^{-1}, g_2^{-1}) = (g_1k_1g_1^{-1}, g_2k_2g_2^{-1}) \in K_1 \times K_2$, so $K_1 \times K_2 \unlhd G_1 \times G_2$.
+		
+		Since $K_1 \times K_2 \unlhd G_1 \times G_2$, we proved that $\pi: G_1 \times G_2 \rightarrow (G_1 \times G_2) / (K_1 \times K_2)$ is a quotient map. We can construct a map $\varphi: G_1 \times G_2 \rightarrow G_1 / K_1 \times G_2 / K_2$ by sending $(g_1, g_2)$ to $(g_1K_1, g_2K_2)$, namely $\varphi((g_1, g_2)) = (g_1K_1, g_2K_2)$. 
+		
+		Since when $g_1 = g_3, g_2 = g_4 \Rightarrow \varphi((g_1, g_2)) = (g_1K_1, g_2K_2) = (g_3K_1, g_4K_2) = \varphi((g_3, g_4))$, so the map is well-defined.
+		
+		Take $(g_{11}, g_{12}), (g_{21}, g_{22}) \in G_1 \times G_2$, then $\varphi((g_{11}, g_{12})(g_{21}, g_{22})) = \varphi((g_{11}g_{21}, g_{12}g_{22})) = (g_{11}g_{21}K_1, g_{12}g_{22}K_2) = (g_{11}K_1, g_{12}K_2)(g_{21}K_1, g_{22}K_2) = \varphi((g_{11}, g_{12}))\varphi((g_{21}, g_{22}))$. 
+		
+		So we can conclude that the map $\varphi$ we just defined is a group homomorphism.
+		
+		Take an arbitrary $(g_1K_1, g_2K_2) \in G_1 / K_1 \times G_2 / K_2$, we have $(g_1, g_2) \in G_1 \times G_2$, that $\varphi((g_1, g_2)) = (g_1K_1, g_2K_2)$ so that the homomorphism $\varphi$ is surjective.
+		
+		Finally, we proved that $(G_1 \times G_2) / (K_1 \times K_2) \cong G_1 / K_1 \times G_2 / K_2$ by the First Isomorphism Theorem.$\blacksquare$
+	\paragraph{3.5.3}
+		\subparagraph{Claim:} Let $G$ be an abelian group and let $x_1, \cdots, x_n$ be distinct nonzero elements of $G$. If and only if the set $B = \{x_1, \cdots, x_n\}$ is a basis of $G$, then for each $i$, the map $r \mapsto rx_i$ is injective, and \[G = \mathbb{Z}x_1 \times \mathbb{Z}x_2 \times \cdots\times \mathbb{Z}x_n.\]
+		\subparagraph{Proof:}
+			Prove sufficiency first.
+			
+			Take $B = \{x_1, \cdots, x_n\}$ to be the basis of $G$, $x_1, \cdots, x_n$ are linearly independent, namely, let $r_1, r_2, \cdots \in \mathbb{Z}$ if \[\sum r_ix_i = 0,\] then $r_i = 0$ for all $i$.
+			
+			Then we take $r_1x_i = r_2x_i$ for all $i$, then $r_1x_i - r_2x_i = 0 \Rightarrow (r_1 - r_2)x_i = 0 \Rightarrow r_1 = r_2$ for all $i$.
+			
+			As a result, we proved that the map $r \mapsto rx_i$ is injective.
+			
+			And take $g \in G$, since $B$ is a basis $\exists r_1, r_2, \cdots, r_n$ to make $r_1x_1 + r_2x_2 + \cdots + r_nx_n = g \in \mathbb{Z}x_1 \times \mathbb{Z}x_2 \times \cdots\times \mathbb{Z}x_n$. So $G \subseteq \mathbb{Z}x_1 \times \mathbb{Z}x_2 \times \cdots\times \mathbb{Z}x_n$.
+			
+			Then we take $(r_1x_1, r_2x_2, \cdots, r_nx_n) \in \mathbb{Z}x_1 \times \mathbb{Z}x_2 \times \cdots\times \mathbb{Z}x_n$. Obviously, correspondent $(r_1, r_2, \cdots, r_n) \in G$. Thus, $\mathbb{Z}x_1 \times \mathbb{Z}x_2 \times \cdots\times \mathbb{Z}x_n \subseteq G$.
+			
+			As a result, $G = \mathbb{Z}x_1 \times \mathbb{Z}x_2 \times \cdots\times \mathbb{Z}x_n$.
+			
+			Then we can prove necessity.
+			
+			Assume that the map $r \mapsto rx_i$ is injective and $G = \mathbb{Z}x_1 \times \mathbb{Z}x_2 \times \cdots\times \mathbb{Z}x_n$, then $\forall i, r_1x_i = r_2x_i \rightarrow r_1 = r_2 \Rightarrow \sum_i r_{1i}x_i = \sum_i r_{2i}x_i \Rightarrow \sum_i (r_{1i} - r_{2i})x_i = 0 \rightarrow r_{1i} = r_{2i} \Rightarrow r_{1i} - r_{2i} = 0$.
+			
+			Thus, we proved that $B$ is a basis of $G$.
+			
+			And finally, if and only if the set $B = \{x_1, \cdots, x_n\}$ is a basis of $G$, then for each $i$, the map $r \mapsto rx_i$ is injective, and \[G = \mathbb{Z}x_1 \times \mathbb{Z}x_2 \times \cdots\times \mathbb{Z}x_n.\] is proved.$\blacksquare$
+	\paragraph{3.6.10}
+		\subparagraph{Claim:} There are $15$ abelian groups of order $128$ up to isomorphism.
+		\subparagraph{Proof:} According to Fundamental Theorem of Finitely Generated Abelian Groups, any group of order $128$ is one of the following groups up to isomorphism:
+		\begin{itemize}
+			\item $\mathbb{Z}_{128}$
+			\item $\mathbb{Z}_{64} \times \mathbb{Z}_{2}$
+			\item $\mathbb{Z}_{32} \times \mathbb{Z}_{4}$
+			\item $\mathbb{Z}_{32} \times \mathbb{Z}_{2} \times \mathbb{Z}_{2}$
+			\item $\mathbb{Z}_{16} \times \mathbb{Z}_{8}$
+			\item $\mathbb{Z}_{16} \times \mathbb{Z}_{4} \times \mathbb{Z}_{2}$
+			\item $\mathbb{Z}_{16} \times \mathbb{Z}_{2} \times \mathbb{Z}_{2} \times \mathbb{Z}_{2}$
+			\item $\mathbb{Z}_{8} \times \mathbb{Z}_{8} \times \mathbb{Z}_{2}$
+			\item $\mathbb{Z}_{8} \times \mathbb{Z}_{4} \times \mathbb{Z}_{4}$
+			\item $\mathbb{Z}_{8} \times \mathbb{Z}_{4} \times \mathbb{Z}_{2} \times \mathbb{Z}_{2}$
+			\item $\mathbb{Z}_{8} \times \mathbb{Z}_{2} \times \mathbb{Z}_{2} \times \mathbb{Z}_{2} \times \mathbb{Z}_{2}$
+			\item $\mathbb{Z}_{4} \times \mathbb{Z}_{4} \times \mathbb{Z}_{4} \times \mathbb{Z}_{2}$
+			\item $\mathbb{Z}_{4} \times \mathbb{Z}_{4} \times \mathbb{Z}_{2} \times \mathbb{Z}_{2} \times \mathbb{Z}_{2}$
+			\item $\mathbb{Z}_{4} \times \mathbb{Z}_{2} \times \mathbb{Z}_{2} \times \mathbb{Z}_{2} \times \mathbb{Z}_{2} \times \mathbb{Z}_{2}$
+			\item $\mathbb{Z}_{2} \times \mathbb{Z}_{2} \times \mathbb{Z}_{2} \times \mathbb{Z}_{2} \times \mathbb{Z}_{2} \times \mathbb{Z}_{2} \times \mathbb{Z}_{2}$
+		\end{itemize}
+		
+		There are $15$ kinds of groups in total.$\blacksquare$
+\end{document}
