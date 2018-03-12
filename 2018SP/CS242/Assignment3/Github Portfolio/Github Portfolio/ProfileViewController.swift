@@ -46,14 +46,7 @@ class ProfileViewController: UIViewController {
         }
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        avatar.layer.borderWidth = 1
-        avatar.layer.masksToBounds = false
-        avatar.layer.borderColor = UIColor.black.cgColor
-        avatar.layer.cornerRadius = avatar.frame.height / 2
-        avatar.clipsToBounds = true
+    fileprivate func requestData(url : String) {
         let url = "https://api.github.com/users/HermiteBai"
         Alamofire.request(url, method: .get).responseJSON {
             response in switch response.result {
@@ -63,6 +56,18 @@ class ProfileViewController: UIViewController {
                 print("Request failed with error: \(error)")
             }
         }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view, typically from a nib.
+        avatar.layer.borderWidth = 1
+        avatar.layer.masksToBounds = false
+        avatar.layer.borderColor = UIColor.black.cgColor
+        avatar.layer.cornerRadius = avatar.frame.height / 2
+        avatar.clipsToBounds = true
+        let url = "https://api.github.com/users/HermiteBai"
+        requestData(url : url)
     }
 
     override func didReceiveMemoryWarning() {
