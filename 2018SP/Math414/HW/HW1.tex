@@ -1,0 +1,143 @@
+\documentclass[11pt]{article}
+\input{../../../packages.tex}
+\pagestyle{fancy}
+\fancyhead[L]{Math 414}
+\fancyhead[C]{HW 1}
+\fancyhead[R]{Lanxiao Bai}
+
+\usepackage{listings}
+\usepackage{color}
+\usepackage{enumerate}
+
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Python,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{black},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{black},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+\begin{document}
+	\begin{enumerate}
+		\item 
+		\begin{enumerate}
+			\item Suppose we have $a, b, c \in \mathbb{Z}$.
+			
+			Since $a - a = 0$ which is even, we have $a \equiv a$ (mod 2), so reflexivity is proved.
+			
+			Suppose $a \equiv b$ (mod 2), then we have $k \in \mathbb{Z}$ that $a - b = 2k$ so that $b - a = -2k$ and $-2k \in \mathbb{Z}$. So we have $b \equiv a$ (mod 2) and thus the symmetry is proved.
+			
+			Suppose $a \equiv b$ (mod 2) and  $b \equiv c$ (mod 2), so we have $k_1, k_2 \in \mathbb{Z}$ that $a - b = 2k_1$, $b - c = 2k_2$. So $a - c = (a - b) - (b - c) = 2(k_1 - k_2)$ that $k_1 - k_2 \in \mathbb{Z}$. Thus, $a \equiv c$ (mod 2). So transitivity is proved.
+			
+			In conclusion, this relation is equivalent.
+			$\blacksquare$
+			
+			\item Since we have $m \equiv n$ (mod 2) and $m' \equiv n'$ (mod 2), so let $k_1, k_2 \in \mathbb{Z}$ that $m - n = 2k_1$ and $m' - n' = 2k_2$.
+			
+			As a result, 
+			\begin{align}
+				&(m + n) - (m' + n') = (m - m') + (n - n')\nonumber\\ 
+				&\phantom{(m + n) - (m' + n')} = 2(n - n') + 2(k_1 - k_2)\nonumber\\
+				&\phantom{(m + n) - (m' + n')} = 2(n - n' + k_1 - k_2)\nonumber
+			\end{align}
+			
+			Since $n, n', k_1, k_2 \in \mathbb{Z}$, $n - n' + k_1 - k_2 \in \mathbb{Z}$. So we have $m + n \equiv m' + n'$ (mod 2).
+			
+			Similarly, 
+			\begin{align}
+				&mm' - nn' = (n + 2k_1)(n' + 2k_2) - nn'\nonumber\\
+				&\phantom{mm' - nn'} = nn' + 2k_1n' + 2k_2n + 4k_1k_2 - nn'\nonumber\\
+				&\phantom{mm' - nn'} = 2k_1n' + 2k_2n + 4k_1k_2\nonumber
+			\end{align}
+			
+			So we proved that $mm' \equiv nn'$ (mod 2).
+			$\blacksquare$
+			\item For all $x \in U$, if $x \in A$ and $x \in B$ then $x \in A \cap B$ so that
+			\[\chi_{A \cap B}(x) = 1 = \chi_{A}(x)\chi_{B}(x)\]
+			
+			if $x \notin A$ or $x \notin B$, then
+			\[\chi_{A \cap B}(x) = 0 = \chi_{A}(x)\chi_{B}(x)\]
+			
+			so we have \[\chi_{A \cap B}(x) \equiv \chi_{A}(x)\chi_{B}(x) (mod\ 2)\]
+			
+			Suppose $x \in A \Delta B$, then $x \in A$ xor $x \in B$ so
+			\[\chi_{A \Delta B}(x) = 1 = 1 + 0 = \chi_{A}(x) + \chi_{B}(x)\]
+			
+			Suppose $x \notin A \Delta B$, then $x \notin B$ and $x \notin A$, then so
+			\[\chi_{A \Delta B}(x) = 0 = 0 + 0 = \chi_{A}(x) + \chi_{B}(x)\]
+			
+			or $x \notin A \Delta B$, then $x \in B$ and $x \in A$, then so
+			\[\chi_{A \Delta B}(x) = 0\]
+			
+			\[\chi_{A}(x) + \chi_{B}(x) = 1 + 1 = 2\]
+			 
+			 So we have \[\chi_{A \Delta B}(x) \equiv \chi_{A}(x) + \chi_{B}(x) (mod\ 2)\]
+			 $\blacksquare$
+		\end{enumerate}
+		\item 
+		\begin{enumerate}[(1).]
+			\item Since $f, g$ injective, for all $x_1, x_2 \in A$, $x_1 \neq x_2$ implies $f(x_1) \neq f(x_2)$ so $g(f(x_1)) \neq g(f(x_2))$, so we conclude that $g \circ f$ is injectives.
+			\item Since $f, g$ surjective for all $z \in C$ there is $y \in B$ that $g(y) = z$ and for all $y \in B$ there is $x \in A$ that $f(x) = y$. So for all $z \in C$ there is $x \in A$ that $g(f(x)) = z$. We conclude that $g \circ f$ is surjective.
+			\item Suppose $f$ is not injective then there exist $x_1, x_2 \in A$ that $f(x_1) = f(x_2)$ so $g(f(x_1)) = g(f(x_2))$ which means $g \circ f$ is not injective. So we conclude that $f$ must be injective.
+			\item Suppose $g \circ f(x) = x$, $f(x) = \sqrt (x)$ and $g(x) = x^2$, we see that $g \circ f$ is injective but not $g$. So we conclude that $g$ is not necessarily injective.
+			\item Let $A = \{0\}, B = \{0, 1\}$ and $f(0) = 0, g(x) = 0$, so $g \circ f$ is surjective, but $f$ is not surjective.
+			\item If $g$ is not surjective, then there is $z \in C$ that no $y \in B$ that $g(y) = z$. Since for all $x \in A$, $f(x) \in B$. So there is no $x \in A$ that $g(f(x)) = z$. So we conclude that $g$ must be surjective.
+		\end{enumerate}
+		\item 
+			\begin{enumerate}
+				\item 
+				\[f(x) = 
+				\begin{cases}
+					x / 2 & \text{if $x$ is even}\\
+					-\frac{x + 1}{2} & \text{otherwise}
+				\end{cases} \]
+				\item Suppose we have countable sets $A, B$, then we can construct a bijection between $A$ and odd numbers and between $B$ and even numbers. Then we see that there is a bijection between the union of $A$ and $B$ to the union of odd numbers and between $B$ and even numbers, which is $\mathbb{Z}$. So we conclude that the union of two countable sets is countable.
+			\end{enumerate}
+			\item Base case: When $k = 1$, $A^k = A$, which has $1^k = 1$ element.
+			
+			Suppose when $k = m$, $|A^k| = n^m$.
+			
+			Then when $k = m + 1$, $|A^{m + 1}| = |A\times A^m| = |A||A^m| = n\cdot n^m = n^{m + 1}$.
+			
+			In conclusion, $|A^k| = n^k$ for all $k \geq 1$.
+			$\blacksquare$
+			\item
+			\begin{enumerate}[(1).]
+				\item
+				\begin{align}
+					&\phantom{\Leftrightarrow}V \in \mathcal{P}(A) \cap \mathcal{P}(B)\nonumber\\
+					&\Leftrightarrow \mathcal{P}(A) \vee V \in \mathcal{P}(B)\nonumber\\
+					&\Leftrightarrow V \subseteq A \vee V \subseteq B\nonumber\\
+					&\Leftrightarrow V \subseteq A \cap \subseteq B\nonumber\\
+					&\Leftrightarrow V \in \mathcal{P}(A \cap B)\nonumber
+				\end{align}
+				
+				So $\mathcal{P}(A) \cap \mathcal{P}(B) = \mathcal{P}(A \cap B)$.
+				\item Let $A = \{1, 2\}$, $B = \{2, 3\}$, so $A \cap B = \{1, 2, 3\}$. 
+				\item 
+				Note that $A \cap B = \{1, 2, 3\} \not\subseteq A$ and $A \cap B = \{1, 2, 3\} \not\subseteq B$.
+
+				So $A \cap B \not\in \mathcal{P}(A) \wedge A \cap B \not\in \mathcal{P}(B)$.
+				
+				Hence, $A \cap B \not\in \mathcal{P}(A) \cup \mathcal{P}(B)$.
+				
+				So $\mathcal{P}(A \cup B) \not\subseteq \mathcal{P}(A) \cup \mathcal{P}(B)$.
+				
+				We conclude that this is not necessarily correct.
+			\end{enumerate}
+	\end{enumerate}
+\end{document}

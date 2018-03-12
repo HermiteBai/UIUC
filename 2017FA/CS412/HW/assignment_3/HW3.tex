@@ -1,0 +1,92 @@
+\documentclass[11pt]{article}
+\input{../../../packages.tex}
+\pagestyle{fancy}
+\fancyhead[L]{CS 412}
+\fancyhead[C]{HW3}
+\fancyhead[R]{Lanxiao Bai}
+
+\usepackage{listings}
+\usepackage{color}
+\usepackage{enumerate}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Python,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{black},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{black},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+\begin{document}
+	\begin{enumerate}
+		\item Considering three sequences
+		
+		\begin{tabular}{c | l}
+			S1 & [A, B, B, B, B, B, C, D, E, A, F, B, C]\\
+			S2 & [F, D, D, D, E, E, A, F, D, A, B, Z, C]\\
+			S2 & [A, D, F, A, D, E, C, B, F, F, B, A, A, E, A, A, C]
+		\end{tabular}
+		\begin{itemize}
+			\item By definition, we have the result as following table shows
+			\begin{center}
+			\begin{tabular}{|c | c|}
+				\hline
+					& Length of minimum occurrence window\\
+				\hline
+				S1 & 4\\
+				\hline
+				S2 & 4\\
+				\hline
+				S3 & 4\\
+				\hline
+			\end{tabular}
+			\end{center}
+			\item
+			By definition, we have the result as following table shows
+			\begin{center}
+			\begin{tabular}{|c | c|}
+				\hline
+					& Number of outliers in outlier based minimum occurrence window\\
+				\hline
+				S1 & 1\\
+				\hline
+				S2 & 0\\
+				\hline
+				S3 & 1\\
+				\hline
+			\end{tabular}
+			\end{center}
+		\end{itemize}
+		\item According to the instruction of problem 2, the algorithm is implemented in \textit{Question2.lbai5.py}, and we got the following output
+		\begin{lstlisting}
+1
+1, 2
+1, 2, 4
+1, 4
+2
+2, 4
+2, 4, 5
+2, 5
+4
+4, 5
+5
+5, 6
+6
+		\end{lstlisting}
+		
+	which are all stored in file \textit{output.txt}.
+	\end{enumerate}
+\end{document}

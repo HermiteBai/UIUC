@@ -1,0 +1,78 @@
+\documentclass[11pt]{article}
+
+\usepackage{homeworkpkg}
+
+%% Local Macros and packages: add any of your own definitions here.
+
+\begin{document}
+
+% Homework number, your name and NetID, and optionally, the names/NetIDs of anyone you collaborated with. If you did not collaborate with anybody, leave the last parameter empty.
+\homework
+    {1}
+    {Lanxiao Bai (lbai5)}
+    {}
+
+\section*{Problem 1}
+\textbf{Solution:} 
+	By Bayes Rule, we have that 
+	\begin{align}
+		& P(y = 1 \mid \textbf{x}) = \frac{P(\textbf{x} \mid y =  1)P(y = 1)}{P(\textbf{x})}\nonumber
+	\end{align}
+\section*{Problem 2}
+\textbf{Solution:} Assume there is a relation $a$ that
+	\[\log \frac{P(\textbf{x} \mid y = 1)}{P(\textbf{x} \mid y = 0)} = a\]
+
+	Then we apply Bayes Rule
+	\begin{align}
+		& \phantom{\Rightarrow} \log \frac{P(\textbf{x} \mid y = 1)}{P(\textbf{x} \mid y = 0)} = a\nonumber\\
+		& \Rightarrow \log \frac{P(y = 1 \mid \textbf{x})}{P(y = 0 \mid \textbf{x})} + \log \frac{P(y = 1)}{P(y = 0)} = a\nonumber
+	\end{align}
+	
+	Let \[a' = a - \log \frac{P(y = 1)}{P(y = 0)}\]
+	
+	then we have 
+	
+	\begin{align}
+		&\phantom{\Rightarrow} \log \frac{P(y = 1 \mid \textbf{x})}{P(y = 0 \mid \textbf{x})} = a'\\
+		&\Rightarrow \frac{P(y = 1 \mid \textbf{x})}{1 - P(y = 1 \mid \textbf{x})} = e^{a'}\nonumber\\
+		&\Rightarrow \frac{1 - P(y = 1 \mid \textbf{x})}{P(y = 1 \mid \textbf{x})} = e^{-a'}\nonumber\\
+		&\Rightarrow 1 - P(y = 1 \mid \textbf{x}) = e^{-a'}P(y = 1 \mid \textbf{x})\nonumber\\
+		&\Rightarrow P(y = 1 \mid \textbf{x}) = \frac{1}{1 + e^{-a'}}\nonumber
+	\end{align}
+\section*{Problem 3}
+\textbf{Solution:} 
+	Since $\textbf{x} \sim \mathcal{N}(\mathbf{\mu}_c, \mathbf{\Sigma})$, and the result of previous questions, we have
+		\begin{align}
+			&P(\mathbf{x} \mid y = c) = \prod_{i = 1}^n P(x_i \mid y = c)\nonumber\\
+			&\phantom{P(\mathbf{x} \mid y = c)} = \prod_{i = 1}^n \mathcal{N}(x_i \mid \mu_{ic}, \sigma_i^2)\nonumber\\
+			&\phantom{P(\mathbf{x} \mid y = c)} = \prod_{i = 1}^n \frac{1}{\sqrt{2\pi\sigma_i^2}}e^{-\frac{(x_i - \mu_{ic})^2}{2\sigma_i^2}}\nonumber\\
+			&\phantom{P(\mathbf{x} \mid y = c)} = \left(\frac{1}{\sqrt{2\pi}}\right)^n \frac{1}{\prod_{i = 1}^n \sigma_i^2} e^{-\sum_{i = 0}^n \frac{(x_i - \mu_{ic})^2}{2\sigma_i}}
+		\end{align}
+\section*{Problem 4}
+\textbf{Solution:} 
+	Since by Bayes rule we have 
+	\begin{align}
+		&P(y = 1 \mid \mathbf{x}) = \frac{P(y = 1)P(\mathbf{x} \mid y = 1)}{P(y = 1)P(\mathbf{x}\mid y = 1)P(y = 0)P(\mathbf{x}\mid y = 0)}\nonumber\\
+		&\phantom{P(y = 1 \mid \mathbf{x})} = \frac{1}{1 + \frac{P(y = 0)P(\mathbf{x}\mid y = 0)}{P(y = 1)P(\mathbf{x}\mid y = 1)}}\nonumber\\
+		&\phantom{P(y = 1 \mid \mathbf{x})} = \frac{1}{1 + \exp(\log\frac{P(y = 0)P(\mathbf{x}\mid y = 0)}{P(y = 1)P(\mathbf{x}\mid y = 1)})}\nonumber\\
+		&\phantom{P(y = 1 \mid \mathbf{x})} = \frac{1}{1 + \exp(\log\frac{P(y = 0)P(\mathbf{x}\mid y = 0)}{P(y = 1)P(\mathbf{x}\mid y = 1)})}\nonumber
+	\end{align}
+	
+	Since the independence assumption of Naive Bayes, we have
+	\begin{align}
+		&P(y = 1 \mid \mathbf{x}) = \frac{1}{1 + \exp(\log\frac{P(y = 0)}{P(y = 1)} + \log \frac{P(\mathbf{x}\mid y = 0)}{P(\mathbf{x}\mid y = 1)})}\nonumber\\
+		&\phantom{P(y = 1 \mid \mathbf{x})} =  \frac{1}{1 + \exp(\frac{1 - \pi}{\pi} + \sum_{i = 1}^n \log \frac{P(x_i\mid y = 0)}{P(x_i\mid y = 1)})}
+	\end{align}
+	
+	in which
+	\begin{align}
+		\sum_{i = 1}^n \log \frac{P(x_i\mid y = 0)}{P(x_i\mid y = 1)} = \sum_{i = 1}^n \left(\frac{\mu_{i0} - \mu_{i1}}{\sigma^2_i}x_i +  \frac{\mu_{i0}^2 - \mu_{i1}^2}{\sigma^2_i}\right) & (\cite{Mitchell:1997:ML:541177})\nonumber
+	\end{align}
+	
+	So that when we let $w_i  = \frac{\mu_{i0} - \mu_{i1}}{\sigma^2_i}$ and $w_0 = \frac{\mu_{i0}^2 - \mu_{i1}^2}{\sigma^2_i}$ and plug back to equation (3), we can effectively get that
+	\[P(y = 1 \mid \mathbf{x}) = \frac{1}{1 + e^{w_0 + \sum_{i = 1}^n w_i x_i}}\]
+\newpage \nocite{*}
+\bibliographystyle{ims}
+\bibliography{citations}
+
+\end{document}

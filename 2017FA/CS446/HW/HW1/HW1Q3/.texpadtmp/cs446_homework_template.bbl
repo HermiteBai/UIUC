@@ -1,0 +1,12 @@
+\begin{thebibliography}{1}
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+\expandafter\ifx\csname url\endcsname\relax
+  \def\url#1{\texttt{#1}}\fi
+\expandafter\ifx\csname urlprefix\endcsname\relax\def\urlprefix{URL }\fi
+
+\bibitem[{Mitchell(1997)}]{Mitchell:1997:ML:541177}
+\textsc{Mitchell, T.~M.} (1997).
+\newblock \textit{Machine Learning}.
+\newblock 1st ed. McGraw-Hill, Inc., New York, NY, USA.
+
+\end{thebibliography}

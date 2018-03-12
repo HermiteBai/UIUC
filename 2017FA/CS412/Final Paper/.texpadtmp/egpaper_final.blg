@@ -1,0 +1,52 @@
+This is BibTeX, Version 0.99d (TeX Live 2015)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: /Users/hermitebai/Documents/UIUC/2017FA/CS412/Final Paper/.texpadtmp/egpaper_final.aux
+The style file: ../ieee.bst
+Database file #1: ../egbib.bib
+Warning--entry type for "2003yang&webb" isn't style-file defined
+--line 50 of file ../egbib.bib
+Warning--to sort, need author or key in colah
+Warning--empty year in bishop
+Warning--empty journal in platt1998sequential
+You've used 28 entries,
+            2120 wiz_defined-function locations,
+            672 strings with 8809 characters,
+and the built_in function-call counts, 9439 in all, are:
+= -- 895
+> -- 490
+< -- 6
++ -- 194
+- -- 163
+* -- 627
+:= -- 1566
+add.period$ -- 84
+call.type$ -- 28
+change.case$ -- 152
+chr.to.int$ -- 0
+cite$ -- 31
+duplicate$ -- 370
+empty$ -- 728
+format.name$ -- 163
+if$ -- 1985
+int.to.chr$ -- 0
+int.to.str$ -- 28
+missing$ -- 30
+newline$ -- 138
+num.names$ -- 60
+pop$ -- 202
+preamble$ -- 1
+purify$ -- 130
+quote$ -- 0
+skip$ -- 279
+stack$ -- 0
+substring$ -- 490
+swap$ -- 88
+text.length$ -- 6
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 100
+warning$ -- 3
+while$ -- 82
+width$ -- 30
+write$ -- 290
+(There were 4 warnings)

@@ -1,0 +1,53 @@
+\documentclass[11pt]{article}
+\input{../../packages.tex}
+\pagestyle{fancy}
+\fancyhead[L]{CS 450}
+\fancyhead[C]{HW5Q4}
+\fancyhead[R]{Lanxiao Bai}
+
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\allowdisplaybreaks[1]
+
+\lstset{frame=tb,
+  language=Python,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+\begin{document}
+	\begin{itemize}
+		\item Since the ODE is $y' = -5y$, in order to make the numerical solution stable, we need
+		\[|1 + \lambda h| \leq 1 \Rightarrow |1 - 5h| \leq 1 \Rightarrow h \leq 2 /5\]
+		for Euler forward method,
+		\[\left|\frac{1}{1 - h\lambda}\right| \leq 1 \Rightarrow \left|\frac{1}{1 + 5h}\right| \leq 1 \Rightarrow h > 0\]
+		for Euler backward method,
+		and \[\left|\frac{1 + h\lambda/2}{1 + h\lambda/2}\right| < 1 \Rightarrow h > 0\]
+		for Trapezoid Method.
+		
+		As a result, $h = 0.5 > 0.4 = 2 / 5$ will make the solutions unstable.
+		
+		\item From the equations above, we know that the step is not stable for this ODE using this step size at $t=0.5$ given by Euler's method.
+		\item Since $y' = f(t, y) = -5y$ and $y_0 = 1$, so we have 
+		\[y_{0.5} = (1 + 0.5 \cdot (-5))y_0 = -1.5\]
+		
+		\item From the equations above, we know that the step is stable for this ODE using this step size at $t=0.5$ given by Euler's backward method.
+		\item \item Since $y' = f(t, y) = -5y$ and $y_0 = 1$, so we have
+		\[y_{0.5} = \left(\frac{1}{1 - 0.5 \cdot (-5)}\right)y_0 = 0.28\]
+	\end{itemize}
+\end{document}

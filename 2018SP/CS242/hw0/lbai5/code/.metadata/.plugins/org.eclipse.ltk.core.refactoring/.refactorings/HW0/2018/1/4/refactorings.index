@@ -1,0 +1,4 @@
+1516827808350	Extract method 'writeAccountingReport'
+1516828157993	Extract method 'printRequestMessage'
+1516828435126	Move method 'printDocument'
+1516828921263	Move method 'printRequestMessage'

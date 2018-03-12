@@ -1,0 +1,104 @@
+\documentclass[11pt]{article}
+
+\usepackage{homeworkpkg}
+%% Local Macros and packages: add any of your own definitions here.
+
+\begin{document}
+
+% Homework number, your name and NetID, and optionally, the names/NetIDs of anyone you collaborated with. If you did not collaborate with anybody, leave the last parameter empty.
+\homework
+    {2}
+    {Lanxiao Bai (lbai5)}
+    {}
+
+\section*{Problem 1}
+\textbf{Solution:} 
+	Since we have model
+	\[\mathbf{y} = \mathbf{Xw} + \varepsilon\]
+	
+	by letting
+	\[\frac{\partial ||\mathbf{y} - \mathbf{Xw}||^2_2}{\partial\mathbf{w}} = 0\],
+	
+	we can get the least square solution
+	\[\hat{\mathbf{w_{LS}}} = (\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T\mathbf{y}\]
+\section*{Problem 2}
+\textbf{Solution:} 
+ In order to check if the least square estimation is biased, we can calculate the bias of the estimation
+ 
+ \begin{align}
+ 	&\text{bias}(\hat{\mathbf{w_{LS}}}) = \mathbb{E}[\hat{\mathbf{w_{LS}}}] - \mathbf{w}\nonumber\\
+ 	&\phantom{\text{bias}(\hat{\mathbf{w_{LS}}})} = \mathbb{E}[(\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T\mathbf{y}] - \mathbf{w}\nonumber\\
+ 	&\phantom{\text{bias}(\hat{\mathbf{w_{LS}}})} = \mathbb{E}[(\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T(\mathbf{Xw + \varepsilon})] - \mathbf{w}\nonumber\\
+ 	&\phantom{\text{bias}(\hat{\mathbf{w_{LS}}})} = \mathbb{E}[(\mathbf{X}^{-1}(\mathbf{X}^T)^{-1}\mathbf{X}^T\mathbf{Xw} + (\mathbf{X}^{-1}(\mathbf{X}^T)^{-1}\mathbf{X}^T\mathbf{Xw}\varepsilon] - \mathbf{w}\nonumber\\
+ 	&\phantom{\text{bias}(\hat{\mathbf{w_{LS}}})} = \mathbb{E}[\mathbf{w}] + (\mathbf{X}^{-1}(\mathbf{X}^T)^{-1}\mathbf{X}^T\mathbb{E}[\varepsilon] - \mathbf{w}\nonumber\\
+ 	&\phantom{\text{bias}(\hat{\mathbf{w_{LS}}})} = \mathbf{w} + \mathbf{0} - \mathbf{w} = \mathbf{0}\nonumber
+ \end{align}
+ 
+ So we see that the least square estimator is unbiased.
+\section*{Problem 3}
+\textbf{Solution:} 
+\begin{align}
+	&Var(\hat{\mathbf{w_{LS}}}) = Var((\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T\mathbf{y})\nonumber\\
+	&\phantom{Var(\hat{\mathbf{w_{LS}}})} = Var((\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T(\mathbf{Xw} + \varepsilon))\nonumber\\
+	&\phantom{Var(\hat{\mathbf{w_{LS}}})} = Var((\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T\mathbf{Xw}) + Var((\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T\varepsilon))\nonumber\\
+	&\phantom{Var(\hat{\mathbf{w_{LS}}})} = Var(\mathbf{w}) + (\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^TVar(\varepsilon)((\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T)^T\nonumber\\
+	&\phantom{Var(\hat{\mathbf{w_{LS}}})} = (\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T\sigma^2I((\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T)^T\nonumber\\
+	&\phantom{Var(\hat{\mathbf{w_{LS}}})} = \sigma^2(\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T((\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T)^T\nonumber\\
+	&\phantom{Var(\hat{\mathbf{w_{LS}}})} = \sigma^2(\mathbf{X}^T\mathbf{X})^{-1}\nonumber
+\end{align}
+\section*{Problem 4}
+\textbf{Solution:} Now that we have the objective function
+\[\arg\min_{\mathbf{w}} ||\mathbf{y} - \mathbf{Xw}||^2_2+ \lambda||\mathbf{w}||^2_2 \]
+similarly, we let
+\[\frac{\partial (||\mathbf{y} - \mathbf{Xw}||^2_2 + \lambda||\mathbf{w}||^2_2)}{\partial\mathbf{w}} = 0\]
+
+and get
+\[\hat{\mathbf{w_{\text{ridge}}}} =  ( \lambda \mathbf{I}_D + \mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T\mathbf{y}\]
+\section*{Problem 5}
+\textbf{Solution:} Similarly, we calculate the bias of $\hat{\mathbf{w_{\text{ridge}}}}$, 
+\begin{align}
+	&\text{bias}(\hat{\mathbf{w_{\text{ridge}}}}) = \mathbb{E}[\hat{\mathbf{w_{ridge}}}] - \mathbf{w}\nonumber\\
+	&\phantom{\text{bias}(\hat{\mathbf{w_{\text{ridge}}}})} = \mathbb{E}[(\lambda \mathbf{I}_D + \mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T\mathbf{y}] - \mathbf{w}\nonumber\\
+	&\phantom{\text{bias}(\hat{\mathbf{w_{\text{ridge}}}})} = \mathbb{E}[(\lambda \mathbf{I}_D + \mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T(\mathbf{Xw} + \varepsilon)] - \mathbf{w}\nonumber\\
+	&\phantom{\text{bias}(\hat{\mathbf{w_{\text{ridge}}}})} = \mathbb{E}[(\lambda \mathbf{I}_D + \mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T\mathbf{Xw}] - \mathbf{w}\nonumber\\
+	&\phantom{\text{bias}(\hat{\mathbf{w_{\text{ridge}}}})} = (\mathbf{I}_D + \lambda (\mathbf{X}^T\mathbf{X})^{-1})\mathbf{w} & \cite{Stanford}\nonumber
+\end{align}
+
+Hence, the estimator is biased.
+\section*{Problem 6}
+\textbf{Solution:}
+\begin{align}
+	&Var(\hat{\mathbf{w_{\text{ridge}}}}) = Var(( \lambda \mathbf{I}_D + \mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T\mathbf{y})\nonumber\\
+	&\phantom{Var(\hat{\mathbf{w_{\text{ridge}}}})} = Var(( \lambda \mathbf{I}_D + \mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T\mathbf{Xw}) + \sigma^2(( \lambda \mathbf{I}_D + \mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T)(( \lambda \mathbf{I}_D + \mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T)^T\nonumber\\
+	&\phantom{Var(\hat{\mathbf{w_{\text{ridge}}}})} = \sigma^2(( \lambda \mathbf{I}_D + \mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T)(( \lambda \mathbf{I}_D + \mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T)^T\nonumber\\
+	&\phantom{Var(\hat{\mathbf{w_{\text{ridge}}}})} = \sigma^2( \lambda \mathbf{I}_D + \mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T\mathbf{X}((\lambda \mathbf{I}_D + \mathbf{X}^T\mathbf{X})^{-1})^{T}\nonumber
+\end{align}
+\section*{Problem 7}
+\textbf{Solution:}
+\begin{align}
+	&tr(Var(\hat{\mathbf{w_{LS}}})) = tr(\sigma^2(\mathbf{X}^T\mathbf{X})^{-1})\nonumber\\
+	&\phantom{tr(Var(\hat{\mathbf{w_{LS}}}))} = \sigma^2tr((\mathbf{X}^T\mathbf{X})^{-1})\nonumber\\
+	&\phantom{tr(Var(\hat{\mathbf{w_{LS}}}))} = \sigma^2tr((\mathbf{V}\mathbf{S}^2\mathbf{V}^T)^{-1})\nonumber\\
+	&\phantom{tr(Var(\hat{\mathbf{w_{LS}}}))} = \sigma^2tr(\mathbf{V}(\mathbf{S}^2)^{-1}\mathbf{V}^{-1})\nonumber\\
+	&\phantom{tr(Var(\hat{\mathbf{w_{LS}}}))} = \sigma^2tr((\mathbf{S}^2)^{-1})\nonumber\\
+	&\phantom{tr(Var(\hat{\mathbf{w_{LS}}}))} = \sigma^2\sum_{i = 1}^n \frac{1}{s_i^2}\nonumber
+\end{align}
+
+and
+
+\begin{align}
+	&tr(Var(\hat{\mathbf{w_{ridge}}})) = tr(\sigma^2( \lambda \mathbf{I}_D + \mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T\mathbf{X}((\lambda \mathbf{I}_D + \mathbf{X}^T\mathbf{X})^{-1})^{T})\nonumber\\
+	&\phantom{tr(Var(\hat{\mathbf{w_{ridge}}}))} = \sigma^2tr(\mathbf{V}(\lambda \mathbf{I}_D + \mathbf{S}^2)^{-1}\mathbf{V}^T(\mathbf{V}\mathbf{S}^2\mathbf{V}^T)(\mathbf{V}(\lambda \mathbf{I}_D + \mathbf{S}^2)^{-1}\mathbf{V}^T)^{T})\nonumber\\
+	&\phantom{tr(Var(\hat{\mathbf{w_{ridge}}}))} = \sigma^2tr(\mathbf{V}(\lambda \mathbf{I}_D + \mathbf{S}^2)^{-1}\mathbf{V}^T(\mathbf{V}\mathbf{S}^2\mathbf{V}^T)\mathbf{V}^T((\lambda \mathbf{I}_D + \mathbf{S}^2)^{-1})^T\mathbf{V})\nonumber\\
+	&\phantom{tr(Var(\hat{\mathbf{w_{ridge}}}))} = \sigma^2tr((\lambda \mathbf{I}_D + \mathbf{S}^2)^{-1}\mathbf{S}^2(\lambda \mathbf{I}_D + \mathbf{S}^2)^{-1})\nonumber\\
+	&\phantom{tr(Var(\hat{\mathbf{w_{ridge}}}))} = \sigma^2tr(((\lambda \mathbf{I}_D + \mathbf{S}^2)^{-1})^2\mathbf{S}^2)\nonumber\\
+	&\phantom{tr(Var(\hat{\mathbf{w_{ridge}}}))} = \sigma^2 \sum_{i = 1}^n \frac{s_i^2}{\lambda + s_i^2} \nonumber\\
+\end{align}
+\section*{Problem 8}
+\textbf{Solution:}
+	We see that the bias of $\hat{\mathbf{w_{LS}}}$ is smaller than that of $\hat{\mathbf{w_{ridge}}}$ but the variance of of $\hat{\mathbf{w_{LS}}}$ is larger than that of $\hat{\mathbf{w_{ridge}}}$.
+\newpage \nocite{*}
+\bibliographystyle{ims}
+\bibliography{citations}
+
+\end{document}

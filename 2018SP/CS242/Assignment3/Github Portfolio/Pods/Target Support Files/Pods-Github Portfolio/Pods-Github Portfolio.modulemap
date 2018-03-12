@@ -1,0 +1,6 @@
+framework module Pods_Github_Portfolio {
+  umbrella header "Pods-Github Portfolio-umbrella.h"
+
+  export *
+  module * { export * }
+}

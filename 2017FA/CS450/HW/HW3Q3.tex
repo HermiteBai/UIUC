@@ -1,0 +1,50 @@
+\documentclass[11pt]{article}
+\input{../../packages.tex}
+\pagestyle{fancy}
+\fancyhead[L]{CS 450}
+\fancyhead[C]{HW3Q3}
+\fancyhead[R]{Lanxiao Bai}
+
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\allowdisplaybreaks[1]
+
+\lstset{frame=tb,
+  language=Python,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+\begin{document}
+	\begin{enumerate}
+		\item For projection matrix $P$, 
+		\[\lambda^2x = P^2x = Px = \lambda x\]
+		leads to $\lambda_1 = 1, \lambda_2 = 0$.
+		
+		\item Since Householder matrix is symmetric, 
+		\begin{align}
+			&H^TH = HH\nonumber\\
+			&H^TH = (I - 2\frac{vv^T}{v^Tv}) (I - 2\frac{vv^T}{v^Tv})\nonumber\\
+			&\phantom{H^TH} = (I^T - 2\frac{vv^T}{v^Tv}) (I - 2\frac{vv^T}{v^Tv})\nonumber\\
+			&\phantom{H^TH} = I - 2\frac{vv^T}{v^Tv} - 2\frac{vv^T}{v^Tv} + 4(\frac{vv^T}{v^Tv})(\frac{vv^T}{v^Tv})\nonumber\\
+			&\phantom{H^TH} = I\nonumber
+		\end{align}
+		
+		we see that Householder is an orthogonal matrix, and as a result, the eigenvalues are $\lambda_1 = 1, \lambda_2 = -1$.
+	\end{enumerate}
+\end{document}

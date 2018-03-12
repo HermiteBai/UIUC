@@ -1,0 +1,151 @@
+\documentclass[11pt]{article}
+
+\usepackage{homeworkpkg}
+%% Local Macros and packages: add any of your own definitions here.
+\allowdisplaybreaks
+
+\begin{document}
+
+% Homework number, your name and NetID, and optionally, the names/NetIDs of anyone you collaborated with. If you did not collaborate with anybody, leave the last parameter empty.
+\homework
+    {4}
+    {Lanxiao Bai (lbai5)}
+    {}
+
+\section*{Problem 1}
+\textbf{Solution:} 
+	\begin{align}
+		&\log L_I(\Psi) = \log p(\mathbf{y} \mid \Psi)\nonumber\\
+		&\phantom{\log L_1(\Psi)} = \log \sum_{k = 1}^2 \pi_k \mathcal{N}(\mathbf{y} \mid \Psi) \nonumber\\
+		&\phantom{\log L_1(\Psi)} = \log \sum_{k = 1}^2 \pi_k \mathcal{N}(\mathbf{y} \mid \Psi) \nonumber\\
+		&\phantom{\log L_1(\Psi)} = \sum_{i = 1}^n \log \left\{\sum_{k = 1}^2 \log \pi_k \mathcal{N}(\mathbf{y}_i \mid \Psi)\right\} \nonumber
+	\end{align}
+\section*{Problem 2}
+\textbf{Solution:} 
+	\begin{align}
+		&\log L_C(\Psi) = \log p(\mathbf{W} \mid \Psi)\nonumber\\
+		&\phantom{\log L_C(\Psi)} = \log \mathcal{N}(\mathbf{W} \mid \Psi)\nonumber\\
+		&\phantom{\log L_C(\Psi)} = \log \prod_{i = 1}^n \mathcal{N}(\mathbf{W}_i \mid \Psi)\nonumber\\
+		&\phantom{\log L_C(\Psi)} = \sum_{i = 1}^n \log \mathcal{N}(\mathbf{W}_i \mid \Psi)\nonumber\\
+		&\phantom{\log L_C(\Psi)} = \sum_{i = 1}^n \log \frac{1}{2\pi} |\Sigma|^{-\frac{1}{2}} \exp\left(-\frac{1}{2} (\mathbf{W}_i - \mu)^T \Sigma^{-1} (\mathbf{W}_i - \mu)\right)\nonumber\\
+		&\phantom{\log L_C(\Psi)} = \sum_{i = 1}^n \left\{-\log 2\pi - \frac{1}{2} \log \xi - \frac{1}{2} Tr\left(\Sigma^{-1} (\mathbf{W}_i - \mu)(\mathbf{W}_i - \mu)^T\right)\right\}\nonumber\\
+		 &\phantom{\log L_C(\Psi)} = -n\log 2\pi - \frac{n}{2} \log \xi - \frac{1}{2} \sum_{i = 1}^n Tr\left(\Sigma^{-1} (\mathbf{W}_i - \mu)(\mathbf{W}_i - \mu)^T\right)\nonumber\\
+		 &\phantom{\log L_C(\Psi)} = -n\log 2\pi - \frac{n}{2} \log \xi - \frac{1}{2} Tr\left(\Sigma^{-1} \sum_{i = 1}^n [(\mathbf{W}_i - \mu)(\mathbf{W}_i - \mu)^T]\right)\nonumber\\
+		 &\phantom{\log L_C(\Psi)} = -n\log 2\pi - \frac{n}{2} \log \xi - \frac{1}{2} Tr\left(\frac{1}{\xi} 
+		 \begin{bmatrix}
+		 	\sigma_{22} & -\sigma_{12}\\
+		 	-\sigma_{12} & \sigma_{11}
+		 \end{bmatrix}
+		  \sum_{i = 1}^n [(\mathbf{W}_i - \mu)(\mathbf{W}_i - \mu)^T]\right)\nonumber\\
+		  &\phantom{\log L_C(\Psi)} = -n\log 2\pi - \frac{n}{2} \log \xi - \frac{1}{2} Tr\left(\frac{1}{\xi} 
+		 \begin{bmatrix}
+		 	\sigma_{22} & -\sigma_{12}\\
+		 	-\sigma_{12} & \sigma_{11}
+		 \end{bmatrix}
+		 \begin{bmatrix}
+		 	T_{11} - \mu_1^2 & T_{12} - \mu_1\mu_2\\
+		 	T_{12} - \mu_1\mu_2 & T_{22} - \mu_2^2
+		 \end{bmatrix}
+		  \right)\nonumber
+	\end{align}
+\section*{Problem 3}
+\textbf{Solution:} 
+	Since \[\mathbf{\hat{\mu}} = \frac{1}{n} \sum_{i = 1}^n \mathbf{W}_i\] and 
+	\[\hat{\Sigma} = \frac{1}{n} \sum_{i = 1}^n (\mathbf{W}_i - \mathbf{\hat{\mu}})(\mathbf{W}_i - \mathbf{\hat{\mu}})^T\]
+	
+	we have
+	
+	\begin{align}
+		&\hat{\mu}_1 = \frac{1}{n} \sum_{i = 1}^n w_{1i}\nonumber\\
+		&\phantom{\hat{\mu}_1} = \frac{T_1}{n}\nonumber
+	\end{align}
+	
+	\begin{align}
+		&\hat{\mu}_2 = \frac{1}{n} \sum_{i = 1}^n w_{2i}\nonumber\\
+		&\phantom{\hat{\mu}_2} = \frac{T_2}{n}\nonumber
+	\end{align}
+	
+	\begin{align}
+		&\hat{\Sigma} = \frac{1}{n} \sum_{i = 1}^n [w_{i1} - \hat{\mu}_1, w_{i2} - \hat{\mu}_2]^T[w_{i1} - \hat{\mu}_1, w_{i2} - \hat{\mu}_2]\nonumber\\
+		&\phantom{\hat{\Sigma}} = \frac{1}{n} \sum_{i = 1}^n
+		\begin{bmatrix}
+			(w_{i1} - \hat{\mu}_1)^2 & (w_{i1} - \hat{\mu}_1)(w_{i2} - \hat{\mu}_2)\\
+			(w_{i1} - \hat{\mu}_1)(w_{i2} - \hat{\mu}_2) & (w_{i1} - \hat{\mu}_1)^2
+		\end{bmatrix}\nonumber\\
+		&\phantom{\hat{\Sigma}} =
+		\begin{bmatrix}
+			\frac{1}{n} \sum_{i = 1}^n(w_{i1} - \hat{\mu}_1)^2 & \frac{1}{n} \sum_{i = 1}^n(w_{i1} - \hat{\mu}_1)(w_{i2} - \hat{\mu}_2)\\
+			\frac{1}{n} \sum_{i = 1}^n(w_{i1} - \hat{\mu}_1)(w_{i2} - \hat{\mu}_2) & \frac{1}{n} \sum_{i = 1}^n(w_{i1} - \hat{\mu}_1)^2
+		\end{bmatrix}\nonumber\\
+		&\phantom{\hat{\Sigma}} =
+		\begin{bmatrix}
+			\mathbb{E}[(w_{1} - \hat{\mu}_1)^2] & \mathbb{E}[(w_{1} - \hat{\mu}_1)(w_{2} - \hat{\mu}_2)]\\
+			\mathbb{E}[(w_{1} - \hat{\mu}_1)(w_{2} - \hat{\mu}_2)] & \mathbb{E}[(w_{2} - \hat{\mu}_2)^2]
+		\end{bmatrix}\nonumber\\
+		&\phantom{\hat{\Sigma}} =
+		\begin{bmatrix}
+			\mathbb{E}[w_{1}^2] - \hat{\mu}_1^2 & \mathbb{E}[w_{1}w_{2}] - \hat{\mu}_1\hat{\mu}_2\\
+			\mathbb{E}[w_{1}w_{2}] - \hat{\mu}_1\hat{\mu}_2 & \mathbb{E}[w_{2}^2] - \hat{\mu}_2^2
+		\end{bmatrix}\nonumber\\
+		&\phantom{\hat{\Sigma}} =
+		\begin{bmatrix}
+			\frac{T_{11}}{n} - \frac{T_1^2}{n^2} & \frac{T_{12}}{n} - \frac{T_1T_2}{n^2}\\
+			\frac{T_{12}}{n} - \frac{T_1T_2}{n^2} & \frac{T_{22}}{n} - \frac{T_2^2}{n^2}
+		\end{bmatrix}\nonumber
+	\end{align}
+	
+	We get that
+	
+	\[\hat{\sigma}_{11} = \frac{T_{11}}{n} - \frac{T_1^2}{n^2}\]
+	\[\hat{\sigma}_{12} = \frac{T_{12}}{n} - \frac{T_1T_2}{n^2}\]
+	\[\hat{\sigma}_{22} = \frac{T_{22}}{n} - \frac{T_2^2}{n^2}\]
+\section*{Problem 4}
+\textbf{Solution:}
+	\begin{align}
+		&T_{11}^{(k)} = \mathbb{E}_{\Psi^{(k)}}[T_{11} \mid \mathbf{y}]\nonumber\\
+		&\phantom{T_{11}^{(k)}} = \sum_{i = 1}^{m} w_{i1}^2 + \sum_{i = m + 1}^{m + m_1} \mathbb{E}_{\Psi^{(k)}}[w_{i1}^2 \mid w_{i2}] + \sum_{i = m + m_1 + 1}^{n} w_{i1}^2\nonumber\\
+		&\phantom{T_{11}^{(k)}} = \sum_{i = 1}^{m} w_{i1}^2 + \sum_{i = m + 1}^{m + m_1} (\sigma_{11}^{(k)}(1 - \rho^{2(k)}) + (\mu_1^{(k)} + \sigma_{12}^{(k)}\sigma_{22}^{-1(k)}(w_{i2} - \mu_2^{(k)}))^2) + \sum_{i = m + m_1 + 1}^{n} w_{i1}^2\nonumber\\
+		&\nonumber\\
+		&T_{22}^{(k)} = \mathbb{E}_{\Psi^{(k)}}[T_{22} \mid \mathbf{y}]\nonumber\\
+		&\phantom{T_{22}^{(k)}} = \sum_{i = 1}^{m_1} w_{i2}^2 + \sum_{i = m + m_1 + 1}^{n} \mathbb{E}_{\Psi^{(k)}}[w_{i2}^2 \mid w_{i1}]\nonumber\\
+		&\phantom{T_{22}^{(k)}} = \sum_{i = 1}^{m_1} w_{i1}^2 + \sum_{i = m + m_1 + 1}^{n} (\sigma_{22}^{(k)}(1 - \rho^{2(k)}) + (\mu_2^{(k)} + \sigma_{12}^{(k)}\sigma_{11}^{-1(k)}(w_{i1} - \mu_1^{(k)}))^2)\nonumber\\
+		&\nonumber\\
+		&T_{12}^{(k)} = T_{21}^{(k)} = \mathbb{E}_{\Psi^{(k)}}[T_{12} \mid \mathbf{y}]\nonumber\\
+		&\phantom{T_{12}^{(k)}} = \sum_{i = 1}^{m} w_{i1}w_{i2} + \sum_{i = m + 1}^{m + m_1} \mathbb{E}_{\Psi^{(k)}}[w_{i1} \mid w_{i2}]w_{i2} + \sum_{i = m + m_1 + 1}^{n} w_{i1}\mathbb{E}_{\Psi^{(k)}}[w_{i2}^2 \mid w_{i1}]\nonumber\\
+		&\phantom{T_{12}^{(k)}} = \sum_{i = 1}^{m} w_{i1}w_{i2} + \sum_{i = m + 1}^{m + m_1} [(\sigma_{11}^{(k)}(1 - \rho^{2(k)}) + (\mu_1^{(k)} + \sigma_{12}^{(k)}\sigma_{22}^{-1(k)}(w_{i2} - \mu_2^{(k)}))]w_{i2} +\nonumber\\
+		& \sum_{i = m + m_1 + 1}^{n} [w_{i1}(\sigma_{22}^{(k)}(1 - \rho^{2(k)}) + (\mu_2^{(k)} + \sigma_{12}^{(k)}\sigma_{11}^{-1(k)}(w_{i1} - \mu_1^{(k)}))]\nonumber
+	\end{align}
+\section*{Problem 5}
+\textbf{Solution:}
+	\begin{align}
+		&Q(\Psi ; \Psi^{(k)}) = \mathbb{E}_{\Psi^{(k)}} [\log(L_C(\Psi)) \mid \mathbf{y}]\nonumber\\
+		&\phantom{Q(\Psi ; \Psi^{(k)})} = -n\log 2\pi - \frac{n}{2} \log \xi - \frac{1}{2} Tr\left(\frac{1}{\xi} 
+		 \begin{bmatrix}
+		 	\sigma_{22}^{(k)} & -\sigma_{12}^{(k)}\\
+		 	-\sigma_{12}^{(k)} & \sigma_{11}^{(k)}
+		 \end{bmatrix}
+		 \begin{bmatrix}
+		 	T_{11}^{(k)} - \mu_1^{2(k)} & T_{12}^{(k)} - \mu_1^{(k)}\mu_2^{(k)}\\
+		 	T_{12}^{(k)} - \mu_1^{(k)}\mu_2^{(k)} & T_{22}^{(k)} - \mu_2^{2(k)}
+		 \end{bmatrix}
+		  \right)\nonumber
+	\end{align}
+	
+\section*{Problem 6}
+\textbf{Solution:}
+	\begin{align}
+		&\hat{\mu}_1^{(k + 1)} = \frac{T_1^{(k)}}{n}\nonumber
+	\end{align}
+	
+	\begin{align}
+		&\hat{\mu}_2^{(k + 1)} = \frac{T_2^{(k)}}{n}\nonumber
+	\end{align}
+	
+	\[\hat{\sigma}_{11}^{(k + 1)} = \frac{T_{11}^{(k)}}{n} - \frac{T_1^{2(k)}}{n^2}\]
+	\[\hat{\sigma}_{12}^{(k + 1)} = \frac{T_{12}^{(k)}}{n} - \frac{T_1^{(k)}T_2^{(k)}}{n^2}\]
+	\[\hat{\sigma}_{22}^{(k + 1)} = \frac{T_{22}^{(k)}}{n} - \frac{T_2^{2(k)}}{n^2}\]
+\newpage 
+\bibliographystyle{ims}
+\bibliography{citations}
+
+\end{document}

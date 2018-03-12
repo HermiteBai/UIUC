@@ -1,0 +1,38 @@
+\documentclass[11pt]{article}
+\input{../../packages.tex}
+\pagestyle{fancy}
+\fancyhead[L]{CS 450}
+\fancyhead[C]{HW6Q4}
+\fancyhead[R]{Lanxiao Bai}
+
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\allowdisplaybreaks[1]
+
+\lstset{frame=tb,
+  language=Python,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+\begin{document}
+	\begin{itemize}
+		\item The order of convergence of this method with respect to $\Delta x$ is $2$ because the data of $(\Delta x_i, Error_i)$ fits to the quadratic curve.
+		\item We see that the solution for $CFL = 0.75$ has a quickly vibrating part around $x = 0$, while the solution for $CFL = 0.7$ perfectly matches the analytical solution. Since analytically AB3 requires $CFL < .7236$ to be stable, it is predictable that solution for $CFL = 0.75$ will be unstable.
+	\end{itemize}
+\end{document}

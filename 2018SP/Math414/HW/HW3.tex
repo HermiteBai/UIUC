@@ -1,0 +1,70 @@
+\documentclass[11pt]{article}
+\input{../../../packages.tex}
+\pagestyle{fancy}
+\fancyhead[L]{Math 414}
+\fancyhead[C]{HW 3}
+\fancyhead[R]{Lanxiao Bai}
+
+\usepackage{listings}
+\usepackage{color}
+\usepackage{enumerate}
+
+\newcommand{\rmodels}{%
+  \mathrel{\text{\reflectbox{$\models$}}}%
+}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Python,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{black},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{black},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+\begin{document}
+	\begin{enumerate}
+		\item 
+		\textbf{Proof:}
+		
+		Suppose there's a function $g$ that there is no wff $\varphi$ such that $g = f_{\varphi}$. Then for any wff $\varphi$, whenever $g = T$, $\Sigma(\varphi) = F$. But if $g = x_1$, $\varphi = P_1$ and $\Sigma(P_1) = x_1 = T$, this truth assignment will lead to $g = T = \Sigma_{P_1}$. This fact contradicts with our assumption. 
+		
+		As a result, for all function $g$ there is a wff $\varphi$ that $g = f_{\varphi}$.$\blacksquare$
+		
+		\item
+		\textbf{Proof:}
+		
+		\textbf{$\Rightarrow$:}
+		
+		Since $f_{\varphi} = f_{\psi}$, any truth assignment $\Sigma$ that either satisfies $(\varphi \wedge \psi)$ or does not satisfy $(\varphi \vee \psi)$. So by definition, $\Sigma$ either satisfies both $\varphi$ and satisfies $\psi$, or does not satisfies $\varphi$ and does not satisfies $\psi$. 
+		
+		This means that for all truth assignment, there is $\Sigma(\varphi) = \Sigma(\psi)$, so $(\varphi \leftrightarrow \psi)$ is always true.
+		
+		By definition, $(\varphi \leftrightarrow \psi)$ is a tautology.
+		
+		\textbf{$\Leftarrow$:}
+		
+		Since $(\varphi \leftrightarrow \psi)$ is a tautology, then for any truth assignment $\Sigma$, there is $\Sigma(\varphi) = \Sigma(\psi)$, so that $\Sigma$ that either satisfies $(\varphi \wedge \psi)$ or does not satisfy $(\varphi \vee \psi)$.
+		
+		As a result, $f_{\varphi} = f_{\psi}$.
+		
+		$\blacksquare$
+
+		\item By counting the number of classes, we can calculate how many different mappings from $\{T, F\}^n$ to $\{T, F\}$.
+		 
+		 From the knowledge from Analysis, we know the number is 
+		 \[|\{T,F\}|^{|\{T,F\}|^n} = 2^{2^n}\]
+	\end{enumerate}
+\end{document}

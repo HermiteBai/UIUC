@@ -1,0 +1,67 @@
+\documentclass[11pt]{article}
+\input{../../../packages.tex}
+\pagestyle{fancy}
+\fancyhead[L]{Math 414}
+\fancyhead[C]{Lecture 2}
+\fancyhead[R]{Lanxiao Bai}
+
+\usepackage{listings}
+\usepackage{color}
+\usepackage{enumerate}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Python,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{black},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{black},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+\begin{document}
+	\section{Relation $\models$}
+	We defined the relation
+	\[\Sigma \models \phi\], as the truth assignment $\Sigma$ satsfies $\phi$ a wff.
+	
+	Let $\mathcal{T}$ be a set of wff's, we say that $\mathcal{T} \models \phi$ if whenever a truth assignment $\Sigma$ satisfies every $\psi \in \mathcal{T}$ then $\Sigma$ also satisfies $\phi$.
+	
+	\section{Tautology}
+	\begin{itemize}
+		\item $\varphi$ is a tautology if every truth assignment satisfies $\varphi$.$\varphi$ is tautology iff $\emptyset \models \varphi$, as every truth assignment vacuously satisfies every wff in $\emptyset$.
+		\item Contradiction: if no truth assignment satisfies $\varphi$
+		\item Satisfiable: if there is at least one truth assignment satisfying $\varphi$.
+
+		\item Note: $\varphi$ is tautology iff $(\neg \varphi)$ is a contradiction.
+	\end{itemize}
+	
+	\section{Compactness}
+	\begin{enumerate}
+		\item $\mathcal{T}$ is satisfiable iff every finite subset of it is satisfiable
+		\item $\mathcal{T} \models \varphi$ iff there is a finite $\mathcal{T}' \subseteq \mathcal{T}$ such that $\mathcal{T} \models \varphi$
+	\end{enumerate}
+	
+	Proof: 
+	$(2) \Rightarrow (1)$:
+	Fact: $\mathcal{T}$ is not satisfiable iff $\mathcal{T} \models (P \wedge (\neg P))$.
+	
+	For a sentence symbol $P$, as a truth assignment cannot satisfy $(P \wedge (\neg P))$. 
+	
+	By $(2)$, $\mathcal{T} \models (P \wedge (\neg P))$ iff there is finite $\mathcal{T}' \models (P \wedge (\neg P))$.
+	
+	So $\mathcal{T}$ is not satisfiable iff there is a finite $\mathcal{T}'$ which is not satisfiable.
+	
+	$(1) \Rightarrow (2)$:
+
+\end{document}

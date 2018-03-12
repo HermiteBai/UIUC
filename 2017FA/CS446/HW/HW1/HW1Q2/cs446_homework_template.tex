@@ -1,0 +1,74 @@
+\documentclass[11pt]{article}
+
+\usepackage{homeworkpkg}
+
+%% Local Macros and packages: add any of your own definitions here.
+
+\begin{document}
+
+% Homework number, your name and NetID, and optionally, the names/NetIDs of anyone you collaborated with. If you did not collaborate with anybody, leave the last parameter empty.
+\homework
+    {1}
+    {Lanxiao Bai(lbai5)}
+    {}
+
+\section*{Problem 2}
+\begin{enumerate}
+	\item \textbf{Solution:} Since we see by definition
+	\[p(y \mid \mathbf{x,w})=\text{Ber}(y \mid \mathbf{sigm}(\mathbf{w^Tx}))\]
+	
+	we can derive that
+	
+	\begin{align}
+		&p(y = 1 \mid \mathbf{x,w}) = \text{Ber}(y = 1 \mid \mathbf{sigm}(\mathbf{w^Tx}))\nonumber\\
+		&\phantom{p(y = 1 \mid \mathbf{x,w})} = \mathbf{sigm}(\mathbf{w^Tx})^{1_{[y = 1]}}\nonumber\\
+		&\phantom{p(y = 1 \mid \mathbf{x,w})} = \mathbf{sigm}(\mathbf{w^Tx})
+	\end{align}
+	
+	\begin{align}
+		&p(y = 0 \mid \mathbf{x,w}) = \text{Ber}(y = 0 \mid \mathbf{sigm}(\mathbf{w^Tx}))\nonumber\\
+		&\phantom{p(y = 0 \mid \mathbf{x,w})} = (1 - \mathbf{sigm}(\mathbf{w^Tx}))^{1_{[y = 0]}}\nonumber\\
+		&\phantom{p(y = 0 \mid \mathbf{x,w})} = 1 - \mathbf{sigm}(\mathbf{w^Tx})
+	\end{align}
+	
+	\item \textbf{Solution:} The derivative of the Sigmoid function is
+		\begin{align}
+			&\frac{d}{dz}\mathbf{sigm}(z) = \frac{d}{dz} \frac{1}{1 + e^{-z}}\nonumber\\
+			&\phantom{\frac{d}{dz}\mathbf{sigm}(z)} = \frac{e^x}{(1 + e^x)^2}& (\cite{WikipediaSigmoid})\nonumber
+		\end{align}
+		
+		We also see that
+		\begin{equation}
+			\frac{d}{dz}\mathbf{sigm}(z) = \mathbf{sigm}(z)(1 - \mathbf{sigm}(z))
+		\end{equation}
+	\item \textbf{Solution:}
+		The likelihood of logistic regression
+		\begin{align}
+			& P(y \mid \mathbf{x, w}) = \prod_{x_i : y_i = 1} \mathbf{sigm}(\mathbf{w^Tx}_i)^{1_{[y_i = 1]}} \prod_{x_i : y_i = 0} (1 - \mathbf{sigm}(\mathbf{w^Tx}_i))^{1_{[y_i = 0]}}
+		\end{align}
+	\item \textbf{Solution:}
+		Base on equation (4), we have the log likelihood function
+		\begin{align}
+			&\mathcal{L}(y \mid \mathbf{X, w}) = \log P(y \mid \mathbf{X, w})\nonumber\\
+			&\phantom{\mathcal{L}(y \mid \mathbf{x, w})} = \sum_{i = 1}^N [y_i \log \mathbf{sigm}(\mathbf{w^Tx}) + (1 - y_i)\log (1 - \mathbf{sigm}(\mathbf{w^Tx}))]\nonumber
+		\end{align}
+		
+		Thus, we have the gradient
+		\begin{align}
+			&\nabla \mathcal{L}(y \mid \mathbf{X, w}) = \frac{d}{d\mathbf{w}}\mathcal{L}(y \mid \mathbf{X, w})\nonumber\\
+			&\phantom{\nabla \mathcal{L}(y \mid \mathbf{X, w})} = \frac{d \mathcal{L}(y \mid \mathbf{X, w})}{d \mathbf{sigm}(\mathbf{w^TX})}\frac{d \mathbf{sigm}(\mathbf{w^TX})}{d\mathbf{w^TX}}\frac{d\mathbf{w^TX}}{d\mathbf{w}}\nonumber\\
+			&\phantom{\nabla \mathcal{L}(y \mid \mathbf{x, w})} = \sum_{i = 1}^N \left(\frac{y_i}{\mathbf{sigm}(\mathbf{w^Tx}_i)} - \frac{1 - y_i}{1 - \mathbf{sigm}(\mathbf{w^Tx}_i)} \right)\mathbf{sigm}(\mathbf{w^Tx}_i)(1 - \mathbf{sigm}(\mathbf{w^Tx}_i))\mathbf{x}_i\nonumber\\
+			&\phantom{\nabla \mathcal{L}(y \mid \mathbf{x, w})} = \sum_{i = 1}^N (y_i - \mathbf{sigm}(\mathbf{w^Tx}_i))\mathbf{x}_i\nonumber
+		\end{align}
+		
+		Thus, we finally get the update rule for gradient descent
+		\[\mathbf{w}_{t + 1} = \mathbf{w}_{t} + \eta \sum_{i = 1}^N (y_i - \mathbf{sigm}(\mathbf{w^Tx}_i))\mathbf{x}_i\]
+\end{enumerate}
+
+
+
+\newpage \nocite{*}
+\bibliographystyle{ims}
+\bibliography{citations}
+
+\end{document}

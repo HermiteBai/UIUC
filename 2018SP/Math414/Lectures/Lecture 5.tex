@@ -1,0 +1,79 @@
+\documentclass[11pt]{article}
+\input{../../../packages.tex}
+\pagestyle{fancy}
+\fancyhead[L]{Math 414}
+\fancyhead[C]{Lecture 2}
+\fancyhead[R]{Lanxiao Bai}
+
+\usepackage{listings}
+\usepackage{color}
+\usepackage{enumerate}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Python,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{black},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{black},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+\begin{document}
+	\section{Compactness}
+	\begin{enumerate}
+		\item $\mathcal{T}$ is satisfiable iff every finite subset of it is satisfiable
+		\item $\mathcal{T} \models \varphi$ iff there is a finite $\mathcal{T}' \subseteq \mathcal{T}$ such that $\mathcal{T} \models \varphi$
+	\end{enumerate}
+	
+	\paragraph{\textbf{Proof:}}
+	
+	\paragraph{$(2) \Rightarrow (1)$:}
+	
+	Fact: $\mathcal{T}$ is not satisfiable iff $\mathcal{T} \models (P \wedge (\neg P))$.
+	
+	For a sentence symbol $P$, as a truth assignment cannot satisfy $(P \wedge (\neg P))$. 
+	
+	By $(2)$, $\mathcal{T} \models (P \wedge (\neg P))$ iff there is finite $\mathcal{T}' \models (P \wedge (\neg P))$.
+	
+	So $\mathcal{T}$ is not satisfiable iff there is a finite $\mathcal{T}'$ which is not satisfiable.
+	
+	\paragraph{$(1) \Rightarrow (2)$:}
+	
+	$\mathcal{T} \models \varphi$ iff $\mathcal{T} \cup \{(\neg \varphi)\}$ is not satisfiable.
+
+	Suppose $(1)$ holds $\mathcal{T} \models \varphi$ iff $\mathcal{T} \cup \{(\neg \varphi)\}$.
+	
+	By $(1)$, $\mathcal{T} \cup \{(\neg \varphi)\}$ is not satisfiable iff $\mathcal{T}' \cup \{(\neg \varphi)\}$ is not satisfiable for a finite $\mathcal{T}' \subseteq \mathcal{T}$.
+	
+	By the fact, this is the case iff $\mathcal{T}' \models \varphi$.
+	
+	\paragraph{Why Compactness?}
+	
+	The set of all truth assignment can be equiped with the product/Tychonoff/Positive-Convergence topology.
+	
+	Compactness $\Leftrightarrow$ This space is compact.
+	
+	\section{Relevance Lemma}
+	
+	If $\Sigma, \Sigma'$ are two assignments that agree on the sentence symbols arising in $\varphi$, then $\Sigma$ satisfies $\varphi$ iff $\Sigma'$ satisfies $\varphi$.
+	
+	\begin{definition}
+		\begin{itemize}
+			\item $\zeta(\varphi) = \{\varphi\}$
+			\item $\zeta((\neg \varphi)) = \zeta(\varphi)$ for any wff $\varphi$
+			\item $\zeta((\varphi \circ \phi)) = \zeta(\varphi) \cup \zeta(\psi)$ for any wff's $\varphi, \psi$ and any binary connective $\circ$.
+		\end{itemize}
+	\end{definition}
+\end{document}

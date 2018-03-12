@@ -1,0 +1,131 @@
+\documentclass[11pt]{article}
+
+\usepackage{homeworkpkg}
+%% Local Macros and packages: add any of your own definitions here.
+\allowdisplaybreaks[1]
+\begin{document}
+
+% Homework number, your name and NetID, and optionally, the names/NetIDs of anyone you collaborated with. If you did not collaborate with anybody, leave the last parameter empty.
+\homework
+    {2}
+    {Lanxiao Bai (lbai5)}
+    {}
+
+\section*{Problem 1}
+\textbf{Solution:} 
+ By definition we can write p-norm of vector $\mathbf{x}$ as 
+ \[L_p(\mathbf{x}) = ||\mathbf{x}||_p = (\sum_{i = 1}^n x_i^p)^{\frac{1}{p}}\] in which $n$ is the length of $\mathbf{x}$, so we have
+ \begin{align}
+ 	&L_p(t\mathbf{x}_1 + (1 - t)\mathbf{x}_2) \leq L_p(t\mathbf{x}_1) + L_p((1 - t)\mathbf{x}_2)\nonumber\\
+ 	&\phantom{L_p(t\mathbf{x}_1 + (1 - t)\mathbf{x}_2)} = |t|L_p(\mathbf{x}_1) + |1 - t|L_p(\mathbf{x}_2)\nonumber\\
+ 	&\phantom{L_p(t\mathbf{x}_1 + (1 - t)\mathbf{x}_2)} = tL_p(\mathbf{x}_1) + (1 - t)L_p(\mathbf{x}_2) & \text{Since $t \in [0, 1]$}\nonumber
+ \end{align}
+ 
+ Hence, we conclude that $L_p$ is convex when $p > 1$.
+ 
+\section*{Problem 2}
+\textbf{Solution:} 
+	Let $g(\mathbf{x}) = ||\mathbf{Ax} + \mathbf{b}||_2$, let $\mathbf{y} = \mathbf{Ax} + \mathbf{b}$ then
+	\begin{align}
+		&g(t\mathbf{x}_1 + (1 - t)\mathbf{x}_2) = f(t\mathbf{y}_1 + (1 - t)\mathbf{y}_2)\nonumber\\
+		&\phantom{f(t\mathbf{y}_1 + (1 - t)\mathbf{y}_2)} \leq tf(\mathbf{y}_1) + (1 - t)f(\mathbf{y}_2)\nonumber\\
+		&\phantom{f(t\mathbf{y}_1 + (1 - t)\mathbf{y}_2)} = tg(\mathbf{x}_1) + (1 - t)g(\mathbf{x}_2)\nonumber
+	\end{align}
+	
+	which givens that $||\mathbf{Ax} + \mathbf{b}||_2$ is convex for any $\mathbf{y} \in \mathbb{R}^n$ is convex.
+	
+\section*{Problem 3}
+\textbf{Solution:} 
+	\begin{align}
+		&f(t\mathbf{x}_1 + (1 - t)\mathbf{x}_2) = \sum_{i = 1}^m \alpha_if_i(t\mathbf{x}_1 + (1 - t)\mathbf{x}_2)\nonumber\\
+		&\phantom{f(t\mathbf{x}_1 + (1 - t)\mathbf{x}_2)} \leq \sum_{i = 1}^m \alpha_i[tf_i(\mathbf{x}_1) + (1 - t)f_i(\mathbf{x}_2)]\nonumber\\
+		&\phantom{f(t\mathbf{x}_1 + (1 - t)\mathbf{x}_2)} = \sum_{i = 1}^m \alpha_itf_i(\mathbf{x}_1) + \sum_{i = 1}^m \alpha_i(1 - t)f_i(\mathbf{x}_2)\nonumber
+	\end{align}
+	
+	\begin{align}
+		&\phantom{f(t\mathbf{x}_1 + (1 - t)\mathbf{x}_2) = \sum_{i = 1}^m \alpha_if_i(t\mathbf{x}_1 + (1 - t)\mathbf{x}_2)}\nonumber\\
+		&\phantom{f(t\mathbf{x}_1 + (1 - t)\mathbf{x}_2)} = t\sum_{i = 1}^m \alpha_if_i(\mathbf{x}_1) + (1 - t)\sum_{i = 1}^m \alpha_if_i(\mathbf{x}_2)\nonumber\\
+		&\phantom{f(t\mathbf{x}_1 + (1 - t)\mathbf{x}_2)} = tf(\mathbf{x}_1) + (1 - t)f(\mathbf{x}_2)\nonumber
+	\end{align}
+
+So we see that $f$ is convex.
+\section*{Problem 4}
+\textbf{Solution:} 
+ Suppose $f$ is strictly convex, then
+ 	\[f(tx_1 + (1 - t)x_2) < tf(x_1) + (1 - t)f(x_2)\]
+ 	
+ 	suppose there is $x_1, x_2$ that makes $f(x_1) = f(x_2) = \min f$, then because it's strictly convex function, for any $t \in [0, 1]$, we plug $x_1, x_2$ into the inequality and get
+	\begin{align}
+		&f(tx_1 + (1 - t)x_2) < tf(x_1) + (1 - t)f(x_2)\nonumber\\
+		&\phantom{f(tx_1 + (1 - t)x_2)} = tf(x_1) + (1 - t)f(x_1)\nonumber\\
+		&\phantom{f(tx_1 + (1 - t)x_2)} = f(x_1) = \min f\nonumber
+	\end{align}
+	
+	which violates our definition of minimum. Hence, we say that the minimum of $f$ is unique.
+\section*{Problem 5}
+\textbf{Solution:}
+\begin{align}
+	&L(\lambda_1, \lambda_2, \mathbf{w}) = ||\mathbf{y} - \mathbf{Xw}||^2_2 + \lambda_1||\mathbf{w}||_1 + \lambda_2||\mathbf{w}||_2^2\nonumber\\
+	&\phantom{L(\lambda_1, \lambda_2, \mathbf{w})} = ||\mathbf{y} - \mathbf{Xw}||^2_2 + \lambda_1\sum_{i = 1}^n w_i + \lambda_2 \sum_{i = 1}^n w_i^2\nonumber\\
+	&\phantom{L(\lambda_1, \lambda_2, \mathbf{w})} = ||\mathbf{y} - \mathbf{Xw}||^2_2 + \sum_{i = 1}^n (\lambda_1w_i + \lambda_2w_i^2) \nonumber\\
+	&\phantom{L(\lambda_1, \lambda_2, \mathbf{w})} = ||\mathbf{y} - \mathbf{Xw}||^2_2 + \frac{\lambda_1}{\sqrt{1 + \lambda_2}}\sum_{i = 1}^n (\sqrt{1 + \lambda_2}w_i + \frac{\lambda_2\sqrt{1 + \lambda_2}}{\lambda_1}w_i^2) \nonumber\\
+	&\phantom{L(\lambda_1, \lambda_2, \mathbf{w})} = ||\mathbf{y} - \mathbf{Xw}||^2_2 + \frac{\lambda_1}{\sqrt{1 + \lambda_2}}\sum_{i = 1}^n (w_i^* + \frac{\lambda_2\sqrt{1 + \lambda_2}}{\lambda_1}w_i^2) \nonumber\\
+	&\phantom{L(\lambda_1, \lambda_2, \mathbf{w})} = ||\mathbf{y} - \mathbf{Xw}||^2_2 + \gamma \mathbf{w}^* + \sum_{i = 1}^n\frac{\lambda_2}{\gamma}w_i^2 \nonumber\\
+	&\phantom{L(\lambda_1, \lambda_2, \mathbf{w})} = \sum_{j = 1}^n (y_j - \mathbf{x}_j\mathbf{w})^2 + \gamma \mathbf{w}^* + \sum_{i = 1}^n\frac{\lambda_2}{\gamma}w_i^2 \nonumber\\
+	&\phantom{L(\lambda_1, \lambda_2, \mathbf{w})} = \sum_{i = 1}^n \left[y_i^2 - 2\mathbf{x}_i\mathbf{w}y_i + (\mathbf{x}_i\mathbf{w})^2 + \frac{\lambda_2\sqrt{1 + \lambda_2}}{\lambda_1}w_i^2\right] + \gamma ||\mathbf{w}^*||_1  & \text{(with 0 paddings)}\nonumber\\
+	&\phantom{L(\lambda_1, \lambda_2, \mathbf{w})} = \sum_{i = 1}^n \left[y_i^2 - 2y_i\sum_{j = 1}^n x_{ij}w_j + (\sum_{j = 1}^n x_{ij}w_j)^2 + \frac{\lambda_2\sqrt{1 + \lambda_2}}{\lambda_1}w_i^2\right] + \gamma ||\mathbf{w}^*||_1 \nonumber\\
+	&\phantom{L(\lambda_1, \lambda_2, \mathbf{w}) = ||\mathbf{y} - \mathbf{Xw}||^2_2 + \lambda_1||\mathbf{w}||_1 + \lambda_2||\mathbf{w}||_2^2}\nonumber\\
+	&\phantom{L(\lambda_1, \lambda_2, \mathbf{w})} = \sum_{i = 1}^n (\mathbf{y} - \mathbf{x}_i\frac{1}{\sqrt{1 + \lambda_2}}\sqrt{1 + \lambda_2}\mathbf{w})^2 + \gamma ||\mathbf{w}^*||_1 \nonumber\\
+	&\phantom{L(\lambda_1, \lambda_2, \mathbf{w})} = \sum_{i = 1}^n (\mathbf{y}^* - \mathbf{x}_i^*\mathbf{w}^*)^2 + \gamma ||\mathbf{w}^*||_1 \nonumber\\
+	&\phantom{L(\lambda_1, \lambda_2, \mathbf{w})} = \sum_{i = 1}^n ||\mathbf{Y}^* - \mathbf{X}^*\mathbf{w}^*||_2^2 + \gamma ||\mathbf{w}^*||_1 \nonumber\\
+	&\phantom{L(\lambda_1, \lambda_2, \mathbf{w})} = L(\gamma, \mathbf{w}^*)\nonumber
+\end{align}
+\section*{Problem 6}
+\textbf{Solution:} From Question 1, we have
+\begin{align}
+	&\hat{\mathbf{w_{LS}}} = (\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T\mathbf{y}\nonumber\\
+	&\phantom{\hat{\mathbf{w_{LS}}}} = \mathbf{X}^T\mathbf{y}\nonumber
+\end{align}
+
+\begin{align}
+	&\hat{\mathbf{w_{\text{Lasso}}}} = \arg\min_{\mathbf{w}} ||\mathbf{y} - \mathbf{Xw}||^2_2 + \lambda_1||\mathbf{w}||_1\nonumber\\
+	&\phantom{\hat{\mathbf{w_{\text{Lasso}}}}} = \arg\min_{\mathbf{w}} (\mathbf{y} - \mathbf{Xw})^T(\mathbf{y} - \mathbf{Xw}) + \lambda_1 \sum_{i = 1}^n w_i\nonumber\\
+	&\phantom{\hat{\mathbf{w_{\text{Lasso}}}}} = \arg\min_{\mathbf{w}} (\mathbf{y}^T - (\mathbf{Xw})^T)(\mathbf{y} - \mathbf{Xw}) + \lambda_1 \sum_{i = 1}^n w_i\nonumber\\
+	&\phantom{\hat{\mathbf{w_{\text{Lasso}}}}} = \arg\min_{\mathbf{w}} \mathbf{y}^T(\mathbf{y} - \mathbf{Xw}) - (\mathbf{Xw})^T(\mathbf{y} - \mathbf{Xw}) + \lambda_1 \sum_{i = 1}^n w_i\nonumber\\
+	&\phantom{\hat{\mathbf{w_{\text{Lasso}}}}} = \arg\min_{\mathbf{w}} \mathbf{y}^T\mathbf{y} - \mathbf{y}^T\mathbf{Xw} - (\mathbf{Xw})^T\mathbf{y} + (\mathbf{Xw})^T\mathbf{Xw} + \lambda_1 \sum_{i = 1}^n w_i\nonumber\\
+	&\phantom{\hat{\mathbf{w_{\text{Lasso}}}}} = \arg\min_{\mathbf{w}} - \mathbf{y}^T\mathbf{Xw} - \mathbf{w}^T\mathbf{X}^T\mathbf{y} + \mathbf{w}^T\mathbf{X}^T\mathbf{Xw} + \lambda_1 \sum_{i = 1}^n w_i\nonumber\\
+	&\phantom{\hat{\mathbf{w_{\text{Lasso}}}}} = \arg\min_{\mathbf{w}} - \mathbf{y}^T\mathbf{Xw} - \mathbf{w}^T\mathbf{X}^T\mathbf{y} + \mathbf{w}^T\mathbf{w} + \lambda_1 \sum_{i = 1}^n w_i\nonumber\\
+	&\phantom{\hat{\mathbf{w_{\text{Lasso}}}}} = \text{Prox}_{n\lambda||\cdot||_1} \hat{\mathbf{w_{LS}}}\nonumber
+\end{align}
+
+In which,
+\[
+	\hat{\mathbf{w_{\text{Lasso}}}}_i = 
+		\begin{cases}
+			\hat{\mathbf{w_{LS}}}_i - \lambda & w_i > \lambda \\
+			0 & |w_i| \leq \lambda \\
+			\hat{\mathbf{w_{LS}}}_i + \lambda & w_i < -\lambda
+		\end{cases}
+\]
+\section*{Problem 7}
+\textbf{Solution:} 
+By the result of Question 5, we have
+\begin{align}
+	&\hat{\mathbf{w_{\text{L}}}} = \arg\min_{\mathbf{w}} ||\mathbf{y} - \mathbf{Xw}||^2_2 + \lambda_1||\mathbf{w}||_1 + \lambda_2||\mathbf{w}||_2^2\nonumber\\
+	&\phantom{\hat{\mathbf{w_{\text{LS}}}}} = \arg\min_{\mathbf{w}} ||\mathbf{y}^* - \mathbf{X}^*\mathbf{w}^*||^2_2 + \gamma||\mathbf{w}^*||_1\nonumber
+\end{align}
+
+So by the result of Question 6,
+\[
+	\hat{\mathbf{w_{\text{L}}}}_i =
+	\begin{cases}
+			\hat{\mathbf{w_{LS}}}_i^* - \gamma = \sqrt{1 + \lambda_2}\hat{\mathbf{w_{LS}}}_i -  \frac{\lambda_1}{\sqrt{1 + \lambda_2}} & w_i^* > \gamma \\
+			0 & |w_i| \leq \gamma \\
+			\hat{\mathbf{w_{LS}}}_i^* + \gamma = \sqrt{1 + \lambda_2}\hat{\mathbf{w_{LS}}}_i  + \frac{\lambda_1}{\sqrt{1 + \lambda_2}} & w_i^* < -\gamma
+	\end{cases}\nonumber
+\]
+\newpage \nocite{*}
+\bibliographystyle{ims}
+\bibliography{citations}
+
+\end{document}

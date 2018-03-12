@@ -1,0 +1,13 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdftex 2015.5.24)  12 SEP 2017 19:25
+entering extended mode
+ restricted \write18 enabled.
+ file:line:error style messages enabled.
+ %&-line parsing enabled.
+**"/Users/hermitebai/Documents/UIUC/2017FA/CS446/HW/CS446 Homework Template/citations.bib"
+(/Users/hermitebai/Documents/UIUC/2017FA/CS446/HW/CS446 Homework Template/citations.bib)
+! Emergency stop.
+<*> ...6/HW/CS446 Homework Template/citations.bib"
+                                                  
+*** (job aborted, no legal \end found)
+
+!  ==> Fatal error occurred, no output PDF file produced!

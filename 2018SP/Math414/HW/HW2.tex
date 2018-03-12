@@ -1,0 +1,105 @@
+\documentclass[11pt]{article}
+\input{../../../packages.tex}
+\pagestyle{fancy}
+\fancyhead[L]{Math 414}
+\fancyhead[C]{HW 2}
+\fancyhead[R]{Lanxiao Bai}
+
+\usepackage{listings}
+\usepackage{color}
+\usepackage{enumerate}
+
+\newcommand{\rmodels}{%
+  \mathrel{\text{\reflectbox{$\models$}}}%
+}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Python,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{black},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{black},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+\begin{document}
+	\paragraph{1.2.3}
+	\begin{enumerate}[(a)]
+		\item 
+			 Suppose $\varphi = ((P \rightarrow Q) \vee (Q \rightarrow P))$
+		
+			 If $\tau: P = T, Q = T$, then $(P \rightarrow Q) = T$ and $(Q \rightarrow P) = T$, so $((P \rightarrow Q) \vee (Q \rightarrow P)) = T$.
+		
+			 If $\tau: P = T, Q = F$, then $(P \rightarrow Q) = F$ and $(Q \rightarrow P) = F$, $((P \rightarrow Q) \vee (Q \rightarrow P)) = T$.
+			 
+			 If $\tau: P = F, Q = T$, then $(P \rightarrow Q) = T$ and $(Q \rightarrow P) = F$, $((P \rightarrow Q) \vee (Q \rightarrow P)) = T$.
+			 
+			 If $\tau: P = F, Q = F$, then $(P \rightarrow Q) = T$ and $(Q \rightarrow P) = T$, $((P \rightarrow Q) \vee (Q \rightarrow P)) = T$.
+			 
+			 We see that for all truth assignment $\tau \in \varepsilon$, there is $\tau$ satisfies $\varphi$. As a result, $\varphi$ is a tautology.
+			 
+			 \item In order to satisfy $((P \wedge Q)\rightarrow R)$, we need truth assignments $v_1: P = T, Q = T, R = T; v_2: P = F, Q = T, R = T; v_3: P = F, Q =T, R = F; v_4: P = T, Q = F, R = T; v_5: P = T, Q = F, R = F; v_6: P = F, Q =F, R = T; v_7: P = F, Q = F, R = F$.
+			 
+			 	It is trivial to check that all these assignments satisfies $(P \rightarrow R) \vee (Q \rightarrow R)$.
+	\end{enumerate}
+	\paragraph{1.2.4}
+	\begin{enumerate}[(a)]
+		\item 
+		\textbf{$\Rightarrow$:}
+		Since $\Sigma; \alpha \models \beta$, $\alpha \models \beta$ then there is only two valid truth assignments $v_1: \alpha = T, \beta = T; v_2: \alpha = F, \beta = F$ with other assignments that satisfies every wff's in $\Sigma$. It is easy to check that both assignments will lead to $(\alpha \rightarrow \beta) = T$. Since we have that $\alpha, \beta \notin \Sigma$, whatever satisfies $\Sigma$ and $v_1, v_2$ should always have $\Sigma \models (\alpha \rightarrow \beta)$.
+		
+		\textbf{$\Leftarrow$:}
+		Since we have $\Sigma \models (\alpha \rightarrow \beta)$, we have assignments that has $v_1: \alpha = T, \beta = T; v_2:  \alpha = F, \beta = T$ and other assignments that satisfies $\Sigma$. Then by Compactness Theorem, such assignments should also satisfy $\Sigma; \alpha \models \beta$.
+		
+		In conclusion, 
+		\[\Sigma; \alpha \models \beta \text{ iff } \Sigma \models (\alpha \rightarrow \beta)\]
+		
+		\item
+		\textbf{$\Rightarrow$:}
+		Since $\alpha \models \rmodels \beta$, there is $\alpha \models \beta$ and $\beta \models \alpha$, so there are only two valid assignments $v_1: \alpha = T, \beta = T; v_2: \alpha = F, \beta = F$. In both cases, we have $\alpha \leftrightarrow \beta$. So that $\models (\alpha \leftrightarrow \beta)$.
+		
+		\textbf{$\Leftarrow$:}
+		Since $\models (\alpha \leftrightarrow \beta)$, we can only have $v_1: \alpha = T, \beta = T; v_2: \alpha = F, \beta = F$ in the set of truth assignments. And it's trivial to check that for all these assignments, there is $\alpha \models \rmodels \beta$.
+		
+		In conclusion, $\alpha \models \rmodels \beta$ iff $\models (\alpha \leftrightarrow \beta)$.
+		\end{enumerate}
+		
+		\paragraph{1.2.7}
+		The question would be: If I ask you if the right road leads to the capital, would you say yes?
+		
+		Then if the person always tells the truth, he will confirm the correct answer but negate the wrong answer.
+		
+		If the person always tells the lie, he would lie, therefore, he will lie again about his own false answer, reporting the truth.
+		
+		\paragraph{1.2.9}
+		\textbf{Proof:} 
+		
+		Base case: When $\alpha$ is a sentence symbol, then $\alpha^* = \neg \alpha$, which means $\alpha^* \models \rmodels \neg \alpha$.
+		
+		Suppose for a wff $\alpha$, $\alpha^* \models \rmodels \neg \alpha$ holds.
+		
+		Then $\alpha = A \vee B$, then $\alpha^* = (\neg A) \wedge (\neg B) = \neg (A \vee B) = \neg \alpha$.
+		
+		Similarly, $\alpha = A \wedge B$, then $\alpha^* = (\neg A) \vee (\neg B) = \neg (A \wedge B) = \neg \alpha$.
+		
+		In conclusion, by the Induction Principle, $\alpha^* \models \rmodels \neg \alpha$ holds for all wff $\alpha$.
+		
+		\paragraph{1.2.13}
+		Let $P = $ "Playing tennis", $W = $ "Watching tennis", $R = $ "Reading about tennis".
+		
+		Then the statement of the speaker is: $$((\neg P) \rightarrow W) \wedge ((\neg W) \rightarrow R)$$
+		
+		By assumption, we know there should be exactly one among $P, W, R$ to be $T$, so our only valid assignment is $P = F, W = T, R = F$. So that we know the speaker is watching tennis.
+\end{document}

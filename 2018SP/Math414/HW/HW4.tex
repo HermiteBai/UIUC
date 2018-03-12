@@ -1,0 +1,88 @@
+\documentclass[11pt]{article}
+\input{../../../packages.tex}
+\pagestyle{fancy}
+\fancyhead[L]{Math 414}
+\fancyhead[C]{HW 4}
+\fancyhead[R]{Lanxiao Bai}
+
+\usepackage{listings}
+\usepackage{color}
+\usepackage{enumerate}
+
+\newcommand{\rmodels}{%
+  \mathrel{\text{\reflectbox{$\models$}}}%
+}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Python,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{black},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{black},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+\begin{document}
+	\begin{enumerate}[(1)]
+		\item Suppose $\Sigma$ satisfies $(\neg \alpha)$, then $\Sigma$ does not satisfy $\alpha$, so $\alpha \notin \Delta$. Since $\Delta$ is a finitely satisfiable set, $(\neg \alpha) \in \Delta$.
+		
+			Suppose $(\neg \alpha) \in \Delta$, then $\alpha \notin \Delta$, so $\Sigma$ does not satisfy $\alpha$. Thus, $\Sigma$ satisfies $(\neg \alpha)$.
+			
+			In conclusion, $\Sigma$ satisfies $(\neg \alpha)$ iff $(\neg \alpha) \in \Delta$.
+			
+			$\blacksquare$
+			
+		\item Suppose $\Sigma$ satisfies $(\alpha \wedge \beta)$ then $\Sigma$ satisfies $\alpha$ and $\Sigma$ satisfies $\beta$. So $\alpha \in \Delta$ and $\beta \in \Delta$, which by definition means $(\alpha \wedge \beta) \in \Delta$.
+		
+			Suppose $(\alpha \wedge \beta) \in \Delta$, then $\alpha \in \Delta$ and $\beta \in \Delta$, so $\Sigma$ satisfies $\alpha$ and $\Sigma$ satisfies $\beta$, which by definition means $\Sigma$ satisfies $(\alpha \wedge \beta)$.
+			
+			In conclusion, $\Sigma$ satisfies $(\alpha \wedge \beta)$ iff $(\alpha \wedge \beta) \in \Delta$.
+			
+			$\blacksquare$
+			
+			\item Suppose $\Sigma$ satisfies $(\alpha \vee \beta)$ then $\Sigma$ satisfies $\alpha$ or $\Sigma$ satisfies $\beta$. So $\alpha \in \Delta$ or $\beta \in \Delta$, which by definition means $(\alpha \vee \beta) \in \Delta$.
+		
+			Suppose $(\alpha \vee \beta) \in \Delta$, then $\alpha \in \Delta$ or $\beta \in \Delta$, so $\Sigma$ satisfies $\alpha$ or $\Sigma$ satisfies $\beta$, which by definition means $\Sigma$ satisfies $(\alpha \vee \beta)$.
+			
+			In conclusion, $\Sigma$ satisfies $(\alpha \vee \beta)$ iff $(\alpha \vee \beta) \in \Delta$.
+			
+			$\blacksquare$
+			
+			\item Suppose $\Sigma$ satisfies $(\alpha \rightarrow \beta)$, then $\Sigma$ satisfies $(\neg \alpha)$ or $\Sigma$ satisfies $\beta$. So by what we has proved above, $(\neg\alpha) \in \Delta$ or $\beta \in \Delta$. So by definition, $(\alpha \rightarrow \beta) \in \Delta$.
+			
+				Suppose $(\alpha \rightarrow \beta) \in \Delta$, then $(\neg\alpha) \in \Delta$ or $\beta \in \Delta$, so by what we has proved above, $\Sigma$ satisfies $(\neg \alpha)$ or $\Sigma$ satisfies $\beta$. Thus, $\Sigma$ satisfies $(\alpha \rightarrow \beta)$.
+				
+				In conclusion, $\Sigma$ satisfies $(\alpha \rightarrow \beta)$ iff $(\alpha \rightarrow \beta) \in \Delta$.
+			\item Suppose $\Sigma$ satisfies $(\alpha \leftrightarrow \beta)$ then $\Sigma$ satisfies $(\alpha \rightarrow \beta)$ and $(\beta \rightarrow \alpha)$, so $(\alpha \rightarrow \beta) \in \Delta$ and $(\beta \rightarrow \alpha) \in \Delta$. Thus, $(\alpha \leftrightarrow \beta) \in \Delta$.
+			
+			Suppose $(\alpha \leftrightarrow \beta) \in \Delta$, then $(\alpha \rightarrow \beta) \in \Delta$ and $(\beta \rightarrow \alpha) \in \Delta$, so $\Sigma$ satisfies $(\alpha \rightarrow \beta)$ and $(\beta \rightarrow \alpha)$. Thus, $\Sigma$ satisfies $(\alpha \leftrightarrow \beta)$.
+			
+			In conclusion, $\Sigma$ satisfies $(\alpha \leftrightarrow \beta)$ iff $(\alpha \leftrightarrow \beta) \in \Delta$.
+			
+			$\blacksquare$
+			
+			\item [(7)]
+			
+			Base case: Suppose $\varphi$ is a sentence symbol, $\varphi$ is a tautology iff any $\Sigma$ satisfy $\varphi$ iff $\varphi \in \Delta$.
+			
+			Suppose wff $\alpha$ and $\beta$ are tautology iff $\alpha \in \Delta$, $beta \in \Delta$.
+			
+			Then by the proposition we proved above $(\neg \alpha)$ is tautology iff any $\Sigma$ satisfies $(\neg \alpha)$ iff $(\neg \alpha) \in \Delta$. $(\alpha \circ \beta)$ is tautology iff any $\Sigma$ satisfies $(\alpha \circ \beta)$ iff $(\alpha \circ \beta) \in \Delta$ for any binary connective $\circ$.
+			
+			Thus, by the Principle of Induction, we conclude that for any wff $\varphi$, $\varphi$ is a tautology iff $\varphi \in \Delta$.
+			
+			$\blacksquare$
+	\end{enumerate}
+\end{document}

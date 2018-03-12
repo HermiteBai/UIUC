@@ -1,0 +1,60 @@
+\documentclass[11pt]{article}
+\input{../../../packages.tex}
+\pagestyle{fancy}
+\fancyhead[L]{Math 414}
+\fancyhead[C]{Lecture 2}
+\fancyhead[R]{Lanxiao Bai}
+
+\usepackage{listings}
+\usepackage{color}
+\usepackage{enumerate}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Python,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{black},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{black},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+\begin{document}
+	\section{Truth assignment}
+	$S$ is the set of sentence symbols. A truth assignment is a function
+	\[\Sigma : S \rightarrow \{T, F\} \]
+	
+	Given sets $A, B$, then $B^A$ is the set of functions
+	\[f : A \rightarrow B\]
+	
+	so we may write 
+	
+	\[\{T, F\}^S\] for the sett of truth assignments.
+	
+	We identify $\{F, T\}$ with $\{0, 1\}$, and we often identify $\{0, 1\}$ with $2$, so we may write $2^S$ for the set of truth assignment.
+	
+	If there are $n$ sentence symbols, there are $2^n$ truth assignments.
+	
+	We can identify a truth assignment with the set $\{P \in S : \Sigma(P) = T\}$. Identify a subset $X \subseteq S$ with the truth assignment
+	\[\Sigma(P) = 
+	\begin{cases}
+		T & P \in X\\
+		F & P \notin X
+	\end{cases} \]
+	
+	$S$ is the set of sentence symbols. Fix a truth assignment 
+	\[\Sigma: \rightarrow \{T, F\}\]
+	
+	Extend $\Sigma$ to a function $\bar{\Sigma}$ from the set of wff's to $\{T, F\}$.
+\end{document}

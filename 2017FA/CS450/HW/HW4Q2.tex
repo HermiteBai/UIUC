@@ -1,0 +1,40 @@
+\documentclass[11pt]{article}
+\input{../../packages.tex}
+\pagestyle{fancy}
+\fancyhead[L]{CS 450}
+\fancyhead[C]{HW4Q2}
+\fancyhead[R]{Lanxiao Bai}
+
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\allowdisplaybreaks[1]
+
+\lstset{frame=tb,
+  language=Python,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+\begin{document}
+	\begin{itemize}
+		\item $f$ has Jacobian Matrix $J = [-1 + x_1 + 2x_1^3 -2x_1x_2, -x_1^2 + x_2]$, so we solve $J = \mathbf{0}$ and get $(x, y) = (1, 1)$, and we see that $det(H(1, 1)) = 1 > 0$ and $f_{xx}(1, 1) = 3 > 0$, so $(1, 1)$ is a local maximum of $f$.
+		\item Since our starting point is $\mathbf{x}_0 = [2, 2]^T$, then we solve $\mathbf{Hs} = -\nabla f$ and get $\mathbf{s0} = [-0.2, 1.2]^T$. As a result, we get $\mathbf{x}_1 = \mathbf{x}_0 + s_0 = [1.8, 3.2]^T$.
+		\item $f(\mathbf{x_1}) = 2.5$ and $f(\mathbf{x_2}) = 0.32$. This is good because new $\mathbf{x}$ decreases the $f$ value.
+		\item $||\mathbf{x}_0 - \mathbf{x}^*||_2 = 1.414$, $||\mathbf{x}_1 - \mathbf{x}^*||_2 = 2.34$. This step is bad because the norm of error increases.
+	\end{itemize}
+\end{document}

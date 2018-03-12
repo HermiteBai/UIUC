@@ -1,0 +1,141 @@
+\documentclass[11pt]{article}
+\input{../../packages.tex}
+\pagestyle{fancy}
+\fancyhead[L]{CS 450}
+\fancyhead[C]{HW3Q1}
+\fancyhead[R]{Lanxiao Bai}
+
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\allowdisplaybreaks[1]
+
+\lstset{frame=tb,
+  language=Python,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+\begin{document}
+	\begin{enumerate}
+		\item The characteristic polynomial of $A$ is 
+		\begin{align}
+			&\phantom{\Leftrightarrow\ \ }P(\lambda) = det(A - \lambda I)\nonumber\\
+			&\Leftrightarrow P(\lambda) = (1 - \lambda)^2 - 4\nonumber\\
+			&\Leftrightarrow P(\lambda) = \lambda^2 - 2\lambda - 3
+		\end{align}
+		\item By solving characteristic polynomial (1), we get
+		\begin{align}
+			&\lambda^2 - 2\lambda - 3 = (\lambda - 3)(\lambda + 1) = 0\nonumber
+		\end{align}
+		 so
+		 \[\lambda_1 = 3, \lambda_2 = -1\]
+		 \item As mentioned above, the eigenvalues is
+		 \[\lambda_1 = 3, \lambda_2 = -1\]
+		 \item For $\lambda_1 = 3$,
+		 \begin{align}
+		 	&\phantom{\Leftrightarrow\ \ }\begin{bmatrix}
+		 		1 & 4\\
+		 		1 & 1
+		 	\end{bmatrix}
+		 	x = 3x\nonumber\\
+		 	&\Leftrightarrow\begin{bmatrix}
+		 		1 & 4\\
+		 		1 & 1
+		 	\end{bmatrix}
+		 	\begin{bmatrix}
+		 		x_1\\
+		 		x_2
+		 	\end{bmatrix} = \begin{bmatrix}
+		 		3x_1\\
+		 		3x_2
+		 	\end{bmatrix}\nonumber\\
+		 	&\Leftrightarrow
+		 	\begin{bmatrix}
+		 		x_1 + 4x_2\\
+		 		x_1 + x_2
+		 	\end{bmatrix} = 
+		 	\begin{bmatrix}
+		 		3x_1\\
+		 		3x_2
+		 	\end{bmatrix}\nonumber\\
+		 	&\Leftrightarrow
+		 	\begin{cases}
+		 		x_1 + 4x_2 = 3x_1\\
+		 		x_1 + x_2 = 3x_2
+		 	\end{cases}\nonumber\\
+		 	&\Leftrightarrow 
+		 	\begin{cases}
+		 		4x_2 = 2x_1\\
+		 		x_1 = 2x_2
+		 	\end{cases}\nonumber\\
+		 	&\Leftrightarrow 
+		 	\mathbf{x}_1 = \begin{bmatrix}
+		 		2c\\
+		 		c
+		 	\end{bmatrix} (c \in \mathbb{R})
+		 \end{align}
+		 
+		 For $\lambda_2 = -1$,
+		 \begin{align}
+		 	&\phantom{\Leftrightarrow\ \ }\begin{bmatrix}
+		 		1 & 4\\
+		 		1 & 1
+		 	\end{bmatrix}
+		 	x = -x\nonumber\\
+		 	&\Leftrightarrow\begin{bmatrix}
+		 		1 & 4\\
+		 		1 & 1
+		 	\end{bmatrix}
+		 	\begin{bmatrix}
+		 		x_1\\
+		 		x_2
+		 	\end{bmatrix} = \begin{bmatrix}
+		 		-x_1\\
+		 		-x_2
+		 	\end{bmatrix}\nonumber\\
+		 	&\Leftrightarrow
+		 	\begin{bmatrix}
+		 		x_1 + 4x_2\\
+		 		x_1 + x_2
+		 	\end{bmatrix} = 
+		 	\begin{bmatrix}
+		 		-x_1\\
+		 		-x_2
+		 	\end{bmatrix}\nonumber\\
+		 	&\Leftrightarrow
+		 	\begin{cases}
+		 		2x_1 = -4x_2\\
+		 		x_1 = -2x_2
+		 	\end{cases}\nonumber\\
+		 	&\Leftrightarrow
+		 	\mathbf{x}_2 = \begin{bmatrix}
+		 		-2c\\
+		 		c
+		 	\end{bmatrix}(c \in \mathbb{R})
+		 \end{align}
+		 \item By applying power iteration once, we get
+		 	\[x' = Ax / ||Ax|| = [5/\sqrt{29}, 2/\sqrt{29}]^T\]
+		 \item By the result, of question 4 and 5, we see that eigenvector will converge to $[2/\sqrt{5}, 1/\sqrt{5}]^T$.
+		 \item By using Rayleigh quotient, we get that 
+		 \[\lambda = \frac{x^TAx}{x^Tx} = 3.5\]
+		 
+		 \item The inverse iteration will converge to the least eigenvalue in magnitude, which is $-1$.
+		 \item Since power iteration converges to the closest eigenvalue to the shift, it will converges to $\lambda = 3$ when $\sigma = 2$.
+		 \item Since $A$ is not symmetric, so it will converges to triangular matrix after QR iteration.
+	\end{enumerate}
+\end{document}

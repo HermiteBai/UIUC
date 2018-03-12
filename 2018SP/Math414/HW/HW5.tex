@@ -1,0 +1,125 @@
+\documentclass[11pt]{article}
+\input{../../../packages.tex}
+\pagestyle{fancy}
+\fancyhead[L]{Math 414}
+\fancyhead[C]{HW 5}
+\fancyhead[R]{Lanxiao Bai}
+
+\usepackage{listings}
+\usepackage{color}
+\usepackage{enumerate}
+
+\newcommand{\rmodels}{%
+  \mathrel{\text{\reflectbox{$\models$}}}%
+}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Python,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{black},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{black},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+\begin{document}
+	\begin{enumerate}
+		\item Note that a automorphism should be able to preserve the structure of the original algebraic structure, which means that if $g_{\lambda}$ is an automorphism, then we should have for all $x \leq y \in \mathbb{R}$, there is 
+		\[g_{\lambda}(x) \leq g_{\lambda}(y) \Rightarrow \lambda x \leq \lambda y \Rightarrow \lambda (x - y) \leq 0\]
+		
+		Since $x \leq y$, $x - y \leq 0$, so in order to make $g_{\lambda}$ an automorphism, it is required that $\lambda \geq 0$.
+		\item 
+		\begin{enumerate}
+			\item Since for all $x \in \mathbb{Z}$ we have $-x$ that $g(-x) = x \in \mathbb{Z}$, and for all $x, y \in \mathbb{Z}, (x \neq y) \rightarrow g(x) \neq g(y)$ so we see that $g$ is a bijection between $\mathbb{Z}$ and $\mathbb{Z}$.
+			
+			We also see that for all $x, y \in \mathbb{Z}$, $g(0) = 0$ and 
+			\[g(x + y) = -(x + y) = (-x) + (-y) = g(x) + g(y)\]
+			
+			so $g$ is a homomorphism.
+			
+			In conclusion, $g$ is an automorphism of $(\mathbb{Z}, +,  0)$.
+			\item There is no other automorphism.
+			
+			\textbf{Proof:}
+			
+			In order to preserve the structure, any mapping $h$ and $m \in \mathbb{Z}$ needs to have
+			\[h(m) = h(\underbrace{1 + 1 + \cdots + 1}_{m}) = \underbrace{h(1) + h(1) + \cdots + h(1)}_{m} = mh(1)\]
+			
+			In order to make this mapping surjective, we see that $h(1) = 1$ or $h(1) = -1$, which means that there are no other valid automorphisms for $(\mathbb{Z}, +,  0)$.
+		\end{enumerate}
+		\item Similarly, in order to preserve the structure, any mapping $h$ and $m \in \mathbb{N}$ needs to have
+		
+			\[h(m) = mh(1)\]
+			
+			In order to make this mapping bijective, it is only possible to let $h(x) = x$. So the identity is the only possible automorphism.
+		\item \textbf{Proof:}
+			We first prove $(\mathcal{P}(X), \oplus, 0)$ is an Abelian group.
+			
+			\begin{itemize}
+				\item \textbf{Closure}
+					For any $x, y \in \mathcal{P}(X)$, there is 
+				\[x \oplus y = x \triangle y \subseteq x \cup y\]
+				
+				which has $x \oplus y \subseteq x \cup y \subseteq X$, so $x \oplus y \in \mathcal{P}(X)$.
+				
+				\item \textbf{Commutivity}
+					By set theory we know for any $x, y \in \mathcal{P}(X)$
+					\[x \oplus y = x \triangle y = y \triangle x = y \oplus x\]
+					holds.
+				\item \textbf{Associativity}
+					By set theory we know for any $x, y, z \in \mathcal{P}(X)$
+					\[x \oplus y \oplus z = x \triangle y \triangle z = x \triangle (y \triangle z) = x \oplus (y \oplus z)\]
+					holds.
+				\item \textbf{Additive identity}
+					For any $x \in \mathcal{P}(X)$
+					\[x \oplus 0 = x \triangle \emptyset = x\]
+				
+				\item \textbf{Additive inverse}
+					\[x \oplus x = x \triangle x = \emptyset = 0\]
+			\end{itemize}
+		
+		Then we want to prove $(\mathcal{P}(X), \otimes, 1)$ is a monoid
+			\begin{itemize}
+				\item \textbf{Closure}
+				For any $x, y \in \mathcal{P}(X)$, there is 
+				\[x \otimes y = x \cap y\]
+				which has $x \otimes y \subseteq x \subseteq X$ and $x \otimes y \subseteq y \subseteq X$, so $x \otimes y \in \mathcal{P}(X)$
+				
+				\item \textbf{Associativity}
+				By set theory we know for any $x, y, z \in \mathcal{P}(X)$
+					\[x \otimes y \otimes z = x \cap y \cap z = x \cap (y \cap z) = x \otimes (y \otimes z)\]
+					holds.
+				\item \textbf{Multiplicative identity}
+				For any $x \in \mathcal{P}(X)$
+				\[x \otimes 1 = x \cap X = x\]
+			\end{itemize}
+			
+		In the last, we want to prove the Distributivity.
+		For any $x, y, z \in \mathcal{P}(X)$, 
+		\begin{align}
+			&x \otimes (y \oplus z) = x \cap (y \triangle z)\nonumber\\
+			&\phantom{x \otimes (y \oplus z)} = (x \cap y) \triangle (x \cap z)\nonumber\\
+			&\phantom{x \otimes (y \oplus z)} = (x \otimes y) \oplus (x \otimes z)\nonumber
+		\end{align}
+		
+		\begin{align}
+			&(y \oplus z) \otimes x = (y \triangle z) \cap x\nonumber\\
+			&\phantom{x \otimes (y \oplus z)} = (y \cap x) \triangle (z \cap x)\nonumber\\
+			&\phantom{x \otimes (y \oplus z)} = (y \otimes x) \oplus (z \otimes x)\nonumber
+		\end{align}
+		
+		In conclusion, we proved that $(\mathcal{P}(X), \oplus, \otimes, 0, 1)$ is a ring.
+	\end{enumerate}
+\end{document}

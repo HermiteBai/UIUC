@@ -1,0 +1,12 @@
+\begin{thebibliography}{1}
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+\expandafter\ifx\csname url\endcsname\relax
+  \def\url#1{\texttt{#1}}\fi
+\expandafter\ifx\csname urlprefix\endcsname\relax\def\urlprefix{URL }\fi
+
+\bibitem[{Weisstein(2017)}]{WikipediaSigmoid}
+\textsc{Weisstein, E.~W.} (2017).
+\newblock Sigmoid function.
+\newline\urlprefix\url{http://mathworld.wolfram.com/SigmoidFunction.html}
+
+\end{thebibliography}

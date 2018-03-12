@@ -1,0 +1,84 @@
+\documentclass[11pt]{article}
+\input{../../../packages.tex}
+\pagestyle{fancy}
+\fancyhead[L]{Math 414}
+\fancyhead[C]{Lecture 2}
+\fancyhead[R]{Lanxiao Bai}
+
+\usepackage{listings}
+\usepackage{color}
+\usepackage{enumerate}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Python,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{black},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{black},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+\begin{document}
+	\section{Recall}
+	A first order language $L$ is a set of formal symbols consisting of:
+	\begin{itemize}
+		\item Logical symbols: 
+		\begin{itemize} 
+			\item $\neg, \vee, \wedge, \rightarrow, \leftrightarrow, \forall, \exists$
+			\item Parathesis: $(, )$
+			\item Equality: $=$
+		\end{itemize}
+		\item Variables: $x, y, z,\cdots$
+		\item k-ary relation symbols: $R, S, \cdots$
+		\item k-ary function symbols: $f, g, h, \cdots$
+		\item Constant symbols: $c, c'$
+	\end{itemize}
+	
+	First order language can be uncountable, but we can usually take $L$ to be countable.
+	
+	An L-structure $\mathcal{M}$ is a nonempty $M$ together with 
+	\begin{itemize}
+		\item a k-ary relation $R^{\mathcal{M}}$ on $M$ for every k-ary relation symbol
+		\item a k-ary function $f^{\mathcal{M}}$ on $M$ for every k-ary function symbol
+		\item an element $c^{\mathcal{M}}$ for each constant symbol $c$
+	\end{itemize}
+	
+	$\mathcal{M}$ is the structure.
+	
+	$M$ is the underlying set (domain) of $\mathcal{M}$.
+	
+	We also write 
+	\[\mathcal{M} = (M; R^{\mathcal{M}})\]
+	
+	Ex. If $M = \mathbb{R}$ and $R^{\mathcal{M}} = \leq$, then we write $(\mathbb{R}; \leq)$
+	
+	\begin{definition}
+		$\mathcal{M}$ is a symmetric L-structure if $xR^{\mathcal{M}}y$ iff $yR^{\mathcal{M}}x$ for all $x, y \in M$.
+	\end{definition}
+	
+	\begin{definition}
+		A partial order is a L-structure satisfying
+		\begin{itemize}
+			\item \[\forall x (xRx)\]
+			\item \[\forall x \forall y [ (xRy) \wedge (yRx)] \rightarrow (x = y)\]
+			\item \[\forall x \forall y \forall z [(xRy) \wedge (yRz)] \rightarrow (xRz)\]
+		\end{itemize}
+	\end{definition}
+	
+	\begin{definition}
+		$R^{\mathcal{M}}$ is total order if 
+		\[\forall x \forall y (x \leq y) \vee (y \leq x)\].
+	\end{definition}
+\end{document}

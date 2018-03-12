@@ -1,0 +1,119 @@
+\documentclass[11pt]{article}
+\input{../../../packages.tex}
+\pagestyle{fancy}
+\fancyhead[L]{CS 412}
+\fancyhead[C]{HW1}
+\fancyhead[R]{Lanxiao Bai}
+
+\usepackage{listings}
+\usepackage{color}
+\usepackage{enumerate}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Python,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{black},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{black},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+\begin{document}
+	\begin{enumerate}
+		\item By running the python code included in file \textit{Question1.lbai5.py}, we get the output as following:
+			
+	\begin{lstlisting}
+count    1000.00000
+mean       76.71500
+std        13.16355
+min        37.00000
+25%        68.00000
+50%        77.00000
+75%        87.00000
+max       100.00000
+Name: Midterm, dtype: float64
+-------------------------------------------
+Mode:[77 83]
+-------------------------------------------
+Variance:173.279054054
+	\end{lstlisting}
+	
+	This result indicate that
+		\begin{enumerate}[a.]
+			\item Max = 100, Min = 37
+			\item Q1 = 68, median = 77, Q3 = 87
+			\item mean = 76.715
+			\item mode1 = 77 and mode2 = 83
+			\item empirical variance = 173.279
+		\end{enumerate}
+		
+		\item By running the python code included in file \textit{Question2.lbai5.py}, we get the output as following:
+		
+		\begin{lstlisting}
+Original empirical variance: 173.279054054
+Normalized empirical variance: 1.001001001
+-------------------------------------------
+Normalized 90:1.00922621869
+-------------------------------------------
+Pearson's Correlation Coefficient:
+          Midterm     Final
+Midterm  1.000000  0.544425
+Final    0.544425  1.000000
+-------------------------------------------
+Covariance:
+            Midterm       Final
+Midterm  173.279054   78.254194
+Final     78.254194  119.232176
+		\end{lstlisting}
+		\begin{enumerate}[a.]
+			\item Original empirical variance $>$ Normalized empirical variance
+			\item Normalized 90 = 1.009
+			\item Pearson's Correlation Coefficient = 0.544
+			\item Covariance = 78.254
+		\end{enumerate}
+		\item 
+		\begin{enumerate}[a.]
+			\item \[\text{Jaccard Coefficient} = \frac{q}{q + r + s} = \frac{58}{58 + 120 + 2} = 0.322
+ \]
+			\item By running the python code included in file \textit{Question3.lbai5.py}, we get the output as following:
+			\begin{lstlisting}
+b.
+Norm-1:6152.0
+Norm-2:715.327896842
+Norm-infty:170.0
+---------------------------
+c.
+Cosine similarity:[[ 0.84140403]]
+---------------------------
+d.
+K-L Divergence:0.207080937332
+			\end{lstlisting}
+	This result indicate that
+				\begin{enumerate}[1.]
+					\item When $h = 1$, $\text{dist} = 6152.0$
+					\item When $h = 2$, $\text{dist} = 715.328$
+					\item When $h = \infty$, $\text{dist} = 170.0$
+				\end{enumerate}
+				\item Cosine similarity $ = 0.841$
+				\item K-L Divergence $ = 0.207$
+		\end{enumerate}
+		
+		\item By running the python code included in file \textit{Question4.lbai5.py}, we get the output as following:
+\begin{lstlisting}
+chisquare: 2468.183
+\end{lstlisting}
+	This result indicate that $\chi^2 = 2468.183$
+	\end{enumerate}
+\end{document}

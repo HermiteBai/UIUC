@@ -1,0 +1,63 @@
+\documentclass[11pt]{article}
+\input{../../packages.tex}
+\pagestyle{fancy}
+\fancyhead[L]{CS 450}
+\fancyhead[C]{HW5Q4}
+\fancyhead[R]{Lanxiao Bai}
+
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\allowdisplaybreaks[1]
+
+\lstset{frame=tb,
+  language=Python,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+\begin{document}
+	\begin{itemize}
+		\item Van der Pol equation: \[y'' = y'(1 - y^2) - y\]
+		
+		Let $q_1 = y'$ and $q_2 = y$, then we have
+		\[\begin{cases}
+			q'_1 = q_1(1 - q_2^2) - q_2\\
+			q'_2 = q_1
+		\end{cases} \]
+		\item Blasius equation: \[y''' = -yy''\]
+		Let $q_1 = y''$ and $q_2 = y', q_3 = y$, then we have
+		\[\begin{cases}
+			q'_1 = -q_3q_1\\
+			q'_2 = q_1\\
+			q'_3 = q_2
+		\end{cases} \]
+		
+		\item Newton's Second Law of Motion for two-body problem: \[\begin{cases}
+			y''_1 = -GMy_1(y_1^2 + y_2^2)^{3/2}\\
+			y''_2 = -GMy2(y_1^2 + y_2^2)^{3/2}
+		\end{cases} \]
+		Let $q_1 = y'_1$ and $q_2 = y_1, q_3 = y'_2, q_4 = y_2$, then we have
+		\[\begin{cases}
+			q'_1 = -GMq_2/(q_2^2 + q_4^2)^{3/2}\\
+			q'_2 = q_1\\
+			q'_3 = -GMq_4/(q_2^2 + q_4^2)^{3/2}\\
+			q'_4 = q_2
+		\end{cases}
+		\]
+	\end{itemize}
+\end{document}

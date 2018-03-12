@@ -1,0 +1,60 @@
+\documentclass[11pt]{article}
+\input{../../packages.tex}
+\pagestyle{fancy}
+\fancyhead[L]{CS 450}
+\fancyhead[C]{HW2Q2}
+\fancyhead[R]{Lanxiao Bai}
+
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Python,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+\begin{document}
+	In order to fit $f(t, \mathbf{x}) = x_1tx_2e^t$ data points $(1, 2), (2, 3), (3, 5)$, we first create matrix 
+	\[A = 
+	\begin{bmatrix}
+		1 & e \\
+		2 & e^2 \\
+		3 & e^3
+	\end{bmatrix} 
+	\]
+	
+	Now we have
+	\[
+		\begin{bmatrix}
+			1 & e \\
+			2 & e^2 \\
+			3 & e^3
+		\end{bmatrix}
+		\begin{bmatrix}
+			x_1\\
+			x_2
+		\end{bmatrix} = 
+		\begin{bmatrix}
+			2\\
+			3\\
+			5
+		\end{bmatrix}
+	\]	
+	
+\end{document}

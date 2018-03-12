@@ -1,0 +1,11 @@
+0000000000000000000000000000000000000000 5ea112d5c4fdb4f10c9129ff8efb5bdddb7916ca Hermite Bai <hermitebai@outlook.com> 1466068228 +0800	commit (initial): publish
+5ea112d5c4fdb4f10c9129ff8efb5bdddb7916ca 93f5a9c18d54c1225e7a640d7e617007af398f4b Hermite Bai <hermitebai@outlook.com> 1466072523 +0800	merge origin/master: Fast-forward
+93f5a9c18d54c1225e7a640d7e617007af398f4b 175f8fc474e2c371364668b58e6a42454c93c57c Hermite Bai <hermitebai@outlook.com> 1466072642 +0800	commit: Fix Makefile
+175f8fc474e2c371364668b58e6a42454c93c57c 1859816e430ce840060c0417e7e618c5b84a97e5 Hermite Bai <hermitebai@outlook.com> 1466072702 +0800	commit: Update
+1859816e430ce840060c0417e7e618c5b84a97e5 c4c415e70ae82378e394b2ef8cce8898817e9578 Hermite Bai <hermitebai@outlook.com> 1466135634 +0800	commit: Update
+c4c415e70ae82378e394b2ef8cce8898817e9578 d36106c4b3f0a395f0b7c9d5f14d4fe759d3945a Hermite Bai <hermitebai@outlook.com> 1466149492 +0800	commit: Simplified helper functions, add feature restart
+d36106c4b3f0a395f0b7c9d5f14d4fe759d3945a a9029314986fc2b4f542e9d87700223db3828884 Hermite Bai <hermitebai@outlook.com> 1466163581 +0800	commit: colored display
+a9029314986fc2b4f542e9d87700223db3828884 59ba218cf4c831dd06486ee67357b5af03a063b6 Hermite Bai <hermitebai@outlook.com> 1466166114 +0800	commit: Update
+59ba218cf4c831dd06486ee67357b5af03a063b6 9975ee64300a206112e3f0cd8142a8aee67619de Hermite Bai <hermitebai@outlook.com> 1466178196 +0800	commit: update
+9975ee64300a206112e3f0cd8142a8aee67619de 5a7c5efde331a1e8f05e7f8156af09354e755262 Hermite Bai <hermitebai@outlook.com> 1466302762 +0800	commit: 优化设计，header file分离
+5a7c5efde331a1e8f05e7f8156af09354e755262 0d79e3450d593b0409d9af1f0c25d8d5dfaef080 Hermite Bai <hermitebai@outlook.com> 1466303017 +0800	commit: 改进makefile

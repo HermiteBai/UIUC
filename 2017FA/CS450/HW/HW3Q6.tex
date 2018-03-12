@@ -1,0 +1,40 @@
+\documentclass[11pt]{article}
+\input{../../packages.tex}
+\pagestyle{fancy}
+\fancyhead[L]{CS 450}
+\fancyhead[C]{HW3Q6}
+\fancyhead[R]{Lanxiao Bai}
+
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\allowdisplaybreaks[1]
+
+\lstset{frame=tb,
+  language=Python,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+\begin{document}
+	\begin{itemize}
+		\item For $g_1(x) = (x^2 + 2) / 3$, we have $|g_1'(2)| = |\frac{2}{3}2| = \frac{4}{3} > 1$, so that the iteration diverges.
+		\item For $g_2(x) = \sqrt{3x - 2}$, we have $|g_2'(2)| = |3 \cdot \frac{1}{2} \frac{1}{\sqrt{3x - 2}}| = \frac{3}{4} < 1$, so that the iteration converges linearly from one side.
+		\item For $g_3(x) = 3 - 2/x$, we have $|g_3'(2)| = |\frac{1}{2}| = \frac{1}{2} < 1$, so that the iteration converges linearly from one side.
+		\item For $g_4(x) = (x^2 - 2) / (2x - 3)$, we have $|g_4'(2)| = |0| = 0$, so that the iteration converges quadratically.
+	\end{itemize}
+\end{document}

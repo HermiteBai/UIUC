@@ -1,0 +1,12 @@
+\begin{thebibliography}{1}
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+\expandafter\ifx\csname url\endcsname\relax
+  \def\url#1{\texttt{#1}}\fi
+\expandafter\ifx\csname urlprefix\endcsname\relax\def\urlprefix{URL }\fi
+
+\bibitem[{Wik(2017)}]{WikipediaPoisson}
+ (2017).
+\newblock Poisson distribution.
+\newline\urlprefix\url{https://en.wikipedia.org/wiki/Poisson_distribution#Maximum_likelihood}
+
+\end{thebibliography}

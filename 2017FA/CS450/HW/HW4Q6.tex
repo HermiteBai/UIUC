@@ -1,0 +1,85 @@
+\documentclass[11pt]{article}
+\input{../../packages.tex}
+\pagestyle{fancy}
+\fancyhead[L]{CS 450}
+\fancyhead[C]{HW4Q6}
+\fancyhead[R]{Lanxiao Bai}
+
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\allowdisplaybreaks[1]
+
+\lstset{frame=tb,
+  language=Python,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+\begin{document}
+	Base on the three data points $(-1, 1), (0, 0), (1, 1)$, we can build out array $x = [-1, 0, 1]$ and $y = [1, 0, 1]$.
+	\begin{itemize}
+		\item Using monomial basis we build the Vandermonde Matrix
+			\[V = 
+			\begin{bmatrix}
+				1 & -1 & 1\\
+				1 & 0 & 0\\
+				1 & 1 & 1
+			\end{bmatrix} \]
+			
+			And solve quation 
+			\[Va = y\]
+			
+			and get
+			\[a = [0,0,1]\]
+			
+			which means that the function we get by interpolation is
+			\[p(t) = t^2\]
+		\item Base on the data we have, we get the following Lagrange basis functions
+			\begin{enumerate}
+				\item \[l_1(t) = \frac{t(t - 1)}{-1 \cdot -2} = \frac{t^2 - t}{2}\]
+				\item \[l_2(t) = \frac{(t - 1)(t + 1)}{1 \cdot -1} = t^2 - 1\]
+				\item \[l_3(t) = \frac{t(t + 1)}{2 \cdot 1} = \frac{t^2 + t}{2}\]
+			\end{enumerate}
+			
+			So we have
+			
+			\[p(t) = l_1(t) + l_3(t) = t^2\]
+		\item Base on the data we have, we get the lower triangular matrix formed by Newton basis functions
+				\[\begin{bmatrix}
+					1 & 0 & 0\\
+					1 & 1 & 0\\
+					1 & 2 & 2
+				\end{bmatrix}
+				\begin{bmatrix}
+					a_1\\
+					a_2\\
+					a_3
+				\end{bmatrix} = 
+				\begin{bmatrix}
+					1\\
+					0\\
+					1
+				\end{bmatrix}\]
+			So we have
+			\[a = [1, -1, 1]\]
+			
+			so that
+			
+			\[p(t) = 1 - (t + 1) + (t + 1)t = 1 - t - 1 + t^2 + t = t^2\]
+	\end{itemize}
+\end{document}

@@ -1,0 +1,82 @@
+\documentclass[11pt]{article}
+\input{../../../packages.tex}
+\pagestyle{fancy}
+\fancyhead[L]{CS 412}
+\fancyhead[C]{HW2}
+\fancyhead[R]{Lanxiao Bai}
+
+\usepackage{listings}
+\usepackage{color}
+\usepackage{enumerate}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Python,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{black},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{black},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+\begin{document}
+	\begin{enumerate}
+		\item 
+		\begin{enumerate}[a.]
+		\item Considering the three base cells $(a_1, a_2, a_3, c_4, \cdots, c_9, c_{10}), (b_1, b_2, b_3, c_4, \cdots, c_9, c_{10})$ and $(c_1, c_2, c_3, c_4, ..., c_9, c_{10})$, which implies that the dimension of cube is $10$. And since their is only $1$ level, so the number of cuboids is \[\# \text{cuboid} = 2^{10} = 1024\]
+		\item For each base cell, we have corresponding number aggregate cells
+			\[\# \text{aggregate}_i = \sum_{j = 2}^{10} \binom{10}{j} = 2^{10} - 1 = 1023\]
+			
+			and considering the duplicated aggregated cells
+			\[\# \text{duplicated aggregate} = (3 - 1)\sum_{j = 0}^{7} \binom{7}{j} = 256\]
+			
+			As a result, we conclude that the total number of distinct aggregate cells is
+			\[\# \text{distinct aggregate} = 3 \cdot 1023 - 256 = 2813\]
+		\item 
+			\begin{align}
+ 			&\# \text{count} > 2 = \sum_{j = 0}^{7} \binom{7}{j} = 128\nonumber
+ 			\end{align}
+ 		\item By definition of close cube, we have the following close cubes
+ 			$(a_1, a_2, a_3, c_4, \cdots, c_9, c_{10})$, $(b_1, b_2, b_3, c_4, \cdots, c_9, c_{10})$, $(c_1, c_2, c_3, c_4, ..., c_9, c_{10})$ and $(*, *, *, c_4, ..., c_9, c_{10})$, in which the only one with count $= 3$ is $(*, *, *, c_4, ..., c_9, c_{10})$, and the non-star dimension is $7$.
+		\end{enumerate}
+		\item
+		\begin{enumerate}[a.]
+		\item Since the dimension of data cube is $4$, the number of cuboids is
+		\[\# \text{cuboid} = \prod_{i = 0}^4 L_i = 3 \cdot 2 \cdot 2 \cdot 2 = 24\]
+		\item By running code in \textit{Question2.lbai5.py} to drop duplicated cells, we get that the number of cells in cuboid $(\text{Location(City), Category, Price, Rating})$ is $48$.
+		\item Similarly, we get that the number of cells in cuboid $(\text{Location(State), Category, Price, Rating})$ is $34$.
+		\item Similarly, we get that the number of cells in cuboid $(\text{*, Category, Price, Rating})$ is $23$.
+		\item Similarly, we get that the number of cells in cuboid $(\text{Location(State) = Illinois, *, Price = moderate, Rating = 3})$ is $2$.
+		\item Similarly, we get that the number of cells in cuboid $(\text{Location(City) = food, Category = food, *, })$ is $2$.
+		\end{enumerate}
+		\item 
+		\begin{enumerate}[a.]
+			\item
+			By running code in \textit{Question3.lbai5.py} to drop duplicated cells, we get that 
+			\begin{enumerate}[1.]
+			\item The number of frequent patterns is $30$.
+			\item The number of frequent patterns with length 3 is $8$.
+			\item The number of max patterns is $7$.
+			\end{enumerate}
+			\item Similarly, we have
+			\begin{enumerate}[1.]
+			\item The number of frequent patterns is $55$.
+			\item The number of frequent patterns with length 3 is $20$.
+			\item The number of max patterns is $6$.
+			\item The confidence of rule (C, E) $\rightarrow$ A is $67.857\%$
+			\item The confidence of rule (A, B, C) $\rightarrow$ E is $74.194\%$
+			\end{enumerate}
+		\end{enumerate}
+	\end{enumerate}
+\end{document}

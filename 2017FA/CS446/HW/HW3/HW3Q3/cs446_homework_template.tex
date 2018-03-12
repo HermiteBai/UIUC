@@ -1,0 +1,62 @@
+\documentclass[11pt]{article}
+
+\usepackage{homeworkpkg}
+%% Local Macros and packages: add any of your own definitions here.
+\allowdisplaybreaks[1]
+\begin{document}
+
+% Homework number, your name and NetID, and optionally, the names/NetIDs of anyone you collaborated with. If you did not collaborate with anybody, leave the last parameter empty.
+\homework
+    {3}
+    {Lanxiao Bai (lbai5)}
+    {}
+
+\section*{Problem 1}
+\textbf{Solution:} 
+	\begin{align}
+		&w_t = w_0 + \sum_{i = 1}^t a_iy_{i - 1}x_{i - 1} = \sum_{i = 1}^t a_i y_{i - 1} x_{i - 1}\nonumber
+	\end{align}
+	
+	in which 
+	\[a_i = 
+	\begin{cases}
+		1 & sgn(w_{i - 1} \cdot x_{i}) \neq y_{i}\\
+		0 & \textbf{otherwise}
+	\end{cases} \]
+\section*{Problem 2}
+\textbf{Solution:} We notice that in kernelized ridge regression, we have
+	\[w = \sum_{i = 1}^N \alpha_i \mathbf{x}_i\] in which $\alpha_i > 0$ for support vectors.
+	
+	So the form of two algorithm is the same, while in kernelized perceptron the coefficent $a_i$ is at most $1$. Which means that perceptron does not maximize the margin.
+\section*{Problem 3}
+\textbf{Solution:} 
+\[\hat{y} = sgn(w\cdot x) = sgn(\sum_{i = 1}^t \alpha_i x_{i - 1}x) = sgn(\sum_{i = 1}^t \alpha_i x_{i - 1}^Tx)\]
+
+in which
+\[\alpha_i = 
+	\begin{cases}
+		y_i & sgn(w_{i - 1} \cdot x_{i}) \neq y_{i}\\
+		0 & \textbf{otherwise}
+	\end{cases} \]
+\section*{Problem 4}
+\textbf{Solution:} 
+\[\hat{y} = sgn(w\cdot \phi(x)) = sgn(\sum_{i = 1}^t \alpha_i \phi(x_{i - 1})\phi(x)) = sgn(\sum_{i = 1}^t \alpha_i \kappa(x, x_{i - 1}))\]
+\section*{Problem 5}
+\textbf{Solution:} 
+ The kernelized algorithm we got is
+ \begin{enumerate}
+ 	\item Initialize $\alpha_0=0$, where $\alpha_0\in \mathbb{R}^d$
+ 	\item For $t$ in $1 \cdots N$:
+ 	\begin{enumerate}
+ 		\item Predict $\hat{y} = sgn(\sum_{i = 1}^t \alpha_i \kappa(x, x_{i - 1}))$
+ 		\item If $\hat{y}_t \neq y_t$, update the weight:
+ 		\begin{enumerate}
+ 			\item $\alpha_{t} = \alpha_{t - 1} + y_t\phi(x_t)$
+ 		\end{enumerate}
+ 	\end{enumerate} 
+ \end{enumerate}
+\newpage \nocite{*}
+\bibliographystyle{ims}
+\bibliography{citations}
+
+\end{document}

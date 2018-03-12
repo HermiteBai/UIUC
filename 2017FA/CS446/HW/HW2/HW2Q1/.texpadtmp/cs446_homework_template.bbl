@@ -1,0 +1,12 @@
+\begin{thebibliography}{1}
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+\expandafter\ifx\csname url\endcsname\relax
+  \def\url#1{\texttt{#1}}\fi
+\expandafter\ifx\csname urlprefix\endcsname\relax\def\urlprefix{URL }\fi
+
+\bibitem[{Sta(2006)}]{Stanford}
+ (2006).
+\newblock Regularization: Ridge regression and the lasso.
+\newline\urlprefix\url{http://statweb.stanford.edu/~tibs/sta305files/Rudyregularization.pdf}
+
+\end{thebibliography}

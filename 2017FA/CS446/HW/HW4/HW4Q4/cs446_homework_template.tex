@@ -1,0 +1,155 @@
+\documentclass[11pt]{article}
+
+\usepackage{homeworkpkg}
+\usepackage{enumerate}
+%% Local Macros and packages: add any of your own definitions here.
+\allowdisplaybreaks
+
+\begin{document}
+
+% Homework number, your name and NetID, and optionally, the names/NetIDs of anyone you collaborated with. If you did not collaborate with anybody, leave the last parameter empty.
+\homework
+    {4}
+    {Lanxiao Bai (lbai5)}
+    {}
+
+\section*{Problem 1}
+\textbf{Solution:} 
+	\begin{align}
+		&\sum_{i = 1}^d Var(Y_i) = Tr(\mathbb{E}[(\mathbf{Y} - \mathbb{E}[\mathbf{Y}])(\mathbf{Y} - \mathbb{E}[\mathbf{Y}])^T])\nonumber\\
+		&\phantom{\sum_{i = 1}^d Var(Y_i)} = \mathbb{E}[Tr((\mathbf{Y} - \mathbb{E}[\mathbf{Y}])(\mathbf{Y} - \mathbb{E}[\mathbf{Y}])^T)]\nonumber\\
+		&\phantom{\sum_{i = 1}^d Var(Y_i)} = \mathbb{E}[Tr((\mathbf{Y} - \mathbb{E}[\mathbf{Y}])(\mathbf{Y}^T - \mathbb{E}[\mathbf{Y}^T]))]\nonumber\\
+		&\phantom{\sum_{i = 1}^d Var(Y_i)} = \mathbb{E}[Tr((\mathbf{Y}^T - \mathbb{E}[\mathbf{Y}^T])(\mathbf{Y} - \mathbb{E}[\mathbf{Y}]))]\nonumber\\
+		&\phantom{\sum_{i = 1}^d Var(Y_i)} = \mathbb{E}[Tr(\mathbf{Y}^T\mathbf{Y} - \mathbb{E}[\mathbf{Y}]\mathbf{Y}^T - \mathbf{Y}\mathbb{E}[\mathbf{Y}^T] + \mathbb{E}[\mathbf{Y}^T]\mathbb{E}[\mathbf{Y}])]\nonumber\\
+		&\phantom{\sum_{i = 1}^d Var(Y_i)} = \mathbb{E}[Tr(\mathbf{X}^T\mathbf{U}\mathbf{U}^T\mathbf{X} - \mathbb{E}[\mathbf{U}^T\mathbf{X}](\mathbf{U}^T\mathbf{X})^T - \mathbf{U}^T\mathbf{X}\mathbb{E}[(\mathbf{U}^T\mathbf{X})^T] + \mathbb{E}[(\mathbf{U}^T\mathbf{X})^T]\mathbb{E}[\mathbf{U}^T\mathbf{X}])]\nonumber\\
+		&\phantom{\sum_{i = 1}^d Var(Y_i)} = \mathbb{E}[Tr(\mathbf{X}^T\mathbf{X} - \mathbb{E}[\mathbf{X}]\mathbf{X}^T - \mathbf{X}\mathbb{E}[\mathbf{X}^T] + \mathbb{E}[\mathbf{X}^T]\mathbb{E}[\mathbf{X}])]\nonumber\\
+		&\phantom{\sum_{i = 1}^d Var(Y_i)} = \mathbb{E}[Tr((\mathbf{X} - \mathbb{E}[\mathbf{X}])(\mathbf{X} - \mathbb{E}[\mathbf{X}])^T)]\nonumber\\
+		&\phantom{\sum_{i = 1}^d Var(Y_i)} = Tr(\mathbb{E}[(\mathbf{X} - \mathbb{E}[\mathbf{X}])(\mathbf{X} - \mathbb{E}[\mathbf{X}])^T])\nonumber\\
+		&\phantom{\sum_{i = 1}^d Var(Y_i)} = \sum_{i = 1}^d Var(X_i)\nonumber\\
+	\end{align}
+	
+	Thus, we have
+	\[\sum_{i = 1}^d \sigma_{ii} = \sum_{i = 1}^d Var(X_i) = \sum_{i = 1}^d \lambda_i = \sum_{i = 1}^d Var(Y_i)\]
+\section*{Problem 2}
+\textbf{Solution:} 
+	\begin{align}
+		&\rho_{Y_i, X_k} = \frac{Cov(Y_i, X_k)}{\sqrt{Var(Y_i)}\sqrt{Var(X_k)}}\nonumber\\
+		&\phantom{\rho_{Y_i, X_k}} = \frac{\mathbb{E}[Y_i \cdot X_k] - \mathbb{E}[Y_i]\mathbb{E}[X_k]}{\sqrt{\lambda_i\sigma_{kk}}}\nonumber\\
+		&\phantom{\rho_{Y_i, X_k}} = \frac{u_{ik} \mathbb{E}[\mathbf{X}^2] - u_{ik} \mathbb{E}[\mathbf{X}]^2}{\sqrt{\lambda_i\sigma_{kk}}}\nonumber\\
+		&\phantom{\rho_{Y_i, X_k}} = \frac{u_{ik} \Sigma}{\sqrt{\lambda_i\sigma_{kk}}}\nonumber\\
+		&\phantom{\rho_{Y_i, X_k}} = \frac{u_{ik} \lambda_i}{\sqrt{\lambda_i\sigma_{kk}}}\nonumber\\
+		&\phantom{\rho_{Y_i, X_k}} = \frac{u_{ik} \sqrt{\lambda_i}}{\sqrt{\sigma_{kk}}}\nonumber
+	\end{align}
+\section*{Problem 3}
+\textbf{Solution:} 
+	Since 
+	\[\Sigma = 
+	\begin{bmatrix}
+		1 & -2 & 0\\
+		-2 & 5 & 0\\
+		0 & 0 & 2
+	\end{bmatrix}
+	\]
+	\begin{enumerate}[(a)]
+		\item By solving
+		\[det(\Sigma - \lambda I) = 0 \Rightarrow
+		\begin{bmatrix}
+			1 - \lambda & -2 & 0\\
+			-2 & 5 - \lambda & 0\\
+			0 & 0 & 2 - \lambda
+		\end{bmatrix} = 0
+		 \]
+		 
+		 We have 
+		 \[\lambda_1 = 3 + 2\sqrt{2}\]
+		 \[\lambda_2 = 2\]
+		 \[\lambda_3 = 3 - 2\sqrt{2}\]
+		 
+		 and
+		 
+		 \[u_1 = (1 - \sqrt{2}, 1, 0)\]
+		 \[u_2 = (0, 0, 1)\]
+		 \[u_3 = (1 + \sqrt{2}, 1, 0)\]
+		\item 
+		\[Y_1 = u^T_1 X = (1 - \sqrt{2})X_1 + X_2\]
+		\[Y_2 = u^T_2 X = X_3\]
+		\[Y_3 = u^T_3 X = (1 + \sqrt{2})X_1 + X_2\]
+		\item
+		\begin{align}
+			&Var(Y_1) = \mathbb{E}[Y_1^2] - \mathbb{E}[Y_1]^2\nonumber\\ 
+			&\phantom{Var(Y_1)} = \mathbb{E}[(3 - 2\sqrt{2})X_1^2 + 2(1 - \sqrt{2})X_1X_2 + X^2_2] - \mathbb{E}[(1 - \sqrt{2})X_1 + X_2]^2\nonumber\\
+			&\phantom{Var(Y_1)} = (3 - 2\sqrt{2})\mathbb{E}[X_1^2] + 2(1 - \sqrt{2})\mathbb{E}[X_1X_2] + \mathbb{E}[X^2_2] - ((1 - \sqrt{2})\mathbb{E}[X_1] + \mathbb{E}[X_2])^2\nonumber\\
+			&\phantom{Var(Y_1)} = (3 - 2\sqrt{2})\mathbb{E}[X_1^2] + 2(1 - \sqrt{2})\mathbb{E}[X_1X_2] + \mathbb{E}[X^2_2] - \nonumber\\
+			&\phantom{Var(Y_1)} ((3 - 2\sqrt{2})\mathbb{E}[X_1]^2 + 2(1 - \sqrt{2})\mathbb{E}[X_1]\mathbb{E}[X_2] + \mathbb{E}[X_2]^2)\nonumber\\
+			&\phantom{Var(Y_1)} = (3 - 2\sqrt{2})(\mathbb{E}[X^2_1] - \mathbb{E}[X_1]^2) + 2(1 - \sqrt{2})(\mathbb{E}[X_1X_2] - \mathbb{E}[X_1]\mathbb{E}[X_2]) + (\mathbb{E}[X^2_2] - \mathbb{E}[X_2]^2)\nonumber\\
+			&\phantom{Var(Y_1)} = (3 - 2\sqrt{2})\sigma_{11} + 2(1 - \sqrt{2})\sigma_{12} + \sigma_{22}\nonumber\\
+			&\phantom{Var(Y_1)} = (3 - 2\sqrt{2}) - 4(1 - \sqrt{2}) + 5\nonumber\\
+			&\phantom{Var(Y_1)} = 4 + 2\sqrt{2}\nonumber\\
+			&\nonumber\\
+			&Var(Y_2) = \mathbb{E}[Y_2^2] - \mathbb{E}[Y_2]^2\nonumber\\ 
+			&\phantom{Var(Y_2)} = \mathbb{E}[X_3^2] - \mathbb{E}[X_3]^2\nonumber\\
+			&\phantom{Var(Y_2)} = \sigma_{33}\nonumber\\
+			&\phantom{Var(Y_2)} = 2\nonumber\\
+			&\nonumber\\
+			&Var(Y_3) = \mathbb{E}[Y_1^2] - \mathbb{E}[Y_1]^2\nonumber\\ 
+			&\phantom{Var(Y_3)} = \mathbb{E}[(3 + 2\sqrt{2})X_1^2 + 2(1 + \sqrt{2})X_1X_2 + X^2_2] - \mathbb{E}[(1 + \sqrt{2})X_1 + X_2]^2\nonumber\\
+			&\phantom{Var(Y_3)} = (3 + 2\sqrt{2})\mathbb{E}[X_1^2] + 2(1 + \sqrt{2})\mathbb{E}[X_1X_2] + \mathbb{E}[X^2_2] - ((1 + \sqrt{2})\mathbb{E}[X_1] + \mathbb{E}[X_2])^2\nonumber\\
+			&\phantom{Var(Y_1)} = (3 + 2\sqrt{2})\mathbb{E}[X_1^2] + 2(1 + \sqrt{2})\mathbb{E}[X_1X_2] + \mathbb{E}[X^2_2] - \nonumber\\
+			&\phantom{Var(Y_1)} ((3 + 2\sqrt{2})\mathbb{E}[X_1]^2 + 2(1 + \sqrt{2})\mathbb{E}[X_1]\mathbb{E}[X_2] + \mathbb{E}[X_2]^2)\nonumber\\
+			&\phantom{Var(Y_1)} = (3 + 2\sqrt{2})(\mathbb{E}[X^2_1] - \mathbb{E}[X_1]^2) + 2(1 + \sqrt{2})(\mathbb{E}[X_1X_2] - \mathbb{E}[X_1]\mathbb{E}[X_2]) + (\mathbb{E}[X^2_2] - \mathbb{E}[X_2]^2)\nonumber\\
+			&\phantom{Var(Y_1)} = (3 + 2\sqrt{2})\sigma_{11} + 2(1 + \sqrt{2})\sigma_{12} + \sigma_{22}\nonumber\\
+			&\phantom{Var(Y_1)} = (3 + 2\sqrt{2}) - 4(1 + \sqrt{2}) + 5\nonumber\\
+			&\phantom{Var(Y_1)} = 4 - 2\sqrt{2}\nonumber
+		\end{align}
+		\item
+		\begin{align}
+			&Cov(Y_1, Y_2) = \mathbb{E}[Y_1Y_2] - \mathbb{E}[Y_1]\mathbb{E}[Y_2]\nonumber\\
+			&\phantom{Cov(Y_1, Y_2)} = \mathbb{E}[((1 - \sqrt{2})X_1 + X_2)X_3] - \mathbb{E}[((1 - \sqrt{2})X_1 + X_2)]\mathbb{E}[X_3]\nonumber\\
+			&\phantom{Cov(Y_1, Y_2)} = (1 - \sqrt{2})\mathbb{E}[X_1X_3] + \mathbb{E}[X_2X_3] - (1 - \sqrt{2})\mathbb{E}[X_1]\mathbb{E}[X_3] - \mathbb{E}[X_2]\mathbb{E}[X_3]\nonumber\\
+			&\phantom{Cov(Y_1, Y_2)} = (1 - \sqrt{2})(\mathbb{E}[X_1X_3] - \mathbb{E}[X_1]\mathbb{E}[X_3]) + (\mathbb{E}[X_2X_3] - \mathbb{E}[X_2]\mathbb{E}[X_3])\nonumber\\
+			&\phantom{Cov(Y_1, Y_2)} = (1 - \sqrt{2})\sigma_{13} + \sigma_{23}\nonumber\\
+			&\phantom{Cov(Y_1, Y_2)} = 0\nonumber\\
+			&\nonumber\\
+			&Cov(Y_1, Y_3) = \mathbb{E}[Y_1Y_3] - \mathbb{E}[Y_1]\mathbb{E}[Y_3]\nonumber\\
+			&\phantom{Cov(Y_1, Y_3)} = \mathbb{E}[((1 - \sqrt{2})X_1 + X_2)((1 + \sqrt{2})X_1 + X_2)] - \mathbb{E}[((1 - \sqrt{2})X_1 + X_2)]\mathbb{E}[(1 + \sqrt{2})X_1 + X_2]\nonumber\\
+			&\phantom{Cov(Y_1, Y_3)} = \mathbb{E}[-X^2_1 + (1 - \sqrt{2})X_1X_2 + (1 + \sqrt{2})X_1X_2 + X^2_2] - \nonumber\\
+			&\phantom{Cov(Y_1, Y_3)}	(((1 - \sqrt{2})\mathbb{E}[X_1] + \mathbb{E}[X_2])(((1 + \sqrt{2})\mathbb{E}[X_1] + \mathbb{E}[X_2])\nonumber\\
+			&\phantom{Cov(Y_1, Y_3)} = -(\mathbb{E}[X^2_1] - \mathbb{E}[X_1])^2) + 2(\mathbb{E}[X_1X_2] - \mathbb{E}[X_1][X_2]) + (\mathbb{E}[X_2^2] - \mathbb{E}[X_2]^2)\nonumber\\
+			&\phantom{Cov(Y_1, Y_3)} = -\sigma_{11} + 2\sigma_{12} + \sigma_{22}\nonumber\\
+			&\phantom{Cov(Y_1, Y_3)} = -1 - 4 + 5\nonumber\\
+			&\phantom{Cov(Y_1, Y_3)} = 0\nonumber\\
+			&\nonumber\\
+			&Cov(Y_2, Y_3) = \mathbb{E}[Y_2Y_3] - \mathbb{E}[Y_2]\mathbb{E}[Y_3]\nonumber\\
+			&\phantom{Cov(Y_2, Y_3)} = \mathbb{E}[((1 + \sqrt{2})X_1 + X_2)X_3] - \mathbb{E}[((1 + \sqrt{2})X_1 + X_2)]\mathbb{E}[X_3]\nonumber\\
+			&\phantom{Cov(Y_2, Y_3)} = (1 + \sqrt{2})\mathbb{E}[X_1X_3] + \mathbb{E}[X_2X_3] - (1 + \sqrt{2})\mathbb{E}[X_2]\mathbb{E}[X_3] - \mathbb{E}[X_2]\mathbb{E}[X_3]\nonumber\\
+			&\phantom{Cov(Y_2, Y_3)} = (1 + \sqrt{2})(\mathbb{E}[X_1X_3] - \mathbb{E}[X_1]\mathbb{E}[X_3]) + (\mathbb{E}[X_2X_3] - \mathbb{E}[X_2]\mathbb{E}[X_3])\nonumber\\
+			&\phantom{Cov(Y_2, Y_3)} = (1 + \sqrt{2})\sigma_{13} + \sigma_{23}\nonumber\\
+			&\phantom{Cov(Y_2, Y_3)} = 0\nonumber
+		\end{align}
+		
+		We notice the $Y_1, Y_2, Y_3$ are independent random variable.
+		\item
+		\[\sum_{i = 1}^3 \lambda_i = 3 + 2\sqrt{2} + 2 + 3 - 2\sqrt{2} = 8 =  1 + 5 + 2 = Tr(\Sigma)\]
+		\item
+		\begin{align}
+			&\textbf{Ratio}(Y_1) = \frac{Var(Y_1)}{\sum_{i = 1}^3 Var(Y_i)} = \frac{4 + 2\sqrt{2}}{4 + 2\sqrt{2} + 2 + 4 - 2\sqrt{2}} = \frac{4 + 2\sqrt{2}}{10} \approx 68.2\% \nonumber\\
+			&\textbf{Ratio}(Y_2) = \frac{Var(Y_2)}{\sum_{i = 1}^3 Var(Y_i)} = \frac{2}{4 + 2\sqrt{2} + 2 + 4 - 2\sqrt{2}} = \frac{2}{10} \approx 20\% \nonumber\\
+			&\textbf{Ratio}(Y_3) = \frac{Var(Y_3)}{\sum_{i = 1}^3 Var(Y_i)} = \frac{4 - 2\sqrt{2}}{4 + 2\sqrt{2} + 2 + 4 - 2\sqrt{2}} = \frac{4 - 2\sqrt{2}}{10} \approx 11.7\% \nonumber
+		\end{align}
+		
+		Since the first two component captured about 88.2\% of the total variance, so the I would choose $2$ dimensions.
+		\item
+		\begin{align}
+			&\rho_{Y_1,X_1} = \frac{u_{11} \sqrt{\lambda_1}}{\sqrt{\sigma_{11}}} = \frac{(1 - \sqrt{2})(\sqrt{3 + 2\sqrt{2}})}{\sqrt{4 + 2\sqrt{2}}} \approx -0.383\nonumber\\
+			&\rho_{Y_1,X_2} = \frac{u_{12} \sqrt{\lambda_1}}{\sqrt{\sigma_{22}}} = \frac{\sqrt{3 + 2\sqrt{2}}}{\sqrt{2}} \approx 1.707\nonumber
+		\end{align}
+		\item Since we see in $(b)$ that
+		\[Y_1 = (1 - \sqrt{2})X_1 + X_2\]
+		
+		then we see that both random variables aid in the interpretation of $Y_1$.
+	\end{enumerate}
+\newpage 
+\bibliographystyle{ims}
+\bibliography{citations}
+
+\end{document}

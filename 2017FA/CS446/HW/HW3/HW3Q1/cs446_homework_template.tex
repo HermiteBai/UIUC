@@ -1,0 +1,57 @@
+\documentclass[11pt]{article}
+
+\usepackage{homeworkpkg}
+%% Local Macros and packages: add any of your own definitions here.
+
+\begin{document}
+
+% Homework number, your name and NetID, and optionally, the names/NetIDs of anyone you collaborated with. If you did not collaborate with anybody, leave the last parameter empty.
+\homework
+    {3}
+    {Lanxiao Bai (lbai5)}
+    {}
+
+\section*{Problem 1}
+\textbf{Solution:} 
+	\begin{align}
+		&K(\mathbf{x}, \mathbf{y}) = (1 + \mathbf{x}^T\mathbf{y})^2\nonumber\\
+		&\phantom{K(\mathbf{x}, \mathbf{y})} = ([x_1, x_2, 1]\cdot[y_1, y_2, 1])^2\nonumber\\
+		&\phantom{K(\mathbf{x}, \mathbf{y})} = (x_1y_1 + x_2y_2 + 1)^2\nonumber\\
+		&\phantom{K(\mathbf{x}, \mathbf{y})} = x_1^2y_1^2 + 2x_1y_1 + 2x_1x_2y_1y_2 + x_2^2y_2^2 + 2x_2y_2 + 1\nonumber\\
+		&\phantom{K(\mathbf{x}, \mathbf{y})} = [x_1^2, \sqrt{2}x_1, \sqrt{2}x_1x_2, x_2^2, \sqrt{2}x_2, 1] \cdot [y_1^2, \sqrt{2}y_1, \sqrt{2}y_1y_2, y_2^2, \sqrt{2}y_2, 1]\nonumber\\
+		&\phantom{K(\mathbf{x}, \mathbf{y})} = \phi(\mathbf{x})\phi(\mathbf{y})\nonumber
+	\end{align}
+	
+	As a result, we see that
+	\[\phi(\mathbf{x}) = [x_1^2, \sqrt{2}x_1, \sqrt{2}x_1x_2, x_2^2, \sqrt{2}x_2, 1] \]
+	
+\section*{Problem 2}
+\textbf{Solution:} Since we have the objective function
+\[L(w) = \frac{w^Tw}{2} + C\sum_{i \in [N]} \max(0, 1 - y_i\left<w, \phi(x_i)\right>)\]
+
+We can calculate the gradient
+\begin{align}
+	&\frac{\partial L(w)}{\partial w} = 2w + C \sum_{i \in [N]}\frac{\partial \max(0, 1 - y_i\left<w, \phi(x_i)\right>)}{\partial w}\nonumber\\
+	&\phantom{\frac{\partial L(w)}{\partial w}} = 2w + C \sum_{i \in [N]} 
+	\begin{cases}
+		0 & y_i\left<w, \phi(x_i)\right> \geq 1\\
+		-y_i\frac{\partial \left<w, \phi(x_i)\right>}{\partial w} & \textbf{otherwise}
+	\end{cases}\nonumber\\
+	&\phantom{\frac{\partial L(w)}{\partial w}} = 2w + C \sum_{i \in [N]}
+	\begin{cases}
+		0 & y_i\left<w, \phi(x_i)\right> \geq 1\\
+		-y_i\phi(x_i) & \textbf{otherwise}
+	\end{cases}\nonumber
+\end{align}
+
+As a result, we have the SGD updating rule
+\[w_{t + 1} = w_t - \eta \frac{\partial L(w_t)}{\partial w_t} = w_t - 2\eta w_t + 
+\begin{cases}
+		0 & y_i\left<w, \phi(x_i)\right> \geq 1\\
+		y_i\phi(x_i) & \textbf{otherwise}
+	\end{cases}\]
+\newpage 
+\bibliographystyle{ims}
+\bibliography{citations}
+
+\end{document}
