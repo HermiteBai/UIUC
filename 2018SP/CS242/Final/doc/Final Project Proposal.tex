@@ -1,0 +1,82 @@
+\documentclass[11pt]{article}
+\input{../../packages.tex}
+\pagestyle{fancy}
+\fancyhead[L]{CS 242}
+\fancyhead[C]{Final Project Proposal}
+\fancyhead[R]{Lanxiao Bai}
+
+\usepackage{listings}
+\usepackage{color}
+\usepackage{enumerate}
+\usepackage{graphicx}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Python,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{black},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{black},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+\begin{document}
+\title{Final Project Proposal}
+\author{Lanxiao Bai}
+\date{\today}
+\maketitle
+\newpage
+\section{Goal}
+	I plan to build a Twitter-like SNS website as my final project for CS 242. During the first three assignments for this course, I had worked on desktop GUI application with Java, backend server and spider with Python and a mobile application with Swift (iOS), so I want to get myself expose to more kinds of technologies by building a Twitter-like SNS website as a full-stack developer.
+	\subsection{Description} 
+	
+	My project will replicate the main features of Twitter including personal account and page, login and registration, posting personal messages and should support following the people users are interested in. And most importantly, my project should look like a real Twitter.
+	
+	\subsection{Technical information}
+	I plan to use the following technology to build my project:
+	\begin{itemize}
+		\item Front End: HTML, CSS, JS, React
+		\item Backend: Python, Django
+		\item Database: MySQL
+		\item Server: I will try to see if I can get to use a AWS server or I'll just use my own laptop
+	\end{itemize}
+\section{First Week}
+	\begin{itemize}
+		\item Set up database, build models and tables for twitters, users
+		\item Build backend api for login, support third party login
+		\item Build backend api for registration
+		\item Unit test
+	\end{itemize}
+\section{Second Week}
+	\begin{itemize}
+		\item Build backend api for user follow/unfollow
+		\item Build backend api for user to post a twitter
+		\item Build backend api for user to like/repost
+		\item Unit test
+	\end{itemize}
+\section{Third Week}
+	\begin{itemize}
+		\item Build frond end page for login 
+		\item Build front end personal display
+		\item Integrate the things above with the backend
+		\item UI test
+	\end{itemize}
+\section{Fourth Week}
+	\begin{itemize}
+		\item Build front end for follow/unfollow
+		\item Build front end for like/repost
+		\item Final Integration
+		\item UI Polishing
+	\end{itemize}
+\end{document}

@@ -35,7 +35,7 @@ def register(request):
     return render(request, 'Baitter_User/register.html', context={'form': form, 'next': redirect_to})
     
 def publish(request):
-    pass
+    return render(request, 'index.html')
 
 @csrf_exempt
 def login_by_email(request):

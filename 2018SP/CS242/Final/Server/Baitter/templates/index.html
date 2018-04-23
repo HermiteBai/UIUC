@@ -17,7 +17,7 @@
                 <button class="btn btn-default"><a href="{% url 'logout' %}?next={{ request.path }}">Log out</a></button>
                 <button class="btn btn-default"><a href="{% url 'password_change' %}?next={{ request.path }}">Modify password</a></button>
 
-                <form action="/publish" method="post">
+                <form action="{% url 'Baitter_User:publish' %}" method="post">
                     {% csrf_token %}
                     <textarea cols=80 rows=10></textarea>
                     </br>
