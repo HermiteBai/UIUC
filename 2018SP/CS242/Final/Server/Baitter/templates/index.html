@@ -4,6 +4,78 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<style type="text/css">
+		.create_date {
+			font-size:10px;
+		}
+		.content {
+			font-size:20px;
+		}
+		.post {
+			border-style:solid;
+			border-width:1px;
+			padding:25px 50px;
+		}
+		ul {
+		    list-style-type: none;
+		    margin: 0;
+		    padding: 0;
+		    overflow: hidden;
+		    background-color: #77C;
+		}
+ 
+		li {
+		    float: left;
+		}
+ 
+		li a{
+		    display: block;
+		    color: white;
+		    text-align: center;
+		    padding: 14px 16px;
+		    text-decoration: none;
+		}
+ 
+		li a:hover, .dropdown:hover{
+		    background-color: #111;
+		}
+		.dropbtn {
+		    display: block;
+		    color: white;
+		    text-align: center;
+		    padding: 14px 16px;
+		    text-decoration: none;
+		}
+		
+		.dropdown
+		  {
+		    display:inline-block;
+		  }
+  
+		  .dropdown-content
+		  {
+		    display:none;
+		    position:absolute;
+		    background-color:#77C;
+		    min-width:160px;
+		    box-shadow:0px 8px 16px 0px rgba(0,0,0,0.2);
+		  }
+
+		  .dropdown-content a
+		  {
+		    color:black;
+		    padding:12px 16px;
+		    text-decoration:none;
+		    display:block;
+		  }
+
+		  .dropdown-content a:hover {background-color: #f1f1f1}
+
+		  .dropdown:hover .dropdown-content
+		  {
+		    display:block;
+		  }
+	</style>
     <title>Home</title>
     <link rel="stylesheet" href="https://unpkg.com/mobi.css/dist/mobi.min.css">
 </head>
@@ -11,22 +83,59 @@
 <div class="flex-center">
     <div class="container">
         <div>
-            <h1 class="logo"><a href="{% url 'index' %}">Baitter</a></h1>
             {% if user.is_authenticated %}
-                <p>You've been logged in, welcome：<a href="#">{{ user.username }}</a></p>
-                <button class="btn btn-default"><a href="{% url 'logout' %}?next={{ request.path }}">Log out</a></button>
-                <button class="btn btn-default"><a href="{% url 'password_change' %}?next={{ request.path }}">Modify password</a></button>
+			<ul>
+			  <li><a href="{% url 'index' %}">Home</a></li>
+			  <li><a href="{% url 'Baitter_User:search' %}">Search</a></li>
+			  <div class="dropdown">
+			    <a href="#" class="dropbtn">{{ user.username }}</a>
+			      <div class="dropdown-content">
+ 			        <a href="{% url 'Baitter_User:following' %}">Following</a>
+ 			        <a href="{% url 'Baitter_User:follower' %}">Follower</a>
+			        <a href="{% url 'password_change' %}?next={{ request.path }}">Modify password</a>
+			        <a href="{% url 'logout' %}?next={{ request.path }}">Log out</a>
+			      </div>
+			    </div>
+			</ul>
+			
+			</br>
+			</br>
 
                 <form action="{% url 'Baitter_User:publish' %}" method="post">
                     {% csrf_token %}
-                    <textarea cols=80 rows=10></textarea>
+                    <textarea cols=80 rows=10 name='content'></textarea>
                     </br>
                     <input type="submit" class="btn btn-primary"></button>
                 </form>
+				
+				</br>
+				</br>
 
                 {% csrf_token %}
-                    {% for post in posts %}
-                        {{ post.content }}
+                    {% for post, liked, author in posts %}
+					<div class='post'>
+						<div class='content'>
+                        	<p class="text-left">{{ post.content }}</p>
+						</div>
+						{% if post.img != None %}
+							<div class='img'>
+							</div>
+						{% endif %}
+						<div class='create_date'>
+							{{ post.created }} by {{ author.username }}
+						</div>
+						<form action="" method="post">
+							{% csrf_token %}
+							<input type="hidden" name="id" display=none value={{post.p_id}} readonly></input>
+							{% if liked%}
+							<input type=submit class="btn btn-danger" name='button', value='Unlike'></input>
+							{% else %}
+							<input type=submit class="btn btn-primary" name='button', value='Like'></input>
+							{% endif %}
+							<input type=submit class="btn" name='button2', value='Repost'></input>
+						</form>
+					</div>
+					</br>
                     {% endfor %}
             {% else %}
                 <p>You're not logged in yet, please

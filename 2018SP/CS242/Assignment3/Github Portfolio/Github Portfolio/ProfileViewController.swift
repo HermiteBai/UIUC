@@ -23,6 +23,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var createDateLabel : UILabel!
     var loaded : Bool = false
     var avatar_url : String?
+    var login : String = "HermiteBai"
     
     fileprivate func setupProfile(_ JSON: (Any)) {
         let response = JSON as! NSDictionary
@@ -47,7 +48,6 @@ class ProfileViewController: UIViewController {
     }
     
     fileprivate func requestData(url : String) {
-        let url = "https://api.github.com/users/HermiteBai"
         Alamofire.request(url, method: .get).responseJSON {
             response in switch response.result {
             case .success(let JSON):
@@ -61,13 +61,14 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        print("View did load")
+        let url = "https://api.github.com/users/" + login
+        requestData(url : url)
         avatar.layer.borderWidth = 1
         avatar.layer.masksToBounds = false
         avatar.layer.borderColor = UIColor.black.cgColor
         avatar.layer.cornerRadius = avatar.frame.height / 2
         avatar.clipsToBounds = true
-        let url = "https://api.github.com/users/HermiteBai"
-        requestData(url : url)
     }
 
     override func didReceiveMemoryWarning() {
@@ -77,6 +78,21 @@ class ProfileViewController: UIViewController {
 
     @IBAction func gotoRepo(sender: AnyObject) {
         tabBarController?.selectedIndex = 1
+    }
+    
+    @IBAction func restore() {
+        //self.login = "HermiteBai"
+        self.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        let url = "https://api.github.com/users/" + login
+        requestData(url : url)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        let url = "https://api.github.com/users/" + login
+        requestData(url : url)
     }
 }
 

@@ -100,29 +100,27 @@ class User(AbstractUser):
         return True, email
 
     @staticmethod
-    def post_baitter(user_name, content, img):
-        query = Q(username__exact=user_name)
+    def post_baitter(user_id, content, img):
+        query = Q(u_id__exact=user_id)
         result = User.manager.filter(query)
         if len(result) == 0:
             return False, 'User not exist'
         author = result[0]
-        user_id = author.u_id
         post, n = Post.create_post(content, img)
         author.posted.add(post)
         return post, n
         
     @staticmethod
-    def repost_baitter(user_name, post_id):
-        query_user = Q(username__exact=user_name)
+    def repost_baitter(user_id, post_id):
+        query_user = Q(u_id__exact=user_id)
         result_user = User.manager.filter(query_user)
         if len(result_user) == 0:
             return False, 'User not exist'
         author = result_user[0]
-        user_id = author.u_id
         query_post = Q(p_id__exact=post_id)
         result_post = Post.manager.filter(query_post)
         post = result_post[0]
-        new_post, n = Post.create_post(post.content, post.img, post.p_id)
+        new_post, n = Post.create_post("REPOST:" + post.content, post.img, post.p_id)
         author.posted.add(new_post)
         return new_post, n
         
@@ -159,6 +157,21 @@ class User(AbstractUser):
             return True, 'Target successfully unfollowed'
             
     @staticmethod
+    def isfollowing(from_id, to_id):
+        query_from = Q(u_id=from_id)
+        result_from = User.manager.filter(query_from)
+        query_to = Q(u_id=to_id)
+        result_to = User.manager.filter(query_to)
+        if result_from.count() == 0 or result_to.count() == 0:
+            return False
+        user_from = User.get_user_by_id(from_id)[0]
+        user_to = User.get_user_by_id(to_id)[0]
+        if user_to in user_from.following.all():
+            return True
+        else:
+            return False
+            
+    @staticmethod
     def like_post(user_id, post_id):
         query_user = Q(u_id=user_id)
         result_user = User.manager.filter(query_user)
@@ -173,6 +186,21 @@ class User(AbstractUser):
         else:
             user.liked.add(post)
             return True, 'Post successfully liked'
+            
+    @staticmethod
+    def isliked(user_id, post_id):
+        query_user = Q(u_id=user_id)
+        result_user = User.manager.filter(query_user)
+        query_post = Q(p_id=post_id)
+        result_post = Post.manager.filter(query_post)
+        if result_user.count() == 0 or result_post.count() == 0:
+            return False
+        user = User.get_user_by_id(user_id)[0]
+        post = Post.get_post_by_id(post_id)[0]
+        if post in user.liked.all():
+            return True
+        else:
+            return False
             
     @staticmethod
     def unlike_post(user_id, post_id):
@@ -196,6 +224,42 @@ class User(AbstractUser):
         result_user = User.manager.filter(query_user)
         user = result_user[0]
         return user.posted.all()
-
+        
+    @staticmethod
+    def get_all_following_posts(user_id):
+        query_user = Q(u_id=user_id)
+        result_user = User.manager.filter(query_user)
+        user = result_user[0]
+        following = user.following.all()
+        result = []
+        authors = []
+        for followed in following:
+            result += list(followed.posted.all())
+            authors += len(list(followed.posted.all())) * [followed]
+        return result, authors
+        
+    @staticmethod
+    def get_all_following_by_id(user_id):
+        query_user = Q(u_id=user_id)
+        result_user = User.manager.filter(query_user)
+        user = result_user[0]
+        return user.following.all()
+        
+    @staticmethod
+    def get_all_liked_by_id(user_id):
+        query_user = Q(u_id=user_id)
+        result_user = User.manager.filter(query_user)
+        user = result_user[0]
+        return user.liked.all()
+        
+    @staticmethod
+    def search_by_name(username):
+        return User.objects.filter(username__contains=username)
+        
+    @staticmethod
+    def get_user_by_username(username):
+        query = Q(username=username)
+        user = User.manager.filter(query)
+        return user[0]
         
 admin.site.register(User)

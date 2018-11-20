@@ -15,8 +15,14 @@ import os
 # Create your views here.
 def index(request):
     if request.user.is_authenticated:
-        posts = User.get_all_posts_by_id(request.user.u_id)
-        return render(request, 'index.html', context={'posts': posts})
+        if request.method == 'POST':
+            like(request)
+            return redirect(request.META['HTTP_REFERER'])
+        posts, authors = User.get_all_following_posts(request.user.u_id)
+        liked = [User.isliked(request.user.u_id, post.p_id) for post in posts]
+        combined = list(zip(posts, liked, authors))
+        sorted_combined = list(sorted(combined, key=lambda x : x[0].created))
+        return render(request, 'index.html', context={'posts': list(reversed(sorted_combined))})
     return render(request, 'index.html')
     
 def register(request):
@@ -35,28 +41,53 @@ def register(request):
     return render(request, 'Baitter_User/register.html', context={'form': form, 'next': redirect_to})
     
 def publish(request):
-    return render(request, 'index.html')
-
-@csrf_exempt
-def login_by_email(request):
-    try:
-        if request.method == 'GET':
-            params = request.GET
-        elif request.method == 'POST':
-            params = request.POST
-        email = params.get('email')
-        password = params.get("password")
-        result = User.login_by_email(email, password)
-        data = {}
-        if result[0]:
-            for entry in result[1]:
-                data['id'] = int(entry['u_id'])
-                data['name'] = entry['u_name']
-                data['email'] = entry['email']
-        else:
-            data['warning'] = result[1]
-        response = HttpResponse(json.dumps(data), content_type='application/json')
-    except Exception as e:
-        print('%s (%s)' % (e.message, type(e)))
-    return response
+    if request.method == 'POST':
+        params = request.POST
+        content = params['content']
+        User.post_baitter(request.user.u_id, content, None)
+    return redirect('/')
     
+def following(request):
+    if request.method == 'POST':
+        follow(request)
+        return redirect(request.META['HTTP_REFERER'])
+    if request.method == 'GET':
+        params = request.GET
+        users = User.get_all_following_by_id(request.user.u_id)
+        followed = [User.isfollowing(request.user.u_id, user.u_id) for user in users]
+        return render(request, 'Baitter_User/following.html', context={'following': list(reversed(list(zip(users, followed))))})
+    return redirect('/')
+    
+def follower(request):
+    return redirect('/')
+    
+def search(request):
+    if request.method == 'POST':
+        follow(request)
+        return redirect(request.META['HTTP_REFERER'])
+    if request.method == 'GET':
+        params = request.GET
+        if 'username' in params:
+            users = User.search_by_name(params['username'])
+            followed = [User.isfollowing(request.user.u_id, user.u_id) for user in users]
+            return render(request, 'Baitter_User/search.html', context={'users':zip(users, followed)})
+    return render(request, 'Baitter_User/search.html')
+    
+def follow(request):
+    params = request.POST
+    to_id = User.get_user_by_username(params['username']).u_id
+    if params['button'] == 'Follow':
+        User.follow_user(request.user.u_id, to_id)
+    else:
+        User.unfollow_user(request.user.u_id, to_id)
+    
+def like(request):
+    params = request.POST
+    post_id = params['id']
+    if 'button' in params:
+        if params['button'] == 'Like':
+            User.like_post(request.user.u_id, post_id)
+        elif params['button'] == 'Unlike':
+            User.unlike_post(request.user.u_id, post_id)
+    if 'button2' in params:
+        User.repost_baitter(request.user.u_id, post_id)

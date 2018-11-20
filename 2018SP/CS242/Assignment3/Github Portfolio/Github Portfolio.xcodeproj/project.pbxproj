@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6B75C0242068310700BACFD3 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B75C0232068310700BACFD3 /* LoginViewController.swift */; };
+		6B81F5CA2068589A00246B17 /* GitHubPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B81F5C92068589A00246B17 /* GitHubPost.swift */; };
+		6B81F5CC2068B7A600246B17 /* FileDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B81F5CB2068B7A600246B17 /* FileDataHandler.swift */; };
+		6B81F5CD2068BDEA00246B17 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B81F5CE2068BDEA00246B17 /* SwiftyJSON.framework */; };
+		6BA7F8C62061CA7B00E9A1E7 /* FollowersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA7F8C52061CA7B00E9A1E7 /* FollowersViewController.swift */; };
+		6BA7F8C82061D20C00E9A1E7 /* FollowingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA7F8C72061D20C00E9A1E7 /* FollowingViewController.swift */; };
 		6BD04EB42051EA2E00E9D421 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BD04EB32051EA2E00E9D421 /* AppDelegate.swift */; };
 		6BD04EB62051EA2E00E9D421 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BD04EB52051EA2E00E9D421 /* ProfileViewController.swift */; };
 		6BD04EB82051EA2E00E9D421 /* RepositoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BD04EB72051EA2E00E9D421 /* RepositoryViewController.swift */; };
@@ -47,6 +53,12 @@
 		06EFF68BBA09E380BE566C0C /* Pods-Github Portfolio.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Github Portfolio.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Github Portfolio/Pods-Github Portfolio.debug.xcconfig"; sourceTree = "<group>"; };
 		16244BAF1A9B3618F18C4488 /* Pods_Github_Portfolio.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Github_Portfolio.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3ECA17C72560D4147DBCDF8B /* Pods-Github PortfolioTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Github PortfolioTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Github PortfolioTests/Pods-Github PortfolioTests.debug.xcconfig"; sourceTree = "<group>"; };
+		6B75C0232068310700BACFD3 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		6B81F5C92068589A00246B17 /* GitHubPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubPost.swift; sourceTree = "<group>"; };
+		6B81F5CB2068B7A600246B17 /* FileDataHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileDataHandler.swift; sourceTree = "<group>"; };
+		6B81F5CE2068BDEA00246B17 /* SwiftyJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftyJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6BA7F8C52061CA7B00E9A1E7 /* FollowersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowersViewController.swift; sourceTree = "<group>"; };
+		6BA7F8C72061D20C00E9A1E7 /* FollowingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingViewController.swift; sourceTree = "<group>"; };
 		6BD04EB02051EA2E00E9D421 /* Github Portfolio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Github Portfolio.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6BD04EB32051EA2E00E9D421 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6BD04EB52051EA2E00E9D421 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -70,6 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B81F5CD2068BDEA00246B17 /* SwiftyJSON.framework in Frameworks */,
 				6BD04EE62053D28600E9D421 /* AlamofireImage.framework in Frameworks */,
 				6BD04EDA2053AAA000E9D421 /* Alamofire.framework in Frameworks */,
 				E6E662A679CB9931E3AF535A /* Pods_Github_Portfolio.framework in Frameworks */,
@@ -111,8 +124,13 @@
 			isa = PBXGroup;
 			children = (
 				6BD04EB32051EA2E00E9D421 /* AppDelegate.swift */,
+				6B81F5C92068589A00246B17 /* GitHubPost.swift */,
+				6B75C0232068310700BACFD3 /* LoginViewController.swift */,
 				6BD04EB52051EA2E00E9D421 /* ProfileViewController.swift */,
 				6BD04EB72051EA2E00E9D421 /* RepositoryViewController.swift */,
+				6BA7F8C52061CA7B00E9A1E7 /* FollowersViewController.swift */,
+				6BA7F8C72061D20C00E9A1E7 /* FollowingViewController.swift */,
+				6B81F5CB2068B7A600246B17 /* FileDataHandler.swift */,
 				6BD04EB92051EA2E00E9D421 /* Main.storyboard */,
 				6BD04EBC2051EA2E00E9D421 /* Assets.xcassets */,
 				6BD04EBE2051EA2E00E9D421 /* LaunchScreen.storyboard */,
@@ -133,6 +151,7 @@
 		6BD04ED52051EAE000E9D421 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6B81F5CE2068BDEA00246B17 /* SwiftyJSON.framework */,
 				6BD04EE72053D28600E9D421 /* AlamofireImage.framework */,
 				6BD04EDB2053AAA000E9D421 /* Alamofire.framework */,
 				16244BAF1A9B3618F18C4488 /* Pods_Github_Portfolio.framework */,
@@ -272,11 +291,13 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-Github Portfolio/Pods-Github Portfolio-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -371,7 +392,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B81F5CC2068B7A600246B17 /* FileDataHandler.swift in Sources */,
+				6B75C0242068310700BACFD3 /* LoginViewController.swift in Sources */,
+				6B81F5CA2068589A00246B17 /* GitHubPost.swift in Sources */,
+				6BA7F8C62061CA7B00E9A1E7 /* FollowersViewController.swift in Sources */,
 				6BD04EB82051EA2E00E9D421 /* RepositoryViewController.swift in Sources */,
+				6BA7F8C82061D20C00E9A1E7 /* FollowingViewController.swift in Sources */,
 				6BD04EB42051EA2E00E9D421 /* AppDelegate.swift in Sources */,
 				6BD04EB62051EA2E00E9D421 /* ProfileViewController.swift in Sources */,
 			);

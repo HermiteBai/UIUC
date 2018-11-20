@@ -12,7 +12,7 @@
         <!--Profile-->
         <scene sceneID="hNz-n2-bh7">
             <objects>
-                <viewController id="9pv-A4-QxB" customClass="ProfileViewController" customModule="Github_Portfolio" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="profile" id="9pv-A4-QxB" customClass="ProfileViewController" customModule="Github_Portfolio" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tsR-hK-woN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -123,6 +123,28 @@
                                         <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vJ5-bU-Zg2">
+                                        <rect key="frame" x="288" y="290" width="46" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
+                                        <state key="normal" title="Return">
+                                            <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="restore" destination="9pv-A4-QxB" eventType="touchUpInside" id="BfI-bg-T7o"/>
+                                            <segue destination="49e-Tb-3d3" kind="show" id="R9i-8D-OTN"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2U4-MR-Afe">
+                                        <rect key="frame" x="288" y="260" width="46" height="38"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Login">
+                                            <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="qmH-jJ-k3G" kind="show" id="pDo-d5-vPl"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.20748436895861908" green="0.20902081174096057" blue="0.3333333432674408" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
@@ -174,43 +196,14 @@
             </objects>
             <point key="canvasLocation" x="676" y="-673.31334332833592"/>
         </scene>
-        <!--Following-->
-        <scene sceneID="20d-sw-8BF">
-            <objects>
-                <tableViewController id="dDp-57-W2q" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="wIb-Ua-XPk">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <connections>
-                            <outlet property="dataSource" destination="dDp-57-W2q" id="9VE-2a-baV"/>
-                            <outlet property="delegate" destination="dDp-57-W2q" id="w9U-b4-yK3"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Following" id="XvF-J4-ET6">
-                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="done" id="VRt-Yv-Igg">
-                            <connections>
-                                <segue destination="49e-Tb-3d3" kind="presentation" modalPresentationStyle="fullScreen" modalTransitionStyle="flipHorizontal" id="xsb-U0-28V"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="uVB-Pb-9cE" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2524" y="-1097"/>
-        </scene>
         <!--Followers-->
         <scene sceneID="Jk6-bv-gTL">
             <objects>
-                <tableViewController id="Wnl-SX-A6X" sceneMemberID="viewController">
+                <tableViewController id="Wnl-SX-A6X" customClass="FollowersViewController" customModule="Github_Portfolio" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="gjr-Go-Kfi">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <connections>
-                            <outlet property="dataSource" destination="Wnl-SX-A6X" id="q0h-N8-nsF"/>
-                            <outlet property="delegate" destination="Wnl-SX-A6X" id="OZO-OE-4es"/>
-                        </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Followers" id="Mxk-ga-qwr">
                         <barButtonItem key="leftBarButtonItem" style="plain" systemItem="done" id="ZEL-vQ-kyU">
@@ -219,6 +212,10 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="navItem" destination="Mxk-ga-qwr" id="0gc-gQ-NFE"/>
+                        <outlet property="tableView" destination="gjr-Go-Kfi" id="e55-8N-Hhg"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DwW-Nl-BNG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -240,26 +237,132 @@
             </objects>
             <point key="canvasLocation" x="1593" y="-188"/>
         </scene>
-        <!--Following-->
+        <!--Login View Controller-->
+        <scene sceneID="kdf-n6-uC5">
+            <objects>
+                <viewController storyboardIdentifier="login" id="qmH-jJ-k3G" customClass="LoginViewController" customModule="Github_Portfolio" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="MIH-nV-17E">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Login" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kg2-Ae-CEK">
+                                <rect key="frame" x="111" y="103" width="153" height="74"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Username" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aMU-Ja-FYc">
+                                <rect key="frame" x="16" y="185" width="343" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Password" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iRw-0V-gb8">
+                                <rect key="frame" x="16" y="262" width="343" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="HermiteBai" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="a5d-F5-N12">
+                                <rect key="frame" x="16" y="214" width="343" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" textContentType="username"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="v0J-No-bcp">
+                                <rect key="frame" x="16" y="291" width="343" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="go" secureTextEntry="YES" textContentType="password"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oT1-l5-4S2">
+                                <rect key="frame" x="63" y="374" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Login"/>
+                                <connections>
+                                    <action selector="auth" destination="qmH-jJ-k3G" eventType="touchUpInside" id="PoL-Xa-SKu"/>
+                                    <segue destination="9pv-A4-QxB" kind="show" id="Xq4-bP-34H"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lyi-hH-ha7">
+                                <rect key="frame" x="256" y="368" width="65" height="42"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Cancel"/>
+                                <connections>
+                                    <segue destination="9pv-A4-QxB" kind="show" id="AZs-Cq-IDY"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.1936090191" green="0.21103696650000001" blue="0.43944321069999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="Mgt-dX-nSR"/>
+                    </view>
+                    <connections>
+                        <outlet property="passwordField" destination="v0J-No-bcp" id="sUW-2H-n6e"/>
+                        <outlet property="usernameField" destination="a5d-F5-N12" id="HCq-su-WE1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yrU-qP-UPN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="669.60000000000002" y="-1447.8260869565217"/>
+        </scene>
+        <!--Following Nav Controller-->
         <scene sceneID="m5v-zh-4HQ">
             <objects>
-                <navigationController title="Following" id="g1G-Y0-nuj" sceneMemberID="viewController">
+                <navigationController title="Following Nav Controller" id="g1G-Y0-nuj" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="7GF-K7-lju">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="dDp-57-W2q" kind="relationship" relationship="rootViewController" id="hgP-2L-j48"/>
+                        <segue destination="3Eb-UC-B65" kind="relationship" relationship="rootViewController" id="BbH-2L-sDT"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jLH-Fu-TFe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1593" y="-1097"/>
         </scene>
+        <!--Following-->
+        <scene sceneID="Xha-M7-Si8">
+            <objects>
+                <viewController id="3Eb-UC-B65" customClass="FollowingViewController" customModule="Github_Portfolio" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="e0B-FN-and">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="jOb-dz-ULY">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="d2z-tV-Lqh"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Following" id="mB4-jh-Gjv">
+                        <barButtonItem key="leftBarButtonItem" title="Done" id="GvC-R3-LDn">
+                            <connections>
+                                <segue destination="49e-Tb-3d3" kind="presentation" modalPresentationStyle="fullScreen" modalTransitionStyle="flipHorizontal" id="0jG-SP-ejp"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="navItem" destination="mB4-jh-Gjv" id="8RX-xI-aDe"/>
+                        <outlet property="tableView" destination="jOb-dz-ULY" id="Gqe-TT-ux5"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="47v-uU-WVh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2524" y="-1097.001499250375"/>
+        </scene>
         <!--Main Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
             <objects>
-                <tabBarController id="49e-Tb-3d3" customClass="MainTabBarController" customModule="Github_Portfolio" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="main" useStoryboardIdentifierAsRestorationIdentifier="YES" id="49e-Tb-3d3" customClass="MainTabBarController" customModule="Github_Portfolio" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="W28-zg-YXA">
                         <rect key="frame" x="0.0" y="975" width="768" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -294,7 +397,7 @@
         <!--Repo-->
         <scene sceneID="YiG-l5-xuT">
             <objects>
-                <viewController id="xvw-JQ-5af" customClass="RepositoryViewController" customModule="Github_Portfolio" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="repo" id="xvw-JQ-5af" customClass="RepositoryViewController" customModule="Github_Portfolio" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kNI-Am-C6V">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -328,6 +431,7 @@
         <image name="github-Small" width="29" height="29"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="to3-Yz-dTr"/>
+        <segue reference="R9i-8D-OTN"/>
+        <segue reference="AZs-Cq-IDY"/>
     </inferredMetricsTieBreakers>
 </document>

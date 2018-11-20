@@ -50,7 +50,9 @@ class RepositoryViewController: UIViewController, UITableViewDelegate, UITableVi
         super.viewDidLoad()
         tableView?.dataSource = self
         tableView?.delegate = self
-        let url = "https://api.github.com/users/HermiteBai/repos"
+        let login = (storyboard?.instantiateViewController(withIdentifier: "profile") as! ProfileViewController).login
+        print(login)
+        let url = "https://api.github.com/users/" + login + "/repos"
         requestData(url)
         tableView?.allowsSelection = true
         self.view.addSubview(tableView!)
@@ -91,7 +93,6 @@ class RepositoryViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     internal func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-        //UIApplication.shared.open(URL(string : "\(repoURLsArr[indexPath.row])")!)
         let myURL = URL(string: "\(repoURLsArr[indexPath.row])")
         let webConfiguration = WKWebViewConfiguration()
         webview = WKWebView(frame: CGRect(origin: .zero, size: CGSize(width: self.view.frame.width, height: self.view.frame.height)), configuration: webConfiguration)
@@ -132,6 +133,15 @@ class RepositoryViewController: UIViewController, UITableViewDelegate, UITableVi
         let btnClose = UIBarButtonItem.init(title: "Close", style: .plain, target: self, action: #selector(close))
         self.navItem?.leftBarButtonItem = btnBack
         self.navItem?.rightBarButtonItem = btnClose
+    }
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let star = UITableViewRowAction(style: .normal, title: "Star") {
+            action, index in
+            print("\(self.repoNamesArr[indexPath.row]) Starred")
+        }
+        star.backgroundColor = UIColor.lightGray
+        return [star]
     }
 }
 
